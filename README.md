@@ -1,20 +1,62 @@
 ## pdxroasters
 
-PDX Roasters
+PDX Roasters ...
+
+## Getting Started
+
+Django is a great framework, but requires several steps to get a development
+site running on your computer. If you're running OS X these instructions should
+serve you well:
+
+    # Install pip
+    $ sudo easy_install pip
+
+    # Install virtualenv
+    $ sudo pip install virtualenv
+
+    # Create a new virtual environment for the project
+    $ virtualenv django-pdxroasters
+
+    # Activate the virtual environment
+    $ cd django-pdxroasters
+    $ source bin/activate
+
+    # Check out the project source
+    $ git clone git@github.com:twaddington/pdxroasters.git src
+
+    # Install the required libraries
+    $ pip install -r src/requirements.txt
+
+    # Create the dev database
+    $ python src/pdxroasters/manage.py syncdb
+
+    # Run the development server
+    $ python src/pdxroasters/manage.py runserver
+
+You should now be able to access the site in your browser by visiting
+`http://localhost:8000/` and the admin page by visiting `/admin/`.
+
+> Note: When the Python virtualenv is activated, you'll see your shell prompt
+> change to include a prefix like `(django-pdxroasters)shin:pdxroasters tristanw$`.
+> You can deactivate the virtualenv by typing `deactivate`.
 
 ## Features
 
-### Place
+...
+
+- Submit a roaster
+- Contact
+
+## Models
+
+### Roaster
 
 - Name
 - Address
 - Hours (Mon-Fri: Open/Close, Sat: Open/Close, Sun: Open/Close)
-- Phone (555) 555-5555
-- URL
-
-### Roaster
-
+- Phone
 - Description
+- URL
 - Photo URL
 - Video URL
 - Roasts
@@ -23,12 +65,13 @@ PDX Roasters
 ### Roast
 
 - Name
+- Roaster
 
 ### Cafe
 
 - Name
 - Address
-
-### Contact
-
-- Send an email
+- Hours
+- Phone
+- URL
+- Roasters
