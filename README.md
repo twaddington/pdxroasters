@@ -1,6 +1,6 @@
-## pdxroasters
+## PDX Roasters
 
-PDX Roasters ...
+...
 
 ## Getting Started
 
@@ -33,12 +33,12 @@ serve you well:
     # Run the development server
     $ python src/pdxroasters/manage.py runserver
 
-You should now be able to access the site in your browser by visiting
-`http://localhost:8000/` and the admin page by visiting `/admin/`.
-
 > Note: When the Python virtualenv is activated, you'll see your shell prompt
-> change to include a prefix like `(django-pdxroasters)shin:pdxroasters tristanw$`.
+> change to include a prefix like `(django-pdxroasters)shin:src tristanw$`.
 > You can deactivate the virtualenv by typing `deactivate`.
+
+You should now be able to access the site in your browser by visiting
+`http://localhost:8000/` and the admin page by visiting `http://localhost:8000/admin/`.
 
 ## Features
 
