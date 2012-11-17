@@ -22,7 +22,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(PROJECT_ROOT, 'olcc.db'),
+        'NAME': os.path.join(PROJECT_ROOT, 'pdxroasters.db'),
         'USER': '',
         'PASSWORD': '',
         'HOST': '',
@@ -131,7 +131,7 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'roasters',
+    'roaster',
     'gunicorn',
     'debug_toolbar',
 )
