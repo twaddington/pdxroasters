@@ -6,29 +6,29 @@ PDX Roasters
 
 ### Place
 
-    - Name
-    - Address
-    - Hours (Mon-Fri: Open/Close, Sat: Open/Close, Sun: Open/Close)
-    - Phone (555) 555-5555
-    - URL
+- Name
+- Address
+- Hours (Mon-Fri: Open/Close, Sat: Open/Close, Sun: Open/Close)
+- Phone (555) 555-5555
+- URL
 
 ### Roaster
 
-    - Description
-    - Photo URL
-    - Video URL
-    - Roasts
-    - Cafes
+- Description
+- Photo URL
+- Video URL
+- Roasts
+- Cafes
 
 ### Roast
 
-    - Name
+- Name
 
 ### Cafe
 
-    - Name
-    - Address
+- Name
+- Address
 
 ### Contact
 
-    - Send an email
+- Send an email
