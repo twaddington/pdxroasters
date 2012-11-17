@@ -131,7 +131,7 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'pdxroasters',
+    'roasters',
     'gunicorn',
     'debug_toolbar',
 )
