@@ -61,9 +61,9 @@ class Command(BaseCommand):
                             roaster.address = row.get('address')
                             roaster.phone = row.get('phone')
                             roaster.description = row.get('description')
-                            roaster.url = row.get('url')
-                            roaster.photo_url = row.get('photo_url')
-                            roaster.video_url = row.get('video_url')
+                            roaster.url = row.get('url').lower()
+                            roaster.photo_url = row.get('photo_url').lower()
+                            roaster.video_url = row.get('video_url').lower()
                             roaster.save()
 
                             # Create roasts
