@@ -134,6 +134,7 @@ INSTALLED_APPS = (
     'roaster',
     'gunicorn',
     'debug_toolbar',
+    'tastypie',
 )
 
 # A sample logging configuration. The only tangible logging

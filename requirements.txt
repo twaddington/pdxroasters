@@ -1,6 +1,7 @@
 Django==1.4.2
 dj-database-url==0.2.1
 django-debug-toolbar==0.9.4
+django-tastypie==0.9.11
 gunicorn==0.15.0
 mock==1.0.1
 psycopg2==2.4.5

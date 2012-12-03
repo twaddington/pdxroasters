@@ -70,7 +70,7 @@ class Roaster(models.Model):
 class Roast(models.Model):
     name = models.CharField(max_length=200, unique=True, db_index=True,
             blank=False)
-    roaster = models.ForeignKey('Roaster')
+    roaster = models.ForeignKey('Roaster', related_name='roasts')
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
     modified_at = models.DateTimeField(auto_now=True, db_index=True)
 
