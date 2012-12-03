@@ -17,7 +17,7 @@ class Cafe(models.Model):
     address = models.CharField(max_length=200)
     # TODO: Hours
     phone = models.CharField(max_length=10)
-    url = models.URLField(max_length=200)
+    url = models.URLField(max_length=200, verbose_name='URL',)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
     modified_at = models.DateTimeField(auto_now=True, db_index=True)
  
@@ -43,10 +43,10 @@ class Roaster(models.Model):
     address = models.TextField()
     # TODO: Hours
     phone = models.CharField(max_length=10)
-    url = models.URLField(max_length=200)
+    url = models.URLField(max_length=200, verbose_name='URL')
     description = models.TextField()
-    photo_url = models.URLField(max_length=200)
-    video_url = models.URLField(max_length=200)
+    photo_url = models.URLField(max_length=200, verbose_name='Photo URL')
+    video_url = models.URLField(max_length=200, verbose_name='Video URL')
     cafes = models.ManyToManyField('Cafe')
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
     modified_at = models.DateTimeField(auto_now=True, db_index=True)
