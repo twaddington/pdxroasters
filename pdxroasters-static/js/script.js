@@ -11,43 +11,49 @@ $(function() {
         info        = $('#info_wrapper', '#info_panel'),
         map         = $('#map'),
         modals      = $('.modal' , '#map_wrapper'),
-        markers     = $('a.roaster_marker', '#map_wrapper');
+        markers     = $('a.roaster_marker', '#map_wrapper'),
+        articleWrap = $('#article_wrapper');
 
 
     //Size elements to window size.
     function setPanelSize() {
         
         //Panel class for objects that need to be full-window
-        $('.panel').css({ 
-            width: panelWidth, 
+        $('.panel').css({
+            width: panelWidth,
             height: panelHeight
         });
         
         //Make the info wrapper. Three panels, so three times window.
-        info.css({ 
-            width: panelWidth * 3, 
-            'min-height': panelHeight 
+        info.css({
+            width: panelWidth * 3,
+            'min-height': panelHeight
         });
         
         // Place the three panels correctly inside the wrapper.
-        $('#tab1').css({'left': 0}); 
+        $('#tab1').css({'left': 0});
         $('#tab2').css({'left': panelWidth});
         $('#tab3').css({'left': panelWidth * 2});
 
         //Vertically center panel content.
-        $('.panel_content').css({ 
-            'margin-top' : panelHeight / 2 - $('.panel_content').height() / 2 - 45
-        });
-
+        if(panelHeight > 600){
+            $('.panel_content').css({
+                'margin-top' : panelHeight / 2 - $('.panel_content').height()
+            });
+        } else {
+            $('.panel_content').css({
+                'margin-top' : 0
+            });
+        }
     }
-	
+    
     //Expand the Nav Bar.
- 	plus.click(function () {     
+    plus.click(function () {
 
         if (infoPanel.add(nav).add(plus).hasClass("active")){
             infoPanel.add(nav).add(plus).removeClass("active");
             underline.removeClass('nav1 nav2 nav3');
-        } else {   
+        } else {
             nav.add(plus).addClass("active");
         }
         return false;
@@ -62,9 +68,9 @@ $(function() {
         underline.removeClass('nav1 nav2 nav3');
 
         //Open info panel.
-        if ( !infoPanel.hasClass("active") ){  
-              infoPanel.addClass("active");  
-        }   
+        if ( !infoPanel.hasClass("active") ){
+              infoPanel.addClass("active");
+        }
 
         //Change the left position of the info wrapper to create slides.
         switch(el.index()){
@@ -75,11 +81,11 @@ $(function() {
 
     });
     
-    //On resize, update all the values. 
+    //On resize, update all the values.
     $(window).resize(function() {
-        setPanelSize();  
+        setPanelSize();
         panelWidth = $(window).width();
-        panelHeight = $(window).height();      
+        panelHeight = $(window).height();
     });
 
     //Set values on Document Ready.
@@ -94,7 +100,7 @@ $(function() {
         position.top = position.top - (modal.height()) - 79;
         position.topStart = position.top - 20;
 
-        if (modal.hasClass("closed")){  
+        if (modal.hasClass("closed")){
             modals.not(modal).hide().addClass('closed').animate({opacity: 0}, 400);
             modal.css('left', position.left).css('top', position.topStart).css('display' , 'block')
                  .animate({
