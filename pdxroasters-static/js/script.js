@@ -29,7 +29,7 @@ $(function() {
             width: panelWidth * 3,
             'min-height': panelHeight
         });
-        
+
         // Place the three panels correctly inside the wrapper.
         $('#tab1').css({'left': 0});
         $('#tab2').css({'left': panelWidth});
@@ -45,6 +45,10 @@ $(function() {
                 'margin-top' : 0
             });
         }
+        // Position InfoWrapper correctly with Classes to create slides
+        $('.slide1').css({'left': 0});
+        $('.slide2').css({'left': 0 - panelWidth});
+        $('.slide3').css({'left': 0 - panelWidth * 2});
     }
     
     //Expand the Nav Bar.
@@ -74,11 +78,13 @@ $(function() {
 
         //Change the left position of the info wrapper to create slides.
         switch(el.index()){
-            case 1: underline.addClass('nav1'); info.css({'left': 0});break;
-            case 2: underline.addClass('nav2'); info.css({'left': 0 - panelWidth});break;
-            case 3: underline.addClass('nav3'); info.css({'left': 0 - panelWidth * 2});break;
+            case 1: underline.addClass('nav1'); info.removeClass().addClass('slide1');break;
+            case 2: underline.addClass('nav2'); info.removeClass().addClass('slide2');break;
+            case 3: underline.addClass('nav3'); info.removeClass().addClass('slide3');break;
         }
 
+        setPanelSize();
+    
     });
     
     //On resize, update all the values.
