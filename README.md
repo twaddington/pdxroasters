@@ -56,6 +56,7 @@ You should now be able to access the site in your browser by visiting
 
 - Name
 - Address
+- lat/lng (geocoded)
 - Hours (Mon-Fri: Open/Close, Sat: Open/Close, Sun: Open/Close)
 - Phone
 - Description
@@ -74,6 +75,7 @@ You should now be able to access the site in your browser by visiting
 
 - Name
 - Address
+- lat/lng (geocoded)
 - Hours
 - Phone
 - URL
