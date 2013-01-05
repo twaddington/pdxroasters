@@ -55,6 +55,7 @@ $(function() {
 
         if (infoPanel.add(nav).add(plus).hasClass("active")){
             infoPanel.add(nav).add(plus).removeClass("active");
+            infoPanel.css({'height':37});
             underline.removeClass('nav1 nav2 nav3');
         } else {
             nav.add(plus).addClass("active");
@@ -72,7 +73,7 @@ $(function() {
 
         //Open info panel.
         if ( !infoPanel.hasClass("active") ){
-              infoPanel.addClass("active");
+              infoPanel.addClass("active").css({'height':panelHeight});
         }
 
         //Change the left position of the info wrapper to create slides.
