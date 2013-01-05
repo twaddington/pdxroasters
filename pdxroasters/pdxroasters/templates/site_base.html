@@ -1,35 +1,54 @@
 {% load staticfiles %}
 <!DOCTYPE html>
-<html lang="en">
+<!--[if IE 7]><html lang="en" class="ie ie-legacy ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="ie ie-legacy ie8"><![endif]-->
+<!--[if IE 9]><html lang="en" class="ie ie9"><![endif]-->
+<!--[if gt IE 8]><html lang="en"><![endif]-->
+<!--[if !IE]><!--><html lang="en"><!--<![endif]-->
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="keywords" content="{% block meta-keywords %}{% endblock %}" />
     <meta name="description" content="{% block meta-description %}{% endblock %}" />
     <title>{% block title %}{% endblock %} | PDX Roasters</title>
-    <link rel="stylesheet" media="screen" href="{% static 'css/screen.css' %}" />
+    <!--[if gte IE 7]><!-->
+        <link href="{% static 'css/screen.css' %}" rel="stylesheet" media="screen" />
+    <!--<![endif]-->
+    <!--[if(IE 7)|(IE 8)|(IE 9)]>
+		<link href="{% static 'css/ie.css' %}" rel="stylesheet" media="screen" />
+	<![endif]-->
+    <!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 </head>
-<body>
-    {% block header %}
-    <header>
-        <h1>PDX Roasters</h1> 
-        <nav>     
-            <a href="#" id="plus"> &nbsp; </a>
-            <a href="#" class="info" id="tab1_button"> Add Roaster </a>
-            <a href="#" class="info" id="tab2_button"> About </a>     
-            <a href="#" class="info" id="tab3_button"> Contact </a>
-            <div id="active_underline"> &nbsp; </div>
-        </nav>
-    </header>
-    {% endblock header %}
+<body data-controller="{% block controller %}{% endblock %}">
+    <div id="page">
+        {#% debug %#}
+        {% block header %}
+        <header id="header">
+            <h1>PDX Roasters</h1> 
+            <nav id="nav">     
+                <ul>
+                    <li><a href="#more" class="plus"></a></li>
+                    <li><a href="#panel1">Add Roaster</a></li>
+                    <li><a href="#panel2">About</a></li> 
+                    <li><a href="#panel3">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        {% endblock header %}
+        
+        <section id="content">
+            {% block content %}{% endblock %}
+        </section>
+        
+        {% block footer %}
+        <footer>
+        </footer>
+        {% endblock footer %}
+    </div><!-- END: #page -->
     
-    <div id="content" role="main">
-        {% block content %}{% endblock %}
-    </div>
-    
-    {% block footer %}
-    <footer></footer>
-    {% endblock footer %}
-    
+    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script src="{% static 'js/dist/scripts.js' %}"></script>
 </body>
 </html>

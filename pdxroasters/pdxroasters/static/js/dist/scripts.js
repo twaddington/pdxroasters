@@ -1,4 +1,4 @@
-/*! PDX Roasters - v0.1.0 - 2013-01-04
+/*! PDX Roasters - v0.1.0 - 2013-01-05
 * http://PROJECT_WEBSITE/
 * Copyright (c) 2013 PDX Roasters; Licensed MIT */
 
@@ -9475,138 +9475,210 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 
 })( window );
 
-$(function() {
+/**
+ * PDX Roaster Javascript
+ *
+ * @dependencies:
+ * /static/js/vendor/jquery-1.8.3.min.js
+ * http://maps.google.com/maps/api/js?sensor=false
+ *
+ * @see:
+ * https://developers.google.com/maps/documentation/javascript/reference
+ *
+ */
+(function ( $, window, undefined ) {
 
-    //Create variables from multiple use elements.
-    var panelWidth  = $(window).width(),
-        panelHeight = $(window).height(),
-        navLinks    = $('a.info', 'nav'),
-        nav         = $('nav'),
-        plus        = $('#plus', 'nav'),
-        underline   = $('#active_underline', 'nav'),
-        infoPanel   = $('#info_panel'),
-        info        = $('#info_wrapper', '#info_panel'),
-        map         = $('#map'),
-        modals      = $('.modal' , '#map_wrapper'),
-        markers     = $('a.roaster_marker', '#map_wrapper'),
-        articleWrap = $('#article_wrapper');
+"use strict";
 
-    //Size elements to window size.
-    function setPanelSize() {
+// Get page controller
+var controller = $( document.body ).data( "controller" );
+
+// App object for script initializations
+window.app = {
+    home: {
+        init: function () {
+            this._info();
+            this._nav();
+            this._map();
+            this._roasters();
+            this._resize();
+        },
         
-        //Panel class for objects that need to be full-window
-        $('.panel').css({
-            width: panelWidth,
-            height: panelHeight
-        });
-        
-        //Make the info wrapper. Three panels, so three times window.
-        info.css({
-            width: panelWidth * 3,
-            'min-height': panelHeight
-        });
-
-        // Place the three panels correctly inside the wrapper.
-        $('#tab1').css({'left': 0});
-        $('#tab2').css({'left': panelWidth});
-        $('#tab3').css({'left': panelWidth * 2});
-
-        //Vertically center panel content.
-        if(panelHeight > 600){
-            $('.panel_content').css({
-                'margin-top' : panelHeight / 2 - $('.panel_content').height()
+        _nav: function () {
+            var self = this;
+            
+            this.$nav = $( "#nav" );
+            this.$navTog = this.$nav.find( ".plus" );
+            this.$navLinks = this.$nav.find( "a:not(.plus)" );
+            
+            this.$navTog.on( "click", function ( e ) {
+                e.preventDefault();
+                
+                self.$navTog.toggleClass( "active" );
+                self.$nav.toggleClass( "active" );
+                
+                if ( !self.$navTog.is( ".active" ) ) {
+                	self.$info.removeClass( "active" );
+                	
+                } else {
+                    $( "[href='"+self.activeHash+"']" ).click();
+                }
             });
-        } else {
-            $('.panel_content').css({
-                'margin-top' : 0
+            
+            this.$navLinks.on( "click", function ( e ) {
+                e.preventDefault();
+                
+                if ( !self.$info.is( ".active" ) ) {
+                	self.$info.addClass( "active" );
+                }
+                
+                self.$info.css( "top", $( window ).scrollTop() );
+                
+                self.$navLinks.removeClass( "on" );
+                $( this ).addClass( "on" );
+                
+                self.$activePanel = self.$panels.filter( this.hash );
+                self.activeHash = this.hash;
+                
+                self.$panelWrap.css( "left", -(self.$activePanel.index()*window.innerWidth) );
+            });
+        },
+        
+        _map: function () {
+            this.$mapWrap = $( "#map-wrap" );
+            this.$map = $( "#map" );
+            this.mapElem = this.$map.get( 0 );
+            
+            this.$mapWrap.css({
+                height: window.innerHeight,
+                width: window.innerWidth
+            });
+            
+            // Google maps
+            this.portland = {
+                lat: 45.5239,
+                lng: -122.67,
+                latLng: new google.maps.LatLng( 45.5239, -122.67 )
+            };
+            this.mapSettings = {
+                center: this.portland.latLng,
+    			disableDoubleClickZoom: false,
+    			draggingCursor: "move",
+    			draggableCursor: "default",
+    			mapTypeId: google.maps.MapTypeId.ROADMAP,
+    			mapTypeControl: false,
+    			panControl: false,
+    			panControlOptions: {
+    				position: google.maps.ControlPosition.LEFT_CENTER
+    			},
+    			scrollwheel: false,
+    			streetViewControl: true,
+    			zoom: 15,
+    			zoomControlOptions: {
+    				position: google.maps.ControlPosition.LEFT_CENTER,
+    				style: google.maps.ZoomControlStyle.LARGE
+    			}
+            };
+            
+            this.map = new google.maps.Map( this.mapElem, this.mapSettings );
+        },
+        
+        _info: function () {
+            this.$info = $( "#info-panel" );
+            this.$panelWrap = this.$info.find( ".panels" );
+            this.$panels = this.$info.find( ".panel" );
+            
+            this.$panelWrap.width( window.innerWidth*this.$panels.length );
+            
+            this.$info.add( this.$panels ).css({
+                height: window.innerHeight,
+                width: window.innerWidth
+            });
+        },
+        
+        _roasters: function () {
+            var self = this;
+            
+            this.$roasters = $( "#roasters" );
+            this.$roasterItems = this.$roasters.find( ".roaster" );
+            this.$roasterTogs = this.$roasters.find( ".toggle" );
+            
+            this.$roasterTogs.on( "click", function ( e ) {
+                e.preventDefault();
+                
+                if ( $( this ).is( ".active" ) ) {
+                	$( this ).removeClass( "active" );
+                	self.$roasterItems.removeClass( "active" );
+                	
+                	return false;
+                }
+                
+                self.$roasterTogs.removeClass( "active" );
+                $( this ).addClass( "active" );
+                
+                self.$roasterItems.removeClass( "active" );
+                $( this ).closest( ".roaster" ).addClass( "active" );
+            });
+        },
+        
+        _resize: function () {
+            var self = this;
+            
+            window.onresize = function () {
+                self.$mapWrap.css({
+                    height: window.innerHeight,
+                    width: window.innerWidth
+                });
+                
+                self.$info.add( self.$panels ).css({
+                    height: window.innerHeight,
+                    width: window.innerWidth
+                });
+                
+                self.$panelWrap.width( window.innerWidth*self.$panels.length );
+            };
+        }
+    },
+    
+    utils: {
+        init: function () {
+            $( ".scroll-to" ).on( "click", function ( e ) {
+                e.preventDefault();
+                
+                var $elemTo = $( this.hash ),
+                    destination = $elemTo.offset().top;
+                
+                $( "body, html" ).animate( {"scrollTop": destination}, 400 );
+            });
+            
+            $( ".ajax-form" ).on( "submit", function ( e ) {
+                e.preventDefault();
+                
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $( this ).serialize()
+                })
+                .done(function () {
+                    console.log( "done" );
+                })
+                .fail(function () {
+                    console.log( "fail" );
+                });
             });
         }
-        // Position InfoWrapper correctly with Classes to create slides
-        $('.slide1').css({'left': 0});
-        $('.slide2').css({'left': 0 - panelWidth});
-        $('.slide3').css({'left': 0 - panelWidth * 2});
     }
-    
-    //Expand the Nav Bar.
-    plus.click(function () {
+};
 
-        if (infoPanel.add(nav).add(plus).hasClass("active")){
-            infoPanel.add(nav).add(plus).removeClass("active");
-            infoPanel.css({'height':37});
-            underline.removeClass('nav1 nav2 nav3');
-        } else {
-            nav.add(plus).addClass("active");
-        }
-        return false;
+// Make sure app has controller and run it
+if ( window.app[ controller ] && window.app[ controller ].init ) {
+	window.app[ controller ].init();
+}
 
-    });
+// Init some tasks that all pages use
+window.app.utils.init();
 
-    // Update the Nav and slide content.
-    navLinks.click(function () {
+// Console fallback
+window.console = window.console || function () {};
 
-        var el = $(this);
-
-        underline.removeClass('nav1 nav2 nav3');
-
-        //Open info panel.
-        if ( !infoPanel.hasClass("active") ){
-              infoPanel.addClass("active").css({'height':panelHeight});
-        }
-
-        //Change the left position of the info wrapper to create slides.
-        switch(el.index()){
-            case 1: underline.addClass('nav1'); info.removeClass().addClass('slide1');break;
-            case 2: underline.addClass('nav2'); info.removeClass().addClass('slide2');break;
-            case 3: underline.addClass('nav3'); info.removeClass().addClass('slide3');break;
-        }
-
-        setPanelSize();
-    
-    });
-    
-    //On resize, update all the values.
-    $(window).resize(function() {
-        setPanelSize();
-        panelWidth = $(window).width();
-        panelHeight = $(window).height();
-    });
-
-    //Set values on Document Ready.
-    setPanelSize();
-
-    markers.click(function () {
-        
-        modal  = '#' + $(this).data('modal-id');
-        modal  = $(modal);
-        position = $(this).offset();
-        position.left = position.left - (modal.width()/2) - 26;
-        position.top = position.top - (modal.height()) - 79;
-        position.topStart = position.top - 20;
-
-        if (modal.hasClass("closed")){
-            modals.not(modal).hide().addClass('closed').animate({opacity: 0}, 400);
-            modal.css('left', position.left).css('top', position.topStart).css('display' , 'block')
-                 .animate({
-                     opacity: 1,
-                     top:position.top}, 400)
-                 .removeClass('closed');
-
-        } else {
-            modal.animate({
-            opacity: 0,
-            top:position.topStart}, 400);
-            modal.hide();
-            modal.addClass('closed');
-        }
-
-    });
-
-    // Smooth Scrolling
-    $(".scroll").click(function(event){     
-        event.preventDefault();
-        $('html,body').animate({scrollTop:$(this.hash).offset().top}, 400);
-    });
-
-});
-
-
+})( jQuery, window );
