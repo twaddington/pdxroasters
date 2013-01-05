@@ -1,5 +1,8 @@
+from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.generic.simple import direct_to_template
 
 from pdxroasters.api import RoasterResource, RoastResource, CafeResource
 
@@ -7,12 +10,7 @@ from pdxroasters.api import RoasterResource, RoastResource, CafeResource
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'pdxroasters.views.home', name='home'),
-    # url(r'^pdxroasters/', include('pdxroasters.foo.urls')),
-
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    url(r'^$', 'pdxroasters.views.home', name='home'),
 
     # Wire up the api
     url(r'^api/', include(CafeResource().urls)),
@@ -21,4 +19,25 @@ urlpatterns = patterns('',
 
     # Wire up the admin
     url(r'^admin/', include(admin.site.urls)),
+
+    # humans.txt
+    (r'^humans\.txt$', direct_to_template,
+        {'template': 'humans.txt', 'mimetype': 'text/plain'}),
+
+    # robots.txt
+    (r'^robots\.txt$', direct_to_template,
+        {'template': 'robots.txt', 'mimetype': 'text/plain'}),
+
+    # crossdomain.xml
+    (r'^crossdomain\.xml$', direct_to_template,
+        {'template': 'crossdomain.xml', 'mimetype': 'application/xml'}),
 )
+
+# Static files
+if settings.DEBUG:
+    urlpatterns += staticfiles_urlpatterns()
+else:
+    urlpatterns += patterns('',
+        (r'^static/(.*)$', 'django.views.static.serve',
+            {'document_root': settings.STATIC_ROOT}),
+    )

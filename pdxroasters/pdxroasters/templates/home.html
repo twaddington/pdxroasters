@@ -1,0 +1,16 @@
+{% extends 'site_base.html' %}
+{% load i18n %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for r in roasters %}
+            <li>{{ r.name }}</li>
+        {% empty %}
+            <li>No roasters round!</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
