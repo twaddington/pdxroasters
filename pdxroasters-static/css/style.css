@@ -77,6 +77,20 @@ h3{
   letter-spacing:1px;
 }
 
+h4{
+  font: normal 400 1.25em/1.25em 'DIN', Helvetica, Arial, Sans;
+  margin: .5em 0 .5em 0;
+  color:#323232;
+  letter-spacing:1px;
+}
+
+h5{
+  font: normal 400 1.25em/1.25em 'DIN', Helvetica, Arial, Sans;
+  margin: .5em 0 .5em 0;
+  color:#323232;
+  letter-spacing:1px;
+}
+
 p {font: normal 400 1em/2em 'DIN', Helvetica, Arial, Sans; margin-bottom: 2em;}
 
 p.skolar {font: normal 400 1em/2em 'Skolar', Helvetica, Arial, Sans;}
@@ -345,7 +359,8 @@ a.close{
   letter-spacing: 1px;
   text-align:center;
   text-indent:0px;
-  color:#fff;
+  text-decoration:none;
+  color:#fff !important;
 }
 
 .dark_grey{
@@ -369,19 +384,91 @@ a.close{
   padding-top:40px;
 }
 
+#article{
+  width:100%;
+}
+#article h3{ font: normal 400 2.25em/1.5em 'DIN', Helvetica, Arial, Sans; width:80%; float:left; margin: 0 0 1em 0;}
+#article h4{font: normal 400 1.5em/2em 'DIN', Helvetica, Arial, Sans; margin: 0 0 1em 0;}
+
+#handle{
+  display:inline-block;
+  background:transparent url('../img/plusthin.png') top left no-repeat;
+  width:22px;
+  height:22px;
+  vertical-align:1px;
+  margin-right:0px;
+  margin-top: 1em;
+  float:right;
+}
+    #handle.active{
+      -webkit-transform: rotate(-225deg);
+         -moz-transform: rotate(-225deg);
+          -ms-transform: rotate(-225deg);  
+           -o-transform: rotate(-225deg); 
+              transform: rotate(-225deg);
+    }
+    #handle.active, #handle{ 
+     -webkit-transition: all 400ms cubic-bezier(0.095, 0.910, 0.245, 1.000); 
+        -moz-transition: all 400ms cubic-bezier(0.095, 0.910, 0.245, 1.000); 
+         -ms-transition: all 400ms cubic-bezier(0.095, 0.910, 0.245, 1.000); 
+          -o-transition: all 400ms cubic-bezier(0.095, 0.910, 0.245, 1.000); 
+             transition: all 400ms cubic-bezier(0.095, 0.910, 0.245, 1.000);
+    }
+
 .roaster_article{
   height:auto;
-  width:100%;
-
-}
-
-.roaster_article p{
-  max-width:500px;
+  width:94%;
+  max-width:1440px;
+  padding:0 3%;
+  margin:0 auto;
 }
 
 .hours_address{
+  width: 55%;
+  margin-right:5%;
+  margin-bottom:2em;
+  float:left;
+}
+
+#article figure{
+  width:100%;
+  float:right;
+  margin-bottom:2em;
 
 }
+
+#article figure img{
+  width:100%;
+  height:auto;
+}
+
+#article figcaption{
+  text-align:right;
+  margin-top:1em;
+  font: normal 400 1em/2em 'Skolar', Helvetica, Arial, Sans;
+}
+
+.hours_address div.hours{
+  width:50%;
+  float:right;
+  height:auto;
+}
+
+.hours_address div.address{
+  width:50%;
+  float:left;
+  height:auto;
+  margin-right:0;
+}
+
+/* - - - - - - - - - - Description - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+#article .about{
+  width: 40%;
+  margin-top:1em;
+  float:right;
+}
+
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /* - - - - - - - - - - Responsive Styles - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
