@@ -1,47 +1,35 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-
-        <!-- Enable Google Chrome Frame support -->
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-
-        <meta name="keywords" content="{% block meta-keywords %}{% endblock %}">
-        <meta name="description" content="{% block meta-description %}{% endblock %}">
-
-        <title>{% block title %}{% endblock %} | PDX Roasters</title>
-        <!-- TODO: Include a shortcut icon. -->
-
-        <!-- Stylesheets -->
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
-    </head>
-    <body>
-        <!-- Prompt IE 6 users to install Chrome Frame. -->
-        <!--[if lt IE 7]>
-            <p class=chromeframe>
-                Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.
-            </p>
-        <![endif]-->
-        
-        {% block header %}
-        <header>
-            {% if debug %}
-                <h1>DEBUG</h1>
-            {% else %}
-                <h1>LIVE</h1>
-            {% endif %}
-        </header>
-        {% endblock header %}
-
-        <div id="content" role="main">
-            {% block content %}{% endblock %}
-        </div>
-
-        {% block footer %}<footer></footer>{% endblock footer %}
-
-        <!-- Scripts at the bottom for faster loading! -->
-        <script src="{% static 'js/dist/scripts.js' %}"></script>
-    </body>
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="{% block meta-keywords %}{% endblock %}" />
+    <meta name="description" content="{% block meta-description %}{% endblock %}" />
+    <title>{% block title %}{% endblock %} | PDX Roasters</title>
+    <link rel="stylesheet" media="screen" href="{% static 'css/screen.css' %}" />
+</head>
+<body>
+    {% block header %}
+    <header>
+        <h1>PDX Roasters</h1> 
+        <nav>     
+            <a href="#" id="plus"> &nbsp; </a>
+            <a href="#" class="info" id="tab1_button"> Add Roaster </a>
+            <a href="#" class="info" id="tab2_button"> About </a>     
+            <a href="#" class="info" id="tab3_button"> Contact </a>
+            <div id="active_underline"> &nbsp; </div>
+        </nav>
+    </header>
+    {% endblock header %}
+    
+    <div id="content" role="main">
+        {% block content %}{% endblock %}
+    </div>
+    
+    {% block footer %}
+    <footer></footer>
+    {% endblock footer %}
+    
+    <script src="{% static 'js/dist/scripts.js' %}"></script>
+</body>
 </html>

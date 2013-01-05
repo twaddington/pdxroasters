@@ -1,26 +1,8 @@
 {% extends 'site_base.html' %}
+
 {% load i18n %}
 
-{% block title %}
-    Home
-{% endblock %}
-
-<!-- Top Navigation -->
-{% block header %}
-<header>
-
-<h1> PDX Roasters </h1> 
-
-<nav>     
-  <a href="#" id="plus"> &nbsp; </a>
-  <a href="#" class="info" id="tab1_button"> Add Roaster </a>
-  <a href="#" class="info" id="tab2_button"> About </a>     
-  <a href="#" class="info" id="tab3_button"> Contact </a>
-  <div id="active_underline"> &nbsp; </div>
-</nav>
-
-</header>
-{% endblock header %}
+{% block title %}Home{% endblock %}
 
 {% block content %}
 <div id="info_panel">
@@ -161,10 +143,10 @@
 <div id="article_wrapper">
 
 <div id="article">
-
+{% for r in roasters %}
   <section class="roaster_article" id="article_01">
 
-      <h3> Stumptown Coffee Roasters </h3>        
+      <h3>{{ r.name }}</h3>        
 
       <a href="" id="handle" class="active"></a>
 
@@ -175,16 +157,12 @@
         </figure>
 
         <div class="address">
-          <h5> Address</h5>
-          <p class="address"> 
-            1234 Lovejoy Avenue <br />
-            Portland, OR 97202 <br />
-            971.241.4681
-          </p>
+          <h5>Address</h5>
+          <p class="address">{{ r.address }}</p>
         </div>
         
         <div class="hours">
-          <h5> Hours </h5>
+          <h5>Hours</h5>
           <p class="hours"> 
             Mon. - Fri.  <span class="align_right"> 8 - 12 </span> <br />
             Sat.  <span class="align_right"> 8 - 12 </span> <br />
@@ -195,18 +173,15 @@
       </div>
 
       <div class="about">
-        <h4> About Stumptown Coffee Roasters </h4>
-        <p class="skolar"> 
-          First sentence, vel scelerisque nisl consectetur et. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec sed odio dui. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-        </p>
-        <p class="skolar">
-          Nullam quis risus eget urna mollis ornare vel eu leo. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Curabitur blandit tempus porttitor. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo.
-        </p>
-        <a href="#map" class="button dark_grey transition_short scroll" cafe-attribute="roaster_01"> Find this Roast </a>
+        <h4>About {{ r.name }}</h4>
+        <p class="skolar">{{ r.description }}</p>
+        <a href="#map" class="button dark_grey transition_short scroll" cafe-attribute="roaster_01">Find this Roast</a>
       </div>
 
   </section>
-
+{% empty %}
+    <p>No Roasters!</p>
+{% endfor %}
 </div>
 
 </div>
