@@ -12,6 +12,9 @@ class Command(BaseCommand):
 
     fields = (
         'name',
+        'order_online',
+        'cafe_on_site',
+        'open_to_public',
         'address',
         'hours1',
         'hours2',
