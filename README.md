@@ -24,6 +24,9 @@ serve you well:
     # Check out the project source
     $ git clone git@github.com:twaddington/pdxroasters.git src
 
+    # Create a local settings file
+    $ cp src/pdxroasters/pdxroasters/settings_local.py.sample src/pdxroasters/pdxroasters/settings_local.py
+
     # Install the required libraries
     $ pip install -r src/requirements.txt
 
