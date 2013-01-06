@@ -312,6 +312,12 @@ blockquote {
     position: relative;
     height: 100%;
     width: 100%;
+    
+    .marker-custom {
+        background: red;
+        height: 20px;
+        width: 20px;
+    }
 }
 /*
 a.roaster_marker{
