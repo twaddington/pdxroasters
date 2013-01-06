@@ -72,13 +72,6 @@ Overlay.extend = function ( prop ) {
 window.pdx.maps.Overlay = Overlay;
 })();
 
-// Infowindow Class
-window.pdx.maps.Infowindow = window.pdx.maps.Overlay.extend({
-    init: function () {
-        
-    }
-});
-
 // Marker Class
 window.pdx.maps.Marker = window.pdx.maps.Overlay.extend({
     init: function ( options ) {
@@ -89,21 +82,40 @@ window.pdx.maps.Marker = window.pdx.maps.Overlay.extend({
         }
         
         this.element = document.createElement( "div" );
-        this.settings = options;
-        this.latLng = options.latLng;
-        this.map = options.map;
+        this.loaded = false;
+        
+        for ( var prop in options ) {
+        	this[ prop ] = options[ prop ];
+        }
         
         this.setMap( this.map );
     },
     
     onAdd: function () {
+        var self = this;
+        
+        // Build marker html
         this.element.style.position = "absolute";
         this.element.className = "marker-custom";
+        this.element.innerHTML = "<div><div></div></div>";
+        this.tooltip = document.createElement( "span" );
+        this.tooltip.className = "tooltip";
+        this.tooltip.innerHTML = "<div>"+this.name+"</div>";
+        this.loader = document.createElement( "span" );
+        this.loader.className = "plus-spinner";
+        this.loader.innerHTML = "<div></div>";
+        this.element.appendChild( this.tooltip );
+        this.element.appendChild( this.loader );
         this.getPanes().overlayMouseTarget.appendChild( this.element );
+        
+        // Open to custom marker actions
+        if ( this.onAddCallback && typeof this.onAddCallback === "function" ) {
+        	this.onAddCallback( this );
+        }
     },
     
     draw: function () {
-        var pixelPosition = this.getProjection().fromLatLngToDivPixel( this.settings.latLng );
+        var pixelPosition = this.getProjection().fromLatLngToDivPixel( this.latLng );
         
         if ( !pixelPosition ) {
         	console.log( "[Marker failed]" );
@@ -111,7 +123,10 @@ window.pdx.maps.Marker = window.pdx.maps.Overlay.extend({
         	return false;
         }
         
-        this.element.style.left = (pixelPosition.x-(this.element.clientWidth / 2))+"px";
+        this.tooltip.style.left = -((this.tooltip.clientWidth/2)-(this.element.clientWidth/2))+"px";
+        this.loader.style.left = -((this.loader.clientWidth/2)-(this.element.clientWidth/2))+"px";
+        this.loader.style.top = -(this.loader.clientHeight+3)+"px";
+        this.element.style.left = (pixelPosition.x-(this.element.clientWidth/2))+"px";
         this.element.style.top = (pixelPosition.y-(this.element.clientHeight))+"px";
         this.element.style.zIndex = 999;
         this.element.parentNode.style.zIndex = 999;

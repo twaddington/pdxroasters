@@ -116,11 +116,21 @@ window.pdx.app.home = {
         this.map = new google.maps.Map( this.mapElem, this.mapSettings );
         
         this.$roasterItems.each(function ( i ) {
-            var points = /* $( this ).data( "latlng" ) */_latLngs[ i ],
+            var $elem = $( this ),
+                points = /* $elem.data( "latlng" ) */_latLngs[ i ],
+                name = $elem.data( "name" ),
+                api = /* $elem.data( "api" ) */"/api/roaster/"+this.id+"/",
+                id = this.id,
                 latLng = new google.maps.LatLng( points[ 0 ], points[ 1 ] ),
                 marker = new window.pdx.maps.Marker({
                     latLng: latLng,
-                    map: self.map
+                    map: self.map,
+                    name: name,
+                    api: api,
+                    id: id,
+                    onAddCallback: function () {
+                        self._onAddMarker.apply( self, arguments );
+                    }
                 });
             
             self.mapMarkers.push( marker );
@@ -128,6 +138,157 @@ window.pdx.app.home = {
         });
         
         this.map.fitBounds( this.mapBounds );
+    },
+    
+    _onAddMarker: function ( instance ) {
+        var self = this;
+        
+        // Reveal roaster content
+        $( instance.element ).on( "mouseover", "> div", function () {
+            var $elem = $( this ),
+                $tip = $elem.parent().find( ".tooltip" );
+            
+            if ( $elem.parent().is( ".loaded" ) ) {
+            	return false;
+            }
+            
+            $elem.parent().addClass( "active" );
+            $tip.css( "top", -($tip.outerHeight()+3) );
+        
+        // Hide roaster content
+        }).on( "mouseout", "> div", function ( e ) {
+            var $elem = $( this ),
+                $tip = $elem.parent().find( ".tooltip" );
+            
+            if ( $elem.parent().is( ".loaded" ) ) {
+            	return false;
+            }
+            
+            $elem.parent().removeClass( "active" );
+            $tip.css( "top", "50%" );
+        });
+        
+        // Request the detailed content
+        $( instance.element ).on( "click", "> div", function ( e ) {
+            var $elem = $( this ),
+                $tip = $elem.parent().find( ".tooltip" ),
+                $spin = $elem.parent().find( ".plus-spinner > div" ),
+                timeout;
+            
+            if ( instance.loaded ) {
+            	$tip.toggleClass( "inactive" );
+            	
+            	if ( $tip.is( ".inactive" ) ) {
+                	$tip.css( "top", "50%" );
+                	
+                } else {
+                    $tip.css( "top", -($tip.outerHeight()+3) );
+                }
+            	
+            	return false;
+            }
+            
+            $tip.hide().addClass( "loading" );
+            
+            $spin.parent().addClass( "active" );
+            $spin.addClass( "loading" );
+            
+            function _loading() {
+                timeout = setTimeout(function () {
+                    $spin.toggleClass( "loading" );
+                    
+                    _loading();
+                    
+                }, 300 );
+            }
+            
+            _loading();
+            
+            $.ajax({
+                url: instance.api,
+                type: "GET",
+                dataType: "json",
+                data: {
+                    format: "json"
+                }
+            })
+            .done(function ( response ) {
+                var html = "";
+                
+                clearTimeout( timeout );
+                
+                instance.loaded = true;
+                
+                html = '<h3>'+response.name+'</h3>';
+                html += '<div class="group">';
+                    html += '<div class="col col1of2">';
+                        html += '<div class="ci">'+response.address+'</div>';
+                    html += '</div>';
+                    html += '<div class="col col1of2">';
+                        html += '<p class="hours ci">';
+                            html += 'Mon. - Fri. <span>8 - 12</span><br />';
+                            html += 'Sat. <span>8 - 12</span><br />';
+                            html += 'Sun. <span>8 - 12</span>';
+                        html += '</p>';
+                    html += '</div>';
+                html += '</div>';
+                html += '<div class="btns group">';
+                    html += '<div class="col col1of2">';
+                        html += '<div class="ci"><a href="#'+response.id+'" class="btn find">Find this Roast</a></div>';
+                    html += '</div>';
+                    html += '<div class="col col1of2">';
+                        html += '<div class="ci"><a href="/roaster/'+response.slug+'/" class="btn">Learn More</a></div>';
+                    html += '</div>';
+                html += '</div>';
+                html += '<a href="#close" class="plus-close">Close</div>';
+                
+                // Overrides roaster name
+                $tip.addClass( "infowindow" )
+                    .html( html )
+                    .css( "top", -($tip.outerHeight()+3) )
+                    .css( "left", -(($tip.outerWidth()/2)-($elem.outerWidth()/2)) );
+                
+                $tip.find( ".plus-close" ).on( "click", function ( e ) {
+                    e.preventDefault();
+                    
+                    $tip.toggleClass( "inactive" );
+                    
+                    if ( $tip.is( ".inactive" ) ) {
+                    	$tip.css( "top", "50%" );
+                    	
+                    } else {
+                        $tip.css( "top", -($tip.outerHeight()+3) );
+                    }
+                });
+                
+                $tip.find( ".find" ).on( "click", function ( e ) {
+                    e.preventDefault();
+                    
+                    var $elem = $( this.hash ),
+                        destination = $elem.offset().top;
+                    
+                    $elem.find( ".toggle" ).click();
+            
+                    $( "body, html" ).animate( {"scrollTop": destination}, 400 );
+                });
+                
+                setTimeout(function () {
+                    $tip.show().removeClass( "loading" );
+                    
+                    $spin.parent().removeClass( "active" );
+                    $spin.removeClass( "loading" );
+                    
+                    $elem.parent().addClass( "loaded" );
+                    
+                }, 300 );
+                
+            })
+            .fail(function () {
+                clearTimeout( timeout );
+                
+                console.log( "[Marker load error]" );
+            });
+        });
     },
     
     _info: function () {

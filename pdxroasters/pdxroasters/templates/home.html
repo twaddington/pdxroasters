@@ -80,7 +80,7 @@
     </a>
     <div class="roasters">
         {% for r in roasters %}
-        <div class="roaster" data-latlng="[]">
+        <div class="roaster" id="{{ r.id }}" data-latlng="[]" data-api="{{ r.resource_uri }}" data-name="{{ r.name }}">
             <h3 class="group"><span>{{ r.name }}</span> <a href="#toggle" class="toggle"></a></h3>
             <div class="content group">
                 <div class="col col1of2">
@@ -110,7 +110,7 @@
                     <div class="ci">
                         <h4>About {{ r.name }}</h4>
                         <p class="skolar">{{ r.description }}</p>
-                        <a href="/{{ r.slug }}/" data-api="{{ r.resource_uri }}" class="btn">Find this Roast</a>
+                        <a href="/roaster/{{ r.slug }}/" data-api="{{ r.resource_uri }}" class="btn">Find this Roast</a>
                     </div>
                 </div>
             </div>

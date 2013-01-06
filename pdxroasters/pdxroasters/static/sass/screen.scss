@@ -11,7 +11,7 @@ table {	border-spacing: 0; width: 100%; }
 input, textarea { padding: 0; }
 legend { white-space: normal; width: 100%; }
 textarea { overflow: auto; resize: vertical; }
-embed, iframe, img, input, object, select, textarea { margin: 0; /* max-width: 100%; */ vertical-align: top; }
+embed, iframe, img, input, object, select, textarea { margin: 0; max-width: 100%; vertical-align: top; }
 a:hover, a:active, embed, object { outline: 0; }
 a, button { cursor: pointer; }
 button { line-height: normal; }
@@ -26,27 +26,11 @@ button::-moz-focus-inner { border: 0; padding: 0; }
 
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - Global Classes - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+/* - - - - - - - - - - Variables - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-.btn {
-    background: #DDDBD4;
-    border: 1px solid #D2D0CB;
-    padding:.5em 2em;
-    font: normal 700 1em/1em 'DIN', Helvetica, Arial, Sans; 
-    cursor: pointer;
-    margin-right: 1em;
-    text-transform: none;
-    letter-spacing: 1px;
-    text-align: center;
-    text-indent: 0px;
-    text-decoration: none;
-    color: #fff;
-    
-    &:hover {
-        border-color: #b6b4b0;
-        color: #555;
-    }
-}
+$blue: #0099ff;
+$skolar: 'Skolar', Helvetica, Arial, Sans-serif;
+$din: 'DIN', Helvetica, Arial, Sans-serif;
 
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -56,57 +40,60 @@ body {
     margin: 0;
     min-height: 100%;
     font-size: 16px;
-    font-family: 'DIN', Helvetica, Arial, Sans;
-    
-    &.no-scroll {
-        overflow-y: hidden;
-    }
+    font-family: $din;
 }
 a {
-    color: #111;
+    color: $blue;
     text-decoration: none;
     
     @include transition(color 200ms linear);
     
     &:hover {
-        color: #0099ff;
+        color: #111;
     }
 }
 h1 {
-    font: normal 700 1.5em/1.5em 'DIN', Helvetica, Arial, Sans;
-    letter-spacing: 2px;
     color: #fff;
+    font-size: 28px;
+    letter-spacing: 2px;
 }
 h2 {
-    font: normal 700 2em/2em 'DIN', Helvetica, Arial, Sans;
+    font-size: 36px;
     margin-bottom: .5em;
     color: #323232;
     letter-spacing: 1px;
 }
 h3 {
-    font: normal 400 1.5em/1.5em 'DIN', Helvetica, Arial, Sans;
+    font-size: 26px;
     margin-bottom: .5em;
     color: #323232;
     letter-spacing: 1px;
 }
 h4 {
-    font: normal 400 1.25em/1.25em 'DIN', Helvetica, Arial, Sans;
+    font-size: 22px;
     margin-bottom: .5em;
     color: #323232;
     letter-spacing: 1px;
 }
-h5{
-    font: normal 400 1.25em/1.25em 'DIN', Helvetica, Arial, Sans;
+h5 {
+    font-size: 22px;
     margin-bottom: .5em;
     color: #323232;
     letter-spacing: 1px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
 }
 p {
-    font: normal 400 1em/2em 'DIN', Helvetica, Arial, Sans;
     margin-bottom: 2em;
     
     &.skolar {
-        font: normal 400 1em/2em 'Skolar', Helvetica, Arial, Sans;
+        font-family: $skolar;
     }
     
     p a {
@@ -122,8 +109,36 @@ p {
 strong {
     font-weight: bold;
 }
-blockquote {
-    margin: 1em 40px;
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - Global Classes - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+.btn {
+    background: #dddbd4;
+    border: 1px solid #d2d0cb;
+    padding:.5em 2em;
+    cursor: pointer;
+    margin-right: 1em;
+    text-transform: none;
+    letter-spacing: 1px;
+    text-align: center;
+    text-indent: 0px;
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    
+    &:hover {
+        border-color: #b6b4b0;
+        color: #555;
+    }
+}
+.hours {
+    span {
+        float: right;
+        display: inline;
+        text-align: right;
+    }
 }
 
 
@@ -216,7 +231,6 @@ blockquote {
             }
             
             a {
-                font: normal 400 1em/1.25em 'DIN', Helvetica, Arial, Sans;
                 letter-spacing: 1px;
                 color: #fff;
                 text-transform: uppercase;
@@ -231,7 +245,7 @@ blockquote {
     
     .plus {
         display: inline-block;
-        background: transparent url('../img/plus-nav.png') no-repeat 0 0;
+        background: transparent url(../img/plus-nav.png) no-repeat 0 0;
         width: 22px;
         height: 22px;
         vertical-align: middle;
@@ -313,10 +327,142 @@ blockquote {
     height: 100%;
     width: 100%;
     
+    img {
+        max-width: none;
+    }
+    
     .marker-custom {
-        background: red;
-        height: 20px;
-        width: 20px;
+       &.active {
+           > .tooltip {
+               @include opacity(1);
+               
+               &.loading {
+                   @include opacity(0);
+               }
+           }
+       }
+       
+       &.loaded {
+           
+       }
+       
+       > div {
+            cursor: pointer;
+            border: 1px solid #085080;
+            height: 20px;
+            position: relative;
+            width: 20px;
+            
+            @include box-shadow(0 0 2px rgba(0,0,0,.8));
+            @include border-radius(10px);
+            @include background-image(linear-gradient($blue,#085080));
+            
+            &:hover {
+                > div {
+                    background-color: #fff;
+                }
+            }
+            
+            > div {
+                background-color: #ebebeb;
+                height: 8px;
+                left: 50%;
+                margin: -4px 0 0 -4px;
+                position: absolute;
+                top: 50%;
+                width: 8px;
+                
+                @include box-shadow(0 0 2px rgba(0,0,0,.5) inset);
+                @include border-radius(4px);
+                @include transition(all 200ms linear);
+            }
+        }
+        
+        > span {
+            border: 1px solid #959595;
+            padding: 10px;
+            position: absolute;
+            text-align: center;
+            top: -50%;
+            white-space: nowrap;
+            z-index: -1;
+            
+            @include opacity(0);
+            @include box-shadow(0 0 2px rgba(0,0,0,.5));
+            @include border-radius(5px);
+            @include background-image(linear-gradient(#fff,#ebebeb));
+            @include transition(all 100ms linear);
+        }
+        
+        > .tooltip {
+            &.infowindow {
+                padding: 20px;
+                text-align: left;
+                white-space: normal;
+                width: 320px;
+                
+                &.inactive {
+                    @include opacity(0);
+                }
+            }
+            
+            .plus-close {
+                background: url(../img/plusthin.png) no-repeat 0 0;
+                display: block;
+                height: 22px;
+                position: absolute;
+                right: 20px;
+                text-indent: -9999px;
+                top: 20px;
+                width: 22px;
+                
+                @include transform(rotate(-45deg));
+            }
+            
+            p {
+                margin: 0;
+            }
+            
+            .btn {
+                margin: 0;
+                padding: 5px 10px;
+            }
+            
+            .btns {
+                margin-top: 20px;
+            }
+            
+            .col {
+                font-size: 14px;
+            }
+            
+            .ci {
+                padding-right: 0;
+            }
+            
+            .col:first-child .ci {
+                padding-right: 20px;
+                padding-left: 0;
+            }
+        }
+        
+        > .plus-spinner {
+             &.active {
+                 @include opacity(1);
+             }
+             
+             > div {
+                background: url(../img/plusthin.png) no-repeat 0 0;
+                height: 22px;
+                width: 22px;
+                
+                @include transition(all 300ms ease-in-out);
+                
+                &.loading {
+                    @include transform(rotate(360deg));
+                }
+            }
+        }
     }
 }
 /*
@@ -344,7 +490,7 @@ a.roaster_marker{
 
 }
 .modal:before {
-  content:" ";
+  content:' ';
   background:#f8f6f4;
   width:16px;
   height:16px;
@@ -363,7 +509,7 @@ a.roaster_marker{
   box-shadow: 0px 0px 5px #ebe9e4;
 }
 .modal:after {
-  content:" ";
+  content:' ';
   width:25px;
   height:20px;
   display:block;
@@ -404,17 +550,15 @@ a.close{
     @include box-shadow(0 -1px 3px rgba(0,0,0,.5));
     
     h3 {
-        font: normal 400 2.25em/1.5em 'DIN', Helvetica, Arial, Sans;
         margin-bottom: 0;
     }
     
     h4 {
-        font: normal 400 1.5em/2em 'DIN', Helvetica, Arial, Sans;
         margin: 0 0 1em 0;
     }
     
     .figcaption {
-        font: normal 400 1em/2em 'Skolar', Helvetica, Arial, Sans;
+        font-family: $skolar;
     }
     
     .meta {
@@ -457,18 +601,11 @@ a.close{
             width: 60%;
             
             @include box-shadow(0 0 1px rgba(0,0,0,.8) inset);
+            @include border-radius(1px);
             
             &:first-child {
                 margin-top: 7px;
             }
-        }
-    }
-    
-    .hours {
-        span {
-            float: right;
-            display: inline;
-            text-align: right;
         }
     }
     
@@ -491,7 +628,7 @@ a.close{
         
         .toggle {
             display: block;
-            background: transparent url('../img/plusthin.png') no-repeat 100% 50%;
+            background: transparent url(../img/plusthin.png) no-repeat 100% 50%;
             width: 22px;
             height: 60px;
             float: right;
@@ -566,14 +703,14 @@ a.close{
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /* - - - - - - - - - - Form Styles - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-input[type="text"],
-input[type="email"],
+input[type='text'],
+input[type='email'],
 textarea {
     width: 100%;
     height: 3em;
     padding-left: 32px;
     line-height: 1em;
-    font-family: 'DIN', Helvetica, Arial, Sans;
+    font-family: $din;
     font-size: 1em;
     border: 1px solid #e5e5e5;
     background-color: #fbfbfb;
@@ -592,7 +729,7 @@ textarea {
     resize: none;
     padding: 20px 35px 0;
 }
-button[type="submit"]{
+button[type='submit']{
     padding: 12px 40px;
     background-color: #0099ff;
     margin: 8px 0px;
