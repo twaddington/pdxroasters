@@ -9485,13 +9485,25 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
  * @see:
  * https://developers.google.com/maps/documentation/javascript/reference
  *
+ * @json:
+ * http://localhost:8000/api/roaster/?format=json
+ *
  */
 (function ( $, window, undefined ) {
 
 "use strict";
 
 // Get page controller
-var controller = $( document.body ).data( "controller" );
+var controller = $( document.body ).data( "controller" ),
+    
+    // jQuery Collections
+    $body = $( document.body ),
+    
+    // TEMP until roaster.lat/roaster.lng
+    _latLngs = [
+        [45.5229, -122.643],
+        [45.5239, -122.67981]
+    ];
 
 // App object for script initializations
 window.app = {
@@ -9499,8 +9511,8 @@ window.app = {
         init: function () {
             this._info();
             this._nav();
-            this._map();
             this._roasters();
+            this._map();
             this._resize();
         },
         
@@ -9521,7 +9533,7 @@ window.app = {
                 	self.$info.removeClass( "active" );
                 	
                 } else {
-                    $( "[href='"+self.activeHash+"']" ).click();
+                    self.$navLinks.filter( "[href='"+self.activeHash+"']" ).click();
                 }
             });
             
@@ -9545,9 +9557,12 @@ window.app = {
         },
         
         _map: function () {
+            var self = this;
+            
             this.$mapWrap = $( "#map-wrap" );
             this.$map = $( "#map" );
             this.mapElem = this.$map.get( 0 );
+            this.mapMarkers = [];
             
             this.$mapWrap.css({
                 height: window.innerHeight,
@@ -9580,7 +9595,22 @@ window.app = {
     			}
             };
             
+            this.mapBounds = new google.maps.LatLngBounds();
             this.map = new google.maps.Map( this.mapElem, this.mapSettings );
+            
+            this.$roasterItems.each(function ( i ) {
+                var points = /* $( this ).data( "latlng" ) */_latLngs[ i ],
+                    latLng = new google.maps.LatLng( points[ 0 ], points[ 1 ] ),
+                    marker = new google.maps.Marker({
+                        map: self.map,
+                        position: latLng
+                    });
+                
+                self.mapMarkers.push( marker );
+                self.mapBounds.extend( latLng );
+            });
+            
+            this.map.fitBounds( this.mapBounds );
         },
         
         _info: function () {
