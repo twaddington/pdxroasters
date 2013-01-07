@@ -14,15 +14,6 @@
 
 "use strict";
 
-// Closure global vars
-var $body = $( document.body ),
-    
-    // TEMP until roaster.lat/roaster.lng
-    _latLngs = [
-        [45.5229, -122.643],
-        [45.5239, -122.67981]
-    ];
-
 // Home Controller
 window.pdx.app.home = {
     init: function () {
@@ -115,13 +106,49 @@ window.pdx.app.home = {
         this.mapBounds = new google.maps.LatLngBounds();
         this.map = new google.maps.Map( this.mapElem, this.mapSettings );
         
+        if ( !this.$roasterItems.length ) {
+        	return false;
+        }
+        
         this.$roasterItems.each(function ( i ) {
             var $elem = $( this ),
-                points = /* $elem.data( "latlng" ) */_latLngs[ i ],
+                points = $elem.data( "latlng" ),
                 name = $elem.data( "name" ),
                 api = /* $elem.data( "api" ) */"/api/roaster/"+this.id+"/",
+                address = $elem.data( "address" ),
                 id = this.id,
-                latLng = new google.maps.LatLng( points[ 0 ], points[ 1 ] ),
+                latLng,
+                marker;
+                
+            if ( !points ) {
+            	window.pdx.maps.geocode(
+                	{ address: address+" Portland, Oregon" },
+                	self,
+                	null,
+                	function ( location ) {
+                    	latLng = location;
+                    	marker = new window.pdx.maps.Marker({
+                            latLng: latLng,
+                            map: self.map,
+                            name: name,
+                            api: api,
+                            id: id,
+                            onAddCallback: function () {
+                                self._onAddMarker.apply( self, arguments );
+                            }
+                        });
+                        
+                        self.mapMarkers.push( marker );
+                        self.mapBounds.extend( latLng );
+                        
+                        if ( self.mapMarkers.length === self.$roasterItems.length ) {
+                            self.map.fitBounds( self.mapBounds );
+                        }
+                	}
+            	);
+            	
+            } else {
+                latLng = new google.maps.LatLng( points[ 0 ], points[ 1 ] );
                 marker = new window.pdx.maps.Marker({
                     latLng: latLng,
                     map: self.map,
@@ -132,12 +159,17 @@ window.pdx.app.home = {
                         self._onAddMarker.apply( self, arguments );
                     }
                 });
-            
-            self.mapMarkers.push( marker );
-            self.mapBounds.extend( latLng );
+                
+                counter++;
+                
+                self.mapMarkers.push( marker );
+                self.mapBounds.extend( latLng );
+            }
         });
         
-        this.map.fitBounds( this.mapBounds );
+        if ( this.mapMarkers.length === this.$roasterItems.length ) {
+        	this.map.fitBounds( this.mapBounds );
+        }
     },
     
     _onAddMarker: function ( instance ) {
@@ -264,12 +296,11 @@ window.pdx.app.home = {
                 $tip.find( ".find" ).on( "click", function ( e ) {
                     e.preventDefault();
                     
-                    var $elem = $( this.hash ),
-                        destination = $elem.offset().top;
+                    var $elem = self.$roasterItems.filter( this.hash );
                     
                     $elem.find( ".toggle" ).click();
-            
-                    $( "body, html" ).animate( {"scrollTop": destination}, 400 );
+                    
+                    window.pdx.utils.scrollTo( $elem );
                 });
                 
                 setTimeout(function () {
@@ -310,22 +341,39 @@ window.pdx.app.home = {
         this.$roasters = $( "#roasters" );
         this.$roasterItems = this.$roasters.find( ".roaster" );
         this.$roasterTogs = this.$roasters.find( ".toggle" );
+        this.$roasterHandles = this.$roasters.find( ".handle" );
         
-        this.$roasterTogs.on( "click", function ( e ) {
+        if ( !this.$roasterItems.length ) {
+        	this.$roasters.find( ".suggest" ).on( "click", function ( e ) {
+            	e.preventDefault();
+            	
+            	self.$navLinks.filter( "[href='"+this.hash+"']" ).click();
+        	});
+        	
+        	return false;
+        }
+        
+        this.$roasterHandles.on( "click", function ( e ) {
             e.preventDefault();
             
-            if ( $( this ).is( ".active" ) ) {
-            	$( this ).removeClass( "active" );
+            var $elem = $( this ),
+                $toggle = $elem.find( ".toggle" ),
+                $roaster = $elem.closest( ".roaster" );
+            
+            if ( $roaster.is( ".active" ) ) {
+            	$toggle.removeClass( "active" );
             	self.$roasterItems.removeClass( "active" );
             	
             	return false;
             }
             
             self.$roasterTogs.removeClass( "active" );
-            $( this ).addClass( "active" );
+            $toggle.addClass( "active" );
             
             self.$roasterItems.removeClass( "active" );
-            $( this ).closest( ".roaster" ).addClass( "active" );
+            $roaster.addClass( "active" );
+            
+            window.pdx.utils.scrollTo( $roaster );
         });
     },
     
@@ -351,13 +399,12 @@ window.pdx.app.home = {
 // Override utility space for this controller
 window.pdx.utils = {
     init: function () {
+        var self = this;
+        
         $( ".scroll-to" ).on( "click", function ( e ) {
             e.preventDefault();
             
-            var $elemTo = $( this.hash ),
-                destination = $elemTo.offset().top;
-            
-            $( "body, html" ).animate( {"scrollTop": destination}, 400 );
+            self.scrollTo( $( this.hash ) );
         });
         
         $( ".ajax-form" ).on( "submit", function ( e ) {
@@ -375,6 +422,12 @@ window.pdx.utils = {
                 console.log( "fail" );
             });
         });
+    },
+    
+    scrollTo: function ( $elem ) {
+        var destination = $elem.offset().top;
+            
+        $( "body, html" ).animate( {"scrollTop": destination}, 400 );
     }
 };
 

@@ -80,28 +80,30 @@
     </a>
     <div class="roasters">
         {% for r in roasters %}
-        <div class="roaster" id="{{ r.id }}" data-latlng="[]" data-api="{{ r.resource_uri }}" data-name="{{ r.name }}">
-            <h3 class="group"><span>{{ r.name }}</span> <a href="#toggle" class="toggle"></a></h3>
+        <div class="roaster" id="{{ r.id }}" data-latlng="" data-api="{{ r.resource_uri }}" data-name="{{ r.name }}" data-address="{{ r.address }}">
+            <h3 class="handle group"><span>{{ r.name }}</span> <a href="#toggle" class="toggle"></a></h3>
             <div class="content group">
                 <div class="col col1of2">
-                    <div class="figure">
-                        <img src="/static/img/roaster-image.jpg" alt="{{ r.name }} Photo">
-                    </div>
-                    <div class="meta group">
-                        <div class="col col1of3">
-                            <div class="ci">
-                                <h5>Address</h5>
-                                <p class="address">{{ r.address }}</p>
-                            </div>
+                    <div class="ci">
+                        <div class="figure">
+                            <img src="/static/img/roaster-image.jpg" alt="{{ r.name }} Photo">
                         </div>
-                        <div class="col col1of3">
-                            <div class="ci">
-                                <h5>Hours</h5>
-                                <p class="hours"> 
-                                    Mon. - Fri. <span>8 - 12</span><br />
-                                    Sat. <span>8 - 12</span><br />
-                                    Sun. <span>8 - 12</span>
-                                </p>
+                        <div class="meta group">
+                            <div class="col col1of3">
+                                <div class="ci">
+                                    <h5>Address</h5>
+                                    <p class="address">{{ r.address }}</p>
+                                </div>
+                            </div>
+                            <div class="col col1of3">
+                                <div class="ci">
+                                    <h5>Hours</h5>
+                                    <p class="hours"> 
+                                        Mon. - Fri. <span>8 - 12</span><br />
+                                        Sat. <span>8 - 12</span><br />
+                                        Sun. <span>8 - 12</span>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -116,7 +118,10 @@
             </div>
         </div>
         {% empty %}
-        <p>No Roasters!</p>
+        <div class="message">
+            <h3>There are no Roasters yet.</h3>
+            <p>Perhaps you would like to <a href="#panel1" class="suggest">suggest one</a> to us.</p>
+        </div>
         {% endfor %}
     </div>
 </div><!-- END: #roasters -->
