@@ -324,7 +324,12 @@ window.pdx.app.home = {
         
         this.$panelWrap.width( window.innerWidth*this.$panels.length );
         
-        this.$info.and( this.$panels ).css({
+        this.$info.css({
+            height: window.innerHeight,
+            width: window.innerWidth
+        });
+        
+        this.$panels.css({
             height: window.innerHeight,
             width: window.innerWidth
         });
@@ -368,7 +373,7 @@ window.pdx.app.home = {
             self.$roasterItems.removeClass( "active" );
             $roaster.addClass( "active" );
             
-            window.pdx.utils.scrollTo( $roaster );
+            $roaster.scrollTo();
         });
     },
     
@@ -376,15 +381,14 @@ window.pdx.app.home = {
         var self = this;
         
         window.onresize = function () {
-            self.$mapWrap.css({
+            var css = {
                 height: window.innerHeight,
                 width: window.innerWidth
-            });
+            };
             
-            self.$info.and( self.$panels ).css({
-                height: window.innerHeight,
-                width: window.innerWidth
-            });
+            self.$mapWrap.css( css );
+            self.$info.css( css );
+            self.$panels.css( css );
             
             self.$panelWrap.width( window.innerWidth*self.$panels.length );
         };
@@ -395,7 +399,7 @@ window.pdx.app.home = {
 $( ".scroll-to" ).on( "click", function ( e ) {
     e.preventDefault();
     
-    self.scrollTo( $( this.hash ) );
+    $( this.hash ).scrollTo();
 });
 
 $( ".ajax-form" ).on( "submit", function ( e ) {

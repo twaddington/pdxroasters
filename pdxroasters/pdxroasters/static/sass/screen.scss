@@ -598,7 +598,7 @@ strong {
             overflow: hidden;
             padding: 0 20px;
             
-            @include transition(height 300ms linear 200ms);
+            //@include transition(height 300ms linear 200ms);
         }
     }
 }
