@@ -2,10 +2,9 @@
  * PDX Roaster Javascript
  *
  * @dependencies:
- * /static/js/ender/ender.js
+ * /static/js/ender/*
  * /static/js/pdx.js
- * /static/js/utils.js
- * /static/js/lib/mapping.js
+ * /static/js/lib/*
  *
  * @json:
  * http://localhost:8000/api/roaster/?format=json

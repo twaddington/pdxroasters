@@ -3,6 +3,7 @@
  *
  * @dependencies:
  * http://maps.google.com/maps/api/js?sensor=false
+ * /static/js/ender/*
  * /static/js/pdx.js
  *
  * @see:
