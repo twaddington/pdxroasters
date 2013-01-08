@@ -9,7 +9,7 @@
  * https://developers.google.com/maps/documentation/javascript/reference
  *
  */
-(function ( $, window, undefined ) {
+(function ( window, undefined ) {
 
 // Closure global vars
 var geocoder = new google.maps.Geocoder();
@@ -42,7 +42,7 @@ window.pdx.maps = {};
  */
 (function () {
 // Create the dummy Class
-this.Overlay = function () {};
+var Overlay = function () {};
 
 // Set this Classes prototype to an instance of OverlayView
 Overlay.prototype = new google.maps.OverlayView();
@@ -174,31 +174,18 @@ window.pdx.maps.Marker = window.pdx.maps.Overlay.extend({
     }
 });
 
-/**
- * Manage the process of geocoding in a loop while retaining
- * the correct stack order and data associations. This is because
- * the requests callbacks do not fire in order as it is unpredictable
- * how long any given request is going to take. Retain that shit :-D
- *
- * @param: {object} data The data object used to make the request
- * @param: {jQuery} context The jQuery object context applied to callbacks
- * @param: {function} runner The method that runs the geocoding
- * @param: {function} callback The method that handles results before runner fires again
- */
-window.pdx.maps.geocode = function ( data, context, runner, callback ) {
+// Geocoding helper
+// data is either {latLng:google.maps.LatLng} OR {address:""}
+window.pdx.maps.geocode = function ( data, callback ) {
 	geocoder.geocode( data, function ( results, status ) {
 		if ( status !== google.maps.GeocoderStatus.OK ) {
 			return;
 		}
 		
-		if ( callback ) {
-			callback.call( context, results[ 0 ].geometry.location, results[ 0 ] );
-		}
-		
-		if ( runner ) {
-			runner.call( context );
+		if ( typeof callback === "function" ) {
+			callback( results[ 0 ].geometry.location, results[ 0 ] );
 		}
 	});
 }
 
-})( jQuery, window );
+})( window );

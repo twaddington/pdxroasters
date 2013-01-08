@@ -13,11 +13,4 @@ window.pdx = {};
 // Application space
 window.pdx.app = {};
 
-// Blank utility space
-window.pdx.utils = {
-    init: function () {
-        console.log( "[no utilities defined]" );
-    }
-};
-
 })();

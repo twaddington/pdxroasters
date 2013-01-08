@@ -14,7 +14,8 @@ module.exports = function(grunt) {
     lint: {
       files: [
         'pdx.js',
-        'vendor/*',
+        'utils.js',
+        'ender/ender.js',
         'lib/*',
         'app.js'
       ]

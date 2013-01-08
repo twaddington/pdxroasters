@@ -10,7 +10,10 @@
  * http://localhost:8000/api/roaster/?format=json
  *
  */
-(function ( $, window, undefined ) {
+// jQuery->Ender maps
+// add->and
+// filter->$
+(function ( window, undefined ) {
 
 "use strict";
 
@@ -37,18 +40,18 @@ window.pdx.app.home = {
             self.$navTog.toggleClass( "active" );
             self.$nav.toggleClass( "active" );
             
-            if ( !self.$navTog.is( ".active" ) ) {
+            if ( !self.$navTog.hasClass( "active" ) ) {
             	self.$info.removeClass( "active" );
             	
             } else {
-                self.$navLinks.filter( "[href='"+self.activeHash+"']" ).click();
+                $( "[href='"+self.activeHash+"']" ).click();
             }
         });
         
         this.$navLinks.on( "click", function ( e ) {
             e.preventDefault();
             
-            if ( !self.$info.is( ".active" ) ) {
+            if ( !self.$info.hasClass( "active" ) ) {
             	self.$info.addClass( "active" );
             }
             
@@ -57,10 +60,10 @@ window.pdx.app.home = {
             self.$navLinks.removeClass( "on" );
             $( this ).addClass( "on" );
             
-            self.$activePanel = self.$panels.filter( this.hash );
+            self.$activePanel = $( this.hash );
             self.activeHash = this.hash;
             
-            self.$panelWrap.css( "left", -(self.$activePanel.index()*window.innerWidth) );
+            self.$panelWrap.css( "left", -(Number(self.$activePanel.data( "panel" ))*window.innerWidth) );
         });
     },
     
@@ -123,8 +126,6 @@ window.pdx.app.home = {
             if ( !points ) {
             	window.pdx.maps.geocode(
                 	{ address: address+" Portland, Oregon" },
-                	self,
-                	null,
                 	function ( location ) {
                     	latLng = location;
                     	marker = new window.pdx.maps.Marker({
@@ -180,19 +181,19 @@ window.pdx.app.home = {
             var $elem = $( this ),
                 $tip = $elem.parent().find( ".tooltip" );
             
-            if ( $elem.parent().is( ".loaded" ) ) {
+            if ( $elem.parent().hasClass( "loaded" ) ) {
             	return false;
             }
             
             $elem.parent().addClass( "active" );
-            $tip.css( "top", -($tip.outerHeight()+3) );
+            $tip.css( "top", -($tip.height()+3) );
         
         // Hide roaster content
         }).on( "mouseout", "> div", function ( e ) {
             var $elem = $( this ),
                 $tip = $elem.parent().find( ".tooltip" );
             
-            if ( $elem.parent().is( ".loaded" ) ) {
+            if ( $elem.parent().hasClass( "loaded" ) ) {
             	return false;
             }
             
@@ -210,11 +211,11 @@ window.pdx.app.home = {
             if ( instance.loaded ) {
             	$tip.toggleClass( "inactive" );
             	
-            	if ( $tip.is( ".inactive" ) ) {
+            	if ( $tip.hasClass( "inactive" ) ) {
                 	$tip.css( "top", "50%" );
                 	
                 } else {
-                    $tip.css( "top", -($tip.outerHeight()+3) );
+                    $tip.css( "top", -($tip.height()+3) );
                 }
             	
             	return false;
@@ -238,86 +239,82 @@ window.pdx.app.home = {
             
             $.ajax({
                 url: instance.api,
-                type: "GET",
-                dataType: "json",
+                type: "json",
                 data: {
                     format: "json"
+                },
+                error: function () {
+                    clearTimeout( timeout );
+                    
+                    console.log( "error" );
+                },
+                success: function ( response ) {
+                    var html = "";
+                    
+                    clearTimeout( timeout );
+                    
+                    instance.loaded = true;
+                    
+                    html = '<h3>'+response.name+'</h3>';
+                    html += '<div class="group">';
+                        html += '<div class="col col1of2">';
+                            html += '<div class="ci">'+response.address+'</div>';
+                        html += '</div>';
+                        html += '<div class="col col1of2">';
+                            html += '<p class="hours ci">';
+                                html += 'Mon. - Fri. <span>8 - 12</span><br />';
+                                html += 'Sat. <span>8 - 12</span><br />';
+                                html += 'Sun. <span>8 - 12</span>';
+                            html += '</p>';
+                        html += '</div>';
+                    html += '</div>';
+                    html += '<div class="btns group">';
+                        html += '<div class="col col1of2">';
+                            html += '<div class="ci"><a href="#'+response.id+'" class="btn find">Find this Roast</a></div>';
+                        html += '</div>';
+                        html += '<div class="col col1of2">';
+                            html += '<div class="ci"><a href="/roaster/'+response.slug+'/" class="btn">Learn More</a></div>';
+                        html += '</div>';
+                    html += '</div>';
+                    html += '<a href="#close" class="plus-close">Close</div>';
+                    
+                    // Overrides roaster name
+                    $tip.addClass( "infowindow" )
+                        .html( html )
+                        .css( "top", -($tip.height()+3) )
+                        .css( "left", -(($tip.width()/2)-($elem.width()/2)) );
+                    
+                    $tip.find( ".plus-close" ).on( "click", function ( e ) {
+                        e.preventDefault();
+                        
+                        $tip.toggleClass( "inactive" );
+                        
+                        if ( $tip.hasClass( "inactive" ) ) {
+                        	$tip.css( "top", "50%" );
+                        	
+                        } else {
+                            $tip.css( "top", -($tip.height()+3) );
+                        }
+                    });
+                    
+                    $tip.find( ".find" ).on( "click", function ( e ) {
+                        e.preventDefault();
+                        
+                        var $elem = $( this.hash );
+                        
+                        $elem.find( ".toggle" ).click();
+                    });
+                    
+                    setTimeout(function () {
+                        $tip.show().removeClass( "loading" );
+                        
+                        $spin.parent().removeClass( "active" );
+                        $spin.removeClass( "loading" );
+                        
+                        $elem.parent().addClass( "loaded" );
+                        
+                    }, 300 );
                 }
-            })
-            .done(function ( response ) {
-                var html = "";
-                
-                clearTimeout( timeout );
-                
-                instance.loaded = true;
-                
-                html = '<h3>'+response.name+'</h3>';
-                html += '<div class="group">';
-                    html += '<div class="col col1of2">';
-                        html += '<div class="ci">'+response.address+'</div>';
-                    html += '</div>';
-                    html += '<div class="col col1of2">';
-                        html += '<p class="hours ci">';
-                            html += 'Mon. - Fri. <span>8 - 12</span><br />';
-                            html += 'Sat. <span>8 - 12</span><br />';
-                            html += 'Sun. <span>8 - 12</span>';
-                        html += '</p>';
-                    html += '</div>';
-                html += '</div>';
-                html += '<div class="btns group">';
-                    html += '<div class="col col1of2">';
-                        html += '<div class="ci"><a href="#'+response.id+'" class="btn find">Find this Roast</a></div>';
-                    html += '</div>';
-                    html += '<div class="col col1of2">';
-                        html += '<div class="ci"><a href="/roaster/'+response.slug+'/" class="btn">Learn More</a></div>';
-                    html += '</div>';
-                html += '</div>';
-                html += '<a href="#close" class="plus-close">Close</div>';
-                
-                // Overrides roaster name
-                $tip.addClass( "infowindow" )
-                    .html( html )
-                    .css( "top", -($tip.outerHeight()+3) )
-                    .css( "left", -(($tip.outerWidth()/2)-($elem.outerWidth()/2)) );
-                
-                $tip.find( ".plus-close" ).on( "click", function ( e ) {
-                    e.preventDefault();
-                    
-                    $tip.toggleClass( "inactive" );
-                    
-                    if ( $tip.is( ".inactive" ) ) {
-                    	$tip.css( "top", "50%" );
-                    	
-                    } else {
-                        $tip.css( "top", -($tip.outerHeight()+3) );
-                    }
-                });
-                
-                $tip.find( ".find" ).on( "click", function ( e ) {
-                    e.preventDefault();
-                    
-                    var $elem = self.$roasterItems.filter( this.hash );
-                    
-                    $elem.find( ".toggle" ).click();
-                    
-                    window.pdx.utils.scrollTo( $elem );
-                });
-                
-                setTimeout(function () {
-                    $tip.show().removeClass( "loading" );
-                    
-                    $spin.parent().removeClass( "active" );
-                    $spin.removeClass( "loading" );
-                    
-                    $elem.parent().addClass( "loaded" );
-                    
-                }, 300 );
-                
-            })
-            .fail(function () {
-                clearTimeout( timeout );
-                
-                console.log( "[Marker load error]" );
             });
         });
     },
@@ -329,7 +326,7 @@ window.pdx.app.home = {
         
         this.$panelWrap.width( window.innerWidth*this.$panels.length );
         
-        this.$info.add( this.$panels ).css({
+        this.$info.and( this.$panels ).css({
             height: window.innerHeight,
             width: window.innerWidth
         });
@@ -347,7 +344,7 @@ window.pdx.app.home = {
         	this.$roasters.find( ".suggest" ).on( "click", function ( e ) {
             	e.preventDefault();
             	
-            	self.$navLinks.filter( "[href='"+this.hash+"']" ).click();
+            	$( "[href='"+this.hash+"']" ).click();
         	});
         	
         	return false;
@@ -360,7 +357,7 @@ window.pdx.app.home = {
                 $toggle = $elem.find( ".toggle" ),
                 $roaster = $elem.closest( ".roaster" );
             
-            if ( $roaster.is( ".active" ) ) {
+            if ( $roaster.hasClass( "active" ) ) {
             	$toggle.removeClass( "active" );
             	self.$roasterItems.removeClass( "active" );
             	
@@ -386,7 +383,7 @@ window.pdx.app.home = {
                 width: window.innerWidth
             });
             
-            self.$info.add( self.$panels ).css({
+            self.$info.and( self.$panels ).css({
                 height: window.innerHeight,
                 width: window.innerWidth
             });
@@ -396,39 +393,27 @@ window.pdx.app.home = {
     }
 };
 
-// Override utility space for this controller
-window.pdx.utils = {
-    init: function () {
-        var self = this;
-        
-        $( ".scroll-to" ).on( "click", function ( e ) {
-            e.preventDefault();
-            
-            self.scrollTo( $( this.hash ) );
-        });
-        
-        $( ".ajax-form" ).on( "submit", function ( e ) {
-            e.preventDefault();
-            
-            $.ajax({
-                url: this.action,
-                type: this.method,
-                data: $( this ).serialize()
-            })
-            .done(function () {
-                console.log( "done" );
-            })
-            .fail(function () {
-                console.log( "fail" );
-            });
-        });
-    },
+// Page basic tasks
+$( ".scroll-to" ).on( "click", function ( e ) {
+    e.preventDefault();
     
-    scrollTo: function ( $elem ) {
-        var destination = $elem.offset().top;
-            
-        $( "body, html" ).animate( {"scrollTop": destination}, 400 );
-    }
-};
+    self.scrollTo( $( this.hash ) );
+});
 
-})( jQuery, window );
+$( ".ajax-form" ).on( "submit", function ( e ) {
+    e.preventDefault();
+    
+    $.ajax({
+        url: this.action,
+        type: "json",
+        data: $( this ).serialize(),
+        error: function () {
+            console.log( "error" );
+        },
+        success: function () {
+            console.log( "success" );
+        }
+    });
+});
+
+})( window );
