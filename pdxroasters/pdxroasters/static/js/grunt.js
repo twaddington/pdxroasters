@@ -17,6 +17,7 @@ module.exports = function(grunt) {
         'ender/ender.utils.js',
         'pdx.js',
         'lib/*',
+        'controllers/*',
         'app.js'
       ]
     },
