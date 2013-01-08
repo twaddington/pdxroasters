@@ -83,9 +83,11 @@ You should now be able to access the site in your browser by visiting
 
 ## UI
 
+...
+
 ### Compass
 
-- `http://compass-style.org/install`
+Reference: `http://compass-style.org/install`
 
     # Navigate to static directory from src
     $ cd pdxroasters/pdxroasters/static
@@ -95,7 +97,7 @@ You should now be able to access the site in your browser by visiting
     
 ### Ender
 
-- `http://ender.jit.su`
+Reference: `http://ender.jit.su`
 
     # Navigate to ender directory from src
     $ cd pdxroasters/pdxroasters/static/js/ender
@@ -105,7 +107,7 @@ You should now be able to access the site in your browser by visiting
     
 ### Grunt
 
-- `http://gruntjs.com`
+Reference: `http://gruntjs.com`
     
     # Navigate to js directory
     $ cd pdxroasters/pdxroasters/static/js
