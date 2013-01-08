@@ -3339,30 +3339,95 @@
  */
 (function ( $ ) {
 
-// Ender smooth scroll utility with ender-tween
-// $.tween( duration, from, to, tween, ease )
-$.fn.scrollTo = function ( dur ) {
-    var dest = this.offset().top,
-        cb = function ( to ) {
-            
-            window.scrollTo( 0, to );
-            
-        };
-    
-    // Don't default to Ender's 1000ms duration
-    dur = dur || 400;
-    
-    $.tween( dur, 0, dest, cb, $.easing.linear );
-};
-
 // Easing taken from jQuery core
 $.easing = {
 	linear: function ( p ) {
 		return p;
 	},
+	
 	swing: function ( p ) {
-		return 0.5 - Math.cos( p*Math.PI ) / 2;
+		return 0.5-Math.cos( p*Math.PI )/2;
 	}
+};
+
+// indexOf support for Array.prototype
+$.indexOf = function ( arr, item ) {
+    if ( ![].indexOf ) {
+		var len = arr.length;
+		
+		for ( var i = 0; i < len; i++ ) {
+			if ( arr[ i ] === item ) {
+				return i;
+			}
+		}
+	
+		return -1;
+	
+	} else {
+		return arr.indexOf( item );
+	}
+};
+
+// Ender smooth scroll utility with ender-tween
+// $.tween( duration, from, to, tween, ease )
+$.fn.scrollTo = function ( dur ) {
+    var dest = this.offset().top,
+        cb = function ( to ) {
+            window.scrollTo( 0, to );
+        };
+    
+    // Don't default to Ender's 1000ms duration
+    dur = dur || 400;
+    
+    $.tween( dur, 0, dest, cb, $.easing.swing );
+};
+
+// Turn Ender set into Array
+$.fn.toArray = function () {
+    var arr = [];
+    
+    this.each(function () {
+        arr.push( this );
+    });
+    
+    return arr;
+};
+
+// Simple compat for jQuery.fn.index()
+$.fn.index = function () {
+    var $matches = this.parent().children();
+    
+    return $.indexOf( $matches.toArray(), this[ 0 ] );
+};
+
+// Simple compat for jQuery.fn.push()
+$.fn.push = function ( elem ) {
+    return this[ this.length-1 ] = elem;
+};
+
+// Simple compat for jQuery.fn.add()
+// Because this needs to return a new set
+$.fn.add = function ( mixed ) {
+    var add,
+        set = this.toArray();
+    
+    // Selector or DOMElement
+    if ( typeof mixed === "string" || (mixed.nodeType && mixed.nodeType === 1) ) {
+    	add = $( mixed );
+    
+    // HTMLCollection or Ender set	
+    } else if ( mixed.length ) {
+        add = mixed;
+        
+    } else {
+        console.log( "something else" );
+    }
+    
+    for ( var i = 0, len = add.length; i < len; i++ ) {
+    	set.push( add[ i ] );
+    }
+    
+    return $( set );
 };
 
 })( ender );
@@ -3613,7 +3678,8 @@ window.pdx.app.home = {
             self.$navTog.toggleClass( "active" );
             self.$nav.toggleClass( "active" );
             
-            if ( !self.$navTog.hasClass( "active" ) ) {
+            console.log( "check" );
+            if ( !self.$navTog.is( ".active" ) ) {
             	self.$info.removeClass( "active" );
             	
             } else {
@@ -3624,7 +3690,8 @@ window.pdx.app.home = {
         this.$navLinks.on( "click", function ( e ) {
             e.preventDefault();
             
-            if ( !self.$info.hasClass( "active" ) ) {
+            console.log( "check" );
+            if ( !self.$info.is( ".active" ) ) {
             	self.$info.addClass( "active" );
             }
             
@@ -3636,7 +3703,8 @@ window.pdx.app.home = {
             self.$activePanel = $( this.hash );
             self.activeHash = this.hash;
             
-            self.$panelWrap.css( "left", -(Number(self.$activePanel.data( "panel" ))*window.innerWidth) );
+            console.log( "check" );
+            self.$panelWrap.css( "left", -(self.$activePanel.index()*window.innerWidth) );
         });
     },
     
@@ -3754,7 +3822,8 @@ window.pdx.app.home = {
             var $elem = $( this ),
                 $tip = $elem.parent().find( ".tooltip" );
             
-            if ( $elem.parent().hasClass( "loaded" ) ) {
+            console.log( "check" );
+            if ( $elem.parent().is( ".loaded" ) ) {
             	return false;
             }
             
@@ -3766,7 +3835,8 @@ window.pdx.app.home = {
             var $elem = $( this ),
                 $tip = $elem.parent().find( ".tooltip" );
             
-            if ( $elem.parent().hasClass( "loaded" ) ) {
+            console.log( "check" );
+            if ( $elem.parent().is( ".loaded" ) ) {
             	return false;
             }
             
@@ -3784,7 +3854,8 @@ window.pdx.app.home = {
             if ( instance.loaded ) {
             	$tip.toggleClass( "inactive" );
             	
-            	if ( $tip.hasClass( "inactive" ) ) {
+            	console.log( "check" );
+            	if ( $tip.is( ".inactive" ) ) {
                 	$tip.css( "top", "50%" );
                 	
                 } else {
@@ -3862,7 +3933,8 @@ window.pdx.app.home = {
                         
                         $tip.toggleClass( "inactive" );
                         
-                        if ( $tip.hasClass( "inactive" ) ) {
+                        console.log( "check" );
+                        if ( $tip.is( "inactive" ) ) {
                         	$tip.css( "top", "50%" );
                         	
                         } else {
@@ -3899,12 +3971,7 @@ window.pdx.app.home = {
         
         this.$panelWrap.width( window.innerWidth*this.$panels.length );
         
-        this.$info.css({
-            height: window.innerHeight,
-            width: window.innerWidth
-        });
-        
-        this.$panels.css({
+        this.$info.add( this.$panels ).css({
             height: window.innerHeight,
             width: window.innerWidth
         });
@@ -3935,7 +4002,8 @@ window.pdx.app.home = {
                 $toggle = $elem.find( ".toggle" ),
                 $roaster = $elem.closest( ".roaster" );
             
-            if ( $roaster.hasClass( "active" ) ) {
+            console.log( "check" );
+            if ( $roaster.is( ".active" ) ) {
             	$toggle.removeClass( "active" );
             	self.$roasterItems.removeClass( "active" );
             	
@@ -3955,15 +4023,12 @@ window.pdx.app.home = {
     _resize: function () {
         var self = this;
         
+        console.log( "check" );
         window.onresize = function () {
-            var css = {
+            self.$mapWrap.add( self.$info ).add( self.$panels ).css({
                 height: window.innerHeight,
                 width: window.innerWidth
-            };
-            
-            self.$mapWrap.css( css );
-            self.$info.css( css );
-            self.$panels.css( css );
+            });
             
             self.$panelWrap.width( window.innerWidth*self.$panels.length );
         };
