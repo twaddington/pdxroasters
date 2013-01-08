@@ -2,17 +2,15 @@
  * PDX Roaster Javascript
  *
  * @dependencies:
- * /static/js/vendor/*
+ * /static/js/ender/ender.js
  * /static/js/pdx.js
+ * /static/js/utils.js
  * /static/js/lib/mapping.js
  *
  * @json:
  * http://localhost:8000/api/roaster/?format=json
  *
  */
-// jQuery->Ender maps
-// add->and
-// filter->$
 (function ( window, undefined ) {
 
 "use strict";

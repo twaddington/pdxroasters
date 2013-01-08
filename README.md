@@ -80,3 +80,35 @@ You should now be able to access the site in your browser by visiting
 - Phone
 - URL
 - Roasters
+
+## UI
+
+### Compass
+
+- `http://compass-style.org/install`
+
+    # Navigate to static directory from src
+    $ cd pdxroasters/pdxroasters/static
+    
+    # Tell Compass to poll for changes
+    $ compass watch
+    
+### Ender
+
+- `http://ender.jit.su`
+
+    # Navigate to ender directory from src
+    $ cd pdxroasters/pdxroasters/static/js/ender
+    
+    # View Ender status
+    $ ender info
+    
+### Grunt
+
+- `http://gruntjs.com`
+    
+    # Navigate to js directory
+    $ cd pdxroasters/pdxroasters/static/js
+    
+    # Tell Grunt to poll for changes
+    $ grunt watch

@@ -1,6 +1,10 @@
 /**
  * PDX Roaster Utils
  *
+ * @dependencies:
+ * /static/js/ender/*
+ * /static/js/pdx.js
+ *
  */
 (function () {
 
