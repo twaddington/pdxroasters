@@ -6,7 +6,7 @@
  * /static/js/pdx.js
  *
  */
-(function () {
+(function ( window, undefined ) {
 
 // Pushstate namespace
 window.pdx.pushstate = function () {
@@ -42,6 +42,7 @@ window.pdx.pushstate.prototype = {
     },
     
     _get: function ( url, callback ) {
+        // Pull from cache if we can
         if ( this.cache[ url ] ) {
         	if ( typeof callback === "function" ) {
         		callback( this.cache[ url ] );
@@ -89,4 +90,4 @@ window.pdx.pushstate.prototype = {
     }
 }
 
-})();
+})( window );

@@ -262,6 +262,8 @@ window.pdx.app.home = {
                     
                     $infowindow = $( "<span>" ).addClass( "infowindow" ).hide();
                     
+                    instance.infowindow = $infowindow[ 0 ];
+                    
                     html = '<h3>'+response.name+'</h3>';
                     html += '<div class="group">';
                         html += '<div class="col col1of2">';
@@ -332,6 +334,8 @@ window.pdx.app.home = {
                         
                         $instance.addClass( "loaded" )
                             .addClass( "active" );
+                        
+                        instance.panMap();
                         
                     }, 300 );
                 }

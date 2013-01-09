@@ -25,6 +25,7 @@ window.pdx.maps = {};
  *
  * The google.maps.OverlayView Class has these methods:
  *
+ * addListener
  * bindTo
  * changed
  * get
@@ -85,6 +86,8 @@ window.pdx.maps.Marker = window.pdx.maps.Overlay.extend({
         	return false;
         }
         
+        var self = this;
+        
         this.element = document.createElement( "div" );
         this.loaded = false;
         
@@ -93,6 +96,14 @@ window.pdx.maps.Marker = window.pdx.maps.Overlay.extend({
         }
         
         this.setMap( this.map );
+        
+        this.beChange = google.maps.event.addListener(
+            this.map,
+            "bounds_changed",
+            function () {
+                return self.panMap.apply( self );
+			}
+		);
     },
     
     onAdd: function () {
@@ -110,7 +121,7 @@ window.pdx.maps.Marker = window.pdx.maps.Overlay.extend({
         this.loader.innerHTML = "<div></div>";
         this.element.appendChild( this.tooltip );
         this.element.appendChild( this.loader );
-        this.getPanes().overlayMouseTarget.appendChild( this.element );
+        this.getPanes().floatPane.appendChild( this.element );
         
         // Open to custom marker actions
         if ( this.onAddCallback && typeof this.onAddCallback === "function" ) {
@@ -170,6 +181,57 @@ window.pdx.maps.Marker = window.pdx.maps.Overlay.extend({
 		
 		this.element.parentNode.removeChild( this.element );
 		this.element = null;
+    },
+    
+    panMap: function () {
+        if ( !this.map || !this.infowindow ) {
+			return;
+		}
+		
+		var bounds = this.map.getBounds(),
+			coords = this.getProjection().fromLatLngToDivPixel( this.latLng ),
+			initialX = coords.x,
+			initialY = coords.y,
+			iwHeight = this.infowindow.clientHeight,
+			iwWidth = this.infowindow.clientWidth,
+			offX = (parseInt( this.element.style.left, 10 )-(this.infowindow.clientWidth/2)),
+			offY = (parseInt( this.infowindow.style.top, 10 )-this.infowindow.clientHeight),
+			offNE = -(this.infowindow.clientWidth)-( -offX ),
+			containsNE,
+			containsSW,
+			iwNE,
+			iwNELatLng,
+			iwSW,
+			iwSWLatLng,
+			newLatLng,
+			newPoint,
+			newX, 
+			newY;
+			
+		if ( !bounds ) {
+			return;
+		}
+		
+		iwNE = new google.maps.Point( (initialX + offNE), (initialY - iwHeight) );
+		iwNELatLng = this.getProjection().fromDivPixelToLatLng( iwNE );
+		
+		iwSW = new google.maps.Point( (initialX + offX), initialY );
+		iwSWLatLng = this.getProjection().fromDivPixelToLatLng( iwSW );
+		
+		containsNE = bounds.contains( iwNELatLng );
+		containsSW = bounds.contains( iwSWLatLng );
+		
+		if ( !containsNE || !containsSW ) {
+			newX = initialX - ((iwWidth / 2) - offNE);
+			newY = initialY - (iwHeight / 2);
+			
+			newPoint = new google.maps.Point( newX, newY );
+			newLatLng = this.getProjection().fromDivPixelToLatLng( newPoint );
+			
+			this.map.panTo( newLatLng );
+		}
+		
+		google.maps.event.removeListener( this.beChange );
     }
 });
 

@@ -2,7 +2,7 @@
  * Ender Functions as idealized from jQuery
  *
  */
-(function ( $ ) {
+(function ( $, window, undefined ) {
 
 // Easing
 // Add your own with $.easing.yourease = function(p){}
@@ -108,4 +108,4 @@ $.ender({
     }
 });
 
-})( ender );
+})( ender, window );

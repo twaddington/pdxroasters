@@ -2,7 +2,7 @@
  * PDX Roaster Namespace
  *
  */
-(function () {
+(function ( window ) {
 
 // Console fallback
 window.console = window.console || function () {};
@@ -13,4 +13,4 @@ window.pdx = {};
 // Application space
 window.pdx.app = {};
 
-})();
+})( window );
