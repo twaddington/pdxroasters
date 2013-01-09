@@ -3304,7 +3304,7 @@
    */
   (function ( $ ) {
   
-  // Easing borrowed from jQuery core
+  // Easing
   // Add your own with $.easing.yourease = function(p){}
   $.easing = {
   	linear: function ( p ) {
@@ -3312,26 +3312,12 @@
   	},
   	
   	swing: function ( p ) {
-  		return 0.5-Math.cos( p*Math.PI )/2;
+  		return (1-Math.cos( p*Math.PI ))/2;
   	}
   };
   
   // Ender prototype functions
   $.ender({
-      // Ender smooth scroll utility with ender-tween
-      // $.tween( duration, from, to, tween, ease )
-      scrollTo: function ( dur ) {
-          var dest = this.offset().top,
-              cb = function ( to ) {
-                  window.scrollTo( 0, to );
-              };
-          
-          // Don't default to Ender's 1000ms duration
-          dur = dur || 400;
-          
-          $.tween( dur, 0, dest, cb, $.easing.swing );
-      },
-      
       // Turn Ender set into Array
       toArray: function () {
           var arr = [];
@@ -3384,6 +3370,25 @@
   
   // Ender utility functions
   $.ender({
+      // Ender smooth scroll utility with ender-tween
+      // $.tween( duration, from, to, tween, ease )
+      scrollTo: function ( dest, dur, ease ) {
+          var from = window.scrollY || window.pageYOffset,
+              cb = function ( to ) {
+                  window.scrollTo( 0, to );
+              };
+          
+          dest = dest || 0;
+          dur = dur || 400;
+          ease = ( ease && $.easing[ ease ] )
+                  ? $.easing[ ease ]
+                  : ( typeof ease === "function" )
+                  ? ease
+                  : $.easing.swing;
+          
+          $.tween( dur, from, dest, cb, ease );
+      },
+      
       // indexOf support for Array.prototype
       indexOf: function ( arr, item ) {
           if ( ![].indexOf ) {

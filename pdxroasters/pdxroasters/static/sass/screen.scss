@@ -92,6 +92,7 @@ h6 {
 p {
     &.skolar {
         font-family: $skolar;
+        margin-bottom: 1em;
     }
     
     p a {
@@ -125,6 +126,9 @@ strong {
     text-decoration: none;
     color: #fff;
     display: block;
+    
+    @include border-top-left-radius(8px);
+    @include border-bottom-right-radius(8px);
     
     &:hover {
         border-color: #b6b4b0;
@@ -333,21 +337,27 @@ strong {
     }
     
     .marker-custom {
-       &.active {
-           > .tooltip {
-               @include opacity(1);
-               
-               &.loading {
-                   @include opacity(0);
-               }
-           }
-       }
+        z-index: 888;
+        
+        &.active {
+            z-index: 999;
+            
+            > .tooltip {
+                visibility: visible;
+                
+                @include opacity(1);
+            
+                &.loading {
+                    @include opacity(0);
+                }
+            }
+        }
        
-       &.loaded {
-           
-       }
+        &.loaded {
+            //z-index: 999;
+        }
        
-       > div {
+        > div {
             cursor: pointer;
             border: 1px solid #085080;
             height: 20px;
@@ -385,6 +395,7 @@ strong {
             position: absolute;
             text-align: center;
             top: -50%;
+            visibility: hidden;
             white-space: nowrap;
             z-index: -1;
             
@@ -395,29 +406,19 @@ strong {
             @include transition(all 100ms linear);
         }
         
-        > .tooltip {
-            &.infowindow {
-                padding: 20px;
-                text-align: left;
-                white-space: normal;
-                width: 320px;
-                
-                &.inactive {
-                    @include opacity(0);
-                }
-            }
+        > .infowindow {
+            padding: 20px;
+            text-align: left;
+            white-space: normal;
+            visibility: visible;
+            width: 320px;
             
-            .plus-close {
-                background: url(../img/plusthin.png) no-repeat 0 0;
-                display: block;
-                height: 22px;
-                position: absolute;
-                right: 20px;
-                text-indent: -9999px;
-                top: 20px;
-                width: 22px;
+            @include opacity(1);
+            
+            &.inactive {
+                visibility: hidden;
                 
-                @include transform(rotate(-45deg));
+                @include opacity(0);
             }
             
             p {
@@ -445,10 +446,25 @@ strong {
                 padding-right: 20px;
                 padding-left: 0;
             }
+            
+            .plus-close {
+                background: url(../img/plusthin.png) no-repeat 0 0;
+                display: block;
+                height: 22px;
+                position: absolute;
+                right: 20px;
+                text-indent: -9999px;
+                top: 20px;
+                width: 22px;
+                
+                @include transform(rotate(-45deg));
+            }
         }
         
         > .plus-spinner {
              &.active {
+                 visibility: visible;
+                 
                  @include opacity(1);
              }
              
@@ -544,9 +560,17 @@ strong {
     .roaster {
         &.active {
             background-color: rgba(0,0,0,.02);
+            border-bottom: 1px solid #ebebeb;
+            border-top: 1px solid #ebebeb;
+            
+            @include box-shadow(0 0 30px rgba(0,0,0,.1) inset);
             
             .content {
                 height: 555px;
+            }
+            
+            .handle span {
+                color: $blue;
             }
         }
         
@@ -598,7 +622,22 @@ strong {
             overflow: hidden;
             padding: 0 20px;
             
-            //@include transition(height 300ms linear 200ms);
+            @include transition(height 300ms linear 200ms);
+        }
+        
+        .figure {
+            display: inline-block;
+            position: relative;
+            
+            &:after {
+                bottom: 0;
+                content: '';
+                left: 0;
+                position: absolute;
+                right: 0;
+                top: 0;
+                @include box-shadow(0 0 70px #000 inset);
+            }
         }
     }
 }
@@ -683,14 +722,23 @@ textarea {
     resize: none;
     padding: 20px 35px 0;
 }
-button[type='submit']{
-    padding: 12px 40px;
+button[type='submit'] {
     background-color: #0099ff;
-    margin: 8px 0px;
+    color: #fff;
     cursor: pointer;
-    text-transform: none;
+    font-family: $din;
     letter-spacing: 1px;
+    margin: 8px 0px;
+    padding: 12px 40px;
+    text-transform: none;
     text-align: left;
     text-indent: 0px;
-    color: #fff;
+    
+    @include border-top-left-radius(8px);
+    @include border-bottom-right-radius(8px);
+    @include transition(background-color 200ms linear);
+    
+    &:hover {
+        background-color: #000;
+    }
 }

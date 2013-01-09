@@ -132,8 +132,6 @@ window.pdx.maps.Marker = window.pdx.maps.Overlay.extend({
         this.loader.style.top = -(this.loader.clientHeight+3)+"px";
         this.element.style.left = (pixelPosition.x-(this.element.clientWidth/2))+"px";
         this.element.style.top = (pixelPosition.y-(this.element.clientHeight))+"px";
-        this.element.style.zIndex = 999;
-        this.element.parentNode.style.zIndex = 999;
     },
     
     setPosition: function ( position ) {

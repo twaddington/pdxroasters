@@ -6,13 +6,14 @@
  * /static/js/pdx.js
  * /static/js/lib/*
  *
- * @json:
- * http://localhost:8000/api/roaster/?format=json
- *
  */
 (function ( window, undefined ) {
 
 "use strict";
+
+// Closure globals
+var $header = $( "#header" ),
+    pushState = window.pdx.pushstate();
 
 // Home Controller
 window.pdx.app.home = {
@@ -37,7 +38,6 @@ window.pdx.app.home = {
             self.$navTog.toggleClass( "active" );
             self.$nav.toggleClass( "active" );
             
-            console.log( "check" );
             if ( !self.$navTog.is( ".active" ) ) {
             	self.$info.removeClass( "active" );
             	
@@ -49,7 +49,6 @@ window.pdx.app.home = {
         this.$navLinks.on( "click", function ( e ) {
             e.preventDefault();
             
-            console.log( "check" );
             if ( !self.$info.is( ".active" ) ) {
             	self.$info.addClass( "active" );
             }
@@ -62,7 +61,6 @@ window.pdx.app.home = {
             self.$activePanel = $( this.hash );
             self.activeHash = this.hash;
             
-            console.log( "check" );
             self.$panelWrap.css( "left", -(self.$activePanel.index()*window.innerWidth) );
         });
     },
@@ -115,10 +113,11 @@ window.pdx.app.home = {
         
         this.$roasterItems.each(function ( i ) {
             var $elem = $( this ),
-                points = $elem.data( "latlng" ),
-                name = $elem.data( "name" ),
-                api = /* $elem.data( "api" ) */"/api/roaster/"+this.id+"/",
-                address = $elem.data( "address" ),
+                data = $elem.data(),
+                points = data.latlng,
+                name = data.name,
+                api = data.api = "/api/roaster/"+this.id+"/",
+                address = data.address,
                 id = this.id,
                 latLng,
                 marker;
@@ -131,11 +130,8 @@ window.pdx.app.home = {
                     	marker = new window.pdx.maps.Marker({
                             latLng: latLng,
                             map: self.map,
-                            name: name,
-                            api: api,
-                            id: id,
-                            onAddCallback: function () {
-                                self._onAddMarker.apply( self, arguments );
+                            onAddCallback: function ( inst ) {
+                                self._onAddMarker( inst, data );
                             }
                         });
                         
@@ -153,15 +149,10 @@ window.pdx.app.home = {
                 marker = new window.pdx.maps.Marker({
                     latLng: latLng,
                     map: self.map,
-                    name: name,
-                    api: api,
-                    id: id,
-                    onAddCallback: function () {
-                        self._onAddMarker.apply( self, arguments );
+                    onAddCallback: function ( inst ) {
+                        self._onAddMarker( inst, data );
                     }
                 });
-                
-                counter++;
                 
                 self.mapMarkers.push( marker );
                 self.mapBounds.extend( latLng );
@@ -173,58 +164,69 @@ window.pdx.app.home = {
         }
     },
     
-    _onAddMarker: function ( instance ) {
-        var self = this;
+    _onAddMarker: function ( instance, data ) {
+        var self = this,
+            $instance = $( instance.element ),
+            $tip = $instance.find( ".tooltip" ),
+            $spin = $instance.find( ".plus-spinner > div" ),
+            $infowindow,
+            timeout;
+        
+        $instance.find( ".tooltip" ).text( data.name );
         
         // Reveal roaster content
-        $( instance.element ).on( "mouseover", "> div", function () {
-            var $elem = $( this ),
-                $tip = $elem.parent().find( ".tooltip" );
+        $instance.on( "mouseenter", "> div", function () {
+            var $elem = $( this );
             
-            console.log( "check" );
-            if ( $elem.parent().is( ".loaded" ) ) {
+            if ( $infowindow && !$infowindow.is( ".inactive" ) ) {
+                $tip.addClass( "loading" )
+                    .css( "top", "50%" );
             	return false;
             }
             
-            $elem.parent().addClass( "active" );
-            $tip.css( "top", -($tip.height()+3) );
+            $instance.addClass( "active" );
+            $tip.removeClass( "loading" )
+                .css( "top", -($tip.height()+3) );
         
         // Hide roaster content
-        }).on( "mouseout", "> div", function ( e ) {
-            var $elem = $( this ),
-                $tip = $elem.parent().find( ".tooltip" );
+        }).on( "mouseleave", "> div", function ( e ) {
+            var $elem = $( this );
             
-            console.log( "check" );
-            if ( $elem.parent().is( ".loaded" ) ) {
+            if ( $infowindow && !$infowindow.is( ".inactive" ) ) {
+            	$tip.addClass( "loading" )
+            	   .css( "top", "50%" );
             	return false;
             }
             
-            $elem.parent().removeClass( "active" );
-            $tip.css( "top", "50%" );
+            $instance.removeClass( "active" );
+            $tip.removeClass( "loading" )
+                .css( "top", "50%" );
         });
         
         // Request the detailed content
-        $( instance.element ).on( "click", "> div", function ( e ) {
-            var $elem = $( this ),
-                $tip = $elem.parent().find( ".tooltip" ),
-                $spin = $elem.parent().find( ".plus-spinner > div" ),
-                timeout;
+        $instance.on( "click", "> div", function ( e ) {
+            var $elem = $( this );
+            
+            $( ".marker-custom" ).removeClass( "active" );
+            $( ".infowindow" ).addClass( "inactive" );
             
             if ( instance.loaded ) {
-            	$tip.toggleClass( "inactive" );
+                $instance.addClass( "active" );
+            	$infowindow.toggleClass( "inactive" );
+            	$tip.addClass( "loading" )
+            	   .css( "top", "50%" );
             	
-            	console.log( "check" );
-            	if ( $tip.is( ".inactive" ) ) {
-                	$tip.css( "top", "50%" );
+            	if ( $infowindow.is( ".inactive" ) ) {
+                	$infowindow.css( "top", "50%" );
                 	
                 } else {
-                    $tip.css( "top", -($tip.height()+3) );
+                    $infowindow.css( "top", -($infowindow.height()+3) );
                 }
             	
             	return false;
             }
             
-            $tip.hide().addClass( "loading" );
+            $tip.addClass( "loading" );
             
             $spin.parent().addClass( "active" );
             $spin.addClass( "loading" );
@@ -241,7 +243,7 @@ window.pdx.app.home = {
             _loading();
             
             $.ajax({
-                url: instance.api,
+                url: data.api,
                 type: "json",
                 data: {
                     format: "json"
@@ -249,7 +251,7 @@ window.pdx.app.home = {
                 error: function () {
                     clearTimeout( timeout );
                     
-                    console.log( "error" );
+                    console.log( "Infowindow load error" );
                 },
                 success: function ( response ) {
                     var html = "";
@@ -257,6 +259,8 @@ window.pdx.app.home = {
                     clearTimeout( timeout );
                     
                     instance.loaded = true;
+                    
+                    $infowindow = $( "<span>" ).addClass( "infowindow" ).hide();
                     
                     html = '<h3>'+response.name+'</h3>';
                     html += '<div class="group">';
@@ -281,41 +285,53 @@ window.pdx.app.home = {
                     html += '</div>';
                     html += '<a href="#close" class="plus-close">Close</div>';
                     
-                    // Overrides roaster name
-                    $tip.addClass( "infowindow" )
-                        .html( html )
-                        .css( "top", -($tip.height()+3) )
-                        .css( "left", -(($tip.width()/2)-($elem.width()/2)) );
+                    $infowindow.html( html )
+                        .insertAfter( $tip )
+                        .css( "top", -($infowindow.height()+3) )
+                        .css( "left", -(($infowindow.width()/2)-($elem.width()/2)) );
                     
-                    $tip.find( ".plus-close" ).on( "click", function ( e ) {
+                    $infowindow.find( ".plus-close" ).on( "click", function ( e ) {
                         e.preventDefault();
                         
-                        $tip.toggleClass( "inactive" );
+                        $infowindow.toggleClass( "inactive" );
                         
-                        console.log( "check" );
-                        if ( $tip.is( "inactive" ) ) {
-                        	$tip.css( "top", "50%" );
+                        if ( $infowindow.is( "inactive" ) ) {
+                        	$infowindow.css( "top", "50%" );
                         	
                         } else {
-                            $tip.css( "top", -($tip.height()+3) );
+                            $infowindow.css( "top", -($infowindow.height()+3) );
                         }
                     });
                     
-                    $tip.find( ".find" ).on( "click", function ( e ) {
+                    $infowindow.find( ".find" ).on( "click", function ( e ) {
                         e.preventDefault();
                         
-                        var $elem = $( this.hash );
+                        var $elem = $( this.hash ),
+                            $toggle = $elem.find( ".toggle" );
                         
-                        $elem.find( ".toggle" ).click();
+                        if ( $elem.is( ".active" ) ) {
+                        	$.scrollTo( $elem.offset().top-$header.height() );
+                        	
+                        	return false;
+                        }
+                        
+                        self.$roasterTogs.removeClass( "active" );
+                        $toggle.addClass( "active" );
+                        
+                        self.$roasterItems.removeClass( "active" );
+                        $elem.addClass( "active" );
+                        
+                        $.scrollTo( $elem.offset().top-$header.height() );
                     });
                     
                     setTimeout(function () {
-                        $tip.show().removeClass( "loading" );
+                        $infowindow.show().removeClass( "loading" );
                         
                         $spin.parent().removeClass( "active" );
                         $spin.removeClass( "loading" );
                         
-                        $elem.parent().addClass( "loaded" );
+                        $instance.addClass( "loaded" )
+                            .addClass( "active" );
                         
                     }, 300 );
                 }
@@ -361,7 +377,6 @@ window.pdx.app.home = {
                 $toggle = $elem.find( ".toggle" ),
                 $roaster = $elem.closest( ".roaster" );
             
-            console.log( "check" );
             if ( $roaster.is( ".active" ) ) {
             	$toggle.removeClass( "active" );
             	self.$roasterItems.removeClass( "active" );
@@ -375,14 +390,13 @@ window.pdx.app.home = {
             self.$roasterItems.removeClass( "active" );
             $roaster.addClass( "active" );
             
-            $roaster.scrollTo();
+            $.scrollTo( $roaster.offset().top-$header.height() );
         });
     },
     
     _resize: function () {
         var self = this;
         
-        console.log( "check" );
         window.onresize = function () {
             self.$mapWrap.add( self.$info ).add( self.$panels ).css({
                 height: window.innerHeight,
@@ -398,7 +412,9 @@ window.pdx.app.home = {
 $( ".scroll-to" ).on( "click", function ( e ) {
     e.preventDefault();
     
-    $( this.hash ).scrollTo();
+    var $elem = $( this.hash );
+    
+    $.scrollTo( $elem.offset().top-$header.height() );
 });
 
 $( ".ajax-form" ).on( "submit", function ( e ) {
@@ -409,10 +425,10 @@ $( ".ajax-form" ).on( "submit", function ( e ) {
         type: "json",
         data: $( this ).serialize(),
         error: function () {
-            console.log( "error" );
+            console.log( "Ajax form error" );
         },
         success: function () {
-            console.log( "success" );
+            console.log( "Ajax form success" );
         }
     });
 });
