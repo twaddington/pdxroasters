@@ -654,6 +654,42 @@
 
   var module = { exports: {} }, exports = module.exports;
 
+  !function ($) {
+  
+    function tween(duration, from, to, tween, ease) {
+  		ease = ease || function (t) {
+  			return t;
+  		}
+  	  var self = this,
+  	  time = duration || 1000,
+  	  animDiff = to - from,
+  	  startTime = new Date(),
+  	  timer = setInterval(animate, 5);
+  
+  	  function animate () {
+  	    var diff = new Date() - startTime;
+  	    if (diff > time) {
+  	      tween(to);
+  	      clearInterval(timer);
+  	      timer = null;
+  	      return;
+  	    }
+  	    tween((animDiff * ease(diff / time)) + from);
+  	  }
+  	}
+  
+    $.ender({tween: tween});
+  
+  }(ender)
+
+  provide("ender-tween", module.exports);
+
+}());
+
+(function () {
+
+  var module = { exports: {} }, exports = module.exports;
+
   /*!
     * Bean - copyright (c) Jacob Thornton 2011-2012
     * https://github.com/fat/bean
@@ -1534,42 +1570,6 @@
       }
     }, true)
   }(ender);
-
-}());
-
-(function () {
-
-  var module = { exports: {} }, exports = module.exports;
-
-  !function ($) {
-  
-    function tween(duration, from, to, tween, ease) {
-  		ease = ease || function (t) {
-  			return t;
-  		}
-  	  var self = this,
-  	  time = duration || 1000,
-  	  animDiff = to - from,
-  	  startTime = new Date(),
-  	  timer = setInterval(animate, 5);
-  
-  	  function animate () {
-  	    var diff = new Date() - startTime;
-  	    if (diff > time) {
-  	      tween(to);
-  	      clearInterval(timer);
-  	      timer = null;
-  	      return;
-  	    }
-  	    tween((animDiff * ease(diff / time)) + from);
-  	  }
-  	}
-  
-    $.ender({tween: tween});
-  
-  }(ender)
-
-  provide("ender-tween", module.exports);
 
 }());
 
@@ -3308,6 +3308,18 @@
    */
   (function ( $, window, undefined ) {
   
+  function _getDur( dur ) {
+      return dur || 400;
+  }
+  
+  function _getEase( ease ) {
+      return ( ease && $.easing[ ease ] )
+              ? $.easing[ ease ]
+              : ( typeof ease === "function" )
+              ? ease
+              : $.easing.swing;
+  }
+  
   // Easing
   // Add your own with $.easing.yourease = function(p){}
   $.easing = {
@@ -3342,7 +3354,7 @@
       
       // Simple compat for jQuery.fn.push()
       push: function ( elem ) {
-          return this[ this.length-1 ] = elem;
+          return this[ this.length ] = elem;
       },
       
       // Simple compat for jQuery.fn.add()
@@ -3360,7 +3372,7 @@
               add = mixed;
               
           } else {
-              console.log( "something else" );
+              console.log( "add: cannot add this to ender set" );
           }
           
           for ( var i = 0, len = add.length; i < len; i++ ) {
@@ -3376,21 +3388,17 @@
   $.ender({
       // Ender smooth scroll utility with ender-tween
       // $.tween( duration, from, to, tween, ease )
-      scrollTo: function ( dest, dur, ease ) {
+      scrollTo: function ( to, dur, ease ) {
           var from = window.scrollY || window.pageYOffset,
-              cb = function ( to ) {
-                  window.scrollTo( 0, to );
+              cb = function ( t ) {
+                  window.scrollTo( 0, t );
               };
           
-          dest = dest || 0;
-          dur = dur || 400;
-          ease = ( ease && $.easing[ ease ] )
-                  ? $.easing[ ease ]
-                  : ( typeof ease === "function" )
-                  ? ease
-                  : $.easing.swing;
+          to = to || 0;
+          dur = _getDur( dur );
+          ease = _getEase( ease );
           
-          $.tween( dur, from, dest, cb, ease );
+          $.tween( dur, from, to, cb, ease );
       },
       
       // indexOf support for Array.prototype
@@ -3447,11 +3455,58 @@ window.pdx.app = {};
  */
 (function ( window, undefined ) {
 
+// Map namespace
+window.pdx.maps = {
+    lib: "http://maps.google.com/maps/api/js?sensor=false&callback=pdx.maps.init",
+    
+    callbacks: [],
+    
+    mapsloaded: false,
+    
+    lazyload: function () {
+        var g = document.createElement( "script" ),
+            s = document.getElementsByTagName( "script" )[ 0 ];
+            
+            g.src = this.lib;
+            g.type = "text/javascript";
+            g.async = true;
+            
+            s.parentNode.insertBefore( g, s );
+    },
+    
+    onmapsready: function ( fn ) {
+        this.callbacks.push( fn );
+    },
+    
+    firemapsready: function () {
+        if ( this.mapsloaded ) {
+        	console.log( "already fired mapsloaded callbacks" );
+        	
+        	return false;
+        }
+        
+        for ( var i = 0, len = this.callbacks.length; i < len; i++ ) {
+        	if ( typeof this.callbacks[ i ] === "function" ) {
+        		this.callbacks[ i ]();
+        	}
+        }
+    }
+};
+
+// Lazyload googlemaps
+window.pdx.maps.lazyload();
+
+// To be called when maps are loaded
+window.pdx.maps.init = function () {
+
+if ( window.pdx.maps.mapsloaded ) {
+    console.log( "window.pdx.maps already fired" );
+    
+	return false;
+}
+
 // Closure global vars
 var geocoder = new google.maps.Geocoder();
-
-// Map namespace
-window.pdx.maps = {};
 
 /**
  * Extendable Overlay Class for google.maps
@@ -3624,19 +3679,34 @@ window.pdx.maps.Marker = window.pdx.maps.Overlay.extend({
 		}
 		
 		var bounds = this.map.getBounds(),
+		
+		    // Coords are center of latLng in pixels
 			coords = this.getProjection().fromLatLngToDivPixel( this.latLng ),
-			initialX = coords.x,
-			initialY = coords.y,
+			
+			// Infowindow dimensions
 			iwHeight = this.infowindow.clientHeight,
 			iwWidth = this.infowindow.clientWidth,
-			offX = (parseInt( this.element.style.left, 10 )-(this.infowindow.clientWidth/2)),
-			offY = (parseInt( this.infowindow.style.top, 10 )-this.infowindow.clientHeight),
-			offNE = -(this.infowindow.clientWidth)-( -offX ),
+			
+			// Marker elements dimensions
+			e = {
+    			top: this.element.offsetTop,
+    			left: this.element.offsetLeft,
+    			width: this.element.clientWidth,
+    			height: this.element.clientHeight
+			},
+			
+			// Infowindows corners
+			o = {
+			    iwTopLeft: new google.maps.Point( coords.x-(iwWidth/2), coords.y-iwHeight ),
+    			iwTopRight: new google.maps.Point( coords.x+(iwWidth/2), coords.y-iwHeight ),
+    			iwBottomLeft: new google.maps.Point( coords.x-(iwWidth/2), coords.y ),
+    			iwBottomRight: new google.maps.Point( coords.x+(iwWidth/2), coords.y )
+			},
+			
+			// We need to figure these out
 			containsNE,
 			containsSW,
-			iwNE,
 			iwNELatLng,
-			iwSW,
 			iwSWLatLng,
 			newLatLng,
 			newPoint,
@@ -3647,18 +3717,16 @@ window.pdx.maps.Marker = window.pdx.maps.Overlay.extend({
 			return;
 		}
 		
-		iwNE = new google.maps.Point( (initialX + offNE), (initialY - iwHeight) );
-		iwNELatLng = this.getProjection().fromDivPixelToLatLng( iwNE );
-		
-		iwSW = new google.maps.Point( (initialX + offX), initialY );
-		iwSWLatLng = this.getProjection().fromDivPixelToLatLng( iwSW );
+		iwNELatLng = this.getProjection().fromDivPixelToLatLng( o.iwTopRight );
+		iwSWLatLng = this.getProjection().fromDivPixelToLatLng( o.iwBottomLeft );
 		
 		containsNE = bounds.contains( iwNELatLng );
 		containsSW = bounds.contains( iwSWLatLng );
 		
 		if ( !containsNE || !containsSW ) {
-			newX = initialX - ((iwWidth / 2) - offNE);
-			newY = initialY - (iwHeight / 2);
+			// Need to figure out newX/newY better than this
+			newX = coords.x;
+			newY = coords.y;
 			
 			newPoint = new google.maps.Point( newX, newY );
 			newLatLng = this.getProjection().fromDivPixelToLatLng( newPoint );
@@ -3684,6 +3752,14 @@ window.pdx.maps.geocode = function ( data, callback ) {
 	});
 }
 
+// Fire onmapsready callbacks
+window.pdx.maps.firemapsready();
+
+// Set the mapsloaded state
+window.pdx.maps.mapsloaded = true;
+
+} // END: window.pdx.maps.init
+
 })( window );
 /**
  * PDX Roaster Pushstate Javascript
@@ -3702,9 +3778,11 @@ window.pdx.pushstate = function () {
     }
     
     this.state;
+    this.from;
+    this.on;
     this.cache = {};
     this.poppable = false;
-    this.able = (window.history && window.history.pushState);
+    this.pushable = ("history" in window && "pushState" in window.history);
     
     // Enable the popstate event
     this._popEnable();
@@ -3714,17 +3792,31 @@ window.pdx.pushstate.prototype = {
     push: function ( url, callback ) {
         var self = this;
         
+        // Keep track of where we came from when pushing
+        this.from = window.location.href;
+        
+        // And where we are going to be afterwards
+        this.on = url;
+        
+        if ( typeof this.before === "function" ) {
+        	this.before();
+        }
+        
         this._get( url, function ( res ) {
             if ( typeof callback === "function" ) {
             	callback( res );
             }
             
-            if ( self.able ) {
+            if ( self.pushable ) {
             	window.history.pushState( {}, "", url );
-            	
-            	// Cache that shit
-            	self.cache[ url ] = res;
             }
+            
+            if ( typeof self.after === "function" ) {
+            	self.after( res );
+            }
+            
+            // Cache that shit
+            self.cache[ url ] = res;
         });
     },
     
@@ -3761,7 +3853,7 @@ window.pdx.pushstate.prototype = {
     },
     
     _popEnable: function () {
-        if ( !this.able || this.poppable ) {
+        if ( !this.pushable || this.poppable ) {
         	return false;
         }
         
@@ -3792,17 +3884,25 @@ window.pdx.pushstate.prototype = {
 "use strict";
 
 // Closure globals
-var $header = $( "#header" ),
-    pushState = window.pdx.pushstate();
+var $document = $( document ),
+    $header = $( "#header" );
 
 // Home Controller
 window.pdx.app.home = {
     init: function () {
-        this._info();
+        var self = this;
+        
         this._nav();
+        this._premaps();
         this._roasters();
-        this._map();
+        this._info();
         this._resize();
+        this._pushes();
+        
+        // Listen for maps to be loaded and ready
+        window.pdx.maps.onmapsready(function () {
+            self._map();
+        });
     },
     
     _nav: function () {
@@ -3841,22 +3941,31 @@ window.pdx.app.home = {
             self.$activePanel = $( this.hash );
             self.activeHash = this.hash;
             
-            self.$panelWrap.css( "left", -(self.$activePanel.index()*window.innerWidth) );
+            self.$panelWrap.css( "left", -(self.$activePanel.index()*$document.width()) );
+        });
+    },
+    
+    _premaps: function () {
+        var self = this;
+        
+        this.$mapWrap = $( "#map-wrap" );
+        this.$map = $( "#map" );
+        this.$mapPage = $( "#map-page" );
+        this.$closeMapPage = this.$mapPage.find( ".plus-close" );
+        this.mapElem = this.$map.get( 0 );
+        this.mapMarkers = [];
+        
+        this.$mapWrap.add( this.$mapPage ).height( window.innerHeight );
+        
+        this.$closeMapPage.on( "click", function ( e ) {
+            e.preventDefault();
+            
+            self.$mapPage.removeClass( "active" );
         });
     },
     
     _map: function () {
         var self = this;
-        
-        this.$mapWrap = $( "#map-wrap" );
-        this.$map = $( "#map" );
-        this.mapElem = this.$map.get( 0 );
-        this.mapMarkers = [];
-        
-        this.$mapWrap.css({
-            height: window.innerHeight,
-            width: window.innerWidth
-        });
         
         // Google maps
         this.portland = {
@@ -4062,7 +4171,7 @@ window.pdx.app.home = {
                             html += '<div class="ci"><a href="#'+response.id+'" class="btn find">Find this Roast</a></div>';
                         html += '</div>';
                         html += '<div class="col col1of2">';
-                            html += '<div class="ci"><a href="/roaster/'+response.slug+'/" class="btn">Learn More</a></div>';
+                            html += '<div class="ci"><a href="/roaster/'+response.slug+'/" class="btn more">Learn More</a></div>';
                         html += '</div>';
                     html += '</div>';
                     html += '<a href="#close" class="plus-close">Close</div>';
@@ -4106,6 +4215,19 @@ window.pdx.app.home = {
                         $.scrollTo( $elem.offset().top-$header.height() );
                     });
                     
+                    $infowindow.find( ".more" ).on( "click", function ( e ) {
+                        e.preventDefault();
+                        
+                        self.pushState.push( this.href, function ( res ) {
+                            if ( res.error ) {
+                            	//return false;
+                            }
+                            
+                            self.$mapPage.addClass( "active" );
+                        });
+                    });
+                    
+                    // Slight delay for loadout
                     setTimeout(function () {
                         $infowindow.show().removeClass( "loading" );
                         
@@ -4128,12 +4250,10 @@ window.pdx.app.home = {
         this.$panelWrap = this.$info.find( ".panels" );
         this.$panels = this.$info.find( ".panel" );
         
-        this.$panelWrap.width( window.innerWidth*this.$panels.length );
+        this.$panels.width( $document.width() );
+        this.$panelWrap.width( $document.width()*this.$panels.length );
         
-        this.$info.add( this.$panels ).css({
-            height: window.innerHeight,
-            width: window.innerWidth
-        });
+        this.$info.add( this.$panels ).height( window.innerHeight );
     },
     
     _roasters: function () {
@@ -4182,12 +4302,29 @@ window.pdx.app.home = {
         var self = this;
         
         window.onresize = function () {
-            self.$mapWrap.add( self.$info ).add( self.$panels ).css({
-                height: window.innerHeight,
-                width: window.innerWidth
-            });
+            self.$mapWrap
+                .add( self.$mapPage )
+                .add( self.$info )
+                .add( self.$panels )
+                .height( window.innerHeight );
             
-            self.$panelWrap.width( window.innerWidth*self.$panels.length );
+            self.$panels.width( $document.width() );
+            self.$panelWrap.width( $document.width()*self.$panels.length );
+        };
+    },
+    
+    _pushes: function () {
+        var self = this;
+        
+        this.pushState = window.pdx.pushstate();
+        
+        // Global before/after pushstate handlers
+        this.pushState.before = function () {
+            console.log( "before", arguments );
+        };
+        
+        this.pushState.after = function () {
+            console.log( "after", arguments );
         };
     }
 };

@@ -15,9 +15,11 @@ window.pdx.pushstate = function () {
     }
     
     this.state;
+    this.from;
+    this.on;
     this.cache = {};
     this.poppable = false;
-    this.able = (window.history && window.history.pushState);
+    this.pushable = ("history" in window && "pushState" in window.history);
     
     // Enable the popstate event
     this._popEnable();
@@ -27,17 +29,31 @@ window.pdx.pushstate.prototype = {
     push: function ( url, callback ) {
         var self = this;
         
+        // Keep track of where we came from when pushing
+        this.from = window.location.href;
+        
+        // And where we are going to be afterwards
+        this.on = url;
+        
+        if ( typeof this.before === "function" ) {
+        	this.before();
+        }
+        
         this._get( url, function ( res ) {
             if ( typeof callback === "function" ) {
             	callback( res );
             }
             
-            if ( self.able ) {
+            if ( self.pushable ) {
             	window.history.pushState( {}, "", url );
-            	
-            	// Cache that shit
-            	self.cache[ url ] = res;
             }
+            
+            if ( typeof self.after === "function" ) {
+            	self.after( res );
+            }
+            
+            // Cache that shit
+            self.cache[ url ] = res;
         });
     },
     
@@ -74,7 +90,7 @@ window.pdx.pushstate.prototype = {
     },
     
     _popEnable: function () {
-        if ( !this.able || this.poppable ) {
+        if ( !this.pushable || this.poppable ) {
         	return false;
         }
         

@@ -4,6 +4,18 @@
  */
 (function ( $, window, undefined ) {
 
+function _getDur( dur ) {
+    return dur || 400;
+}
+
+function _getEase( ease ) {
+    return ( ease && $.easing[ ease ] )
+            ? $.easing[ ease ]
+            : ( typeof ease === "function" )
+            ? ease
+            : $.easing.swing;
+}
+
 // Easing
 // Add your own with $.easing.yourease = function(p){}
 $.easing = {
@@ -38,7 +50,7 @@ $.ender({
     
     // Simple compat for jQuery.fn.push()
     push: function ( elem ) {
-        return this[ this.length-1 ] = elem;
+        return this[ this.length ] = elem;
     },
     
     // Simple compat for jQuery.fn.add()
@@ -56,7 +68,7 @@ $.ender({
             add = mixed;
             
         } else {
-            console.log( "something else" );
+            console.log( "add: cannot add this to ender set" );
         }
         
         for ( var i = 0, len = add.length; i < len; i++ ) {
@@ -72,21 +84,17 @@ $.ender({
 $.ender({
     // Ender smooth scroll utility with ender-tween
     // $.tween( duration, from, to, tween, ease )
-    scrollTo: function ( dest, dur, ease ) {
+    scrollTo: function ( to, dur, ease ) {
         var from = window.scrollY || window.pageYOffset,
-            cb = function ( to ) {
-                window.scrollTo( 0, to );
+            cb = function ( t ) {
+                window.scrollTo( 0, t );
             };
         
-        dest = dest || 0;
-        dur = dur || 400;
-        ease = ( ease && $.easing[ ease ] )
-                ? $.easing[ ease ]
-                : ( typeof ease === "function" )
-                ? ease
-                : $.easing.swing;
+        to = to || 0;
+        dur = _getDur( dur );
+        ease = _getEase( ease );
         
-        $.tween( dur, from, dest, cb, ease );
+        $.tween( dur, from, to, cb, ease );
     },
     
     // indexOf support for Array.prototype

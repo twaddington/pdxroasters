@@ -12,11 +12,58 @@
  */
 (function ( window, undefined ) {
 
+// Map namespace
+window.pdx.maps = {
+    lib: "http://maps.google.com/maps/api/js?sensor=false&callback=pdx.maps.init",
+    
+    callbacks: [],
+    
+    mapsloaded: false,
+    
+    lazyload: function () {
+        var g = document.createElement( "script" ),
+            s = document.getElementsByTagName( "script" )[ 0 ];
+            
+            g.src = this.lib;
+            g.type = "text/javascript";
+            g.async = true;
+            
+            s.parentNode.insertBefore( g, s );
+    },
+    
+    onmapsready: function ( fn ) {
+        this.callbacks.push( fn );
+    },
+    
+    firemapsready: function () {
+        if ( this.mapsloaded ) {
+        	console.log( "already fired mapsloaded callbacks" );
+        	
+        	return false;
+        }
+        
+        for ( var i = 0, len = this.callbacks.length; i < len; i++ ) {
+        	if ( typeof this.callbacks[ i ] === "function" ) {
+        		this.callbacks[ i ]();
+        	}
+        }
+    }
+};
+
+// Lazyload googlemaps
+window.pdx.maps.lazyload();
+
+// To be called when maps are loaded
+window.pdx.maps.init = function () {
+
+if ( window.pdx.maps.mapsloaded ) {
+    console.log( "window.pdx.maps already fired" );
+    
+	return false;
+}
+
 // Closure global vars
 var geocoder = new google.maps.Geocoder();
-
-// Map namespace
-window.pdx.maps = {};
 
 /**
  * Extendable Overlay Class for google.maps
@@ -189,19 +236,34 @@ window.pdx.maps.Marker = window.pdx.maps.Overlay.extend({
 		}
 		
 		var bounds = this.map.getBounds(),
+		
+		    // Coords are center of latLng in pixels
 			coords = this.getProjection().fromLatLngToDivPixel( this.latLng ),
-			initialX = coords.x,
-			initialY = coords.y,
+			
+			// Infowindow dimensions
 			iwHeight = this.infowindow.clientHeight,
 			iwWidth = this.infowindow.clientWidth,
-			offX = (parseInt( this.element.style.left, 10 )-(this.infowindow.clientWidth/2)),
-			offY = (parseInt( this.infowindow.style.top, 10 )-this.infowindow.clientHeight),
-			offNE = -(this.infowindow.clientWidth)-( -offX ),
+			
+			// Marker elements dimensions
+			e = {
+    			top: this.element.offsetTop,
+    			left: this.element.offsetLeft,
+    			width: this.element.clientWidth,
+    			height: this.element.clientHeight
+			},
+			
+			// Infowindows corners
+			o = {
+			    iwTopLeft: new google.maps.Point( coords.x-(iwWidth/2), coords.y-iwHeight ),
+    			iwTopRight: new google.maps.Point( coords.x+(iwWidth/2), coords.y-iwHeight ),
+    			iwBottomLeft: new google.maps.Point( coords.x-(iwWidth/2), coords.y ),
+    			iwBottomRight: new google.maps.Point( coords.x+(iwWidth/2), coords.y )
+			},
+			
+			// We need to figure these out
 			containsNE,
 			containsSW,
-			iwNE,
 			iwNELatLng,
-			iwSW,
 			iwSWLatLng,
 			newLatLng,
 			newPoint,
@@ -212,18 +274,16 @@ window.pdx.maps.Marker = window.pdx.maps.Overlay.extend({
 			return;
 		}
 		
-		iwNE = new google.maps.Point( (initialX + offNE), (initialY - iwHeight) );
-		iwNELatLng = this.getProjection().fromDivPixelToLatLng( iwNE );
-		
-		iwSW = new google.maps.Point( (initialX + offX), initialY );
-		iwSWLatLng = this.getProjection().fromDivPixelToLatLng( iwSW );
+		iwNELatLng = this.getProjection().fromDivPixelToLatLng( o.iwTopRight );
+		iwSWLatLng = this.getProjection().fromDivPixelToLatLng( o.iwBottomLeft );
 		
 		containsNE = bounds.contains( iwNELatLng );
 		containsSW = bounds.contains( iwSWLatLng );
 		
 		if ( !containsNE || !containsSW ) {
-			newX = initialX - ((iwWidth / 2) - offNE);
-			newY = initialY - (iwHeight / 2);
+			// Need to figure out newX/newY better than this
+			newX = coords.x;
+			newY = coords.y;
 			
 			newPoint = new google.maps.Point( newX, newY );
 			newLatLng = this.getProjection().fromDivPixelToLatLng( newPoint );
@@ -248,5 +308,13 @@ window.pdx.maps.geocode = function ( data, callback ) {
 		}
 	});
 }
+
+// Fire onmapsready callbacks
+window.pdx.maps.firemapsready();
+
+// Set the mapsloaded state
+window.pdx.maps.mapsloaded = true;
+
+} // END: window.pdx.maps.init
 
 })( window );

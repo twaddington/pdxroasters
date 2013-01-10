@@ -142,6 +142,18 @@ strong {
         text-align: right;
     }
 }
+.plus-close {
+    background: url(../img/plusthin.png) no-repeat 0 0;
+    display: block;
+    height: 22px;
+    position: absolute;
+    right: 20px;
+    text-indent: -9999px;
+    top: 20px;
+    width: 22px;
+    
+    @include transform(rotate(-45deg));
+}
 
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -202,6 +214,10 @@ strong {
     @include box-shadow(0 1px 3px rgba(0,0,0,.8));
 }
 
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - Footer  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 #footer {
     background-color: #000;
     color: #fff;
@@ -305,6 +321,18 @@ strong {
         @include transition(left 300ms ease-in-out);
     }
     
+    #panel1 {
+        background: red;
+    }
+    
+    #panel2 {
+        background: green;
+    }
+    
+    #panel3 {
+        background: blue;
+    }
+    
     .panel {
         float: left;
         height: 100%;
@@ -312,7 +340,12 @@ strong {
         width: 100%;
         
         .panel-inner {
+            //bottom: 0;
+            //left: 0;
             padding: 100px;
+            //position: absolute;
+            //right: 0;
+            //top: 0;
         }
     }
 }
@@ -326,6 +359,32 @@ strong {
     height: 100%;
     width: 100%;
     z-index: 7;
+}
+#map-page {
+    background-color: #f0f0f0;
+    bottom: 0;
+    left: 100%;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 9;
+    
+    @include transition(left 300ms ease-in-out);
+    
+    &.active {
+        left: 0;
+    }
+    
+    .plus-close {
+        right: 40px;
+        top: 100px;
+    }
+    
+    .page-inner {
+        padding: 100px;
+    }
 }
 #map {
     position: relative;
@@ -446,19 +505,6 @@ strong {
                 padding-right: 20px;
                 padding-left: 0;
             }
-            
-            .plus-close {
-                background: url(../img/plusthin.png) no-repeat 0 0;
-                display: block;
-                height: 22px;
-                position: absolute;
-                right: 20px;
-                text-indent: -9999px;
-                top: 20px;
-                width: 22px;
-                
-                @include transform(rotate(-45deg));
-            }
         }
         
         > .plus-spinner {
@@ -489,7 +535,7 @@ strong {
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 #roasters {
     position: relative;
-    z-index: 8;
+    z-index: 9;
     
     @include box-shadow(0 -1px 3px rgba(0,0,0,.5));
     

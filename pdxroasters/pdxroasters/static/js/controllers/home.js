@@ -12,17 +12,25 @@
 "use strict";
 
 // Closure globals
-var $header = $( "#header" ),
-    pushState = window.pdx.pushstate();
+var $document = $( document ),
+    $header = $( "#header" );
 
 // Home Controller
 window.pdx.app.home = {
     init: function () {
-        this._info();
+        var self = this;
+        
         this._nav();
+        this._premaps();
         this._roasters();
-        this._map();
+        this._info();
         this._resize();
+        this._pushes();
+        
+        // Listen for maps to be loaded and ready
+        window.pdx.maps.onmapsready(function () {
+            self._map();
+        });
     },
     
     _nav: function () {
@@ -61,22 +69,31 @@ window.pdx.app.home = {
             self.$activePanel = $( this.hash );
             self.activeHash = this.hash;
             
-            self.$panelWrap.css( "left", -(self.$activePanel.index()*window.innerWidth) );
+            self.$panelWrap.css( "left", -(self.$activePanel.index()*$document.width()) );
+        });
+    },
+    
+    _premaps: function () {
+        var self = this;
+        
+        this.$mapWrap = $( "#map-wrap" );
+        this.$map = $( "#map" );
+        this.$mapPage = $( "#map-page" );
+        this.$closeMapPage = this.$mapPage.find( ".plus-close" );
+        this.mapElem = this.$map.get( 0 );
+        this.mapMarkers = [];
+        
+        this.$mapWrap.add( this.$mapPage ).height( window.innerHeight );
+        
+        this.$closeMapPage.on( "click", function ( e ) {
+            e.preventDefault();
+            
+            self.$mapPage.removeClass( "active" );
         });
     },
     
     _map: function () {
         var self = this;
-        
-        this.$mapWrap = $( "#map-wrap" );
-        this.$map = $( "#map" );
-        this.mapElem = this.$map.get( 0 );
-        this.mapMarkers = [];
-        
-        this.$mapWrap.css({
-            height: window.innerHeight,
-            width: window.innerWidth
-        });
         
         // Google maps
         this.portland = {
@@ -282,7 +299,7 @@ window.pdx.app.home = {
                             html += '<div class="ci"><a href="#'+response.id+'" class="btn find">Find this Roast</a></div>';
                         html += '</div>';
                         html += '<div class="col col1of2">';
-                            html += '<div class="ci"><a href="/roaster/'+response.slug+'/" class="btn">Learn More</a></div>';
+                            html += '<div class="ci"><a href="/roaster/'+response.slug+'/" class="btn more">Learn More</a></div>';
                         html += '</div>';
                     html += '</div>';
                     html += '<a href="#close" class="plus-close">Close</div>';
@@ -326,6 +343,19 @@ window.pdx.app.home = {
                         $.scrollTo( $elem.offset().top-$header.height() );
                     });
                     
+                    $infowindow.find( ".more" ).on( "click", function ( e ) {
+                        e.preventDefault();
+                        
+                        self.pushState.push( this.href, function ( res ) {
+                            if ( res.error ) {
+                            	//return false;
+                            }
+                            
+                            self.$mapPage.addClass( "active" );
+                        });
+                    });
+                    
+                    // Slight delay for loadout
                     setTimeout(function () {
                         $infowindow.show().removeClass( "loading" );
                         
@@ -348,12 +378,10 @@ window.pdx.app.home = {
         this.$panelWrap = this.$info.find( ".panels" );
         this.$panels = this.$info.find( ".panel" );
         
-        this.$panelWrap.width( window.innerWidth*this.$panels.length );
+        this.$panels.width( $document.width() );
+        this.$panelWrap.width( $document.width()*this.$panels.length );
         
-        this.$info.add( this.$panels ).css({
-            height: window.innerHeight,
-            width: window.innerWidth
-        });
+        this.$info.add( this.$panels ).height( window.innerHeight );
     },
     
     _roasters: function () {
@@ -402,12 +430,29 @@ window.pdx.app.home = {
         var self = this;
         
         window.onresize = function () {
-            self.$mapWrap.add( self.$info ).add( self.$panels ).css({
-                height: window.innerHeight,
-                width: window.innerWidth
-            });
+            self.$mapWrap
+                .add( self.$mapPage )
+                .add( self.$info )
+                .add( self.$panels )
+                .height( window.innerHeight );
             
-            self.$panelWrap.width( window.innerWidth*self.$panels.length );
+            self.$panels.width( $document.width() );
+            self.$panelWrap.width( $document.width()*self.$panels.length );
+        };
+    },
+    
+    _pushes: function () {
+        var self = this;
+        
+        this.pushState = window.pdx.pushstate();
+        
+        // Global before/after pushstate handlers
+        this.pushState.before = function () {
+            console.log( "before", arguments );
+        };
+        
+        this.pushState.after = function () {
+            console.log( "after", arguments );
         };
     }
 };
