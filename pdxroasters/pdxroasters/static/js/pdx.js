@@ -4,6 +4,8 @@
  */
 (function ( window ) {
 
+"use strict";
+
 // Console fallback
 window.console = window.console || function () {};
 

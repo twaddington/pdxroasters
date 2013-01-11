@@ -8,6 +8,8 @@
  */
 (function ( window, undefined ) {
 
+"use strict";
+
 // Pushstate namespace
 window.pdx.pushstate = function () {
     if ( !(this instanceof window.pdx.pushstate) ) {

@@ -140,6 +140,9 @@ Overlay.extend = function ( prop ) {
 window.pdx.maps.Overlay = Overlay;
 })();
 
+// Adhere to strict after Overlays arguments.callee
+"use strict";
+
 // Marker Class
 window.pdx.maps.Marker = window.pdx.maps.Overlay.extend({
     init: function ( options ) {

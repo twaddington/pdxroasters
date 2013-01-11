@@ -9,6 +9,8 @@
  */
 (function ( window ) {
 
+"use strict";
+
 // Run controller
 var controller = $( document.body ).data( "controller" );
 
