@@ -14,7 +14,12 @@
 
 // Map namespace
 window.pdx.maps = {
-    lib: "http://maps.google.com/maps/api/js?sensor=false&callback=pdx.maps.init",
+    lib: "http://maps.google.com/maps/api/js",
+    
+    query: {
+        sensor: false,
+        callback: "pdx.maps.init"
+    },
     
     callbacks: [],
     
@@ -24,7 +29,7 @@ window.pdx.maps = {
         var g = document.createElement( "script" ),
             s = document.getElementsByTagName( "script" )[ 0 ];
             
-            g.src = this.lib;
+            g.src = this.lib+"?"+this.parseQuery();
             g.type = "text/javascript";
             g.async = true;
             
@@ -47,6 +52,17 @@ window.pdx.maps = {
         		this.callbacks[ i ]();
         	}
         }
+    },
+    
+    parseQuery: function ( q ) {
+        var query = q || this.query,
+            ret = [];
+        
+        for ( var p in query ) {
+            ret.push( p+"="+query[ p ] );
+        }
+        
+        return ret.join( "&" );
     }
 };
 

@@ -19,3 +19,12 @@ staticfiles
 # Ignore Compass Cache
 pdxroasters/pdxroasters/static/.sass-cache
 pdxroasters/pdxroasters/static/.sass-cache/*
+
+# Ignore Grunt files
+pdxroasters/pdxroasters/static/js/dist/*
+
+# Ignore Ender files
+pdxroasters/pdxroasters/static/js/ender/ender.js
+pdxroasters/pdxroasters/static/js/ender/ender.min.js
+pdxroasters/pdxroasters/static/js/ender/node_modules
+pdxroasters/pdxroasters/static/js/ender/node_modules/*
