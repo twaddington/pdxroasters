@@ -1,213 +1,134 @@
 {% extends 'site_base.html' %}
+
 {% load i18n %}
 
-{% block title %}
-    Home
-{% endblock %}
+{% block title %}Home{% endblock %}
 
-<!-- Top Navigation -->
-{% block header %}
-<header>
-
-<h1> PDX Roasters </h1> 
-
-<nav>     
-  <a href="#" id="plus"> &nbsp; </a>
-  <a href="#" class="info" id="tab1_button"> Add Roaster </a>
-  <a href="#" class="info" id="tab2_button"> About </a>     
-  <a href="#" class="info" id="tab3_button"> Contact </a>
-  <div id="active_underline"> &nbsp; </div>
-</nav>
-
-</header>
-{% endblock header %}
+{% block controller %}home{% endblock %}
 
 {% block content %}
-<div id="info_panel">
-
-<div id="info_wrapper" class="slide1">
-
-  <div class="panel" id="tab1">
-
-    <div id="new_roaster" class="panel_content">
-
-      <div class="two_column">
-        <h2> Add a Portland Roaster </h2>
-        <p> We try to be thorough, but we probably didn't get them all. If you know of a up-and-comming roaster in Portland, or you have an old favorite, don't be shy.
-        Use this form to submit a new roaster to our list, or shoot us an <a href="mailto:pdxroasters@gmail.com"> email.</a> 
-        </p>          
-      </div>
-      
-      <div class="two_column last clearfix">
-        <form id="add_roaster" method="post">               
-          <input id="name" name="name" type="text" placeholder="Full Name" required="required" autofocus="autofocus" autocomplete="on">             
-          <input id="email" name="email" type="email" placeholder="E-mail" required="required" autocomplete="on">
-          <input id="roaster" name="roaster" type="text" placeholder="Name of Roaster" required="required">
-          <p class="caption left"> * All fields are required. </p>
-          <button type="submit" class="right"> Submit </button>
-        </form>
-      </div>
-  
-    </div>
-
-  </div>
-
-  <div class="panel" id="tab2">
-
-    <div id="about" class="panel_content">
-
-      <div class="two_column">
-        <h2> About PDX Roasters </h2>
-        <p> Portland Roasters is made up of three dudes who love coffee, probably too much.  </p>          
-      </div>
-      
-      <div class="two_column last clearfix">
-        <h3> How it Started </h3>
-        <p> 
-          Donec sed odio dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec ullamcorper nulla non metus auctor fringilla. Sed posuere consectetur est at lobortis. 
-        </p>
-      </div>
-  
-    </div>
-
-  </div>
-
-  <div class="panel" id="tab3">
-
-    <div id="contact" class="panel_content">
-
-      <div class="two_column">
-        <h2> Get in Touch </h2>
-        <p> Questions? Concerns? Comments? </p>          
-      </div>
-      
-      <div class="two_column last clearfix">           
-        <form id="contact" method="post">               
-            <input id="name" name="name" type="text" placeholder="Full Name" required="required" autofocus="autofocus" autocomplete="on">               
-            <input id="email" name="email" type="email" placeholder="E-mail" required="required" autocomplete="on">                
-            <input id="message" name="message" type="text" placeholder="Message" required="required">
-            <p class="caption left"> * All fields are required. </p>
-            <button type="submit" class="right"> Submit </button>
-        </form>
-      </div>
-  
-    </div>
-  
-  </div>
-
-</div>
-
-</div>
-
-<!-- Main Content -->   
-<div id="map_wrapper" class="panel">
-
-<div id="map" class="panel">
-
-  <!-- insert map here within this div-->
-
-</div>
-
-<a class="roaster_marker" href="#" data-modal-id="roaster_01" style="top: 615px; left: 513px;"> &nbsp </a>
-
-<div class="modal closed" id="roaster_01"> 
-
-  <h3 class="modal_name"> Stumptown Coffee Roasters </h3> 
-
-  <p class="address left"> 
-    1234 Lovejoy Avenue <br />
-    Suite #300 <br />
-    Portland, OR 97202
-  </p>
-
-  <p class="hours left last"> 
-    Mon. - Fri.  <span class="align_right"> 8 - 12 </span> <br />
-    Sat. &amp; Sun.  <span class="align_right"> 8 - 12 </span>
-  </p>
-  
-  <div class="button_wrapper">
-    <a id="open_cafes" href="#" class="button dark_grey transition_short"> Find this Roast </a>
-    <a href="#article_01" class="button dark_grey transition_short last scroll"> Learn More </a> 
-  </div>
-
-</div> <!-- end modal -->
-
-<a class="roaster_marker" href="#" data-modal-id="roaster_02" style="top: 400px; left: 800px;"> &nbsp </a>
-
-<div class="modal closed" id="roaster_02"> 
-
-  <h3 class="modal_name"> Ristretto Roasters </h3> 
-  <p class="address left"> 
-    1234 Lovejoy Avenue <br />
-    Suite #300 <br />
-    Portland, OR 97202
-  </p>
-
-  <p class="hours left last"> 
-    Mon. - Fri.  <span class="align_right"> 8 - 12 </span> <br />
-    Sat. &amp; Sun.  <span class="align_right"> 8 - 12 </span>
-  </p>
-  
-  <div class="button_wrapper">
-    <a class="button dark_grey transition_short"> Find this Roast </a>
-    <a href="#article_01" class="button dark_grey transition_short last scroll"> Learn More </a> 
-  </div>
-
-</div>
-
-</div>
-
-<!-- Articles on Roasters -->
-<div id="article_wrapper">
-
-<div id="article">
-
-  <section class="roaster_article" id="article_01">
-
-      <h3> Stumptown Coffee Roasters </h3>        
-
-      <a href="" id="handle" class="active"></a>
-
-      <div class="hours_address">
-
-        <figure class="roaster_photo">
-          <img src="/static/img/roaster-image.jpg" alt="roaster photo">
-        </figure>
-
-        <div class="address">
-          <h5> Address</h5>
-          <p class="address"> 
-            1234 Lovejoy Avenue <br />
-            Portland, OR 97202 <br />
-            971.241.4681
-          </p>
+<div id="info-panel">
+    <div class="panels">
+        <div class="panel" id="panel1">
+            <div class="panel-inner group">
+                <div class="col col1of2">
+                    <div class="ci">
+                        <h2> Add a Portland Roaster </h2>
+                        <p> We try to be thorough, but we probably didn't get them all. If you know of a up-and-comming roaster in Portland, or you have an old favorite, don't be shy. Use this form to submit a new roaster to our list, or shoot us an <a href="mailto:pdxroasters@gmail.com"> email.</a> 
+                        </p>
+                    </div>
+                </div>
+                <div class="col col1of2">
+                    <form class="ci ajax-form" data-form="roaster" method="post" action="">               
+                        <input name="name" type="text" placeholder="Full Name" required="required" autofocus="autofocus" autocomplete="on">             
+                        <input name="email" type="email" placeholder="E-mail" required="required" autocomplete="on">
+                        <input name="roaster" type="text" placeholder="Name of Roaster" required="required">
+                        <p class="caption">* All fields are required.</p>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
         </div>
-        
-        <div class="hours">
-          <h5> Hours </h5>
-          <p class="hours"> 
-            Mon. - Fri.  <span class="align_right"> 8 - 12 </span> <br />
-            Sat.  <span class="align_right"> 8 - 12 </span> <br />
-            Sun.  <span class="align_right"> 8 - 12 </span>
-          </p>
+        <div class="panel" id="panel2">
+            <div class="panel-inner group">
+                <div class="col col1of2">
+                    <div class="ci">
+                        <h2>About PDX Roasters</h2>
+                        <p>Portland Roasters is made up of three dudes who love coffee, probably too much.</p>
+                    </div>
+                </div>
+                <div class="col col1of2">
+                    <div class="ci">
+                        <h3>How it Started</h3>
+                        <p>Donec sed odio dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec ullamcorper nulla non metus auctor fringilla. Sed posuere consectetur est at lobortis.</p>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="panel" id="panel3">
+            <div class="panel-inner group">
+                <div class="col col1of2">
+                    <div class="ci">
+                        <h2>Get in Touch</h2>
+                        <p>Questions? Concerns? Comments?</p>
+                    </div>
+                </div>
+                <div class="col col1of2">
+                    <form class="ci ajax-form" data-form="contact" method="post" action="">               
+                        <input name="name" type="text" placeholder="Full Name" required="required" autofocus="autofocus" autocomplete="on">             
+                        <input name="email" type="email" placeholder="E-mail" required="required" autocomplete="on">
+                        <textarea name="message" placeholder="Message" required="required"></textarea>
+                        <p class="caption">* All fields are required.</p>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- END: #info-panel -->
 
-      </div>
+<div id="map-wrap">
+    <div id="map">
+    </div>
+</div><!-- END: #map-wrap -->
 
-      <div class="about">
-        <h4> About Stumptown Coffee Roasters </h4>
-        <p class="skolar"> 
-          First sentence, vel scelerisque nisl consectetur et. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec sed odio dui. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-        </p>
-        <p class="skolar">
-          Nullam quis risus eget urna mollis ornare vel eu leo. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Curabitur blandit tempus porttitor. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo.
-        </p>
-        <a href="#map" class="button dark_grey transition_short scroll" cafe-attribute="roaster_01"> Find this Roast </a>
-      </div>
+<div id="map-page">
+    <a href="#close" class="plus-close">Close</a>
+    <div class="page-inner">
+    </div>
+</div><!-- END: #map-page -->
 
-  </section>
-
-</div>
-
-</div>
+<div id="roasters">
+    <a href="#roasters" class="scroll-to roasters-toggle">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+    </a>
+    <div class="roasters">
+        {% for r in roasters %}
+        <div class="roaster" id="{{ r.id }}" data-latlng="" data-api="{{ r.resource_uri }}" data-name="{{ r.name }}" data-address="{{ r.address }}">
+            <h3 class="handle group"><span>{{ r.name }}</span> <a href="#toggle" class="toggle"></a></h3>
+            <div class="content group">
+                <div class="col col1of2">
+                    <div class="ci">
+                        <div class="figure">
+                            <img src="/static/img/roaster-image.jpg" alt="{{ r.name }} Photo">
+                        </div>
+                        <div class="meta group">
+                            <div class="col col1of3">
+                                <div class="ci">
+                                    <h5>Address</h5>
+                                    <p class="address">{{ r.address }}</p>
+                                </div>
+                            </div>
+                            <div class="col col1of3">
+                                <div class="ci">
+                                    <h5>Hours</h5>
+                                    <p class="hours"> 
+                                        Mon. - Fri. <span>8 - 12</span><br />
+                                        Sat. <span>8 - 12</span><br />
+                                        Sun. <span>8 - 12</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col1of2 last">
+                    <div class="ci">
+                        <h4>About {{ r.name }}</h4>
+                        <p class="skolar">{{ r.description }}</p>
+                        <a href="/roaster/{{ r.slug }}/" data-api="{{ r.resource_uri }}" class="btn">Find this Roast</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="message">
+            <h3>There are no Roasters yet.</h3>
+            <p>Perhaps you would like to <a href="#panel1" class="suggest">suggest one</a> to us.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div><!-- END: #roasters -->
 {% endblock %}

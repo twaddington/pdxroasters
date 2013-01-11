@@ -13,9 +13,12 @@ module.exports = function(grunt) {
     },
     lint: {
       files: [
-        'vendor/*',
-        'lib/*'
-    ]
+        'ender/ender.js',
+        'pdx.js',
+        'lib/*',
+        'controllers/*',
+        'app.js'
+      ]
     },
     qunit: {
       files: ['test/**/*.html']

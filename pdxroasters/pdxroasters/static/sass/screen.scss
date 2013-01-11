@@ -1,0 +1,801 @@
+/**
+ * PDX Roaster SASS
+ *
+ * @notes:
+ * Navigate to where you ran "compass init":
+ * $ cd pdxroasters/pdxroasters/static
+ *
+ * Tell compass to poll for changes:
+ * $ compass watch
+ *
+ */
+@import 'compass/css3';
+@import 'compass/utilities';
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - Reset - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+html, body, a, abbr, blockquote, button, div, em, fieldset, form, h1, h2, h3, h4, h5, h6, hr, iframe, img, label, legend, li, object, ol, p, pre, span, strong, table, td, th, tr, ul { background: no-repeat 0 0; border: 0; font-size: 100%; margin: 0; padding: 0; vertical-align: baseline; }
+ol, ul { list-style: none; }
+strong, th { font-weight: bold; }
+table {	border-spacing: 0; width: 100%; }
+input, textarea { padding: 0; }
+legend { white-space: normal; width: 100%; }
+textarea { overflow: auto; resize: vertical; }
+embed, iframe, img, input, object, select, textarea { margin: 0; max-width: 100%; vertical-align: top; }
+a:hover, a:active, embed, object { outline: 0; }
+a, button { cursor: pointer; }
+button { line-height: normal; }
+button[disabled] { cursor: default; }
+button::-moz-focus-inner { border: 0; padding: 0; }
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - Fonts - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+@import 'fonts';
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - Variables - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+$blue: #0099ff;
+$skolar: 'Skolar', Helvetica, Arial, Sans-serif;
+$din: 'DIN', Helvetica, Arial, Sans-serif;
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - Elements - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+body {
+    margin: 0;
+    min-height: 100%;
+    font-size: 16px;
+    font-family: $din;
+}
+a {
+    color: $blue;
+    text-decoration: none;
+    
+    @include transition(color 200ms linear);
+    
+    &:hover {
+        color: #111;
+    }
+}
+h1 {
+    color: #fff;
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+h2 {
+    font-size: 36px;
+    margin-bottom: .5em;
+    color: #323232;
+    letter-spacing: 1px;
+}
+h3 {
+    font-size: 26px;
+    margin-bottom: .5em;
+    color: #323232;
+    letter-spacing: 1px;
+}
+h4 {
+    font-size: 22px;
+    margin-bottom: .5em;
+    color: #323232;
+    letter-spacing: 1px;
+}
+h5 {
+    font-size: 22px;
+    margin-bottom: .5em;
+    color: #323232;
+    letter-spacing: 1px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+}
+p {
+    &.skolar {
+        font-family: $skolar;
+        margin-bottom: 1em;
+    }
+    
+    p a {
+        text-decoration: none;
+        border-bottom: 1px dotted #0099ff;
+    }
+    
+    &.caption {
+        color: #bebebe;
+        font-style: italic; 
+    }
+}
+strong {
+    font-weight: bold;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - Global Classes - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+.btn {
+    background: #dddbd4;
+    border: 1px solid #d2d0cb;
+    padding:.5em 2em;
+    cursor: pointer;
+    margin-right: 1em;
+    text-transform: none;
+    letter-spacing: 1px;
+    text-align: center;
+    text-indent: 0px;
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    
+    @include border-top-left-radius(8px);
+    @include border-bottom-right-radius(8px);
+    
+    &:hover {
+        border-color: #b6b4b0;
+        color: #555;
+    }
+}
+.hours {
+    span {
+        float: right;
+        display: inline;
+        text-align: right;
+    }
+}
+.plus-close {
+    background: url(../img/plusthin.png) no-repeat 0 0;
+    display: block;
+    height: 22px;
+    position: absolute;
+    right: 20px;
+    text-indent: -9999px;
+    top: 20px;
+    width: 22px;
+    
+    @include transform(rotate(-45deg));
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - Grid - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+.col {
+    display: block;
+    float: left;
+    position: relative;
+}
+.ci {
+    padding: 0 20px;
+}
+.last {
+    float: right;
+}
+.col1of1 { float: none; }
+.col1of2 { width: 50%; }
+.col1of3 { width: 33.33333%; }
+.col2of3 { width: 66.66666%; }
+.col1of4 { width: 25%; }
+.col3of4 { width: 75%; }
+.col1of5 { width: 20%; }
+.col2of5 { width: 40%; }
+.col3of5 { width: 60%; }
+.col4of5 { width: 80%; }
+.group:after {
+    clear: both;
+    content: '.';
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - Content - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+#page {
+    overflow: hidden;
+    position: relative;
+}
+
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - Header  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+#header {
+    background: rgba(0,0,0,.8);
+    left: 0;
+    padding: 10px 0 10px 40px;
+    position: fixed;
+    right: 0; 
+    top: 0; 
+    z-index: 10;
+    
+    @include box-shadow(0 1px 3px rgba(0,0,0,.8));
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - Footer  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+#footer {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 40px;
+    z-index: 10;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - Navigation  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+#nav {
+    position: absolute; 
+    top: 0; 
+    right: -338px;
+    
+    @include transition(all 200ms ease-in-out 200ms);
+    
+    &.active {
+        right: 40px;
+    }
+    
+    ul {
+        li {
+            display: inline-block;
+            margin-left: 40px;
+            padding: 15px 0;
+            vertical-align: middle;
+            
+            &:first-child {
+                margin-left: 0;
+            }
+            
+            a {
+                letter-spacing: 1px;
+                color: #fff;
+                text-transform: uppercase;
+                
+                &:hover,
+                &.on {
+                    color: #0099ff;
+                }
+            }
+        }
+    }
+    
+    .plus {
+        display: inline-block;
+        background: transparent url(../img/plus-nav.png) no-repeat 0 0;
+        width: 22px;
+        height: 22px;
+        vertical-align: middle;
+        
+        @include transition(all 400ms cubic-bezier(0.095, 0.910, 0.245, 1.000));
+        
+        &.active {
+            @include transform(rotate(-225deg));
+        }
+    }
+    
+    /*
+    .active_underline {
+        height: 2px;
+        border-bottom: 2px dashed #0099ff;
+        position: absolute;
+        top: 27px;
+        right: 0;
+        width: 0;
+        
+        &.nav1 { width: 115px; right: 207px; }
+        &.nav2 { width: 54px;  right: 116px; }
+        &.nav3 { width: 73px; right: 2px; }
+    }
+    */
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - InfoPanels  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+#info-panel {
+    background-color: #f0f0f0;
+    bottom: 0;
+    left: 100%;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 9;
+    
+    @include transition(left 300ms ease-in-out);
+    
+    &.active {
+        left: 0;
+    }
+    
+    .panels {
+        position: relative;
+        
+        @include transition(left 300ms ease-in-out);
+    }
+    
+    #panel1 {
+        background: red;
+    }
+    
+    #panel2 {
+        background: green;
+    }
+    
+    #panel3 {
+        background: blue;
+    }
+    
+    .panel {
+        float: left;
+        height: 100%;
+        position: relative;
+        width: 100%;
+        
+        .panel-inner {
+            //bottom: 0;
+            //left: 0;
+            padding: 100px;
+            //position: absolute;
+            //right: 0;
+            //top: 0;
+        }
+    }
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - Map & Modals - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+#map-wrap {  
+    position: relative;
+    height: 100%;
+    width: 100%;
+    z-index: 7;
+}
+#map-page {
+    background-color: #f0f0f0;
+    bottom: 0;
+    left: 100%;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 9;
+    
+    @include transition(left 300ms ease-in-out);
+    
+    &.active {
+        left: 0;
+    }
+    
+    .plus-close {
+        right: 40px;
+        top: 100px;
+    }
+    
+    .page-inner {
+        padding: 100px;
+    }
+}
+#map {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    
+    img {
+        max-width: none;
+    }
+    
+    .marker-custom {
+        z-index: 888;
+        
+        &.active {
+            z-index: 999;
+            
+            > .tooltip {
+                visibility: visible;
+                
+                @include opacity(1);
+            
+                &.loading {
+                    @include opacity(0);
+                }
+            }
+        }
+       
+        &.loaded {
+            //z-index: 999;
+        }
+       
+        > div {
+            cursor: pointer;
+            border: 1px solid #085080;
+            height: 20px;
+            position: relative;
+            width: 20px;
+            
+            @include box-shadow(0 0 2px rgba(0,0,0,.8));
+            @include border-radius(10px);
+            @include background-image(linear-gradient($blue,#085080));
+            
+            &:hover {
+                > div {
+                    background-color: #fff;
+                }
+            }
+            
+            > div {
+                background-color: #ebebeb;
+                height: 8px;
+                left: 50%;
+                margin: -4px 0 0 -4px;
+                position: absolute;
+                top: 50%;
+                width: 8px;
+                
+                @include box-shadow(0 0 2px rgba(0,0,0,.5) inset);
+                @include border-radius(4px);
+                @include transition(all 200ms linear);
+            }
+        }
+        
+        > span {
+            border: 1px solid #959595;
+            padding: 10px;
+            position: absolute;
+            text-align: center;
+            top: -50%;
+            visibility: hidden;
+            white-space: nowrap;
+            z-index: -1;
+            
+            @include opacity(0);
+            @include box-shadow(0 0 2px rgba(0,0,0,.5));
+            @include border-radius(5px);
+            @include background-image(linear-gradient(#fff,#ebebeb));
+            @include transition(all 100ms linear);
+        }
+        
+        > .infowindow {
+            padding: 20px;
+            text-align: left;
+            white-space: normal;
+            visibility: visible;
+            width: 320px;
+            
+            @include opacity(1);
+            
+            &.inactive {
+                visibility: hidden;
+                
+                @include opacity(0);
+            }
+            
+            p {
+                margin: 0;
+            }
+            
+            .btn {
+                margin: 0;
+                padding: 5px 10px;
+            }
+            
+            .btns {
+                margin-top: 20px;
+            }
+            
+            .col {
+                font-size: 14px;
+            }
+            
+            .ci {
+                padding-right: 0;
+            }
+            
+            .col:first-child .ci {
+                padding-right: 20px;
+                padding-left: 0;
+            }
+        }
+        
+        > .plus-spinner {
+             &.active {
+                 visibility: visible;
+                 
+                 @include opacity(1);
+             }
+             
+             > div {
+                background: url(../img/plusthin.png) no-repeat 0 0;
+                height: 22px;
+                width: 22px;
+                
+                @include transition(all 300ms ease-in-out);
+                
+                &.loading {
+                    @include transform(rotate(360deg));
+                }
+            }
+        }
+    }
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - Roasters  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+#roasters {
+    position: relative;
+    z-index: 9;
+    
+    @include box-shadow(0 -1px 3px rgba(0,0,0,.5));
+    
+    h3 {
+        margin-bottom: 0;
+    }
+    
+    h4 {
+        margin: 0 0 1em 0;
+    }
+    
+    .figcaption {
+        font-family: $skolar;
+    }
+    
+    .meta {
+        margin-top: 20px;
+    }
+    
+    .roasters {
+        background-color: #fff;
+        padding: 20px 0;
+        position: relative;
+        z-index: 8;
+        
+        .message {
+            padding: 0 40px 40px;
+        }
+    }
+    
+    .roasters-toggle {
+        background: #fff;
+        display: block;
+        height: 22px;
+        left: 50%;
+        margin-left: -25px;
+        position: absolute;
+        text-align: center;
+        top: -20px;
+        width: 50px;
+        z-index: 7;
+        
+        @include transition(top 200ms linear);
+        @include box-shadow(0 0 3px rgba(0,0,0,.8));
+        @include border-top-left-radius(5px);
+        @include border-top-right-radius(5px);
+        
+        &:hover {
+            top: -22px;
+        }
+        
+        .line {
+            background: #959595;
+            display: block;
+            height: 2px;
+            margin: 0 20% 1px;
+            width: 60%;
+            
+            @include box-shadow(0 0 1px rgba(0,0,0,.8) inset);
+            @include border-radius(1px);
+            
+            &:first-child {
+                margin-top: 7px;
+            }
+        }
+    }
+    
+    .roaster {
+        &.active {
+            background-color: rgba(0,0,0,.02);
+            border-bottom: 1px solid #ebebeb;
+            border-top: 1px solid #ebebeb;
+            
+            @include box-shadow(0 0 30px rgba(0,0,0,.1) inset);
+            
+            .content {
+                height: 555px;
+            }
+            
+            .handle span {
+                color: $blue;
+            }
+        }
+        
+        .handle {
+            cursor: pointer;
+            padding: 10px 40px;
+            position: relative;
+            
+            @include transition(all 200ms linear);
+            
+            span {
+                @include text-shadow(0 1px #fff);
+                @include transition(all 200ms linear);
+            }
+            
+            &:hover {
+                background-color: rgba(0,0,0,.02);
+                
+                span {
+                    color: $blue;
+                }
+            }
+        }
+        
+        .btn {
+            display: inline-block;
+        }
+        
+        .toggle {
+            background: transparent url(../img/plusthin.png) no-repeat 0 0;
+            display: block;
+            height: 22px;
+            margin-top: -11px;
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            width: 22px;
+            
+            
+            @include transition(all 400ms cubic-bezier(0.095, 0.910, 0.245, 1.000));
+            
+            &.active {
+                @include transform(rotate(-225deg));
+            }
+        }
+        
+        .content {
+            height: 0;
+            overflow: hidden;
+            padding: 0 20px;
+            
+            @include transition(height 300ms linear 200ms);
+        }
+        
+        .figure {
+            display: inline-block;
+            position: relative;
+            
+            &:after {
+                bottom: 0;
+                content: '';
+                left: 0;
+                position: absolute;
+                right: 0;
+                top: 0;
+                @include box-shadow(0 0 70px #000 inset);
+            }
+        }
+    }
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - Responsive Styles - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+
+/* - - - - - - - - - - Small - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+/*Portrait*/
+
+@media only screen and (min-width: 300px) {
+
+}
+/* Landscape */
+
+@media only screen and (min-width: 480px) {
+  
+}
+
+/* - - - - - - - - - - Medium  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+/* iPad Portrait (Or android tablets, I don't judge.) */
+
+@media only screen and (min-width: 768px) {
+
+}
+
+/* iPad Landscape & Laptops */
+
+@media only screen and (min-width: 1024px) {
+  
+
+}
+
+/* - - - - - - - - - - Large  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+/* Moving on up to desktops */
+
+@media only screen and (min-width: 1280px) {
+  
+
+}
+
+/* Now we're talkin. */
+
+@media only screen and (min-width: 1440px) {
+  
+
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - Form Styles - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+input[type='text'],
+input[type='email'],
+textarea {
+    width: 100%;
+    height: 3em;
+    padding-left: 32px;
+    line-height: 1em;
+    font-family: $din;
+    font-size: 1em;
+    border: 1px solid #e5e5e5;
+    background-color: #fbfbfb;
+    margin: 8px 0px;
+    
+    @include box-sizing(border-box);
+    @include transition(all 200ms ease-in-out);
+    
+    &:focus {
+        border-color: #0099ff;
+        background-color: #fff; 
+    }
+}
+textarea {
+    min-height: 150px;
+    resize: none;
+    padding: 20px 35px 0;
+}
+button[type='submit'] {
+    background-color: #0099ff;
+    color: #fff;
+    cursor: pointer;
+    font-family: $din;
+    letter-spacing: 1px;
+    margin: 8px 0px;
+    padding: 12px 40px;
+    text-transform: none;
+    text-align: left;
+    text-indent: 0px;
+    
+    @include border-top-left-radius(8px);
+    @include border-bottom-right-radius(8px);
+    @include transition(background-color 200ms linear);
+    
+    &:hover {
+        background-color: #000;
+    }
+}

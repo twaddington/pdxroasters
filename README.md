@@ -80,3 +80,42 @@ You should now be able to access the site in your browser by visiting
 - Phone
 - URL
 - Roasters
+
+## UI
+
+...
+
+### Compass
+
+Reference: `http://compass-style.org/install`
+
+    # Navigate to static directory from src
+    $ cd pdxroasters/pdxroasters/static
+    
+    # Tell Compass to poll for changes
+    $ compass watch
+    
+### Ender
+
+Reference: `http://ender.jit.su`
+All Ender files will be ignored by git other than custom packages
+
+    # Navigate to ender directory from src
+    $ cd pdxroasters/pdxroasters/static/js/ender
+    
+    # View Ender status
+    $ ender info
+    
+    # This projects current Ender Build
+    $ ender build reqwest ender-tween bean domready qwery bonzo ./jqwendery/
+    
+### Grunt
+
+Reference: `http://gruntjs.com`
+Grunt's dist files will be ingored by git
+    
+    # Navigate to js directory
+    $ cd pdxroasters/pdxroasters/static/js
+    
+    # Tell Grunt to poll for changes
+    $ grunt watch
