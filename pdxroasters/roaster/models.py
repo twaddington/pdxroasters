@@ -19,6 +19,7 @@ class Cafe(models.Model):
     url = models.URLField(max_length=200, verbose_name='URL', blank=True,)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
     modified_at = models.DateTimeField(auto_now=True, db_index=True)
+    active = models.BooleanField()
  
     def __unicode__(self):
         return self.name
@@ -73,6 +74,7 @@ class Roast(models.Model):
     roaster = models.ForeignKey('Roaster', related_name='roasts',)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True,)
     modified_at = models.DateTimeField(auto_now=True, db_index=True,)
+    active = models.BooleanField()
 
     def __unicode__(self):
         return self.name
