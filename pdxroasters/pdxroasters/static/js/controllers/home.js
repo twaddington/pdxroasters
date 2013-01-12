@@ -26,11 +26,6 @@ window.pdx.app.home = {
         this._info();
         this._resize();
         this._pushes();
-        
-        // Listen for maps to be loaded and ready
-        window.pdx.maps.onmapsready(function () {
-            self._map();
-        });
     },
     
     _nav: function () {
@@ -89,6 +84,11 @@ window.pdx.app.home = {
             e.preventDefault();
             
             self.$mapPage.removeClass( "active" );
+        });
+        
+        // Listen for maps to be loaded and ready
+        window.pdx.maps.onmapsready(function () {
+            self._map();
         });
     },
     
@@ -456,30 +456,5 @@ window.pdx.app.home = {
         };
     }
 };
-
-// Page basic tasks
-$( ".scroll-to" ).on( "click", function ( e ) {
-    e.preventDefault();
-    
-    var $elem = $( this.hash );
-    
-    $.scrollTo( $elem.offset().top-$header.height() );
-});
-
-$( ".ajax-form" ).on( "submit", function ( e ) {
-    e.preventDefault();
-    
-    $.ajax({
-        url: this.action,
-        type: "json",
-        data: $( this ).serialize(),
-        error: function () {
-            console.log( "Ajax form error" );
-        },
-        success: function () {
-            console.log( "Ajax form success" );
-        }
-    });
-});
 
 })( window );

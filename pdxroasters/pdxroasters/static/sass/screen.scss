@@ -1,5 +1,5 @@
 /**
- * PDX Roaster SASS
+ * PDX Roaster Stylesheet
  *
  * @notes:
  * Navigate to where you ran "compass init":
@@ -12,10 +12,10 @@
 @import 'compass/css3';
 @import 'compass/utilities';
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - Reset - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* -- reset -- */
 html, body, a, abbr, blockquote, button, div, em, fieldset, form, h1, h2, h3, h4, h5, h6, hr, iframe, img, label, legend, li, object, ol, p, pre, span, strong, table, td, th, tr, ul { background: no-repeat 0 0; border: 0; font-size: 100%; margin: 0; padding: 0; vertical-align: baseline; }
+section, header, nav, footer { display: block; }
 ol, ul { list-style: none; }
 strong, th { font-weight: bold; }
 table {	border-spacing: 0; width: 100%; }
@@ -30,23 +30,17 @@ button[disabled] { cursor: default; }
 button::-moz-focus-inner { border: 0; padding: 0; }
 
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - Fonts - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* -- fonts -- */
 @import 'fonts';
 
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - Variables - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* -- variables -- */
 $blue: #0099ff;
 $skolar: 'Skolar', Helvetica, Arial, Sans-serif;
 $din: 'DIN', Helvetica, Arial, Sans-serif;
 
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - Elements - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* -- elements -- */
 body {
     margin: 0;
     min-height: 100%;
@@ -121,9 +115,7 @@ strong {
 }
 
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - Global Classes - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* -- classes -- */
 .btn {
     background: #dddbd4;
     border: 1px solid #d2d0cb;
@@ -167,9 +159,7 @@ strong {
 }
 
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - Grid - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* -- grid -- */
 .col {
     display: block;
     float: left;
@@ -200,19 +190,11 @@ strong {
 }
 
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - Content - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* -- structure -- */
 #page {
     overflow: hidden;
     position: relative;
 }
-
-
-
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - Header  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 #header {
     background: rgba(0,0,0,.8);
     left: 0;
@@ -224,11 +206,6 @@ strong {
     
     @include box-shadow(0 1px 3px rgba(0,0,0,.8));
 }
-
-
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - Footer  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 #footer {
     background-color: #000;
     color: #fff;
@@ -237,9 +214,7 @@ strong {
 }
 
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - Navigation  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* -- nav -- */
 #nav {
     position: absolute; 
     top: 0; 
@@ -288,27 +263,10 @@ strong {
             @include transform(rotate(-225deg));
         }
     }
-    
-    /*
-    .active_underline {
-        height: 2px;
-        border-bottom: 2px dashed #0099ff;
-        position: absolute;
-        top: 27px;
-        right: 0;
-        width: 0;
-        
-        &.nav1 { width: 115px; right: 207px; }
-        &.nav2 { width: 54px;  right: 116px; }
-        &.nav3 { width: 73px; right: 2px; }
-    }
-    */
 }
 
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - InfoPanels  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* -- info panels -- */
 #info-panel {
     background-color: #f0f0f0;
     bottom: 0;
@@ -351,20 +309,13 @@ strong {
         width: 100%;
         
         .panel-inner {
-            //bottom: 0;
-            //left: 0;
             padding: 100px;
-            //position: absolute;
-            //right: 0;
-            //top: 0;
         }
     }
 }
 
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - Map & Modals - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* -- maps -- */
 #map-wrap {  
     position: relative;
     height: 100%;
@@ -541,9 +492,7 @@ strong {
 }
 
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - Roasters  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* -- listings -- */
 #roasters {
     position: relative;
     z-index: 9;
@@ -700,61 +649,9 @@ strong {
 }
 
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - Responsive Styles - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
-
-/* - - - - - - - - - - Small - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
-
-/*Portrait*/
-
-@media only screen and (min-width: 300px) {
-
-}
-/* Landscape */
-
-@media only screen and (min-width: 480px) {
-  
-}
-
-/* - - - - - - - - - - Medium  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
-
-/* iPad Portrait (Or android tablets, I don't judge.) */
-
-@media only screen and (min-width: 768px) {
-
-}
-
-/* iPad Landscape & Laptops */
-
-@media only screen and (min-width: 1024px) {
-  
-
-}
-
-/* - - - - - - - - - - Large  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
-
-/* Moving on up to desktops */
-
-@media only screen and (min-width: 1280px) {
-  
-
-}
-
-/* Now we're talkin. */
-
-@media only screen and (min-width: 1440px) {
-  
-
-}
-
-
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - Form Styles - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-input[type='text'],
-input[type='email'],
+/* -- forms -- */
+input[type="text"],
+input[type="email"],
 textarea {
     width: 100%;
     height: 3em;
@@ -779,7 +676,7 @@ textarea {
     resize: none;
     padding: 20px 35px 0;
 }
-button[type='submit'] {
+button[type="submit"] {
     background-color: #0099ff;
     color: #fff;
     cursor: pointer;
@@ -798,4 +695,46 @@ button[type='submit'] {
     &:hover {
         background-color: #000;
     }
+}
+
+
+/* -- @media -- */
+
+/* - - - - - - - - - - Small - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+/*Portrait*/
+@media only screen and (min-width: 300px) {
+
+}
+
+/* Landscape */
+@media only screen and (min-width: 480px) {
+  
+}
+
+/* - - - - - - - - - - Medium  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+/* iPad Portrait (Or android tablets, I don't judge.) */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* iPad Landscape & Laptops */
+@media only screen and (min-width: 1024px) {
+  
+
+}
+
+/* - - - - - - - - - - Large  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+/* Moving on up to desktops */
+@media only screen and (min-width: 1280px) {
+  
+
+}
+
+/* Now we're talkin. */
+@media only screen and (min-width: 1440px) {
+  
+
 }
