@@ -290,18 +290,6 @@ strong {
         @include transition(left 300ms ease-in-out);
     }
     
-    #panel1 {
-        background: red;
-    }
-    
-    #panel2 {
-        background: green;
-    }
-    
-    #panel3 {
-        background: blue;
-    }
-    
     .panel {
         float: left;
         height: 100%;
