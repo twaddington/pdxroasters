@@ -3,7 +3,8 @@ from roaster.models import Cafe, Roaster, Roast
 
 class CafeAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
-    list_display = ('name', 'address', 'phone', 'show_url', 'created_at', 'modified_at',)
+    list_display = ('name', 'address', 'phone', 'show_url', 'created_at',
+            'modified_at', 'active',)
     search_fields = ('name',)
 
     def show_url(self, obj):
@@ -14,7 +15,8 @@ class CafeAdmin(admin.ModelAdmin):
 
 class RoasterAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
-    list_display = ('name', 'address', 'phone', 'show_url', 'created_at', 'modified_at',)
+    list_display = ('name', 'address', 'phone', 'show_url', 'created_at',
+            'modified_at', 'active',)
     search_fields = ('name',)
 
     def show_url(self, obj):
@@ -24,7 +26,7 @@ class RoasterAdmin(admin.ModelAdmin):
     show_url.short_description = 'URL'
 
 class RoastAdmin(admin.ModelAdmin):
-    list_display = ('name', 'created_at', 'modified_at',)
+    list_display = ('name', 'created_at', 'modified_at', 'active',)
     search_fields = ('name',)
 
 admin.site.register(Cafe, CafeAdmin)
