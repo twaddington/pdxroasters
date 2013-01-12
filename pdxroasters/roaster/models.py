@@ -13,13 +13,13 @@ def format_phone_number(phone):
 class Cafe(models.Model):
     name = models.CharField(max_length=200, unique=True, db_index=True,)
     slug = models.SlugField()
+    active = models.BooleanField()
     address = models.CharField(max_length=200, blank=True,)
     # TODO: Hours
     phone = models.CharField(max_length=10, blank=True,)
     url = models.URLField(max_length=200, verbose_name='URL', blank=True,)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
     modified_at = models.DateTimeField(auto_now=True, db_index=True)
-    active = models.BooleanField()
  
     def __unicode__(self):
         return self.name
@@ -39,6 +39,7 @@ class Cafe(models.Model):
 class Roaster(models.Model):
     name = models.CharField(max_length=200, unique=True, db_index=True,)
     slug = models.SlugField()
+    active = models.BooleanField()
     address = models.TextField(blank=True,)
     # TODO: Hours
     phone = models.CharField(max_length=10, blank=True,)
@@ -51,7 +52,6 @@ class Roaster(models.Model):
     cafes = models.ManyToManyField('Cafe', blank=True,)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
     modified_at = models.DateTimeField(auto_now=True, db_index=True)
-    active = models.BooleanField()
 
     def __unicode__(self):
         return self.name
@@ -72,9 +72,9 @@ class Roaster(models.Model):
 class Roast(models.Model):
     name = models.CharField(max_length=200, unique=True, db_index=True,)
     roaster = models.ForeignKey('Roaster', related_name='roasts',)
+    active = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True, db_index=True,)
     modified_at = models.DateTimeField(auto_now=True, db_index=True,)
-    active = models.BooleanField()
 
     def __unicode__(self):
         return self.name
