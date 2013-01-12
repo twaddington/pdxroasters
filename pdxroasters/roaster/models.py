@@ -11,13 +11,12 @@ def format_phone_number(phone):
         return ''
 
 class Cafe(models.Model):
-    name = models.CharField(max_length=200, unique=True, db_index=True,
-            blank=False)
+    name = models.CharField(max_length=200, unique=True, db_index=True,)
     slug = models.SlugField()
-    address = models.CharField(max_length=200)
+    address = models.CharField(max_length=200, blank=True,)
     # TODO: Hours
-    phone = models.CharField(max_length=10)
-    url = models.URLField(max_length=200, verbose_name='URL',)
+    phone = models.CharField(max_length=10, blank=True,)
+    url = models.URLField(max_length=200, verbose_name='URL', blank=True,)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
     modified_at = models.DateTimeField(auto_now=True, db_index=True)
  
@@ -37,19 +36,21 @@ class Cafe(models.Model):
         ordering = ['name',]
 
 class Roaster(models.Model):
-    name = models.CharField(max_length=200, unique=True, db_index=True,
-            blank=False)
+    name = models.CharField(max_length=200, unique=True, db_index=True,)
     slug = models.SlugField()
-    address = models.TextField()
+    address = models.TextField(blank=True,)
     # TODO: Hours
-    phone = models.CharField(max_length=10)
-    url = models.URLField(max_length=200, verbose_name='URL')
-    description = models.TextField()
-    photo_url = models.URLField(max_length=200, verbose_name='Photo URL')
-    video_url = models.URLField(max_length=200, verbose_name='Video URL')
-    cafes = models.ManyToManyField('Cafe')
+    phone = models.CharField(max_length=10, blank=True,)
+    url = models.URLField(max_length=200, verbose_name='URL', blank=True,)
+    description = models.TextField(blank=True,)
+    photo_url = models.URLField(max_length=200, verbose_name='Photo URL',
+            blank=True,)
+    video_url = models.URLField(max_length=200, verbose_name='Video URL',
+            blank=True,)
+    cafes = models.ManyToManyField('Cafe', blank=True,)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
     modified_at = models.DateTimeField(auto_now=True, db_index=True)
+    active = models.BooleanField()
 
     def __unicode__(self):
         return self.name
@@ -68,11 +69,10 @@ class Roaster(models.Model):
         get_latest_by = 'created_at'
 
 class Roast(models.Model):
-    name = models.CharField(max_length=200, unique=True, db_index=True,
-            blank=False)
-    roaster = models.ForeignKey('Roaster', related_name='roasts')
-    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
-    modified_at = models.DateTimeField(auto_now=True, db_index=True)
+    name = models.CharField(max_length=200, unique=True, db_index=True,)
+    roaster = models.ForeignKey('Roaster', related_name='roasts',)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True,)
+    modified_at = models.DateTimeField(auto_now=True, db_index=True,)
 
     def __unicode__(self):
         return self.name
