@@ -88,6 +88,7 @@ You should now be able to access the site in your browser by visiting
 ### Compass
 
 Reference: `http://compass-style.org/install`
+CSS files compiled by Compass will be ignored by git
 
     # Navigate to static directory from src
     $ cd pdxroasters/pdxroasters/static
@@ -119,3 +120,9 @@ Grunt's dist files will be ingored by git
     
     # Tell Grunt to poll for changes
     $ grunt watch
+
+### Pushing UI Files
+
+When pushing to the dev site and ultimately to prod we'll need to manually push files compiled by grunt and compass:
+`/static/css/*`
+`/static/js/dist/*`
