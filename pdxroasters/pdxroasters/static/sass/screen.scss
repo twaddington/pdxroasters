@@ -9,36 +9,21 @@
  * $ compass watch
  *
  */
+
 @import 'compass/css3';
 @import 'compass/utilities';
-
-
-/* -- reset -- */
-html, body, a, abbr, blockquote, button, div, em, fieldset, form, h1, h2, h3, h4, h5, h6, hr, iframe, img, label, legend, li, object, ol, p, pre, span, strong, table, td, th, tr, ul { background: no-repeat 0 0; border: 0; font-size: 100%; margin: 0; padding: 0; vertical-align: baseline; }
-section, header, nav, footer { display: block; }
-ol, ul { list-style: none; }
-strong, th { font-weight: bold; }
-table {	border-spacing: 0; width: 100%; }
-input, textarea { padding: 0; }
-legend { white-space: normal; width: 100%; }
-textarea { overflow: auto; resize: vertical; }
-embed, iframe, img, input, object, select, textarea { margin: 0; max-width: 100%; vertical-align: top; }
-a:hover, a:active, embed, object { outline: 0; }
-a, button { cursor: pointer; }
-button { line-height: normal; }
-button[disabled] { cursor: default; }
-button::-moz-focus-inner { border: 0; padding: 0; }
-
-
-/* -- fonts -- */
-@import 'fonts';
-
 
 /* -- variables -- */
 $blue: #0099ff;
 $skolar: 'Skolar', Helvetica, Arial, Sans-serif;
 $din: 'DIN', Helvetica, Arial, Sans-serif;
 
+/* - - - Import Assets - - - */
+@import 'reset';
+@import 'fonts';
+@import 'typography';
+@import 'grid';
+@import 'forms';
 
 /* -- elements -- */
 body {
@@ -47,73 +32,6 @@ body {
     font-size: 16px;
     font-family: $din;
 }
-a {
-    color: $blue;
-    text-decoration: none;
-    
-    @include transition(color 200ms linear);
-    
-    &:hover {
-        color: #111;
-    }
-}
-h1 {
-    color: #fff;
-    font-size: 28px;
-    letter-spacing: 2px;
-}
-h2 {
-    font-size: 36px;
-    margin-bottom: .5em;
-    color: #323232;
-    letter-spacing: 1px;
-}
-h3 {
-    font-size: 26px;
-    margin-bottom: .5em;
-    color: #323232;
-    letter-spacing: 1px;
-}
-h4 {
-    font-size: 22px;
-    margin-bottom: .5em;
-    color: #323232;
-    letter-spacing: 1px;
-}
-h5 {
-    font-size: 22px;
-    margin-bottom: .5em;
-    color: #323232;
-    letter-spacing: 1px;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: normal;
-}
-p {
-    &.skolar {
-        font-family: $skolar;
-        margin-bottom: 1em;
-    }
-    
-    p a {
-        text-decoration: none;
-        border-bottom: 1px dotted #0099ff;
-    }
-    
-    &.caption {
-        color: #bebebe;
-        font-style: italic; 
-    }
-}
-strong {
-    font-weight: bold;
-}
-
 
 /* -- classes -- */
 .btn {
@@ -157,38 +75,6 @@ strong {
     
     @include transform(rotate(-45deg));
 }
-
-
-/* -- grid -- */
-.col {
-    display: block;
-    float: left;
-    position: relative;
-}
-.ci {
-    padding: 0 20px;
-}
-.last {
-    float: right;
-}
-.col1of1 { float: none; }
-.col1of2 { width: 50%; }
-.col1of3 { width: 33.33333%; }
-.col2of3 { width: 66.66666%; }
-.col1of4 { width: 25%; }
-.col3of4 { width: 75%; }
-.col1of5 { width: 20%; }
-.col2of5 { width: 40%; }
-.col3of5 { width: 60%; }
-.col4of5 { width: 80%; }
-.group:after {
-    clear: both;
-    content: '.';
-    display: block;
-    height: 0;
-    visibility: hidden;
-}
-
 
 /* -- structure -- */
 #page {
@@ -291,15 +177,15 @@ strong {
     }
     
     #panel1 {
-        background: red;
+        background: #f0f0f0;
     }
     
     #panel2 {
-        background: green;
+        background: #f0f0f0;
     }
     
     #panel3 {
-        background: blue;
+        background: #f0f0f0;
     }
     
     .panel {
@@ -648,54 +534,6 @@ strong {
     }
 }
 
-
-/* -- forms -- */
-input[type="text"],
-input[type="email"],
-textarea {
-    width: 100%;
-    height: 3em;
-    padding-left: 32px;
-    line-height: 1em;
-    font-family: $din;
-    font-size: 1em;
-    border: 1px solid #e5e5e5;
-    background-color: #fbfbfb;
-    margin: 8px 0px;
-    
-    @include box-sizing(border-box);
-    @include transition(all 200ms ease-in-out);
-    
-    &:focus {
-        border-color: #0099ff;
-        background-color: #fff; 
-    }
-}
-textarea {
-    min-height: 150px;
-    resize: none;
-    padding: 20px 35px 0;
-}
-button[type="submit"] {
-    background-color: #0099ff;
-    color: #fff;
-    cursor: pointer;
-    font-family: $din;
-    letter-spacing: 1px;
-    margin: 8px 0px;
-    padding: 12px 40px;
-    text-transform: none;
-    text-align: left;
-    text-indent: 0px;
-    
-    @include border-top-left-radius(8px);
-    @include border-bottom-right-radius(8px);
-    @include transition(background-color 200ms linear);
-    
-    &:hover {
-        background-color: #000;
-    }
-}
 
 
 /* -- @media -- */

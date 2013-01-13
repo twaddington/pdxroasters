@@ -1,0 +1,66 @@
+a {
+    color: $blue;
+    text-decoration: none;
+    
+    @include transition(color 200ms linear);
+    
+    &:hover {
+        color: #111;
+    }
+}
+h1 {
+    color: #fff;
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+h2 {
+    font-size: 36px;
+    margin-bottom: .5em;
+    color: #323232;
+    letter-spacing: 1px;
+}
+h3 {
+    font-size: 26px;
+    margin-bottom: .5em;
+    color: #323232;
+    letter-spacing: 1px;
+}
+h4 {
+    font-size: 22px;
+    margin-bottom: .5em;
+    color: #323232;
+    letter-spacing: 1px;
+}
+h5 {
+    font-size: 22px;
+    margin-bottom: .5em;
+    color: #323232;
+    letter-spacing: 1px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+}
+p {
+    &.skolar {
+        font-family: $skolar;
+        margin-bottom: 1em;
+    }
+    
+    p a {
+        text-decoration: none;
+        border-bottom: 1px dotted #0099ff;
+    }
+    
+    &.caption {
+        color: #bebebe;
+        font-style: italic; 
+    }
+}
+strong {
+    font-weight: bold;
+}

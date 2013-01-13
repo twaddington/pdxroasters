@@ -1,0 +1,15 @@
+/* -- reset -- */
+html, body, a, abbr, blockquote, button, div, em, fieldset, form, h1, h2, h3, h4, h5, h6, hr, iframe, img, label, legend, li, object, ol, p, pre, span, strong, table, td, th, tr, ul { background: no-repeat 0 0; border: 0; font-size: 100%; margin: 0; padding: 0; vertical-align: baseline; }
+section, header, nav, footer { display: block; }
+ol, ul { list-style: none; }
+strong, th { font-weight: bold; }
+table { border-spacing: 0; width: 100%; }
+input, textarea { padding: 0; }
+legend { white-space: normal; width: 100%; }
+textarea { overflow: auto; resize: vertical; }
+embed, iframe, img, input, object, select, textarea { margin: 0; max-width: 100%; vertical-align: top; }
+a:hover, a:active, embed, object { outline: 0; }
+a, button { cursor: pointer; }
+button { line-height: normal; }
+button[disabled] { cursor: default; }
+button::-moz-focus-inner { border: 0; padding: 0; }
