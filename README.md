@@ -125,5 +125,5 @@ Grunt's dist files will be ingored by git
 
 When pushing to the dev site and ultimately to prod we'll need to manually push files compiled by grunt and compass:
 
-    `/static/css/*`
-    `/static/js/dist/*`
+    /static/css/*
+    /static/js/dist/*
