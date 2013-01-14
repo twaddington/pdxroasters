@@ -16,9 +16,11 @@ settings_local.py
 # Ignore generated staticfiles
 staticfiles
 
-# Ignore Compass Cache
+# Ignore Compass files
 pdxroasters/pdxroasters/static/.sass-cache
 pdxroasters/pdxroasters/static/.sass-cache/*
+pdxroasters/pdxroasters/static/css
+pdxroasters/pdxroasters/static/css/*
 
 # Ignore Grunt files
 pdxroasters/pdxroasters/static/js/dist/*

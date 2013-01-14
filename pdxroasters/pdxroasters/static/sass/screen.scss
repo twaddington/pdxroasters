@@ -176,18 +176,6 @@ body {
         @include transition(left 300ms ease-in-out);
     }
     
-    #panel1 {
-        background: #f0f0f0;
-    }
-    
-    #panel2 {
-        background: #f0f0f0;
-    }
-    
-    #panel3 {
-        background: #f0f0f0;
-    }
-    
     .panel {
         float: left;
         height: 100%;
