@@ -43,6 +43,15 @@ serve you well:
 You should now be able to access the site in your browser by visiting
 `http://localhost:8000/` and the admin page by visiting `http://localhost:8000/admin/`.
 
+## TODO
+
+- Base model (location/store)?
+- Geocode lat/lng on roaster import.
+- Hours model.
+- Roaster detail page with stub template.
+- Submit a roaster form.
+- Contact form.
+
 ## Features
 
 ...
