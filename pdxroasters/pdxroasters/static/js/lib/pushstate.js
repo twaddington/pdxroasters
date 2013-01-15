@@ -6,28 +6,27 @@
  * /static/js/pdx.js
  *
  */
-(function ( window, undefined ) {
+(function ( $, window, undefined ) {
 
 "use strict";
 
-// Pushstate namespace
-window.pdx.pushstate = function () {
-    if ( !(this instanceof window.pdx.pushstate) ) {
-    	return new window.pdx.pushstate();
-    }
-    
-    this.state;
-    this.from;
-    this.on;
-    this.cache = {};
-    this.poppable = false;
-    this.pushable = ("history" in window && "pushState" in window.history);
-    
-    // Enable the popstate event
-    this._popEnable();
-};
+// Closure globals
+var Class = require( "Class" );
 
-window.pdx.pushstate.prototype = {
+// PushState Class
+window.pdx.PushState = Class.extend({
+    init: function () {
+        this.state;
+        this.from;
+        this.on;
+        this.cache = {};
+        this.poppable = false;
+        this.pushable = ("history" in window && "pushState" in window.history);
+        
+        // Enable the popstate event
+        this._popEnable();
+    },
+    
     push: function ( url, callback ) {
         var self = this;
         
@@ -106,6 +105,6 @@ window.pdx.pushstate.prototype = {
             self.state = e.state;
         };
     }
-}
+});
 
-})( window );
+})( ender, window );

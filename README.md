@@ -117,7 +117,7 @@ All Ender files will be ignored by git other than custom packages
     $ ender info
     
     # This projects current Ender Build
-    $ ender build reqwest ender-tween bean domready qwery bonzo ./jqwendery/
+    $ ender build bean qwery clah jqwendery bonzo reqwest ender-tween domready mustache
     
 ### Grunt
 
