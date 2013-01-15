@@ -37,12 +37,18 @@ window.pdx.maps = {
     },
     
     onmapsready: function ( fn ) {
+        if ( this.mapsloaded ) {
+        	console.log( "[window.pdx.maps]: mapsloaded, can't push callbacks" );
+        	
+        	return false;
+        }
+        
         this.callbacks.push( fn );
     },
     
     firemapsready: function () {
         if ( this.mapsloaded ) {
-        	console.log( "already fired mapsloaded callbacks" );
+        	console.log( "[window.pdx.maps]: mapsloaded, can't fire callbacks" );
         	
         	return false;
         }
@@ -73,7 +79,7 @@ window.pdx.maps.lazyload();
 window.pdx.maps.init = function () {
 
 if ( window.pdx.maps.mapsloaded ) {
-    console.log( "window.pdx.maps already fired" );
+    console.log( "[window.pdx.maps]: init method already fired" );
     
 	return false;
 }

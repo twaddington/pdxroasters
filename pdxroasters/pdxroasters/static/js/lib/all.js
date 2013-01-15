@@ -6,7 +6,7 @@
  * /static/js/pdx.js
  *
  */
-(function ( window, undefined ) {
+(function ( $, window, undefined ) {
 
 "use strict";
 
@@ -40,4 +40,4 @@ $( ".ajax-form" ).on( "submit", function ( e ) {
     });
 });
 
-})( window );
+})( ender, window );

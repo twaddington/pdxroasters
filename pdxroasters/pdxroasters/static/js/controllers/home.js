@@ -7,7 +7,7 @@
  * /static/js/lib/*
  *
  */
-(function ( window, undefined ) {
+(function ( $, window, undefined ) {
 
 "use strict";
 
@@ -271,7 +271,7 @@ window.pdx.app.home = {
                     console.log( "Infowindow load error" );
                 },
                 success: function ( response ) {
-                    var html = "";
+                    var html = window.pdx.templates.infowindow( response );
                     
                     clearTimeout( timeout );
                     
@@ -280,29 +280,6 @@ window.pdx.app.home = {
                     $infowindow = $( "<span>" ).addClass( "infowindow" ).hide();
                     
                     instance.infowindow = $infowindow[ 0 ];
-                    
-                    html = '<h3>'+response.name+'</h3>';
-                    html += '<div class="group">';
-                        html += '<div class="col col1of2">';
-                            html += '<div class="ci">'+response.address+'</div>';
-                        html += '</div>';
-                        html += '<div class="col col1of2">';
-                            html += '<p class="hours ci">';
-                                html += 'Mon. - Fri. <span>8 - 12</span><br />';
-                                html += 'Sat. <span>8 - 12</span><br />';
-                                html += 'Sun. <span>8 - 12</span>';
-                            html += '</p>';
-                        html += '</div>';
-                    html += '</div>';
-                    html += '<div class="btns group">';
-                        html += '<div class="col col1of2">';
-                            html += '<div class="ci"><a href="#'+response.id+'" class="btn find">Find this Roast</a></div>';
-                        html += '</div>';
-                        html += '<div class="col col1of2">';
-                            html += '<div class="ci"><a href="/roaster/'+response.slug+'/" class="btn more">Learn More</a></div>';
-                        html += '</div>';
-                    html += '</div>';
-                    html += '<a href="#close" class="plus-close">Close</div>';
                     
                     $infowindow.html( html )
                         .insertAfter( $tip )
@@ -444,7 +421,7 @@ window.pdx.app.home = {
     _pushes: function () {
         var self = this;
         
-        this.pushState = window.pdx.pushstate();
+        this.pushState = new window.pdx.PushState();
         
         // Global before/after pushstate handlers
         this.pushState.before = function () {
@@ -457,4 +434,4 @@ window.pdx.app.home = {
     }
 };
 
-})( window );
+})( ender, window );

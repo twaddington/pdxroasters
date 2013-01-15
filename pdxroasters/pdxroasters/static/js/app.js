@@ -7,7 +7,7 @@
  * /static/js/lib/*
  *
  */
-(function ( window ) {
+(function ( $, window ) {
 
 "use strict";
 
@@ -18,4 +18,4 @@ if ( window.pdx.app[ controller ] && window.pdx.app[ controller ].init ) {
 	window.pdx.app[ controller ].init();
 }
 
-})( window );
+})( ender, window );
