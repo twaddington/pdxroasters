@@ -45,12 +45,11 @@ You should now be able to access the site in your browser by visiting
 
 ## TODO
 
-- Base model (location/store)?
-- Geocode lat/lng on roaster import.
 - Hours model.
 - Roaster detail page with stub template.
 - Submit a roaster form.
 - Contact form.
+- Base model (location/store)?
 
 ## Features
 
