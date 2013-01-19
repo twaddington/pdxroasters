@@ -1,1 +1,3181 @@
-[{"pk": 1, "model": "roaster.business", "fields": {"name": "Altura Coffee Roasters", "phone": "(503) 380-6038", "url": "http://alturacoffeeroasters.com/", "created_at": "2013-01-19T08:04:14.624Z", "modified_at": "2013-01-19T08:04:14.878Z", "lat": null, "address": "Online Only", "active": true, "lng": null, "slug": "altura-coffee-roasters"}}, {"pk": 2, "model": "roaster.business", "fields": {"name": "Badbeards Microroastery", "phone": "(503) 319-0576", "url": "http://www.badbeardscoffee.com/", "created_at": "2013-01-19T08:04:14.889Z", "modified_at": "2013-01-19T08:04:15.061Z", "lat": "45.464567", "address": "5508 SW Garden Home Rd.\nPortland, Oregon", "active": true, "lng": "-122.733623", "slug": "badbeards-microroastery"}}, {"pk": 3, "model": "roaster.business", "fields": {"name": "Blac Coffee Roasters", "phone": "", "url": "http://blaccoffee.com/", "created_at": "2013-01-19T08:04:15.074Z", "modified_at": "2013-01-19T08:04:15.225Z", "lat": null, "address": "Online Only", "active": true, "lng": null, "slug": "blac-coffee-roasters"}}, {"pk": 4, "model": "roaster.business", "fields": {"name": "Blue Kangaroo Coffee Roasters", "phone": "(503) 756-0224", "url": "www.bluekangaroocoffee.com", "created_at": "2013-01-19T08:04:15.457Z", "modified_at": "2013-01-19T08:04:15.635Z", "lat": "45.467053", "address": "7901 SE 13th Ave\nPortland, Oregon", "active": true, "lng": "-122.653141", "slug": "blue-kangaroo-coffee-roasters"}}, {"pk": 5, "model": "roaster.business", "fields": {"name": "Boyd Coffee Company", "phone": "(800) 545-4077", "url": "http://www.boyds.com/", "created_at": "2013-01-19T08:04:16.138Z", "modified_at": "2013-01-19T08:04:16.555Z", "lat": "45.542885", "address": "19730 NE Sandy Blvd\nPortland, Oregon", "active": true, "lng": "-122.460317", "slug": "boyd-coffee-company"}}, {"pk": 6, "model": "roaster.business", "fields": {"name": "Bridgetown Coffee", "phone": "(503) 224-3330", "url": "http://bridgetowncoffeeexpress.com/", "created_at": "2013-01-19T08:04:16.869Z", "modified_at": "2013-01-19T08:04:17.307Z", "lat": "45.538873", "address": "2330 NW 31st Avenue\nPortland, Oregon", "active": true, "lng": "-122.713473", "slug": "bridgetown-coffee"}}, {"pk": 7, "model": "roaster.business", "fields": {"name": "Case Study Coffee", "phone": "(503) 477-8221", "url": "http://www.casestudycoffee.com/", "created_at": "2013-01-19T08:04:17.319Z", "modified_at": "2013-01-19T08:04:18.004Z", "lat": "45.540972", "address": "5347 Northeast Sandy Blvd.\nPortland, Oregon", "active": true, "lng": "-122.608022", "slug": "case-study-coffee"}}, {"pk": 8, "model": "roaster.business", "fields": {"name": "Cellar Door Coffee Roasters", "phone": "(503) 234-7155", "url": "http://www.cellardoorcoffee.com", "created_at": "2013-01-19T08:04:18.566Z", "modified_at": "2013-01-19T08:04:19.005Z", "lat": "45.508585", "address": "2001 SE 11th Ave\nPortland, Oregon", "active": true, "lng": "-122.654815", "slug": "cellar-door-coffee-roasters"}}, {"pk": 9, "model": "roaster.business", "fields": {"name": "Clive Coffee", "phone": "(800) 520-2890", "url": "http://www.clivecoffee.com/", "created_at": "2013-01-19T08:04:19.531Z", "modified_at": "2013-01-19T08:04:19.715Z", "lat": "45.515327", "address": "79 Southeast Taylor Street #100\nPortland, Oregon", "active": true, "lng": "-122.665125", "slug": "clive-coffee"}}, {"pk": 10, "model": "roaster.business", "fields": {"name": "Coava Coffee Roasters", "phone": "(503) 894-8134", "url": "http://coavacoffee.com", "created_at": "2013-01-19T08:04:20.003Z", "modified_at": "2013-01-19T08:04:20.182Z", "lat": "45.513622", "address": "1300 SE Grand Ave\nPortland, Oregon", "active": true, "lng": "-122.660454", "slug": "coava-coffee-roasters"}}, {"pk": 11, "model": "roaster.business", "fields": {"name": "Coffee Bean Internation's Public Domain Caf\u00e9", "phone": "(503) 243-6374", "url": "http://www.publicdomaincoffee.com/", "created_at": "2013-01-19T08:04:20.209Z", "modified_at": "2013-01-19T08:04:20.385Z", "lat": "45.519967", "address": "603 Southwest Broadway\nPortland, Oregon", "active": true, "lng": "-122.679468", "slug": "coffee-bean-internations-public-domain-cafe"}}, {"pk": 12, "model": "roaster.business", "fields": {"name": "Courier Coffee Roasters", "phone": "(503) 545-6444", "url": "http://www.couriercoffeeroasters.com", "created_at": "2013-01-19T08:04:20.415Z", "modified_at": "2013-01-19T08:04:20.591Z", "lat": "45.522534", "address": "923 SW Oak\nPortland Oregon", "active": true, "lng": "-122.679663", "slug": "courier-coffee-roasters"}}, {"pk": 13, "model": "roaster.business", "fields": {"name": "Extracto", "phone": "(503) 281-1764", "url": "http://extractocoffee.com/", "created_at": "2013-01-19T08:04:20.616Z", "modified_at": "2013-01-19T08:04:20.791Z", "lat": "45.562929", "address": "2921 Northeast Killingsworth St.\nPortland, Oregon", "active": true, "lng": "-122.635377", "slug": "extracto"}}, {"pk": 14, "model": "roaster.business", "fields": {"name": "Greyhound Coffee Roasters", "phone": "(971) 506-0955", "url": "http://www.greyhoundcoffeeroasters.com/", "created_at": "2013-01-19T08:04:20.820Z", "modified_at": "2013-01-19T08:04:20.973Z", "lat": null, "address": "Online Only", "active": true, "lng": null, "slug": "greyhound-coffee-roasters"}}, {"pk": 15, "model": "roaster.business", "fields": {"name": "Happy Cup Coffee Company", "phone": "(503) 238-4604", "url": "http://happycup.com", "created_at": "2013-01-19T08:04:20.987Z", "modified_at": "2013-01-19T08:04:21.165Z", "lat": "45.529412", "address": "2850 NE Sandy Blvd.\nPortland, Oregon", "active": true, "lng": "-122.636272", "slug": "happy-cup-coffee-company"}}, {"pk": 16, "model": "roaster.business", "fields": {"name": "Hawthorne Coffee Merchants", "phone": "(503) 445-8886", "url": "http://www.hawthornecoffee.com", "created_at": "2013-01-19T08:04:21.179Z", "modified_at": "2013-01-19T08:04:21.331Z", "lat": null, "address": "Online Only", "active": true, "lng": null, "slug": "hawthorne-coffee-merchants"}}, {"pk": 17, "model": "roaster.business", "fields": {"name": "Heart Roasters", "phone": "(503) 206-6602", "url": "http://www.heartroasters.com", "created_at": "2013-01-19T08:04:21.344Z", "modified_at": "2013-01-19T08:04:21.517Z", "lat": "45.522985", "address": "2211 E. Burnside\nPortland, Oregon", "active": true, "lng": "-122.643231", "slug": "heart-roasters"}}, {"pk": 18, "model": "roaster.business", "fields": {"name": "K&F Coffee Roasters", "phone": "(503) 234-7788", "url": "http://kfcoffee.com", "created_at": "2013-01-19T08:04:21.548Z", "modified_at": "2013-01-19T08:04:21.759Z", "lat": "45.503382", "address": "Retail Location: Clinton Street Coffeehouse\n2706 SE 26th Ave\nPortland, Oregon", "active": true, "lng": "-122.639541", "slug": "kf-coffee-roasters"}}, {"pk": 19, "model": "roaster.business", "fields": {"name": "Kobos Coffee", "phone": "(503) 222-2181", "url": "http://www.koboscoffee.com", "created_at": "2013-01-19T08:04:21.790Z", "modified_at": "2013-01-19T08:04:21.962Z", "lat": "45.537116", "address": "2355 NW Vaughn St.\nPortland, Oregon", "active": true, "lng": "-122.69996", "slug": "kobos-coffee"}}, {"pk": 20, "model": "roaster.business", "fields": {"name": "Marigold Coffee", "phone": "(503) 913-6537", "url": "http://marigoldcoffee.com", "created_at": "2013-01-19T08:04:21.994Z", "modified_at": "2013-01-19T08:04:22.175Z", "lat": "45.498909", "address": "3315 SE 19th Ave. Suite E\nPortland, Oregon", "active": true, "lng": "-122.646768", "slug": "marigold-coffee"}}, {"pk": 21, "model": "roaster.business", "fields": {"name": "McMenamins", "phone": "(503) 288-9447", "url": "http://www.mcmenamins.com/406-mcmenamins-coffee-roasters-home", "created_at": "2013-01-19T08:04:22.188Z", "modified_at": "2013-01-19T08:04:22.360Z", "lat": "45.542318", "address": "421 N.E. Knott St.\nPortland, Oregon", "active": true, "lng": "-122.660991", "slug": "mcmenamins"}}, {"pk": 22, "model": "roaster.business", "fields": {"name": "Mudd Works Roastery", "phone": "(503) 235-6833", "url": "http://www.muddworks.com", "created_at": "2013-01-19T08:04:22.372Z", "modified_at": "2013-01-19T08:04:22.553Z", "lat": "45.521728", "address": "537 SE Ash St. #108\nPortland, Oregon", "active": true, "lng": "-122.660014", "slug": "mudd-works-roastery"}}, {"pk": 23, "model": "roaster.business", "fields": {"name": "Night Owl Roasters", "phone": "(503) 502-8207", "url": "http://nightowlroasters.com", "created_at": "2013-01-19T08:04:22.580Z", "modified_at": "2013-01-19T08:04:22.752Z", "lat": "45.571054", "address": "6633 Northeast 25th Ave.\nPortland, Oregon", "active": true, "lng": "-122.640588", "slug": "night-owl-roasters"}}, {"pk": 24, "model": "roaster.business", "fields": {"name": "Nossa Famillia", "phone": "(503) 719-6605", "url": "http://www.familyroast.com", "created_at": "2013-01-19T08:04:22.765Z", "modified_at": "2013-01-19T08:04:22.943Z", "lat": "45.528695", "address": "1319 NW Johnson St.\nPortland, Oregon", "active": true, "lng": "-122.684863", "slug": "nossa-famillia"}}, {"pk": 25, "model": "roaster.business", "fields": {"name": "Oblique Coffee Roasters", "phone": "(503) 228-7883", "url": "http://obliquecoffeeroasters.com", "created_at": "2013-01-19T08:04:22.956Z", "modified_at": "2013-01-19T08:04:23.133Z", "lat": "45.519526", "address": "3039 SE Stark Street\nPortland, Oregon", "active": true, "lng": "-122.634082", "slug": "oblique-coffee-roasters"}}, {"pk": 26, "model": "roaster.business", "fields": {"name": "Portland Roasting Coffee", "phone": "", "url": "portland roasting coffee", "created_at": "2013-01-19T08:04:23.165Z", "modified_at": "2013-01-19T08:04:23.352Z", "lat": null, "address": "Portland Roasting Coffee", "active": true, "lng": null, "slug": "portland-roasting-coffee"}}, {"pk": 27, "model": "roaster.business", "fields": {"name": "Red e", "phone": "(503) 998-1387", "url": "http://theredecafe.com", "created_at": "2013-01-19T08:04:23.370Z", "modified_at": "2013-01-19T08:04:23.545Z", "lat": "45.562601", "address": "1006 North Killingsworth St.\nPortland, Oregon", "active": true, "lng": "-122.67722", "slug": "red-e"}}, {"pk": 28, "model": "roaster.business", "fields": {"name": "Ristretto Roasters", "phone": "(503) 288-8667", "url": "http://ristrettoroasters.com", "created_at": "2013-01-19T08:04:23.575Z", "modified_at": "2013-01-19T08:04:23.755Z", "lat": "45.550345", "address": "3808 North Williams Ave.\nPortland, Oregon ", "active": true, "lng": "-122.666584", "slug": "ristretto-roasters"}}, {"pk": 29, "model": "roaster.business", "fields": {"name": "Roseline Coffee Roasters", "phone": "", "url": "http://roselinecoffee.myshopify.com", "created_at": "2013-01-19T08:04:23.785Z", "modified_at": "2013-01-19T08:04:23.953Z", "lat": "45.516651", "address": "800 SE 10th Ave.\nPortland, Oregon", "active": true, "lng": "-122.655574", "slug": "roseline-coffee-roasters"}}, {"pk": 30, "model": "roaster.business", "fields": {"name": "Schondecken Roasters", "phone": "(503) 236-8234", "url": "", "created_at": "2013-01-19T08:04:23.964Z", "modified_at": "2013-01-19T08:04:24.132Z", "lat": "45.474068", "address": "6720 Southeast 16th Ave.\nPortland, Oregon", "active": true, "lng": "-122.649841", "slug": "schondecken-roasters"}}, {"pk": 31, "model": "roaster.business", "fields": {"name": "Seven Virtues", "phone": "(503) 236-7763", "url": "http://www.sevenvirtuespdx.com/", "created_at": "2013-01-19T08:04:24.161Z", "modified_at": "2013-01-19T08:04:24.338Z", "lat": "45.526481", "address": "5936 NE Glisan Street\nPortland, Oregon", "active": true, "lng": "-122.602479", "slug": "seven-virtues"}}, {"pk": 32, "model": "roaster.business", "fields": {"name": "Spella Caffe", "phone": "(503) 752-0264", "url": "http://www.spellacaffe.com/", "created_at": "2013-01-19T08:04:24.366Z", "modified_at": "2013-01-19T08:04:24.550Z", "lat": "45.519845", "address": "520 Southwest 5th Ave.\nPortland, Oregon", "active": true, "lng": "-122.676849", "slug": "spella-caffe"}}, {"pk": 33, "model": "roaster.business", "fields": {"name": "Spielman Coffee Roasters", "phone": "(503) 467-0600", "url": "", "created_at": "2013-01-19T08:04:24.575Z", "modified_at": "2013-01-19T08:04:24.753Z", "lat": "45.504744", "address": "2128 Southeast Division St.\nPortland, Oregon", "active": true, "lng": "-122.6438", "slug": "spielman-coffee-roasters"}}, {"pk": 34, "model": "roaster.business", "fields": {"name": "Spunky Monkey", "phone": "(503) 234-1600", "url": "http://monkeyroasters.com/", "created_at": "2013-01-19T08:04:24.784Z", "modified_at": "2013-01-19T08:04:24.960Z", "lat": "45.522983", "address": "35 NE 20th Ave. \nPortland, Oregon", "active": true, "lng": "-122.645354", "slug": "spunky-monkey"}}, {"pk": 35, "model": "roaster.business", "fields": {"name": "St. Johns Coffee Roasters", "phone": "(503) 445-2249", "url": "http://stjohnscoffee.com/", "created_at": "2013-01-19T08:04:24.992Z", "modified_at": "2013-01-19T08:04:25.171Z", "lat": "45.589352", "address": "7304 N Leavitt Ave.\nPortland, Oregon", "active": true, "lng": "-122.754118", "slug": "st-johns-coffee-roasters"}}, {"pk": 36, "model": "roaster.business", "fields": {"name": "Sterling Coffee Roasters", "phone": "", "url": "http://sterlingcoffeeroasters.com", "created_at": "2013-01-19T08:04:25.183Z", "modified_at": "2013-01-19T08:04:25.359Z", "lat": "45.525878", "address": "417 NW 21st Ave.\nPortland, Oregon", "active": true, "lng": "-122.694647", "slug": "sterling-coffee-roasters"}}, {"pk": 38, "model": "roaster.business", "fields": {"name": "Stumptown Coffee Roasters", "phone": "(503) 467-4123", "url": "http://stumptowncoffee.com/", "created_at": "2013-01-19T08:04:25.624Z", "modified_at": "2013-01-19T08:04:25.798Z", "lat": "45.514303", "address": "100 SE Salmon Street\nPortland, Oregon", "active": true, "lng": "-122.664607", "slug": "stumptown-coffee-roasters"}}, {"pk": 37, "model": "roaster.business", "fields": {"name": "Trailhead Coffee Roasters", "phone": "", "url": "http://www.trailheadcoffeeroasters.com/home_page.html", "created_at": "2013-01-19T08:04:25.428Z", "modified_at": "2013-01-19T08:04:25.602Z", "lat": "45.523261", "address": "1847 E Burnside St.\nPortland, Oregon ", "active": true, "lng": "-122.646914", "slug": "trailhead-coffee-roasters"}}, {"pk": 39, "model": "roaster.business", "fields": {"name": "Urban Grind", "phone": "(503) 546-5919", "url": "", "created_at": "2013-01-19T08:04:25.825Z", "modified_at": "2013-01-19T08:04:26.005Z", "lat": "45.529456", "address": "911 Northwest 14th Ave\nPortland, Oregon", "active": true, "lng": "-122.685506", "slug": "urban-grind"}}, {"pk": 40, "model": "roaster.business", "fields": {"name": "Water Avenue Coffee Company", "phone": "(503) 808-7083", "url": "http://www.wateravenuecoffee.com/", "created_at": "2013-01-19T08:04:26.035Z", "modified_at": "2013-01-19T08:04:26.214Z", "lat": "45.515399", "address": "1028 Southeast Water Ave.\nPortland, Oregon", "active": true, "lng": "-122.665659", "slug": "water-avenue-coffee-company"}}, {"pk": 41, "model": "roaster.business", "fields": {"name": "World Cup Coffee", "phone": "(503) 228-4152", "url": "http://www.worldcupcoffee.com/", "created_at": "2013-01-19T08:04:26.246Z", "modified_at": "2013-01-19T08:04:26.420Z", "lat": "45.526185", "address": "1740 Northwest Glisan St.\nPortland, Oregon", "active": true, "lng": "-122.689029", "slug": "world-cup-coffee"}}, {"pk": 42, "model": "roaster.business", "fields": {"name": "Zbeans", "phone": "", "url": "http://zbeanz.com/", "created_at": "2013-01-19T08:04:26.454Z", "modified_at": "2013-01-19T08:04:26.603Z", "lat": null, "address": "Online Only", "active": true, "lng": null, "slug": "zbeans"}}, {"pk": 1, "model": "roaster.businesshours", "fields": {"business": 4, "created_at": "2013-01-19T08:04:15.888Z", "modified_at": "2013-01-19T08:04:15.888Z", "weekday": 0, "close": "06:00:00", "open": "06:30:00"}}, {"pk": 8, "model": "roaster.businesshours", "fields": {"business": 5, "created_at": "2013-01-19T08:04:16.567Z", "modified_at": "2013-01-19T08:04:16.567Z", "weekday": 0, "close": "04:00:00", "open": "07:30:00"}}, {"pk": 13, "model": "roaster.businesshours", "fields": {"business": 7, "created_at": "2013-01-19T08:04:18.293Z", "modified_at": "2013-01-19T08:04:18.294Z", "weekday": 0, "close": "05:00:00", "open": "06:00:00"}}, {"pk": 20, "model": "roaster.businesshours", "fields": {"business": 8, "created_at": "2013-01-19T08:04:19.015Z", "modified_at": "2013-01-19T08:04:19.015Z", "weekday": 0, "close": "07:00:00", "open": "07:00:00"}}, {"pk": 32, "model": "roaster.businesshours", "fields": {"business": 10, "created_at": "2013-01-19T08:04:20.193Z", "modified_at": "2013-01-19T08:04:20.193Z", "weekday": 0, "close": "06:00:00", "open": "06:00:00"}}, {"pk": 39, "model": "roaster.businesshours", "fields": {"business": 11, "created_at": "2013-01-19T08:04:20.397Z", "modified_at": "2013-01-19T08:04:20.397Z", "weekday": 0, "close": "07:00:00", "open": "06:00:00"}}, {"pk": 46, "model": "roaster.businesshours", "fields": {"business": 12, "created_at": "2013-01-19T08:04:20.602Z", "modified_at": "2013-01-19T08:04:20.602Z", "weekday": 0, "close": "05:00:00", "open": "07:00:00"}}, {"pk": 52, "model": "roaster.businesshours", "fields": {"business": 13, "created_at": "2013-01-19T08:04:20.802Z", "modified_at": "2013-01-19T08:04:20.802Z", "weekday": 0, "close": "06:00:00", "open": "06:00:00"}}, {"pk": 59, "model": "roaster.businesshours", "fields": {"business": 17, "created_at": "2013-01-19T08:04:21.528Z", "modified_at": "2013-01-19T08:04:21.529Z", "weekday": 0, "close": "07:00:00", "open": "07:00:00"}}, {"pk": 66, "model": "roaster.businesshours", "fields": {"business": 18, "created_at": "2013-01-19T08:04:21.772Z", "modified_at": "2013-01-19T08:04:21.772Z", "weekday": 0, "close": "08:00:00", "open": "06:00:00"}}, {"pk": 73, "model": "roaster.businesshours", "fields": {"business": 19, "created_at": "2013-01-19T08:04:21.974Z", "modified_at": "2013-01-19T08:04:21.974Z", "weekday": 0, "close": "06:00:00", "open": "06:00:00"}}, {"pk": 80, "model": "roaster.businesshours", "fields": {"business": 22, "created_at": "2013-01-19T08:04:22.564Z", "modified_at": "2013-01-19T08:04:22.564Z", "weekday": 0, "close": "03:00:00", "open": "07:30:00"}}, {"pk": 85, "model": "roaster.businesshours", "fields": {"business": 25, "created_at": "2013-01-19T08:04:23.145Z", "modified_at": "2013-01-19T08:04:23.145Z", "weekday": 0, "close": "05:00:00", "open": "06:00:00"}}, {"pk": 92, "model": "roaster.businesshours", "fields": {"business": 27, "created_at": "2013-01-19T08:04:23.556Z", "modified_at": "2013-01-19T08:04:23.556Z", "weekday": 0, "close": "08:00:00", "open": "06:30:00"}}, {"pk": 99, "model": "roaster.businesshours", "fields": {"business": 28, "created_at": "2013-01-19T08:04:23.766Z", "modified_at": "2013-01-19T08:04:23.766Z", "weekday": 0, "close": "06:00:00", "open": "06:30:00"}}, {"pk": 106, "model": "roaster.businesshours", "fields": {"business": 30, "created_at": "2013-01-19T08:04:24.143Z", "modified_at": "2013-01-19T08:04:24.143Z", "weekday": 0, "close": "05:00:00", "open": "09:00:00"}}, {"pk": 112, "model": "roaster.businesshours", "fields": {"business": 31, "created_at": "2013-01-19T08:04:24.350Z", "modified_at": "2013-01-19T08:04:24.350Z", "weekday": 0, "close": "06:00:00", "open": "07:30:00"}}, {"pk": 118, "model": "roaster.businesshours", "fields": {"business": 32, "created_at": "2013-01-19T08:04:24.561Z", "modified_at": "2013-01-19T08:04:24.561Z", "weekday": 0, "close": "03:30:00", "open": "07:30:00"}}, {"pk": 123, "model": "roaster.businesshours", "fields": {"business": 33, "created_at": "2013-01-19T08:04:24.766Z", "modified_at": "2013-01-19T08:04:24.766Z", "weekday": 0, "close": "05:00:00", "open": "07:00:00"}}, {"pk": 130, "model": "roaster.businesshours", "fields": {"business": 34, "created_at": "2013-01-19T08:04:24.972Z", "modified_at": "2013-01-19T08:04:24.972Z", "weekday": 0, "close": "04:00:00", "open": "07:00:00"}}, {"pk": 137, "model": "roaster.businesshours", "fields": {"business": 36, "created_at": "2013-01-19T08:04:25.398Z", "modified_at": "2013-01-19T08:04:25.398Z", "weekday": 0, "close": "04:00:00", "open": "07:00:00"}}, {"pk": 148, "model": "roaster.businesshours", "fields": {"business": 38, "created_at": "2013-01-19T08:04:25.809Z", "modified_at": "2013-01-19T08:04:25.809Z", "weekday": 0, "close": "04:00:00", "open": "10:00:00"}}, {"pk": 153, "model": "roaster.businesshours", "fields": {"business": 39, "created_at": "2013-01-19T08:04:26.014Z", "modified_at": "2013-01-19T08:04:26.014Z", "weekday": 0, "close": "08:00:00", "open": "06:00:00"}}, {"pk": 160, "model": "roaster.businesshours", "fields": {"business": 40, "created_at": "2013-01-19T08:04:26.225Z", "modified_at": "2013-01-19T08:04:26.225Z", "weekday": 0, "close": "05:00:00", "open": "07:00:00"}}, {"pk": 167, "model": "roaster.businesshours", "fields": {"business": 41, "created_at": "2013-01-19T08:04:26.433Z", "modified_at": "2013-01-19T08:04:26.433Z", "weekday": 0, "close": "08:00:00", "open": "06:30:00"}}, {"pk": 2, "model": "roaster.businesshours", "fields": {"business": 4, "created_at": "2013-01-19T08:04:15.890Z", "modified_at": "2013-01-19T08:04:15.891Z", "weekday": 1, "close": "06:00:00", "open": "06:30:00"}}, {"pk": 9, "model": "roaster.businesshours", "fields": {"business": 5, "created_at": "2013-01-19T08:04:16.802Z", "modified_at": "2013-01-19T08:04:16.802Z", "weekday": 1, "close": "04:00:00", "open": "07:30:00"}}, {"pk": 14, "model": "roaster.businesshours", "fields": {"business": 7, "created_at": "2013-01-19T08:04:18.297Z", "modified_at": "2013-01-19T08:04:18.297Z", "weekday": 1, "close": "05:00:00", "open": "06:00:00"}}, {"pk": 21, "model": "roaster.businesshours", "fields": {"business": 8, "created_at": "2013-01-19T08:04:19.018Z", "modified_at": "2013-01-19T08:04:19.018Z", "weekday": 1, "close": "07:00:00", "open": "07:00:00"}}, {"pk": 27, "model": "roaster.businesshours", "fields": {"business": 9, "created_at": "2013-01-19T08:04:19.989Z", "modified_at": "2013-01-19T08:04:19.989Z", "weekday": 1, "close": "06:00:00", "open": "12:00:00"}}, {"pk": 33, "model": "roaster.businesshours", "fields": {"business": 10, "created_at": "2013-01-19T08:04:20.195Z", "modified_at": "2013-01-19T08:04:20.195Z", "weekday": 1, "close": "06:00:00", "open": "06:00:00"}}, {"pk": 40, "model": "roaster.businesshours", "fields": {"business": 11, "created_at": "2013-01-19T08:04:20.400Z", "modified_at": "2013-01-19T08:04:20.400Z", "weekday": 1, "close": "07:00:00", "open": "06:00:00"}}, {"pk": 47, "model": "roaster.businesshours", "fields": {"business": 12, "created_at": "2013-01-19T08:04:20.605Z", "modified_at": "2013-01-19T08:04:20.605Z", "weekday": 1, "close": "05:00:00", "open": "07:00:00"}}, {"pk": 53, "model": "roaster.businesshours", "fields": {"business": 13, "created_at": "2013-01-19T08:04:20.805Z", "modified_at": "2013-01-19T08:04:20.805Z", "weekday": 1, "close": "06:00:00", "open": "06:00:00"}}, {"pk": 60, "model": "roaster.businesshours", "fields": {"business": 17, "created_at": "2013-01-19T08:04:21.531Z", "modified_at": "2013-01-19T08:04:21.531Z", "weekday": 1, "close": "07:00:00", "open": "07:00:00"}}, {"pk": 67, "model": "roaster.businesshours", "fields": {"business": 18, "created_at": "2013-01-19T08:04:21.774Z", "modified_at": "2013-01-19T08:04:21.774Z", "weekday": 1, "close": "08:00:00", "open": "06:00:00"}}, {"pk": 74, "model": "roaster.businesshours", "fields": {"business": 19, "created_at": "2013-01-19T08:04:21.978Z", "modified_at": "2013-01-19T08:04:21.978Z", "weekday": 1, "close": "06:00:00", "open": "06:00:00"}}, {"pk": 81, "model": "roaster.businesshours", "fields": {"business": 22, "created_at": "2013-01-19T08:04:22.567Z", "modified_at": "2013-01-19T08:04:22.567Z", "weekday": 1, "close": "03:00:00", "open": "07:30:00"}}, {"pk": 86, "model": "roaster.businesshours", "fields": {"business": 25, "created_at": "2013-01-19T08:04:23.147Z", "modified_at": "2013-01-19T08:04:23.147Z", "weekday": 1, "close": "05:00:00", "open": "06:00:00"}}, {"pk": 93, "model": "roaster.businesshours", "fields": {"business": 27, "created_at": "2013-01-19T08:04:23.559Z", "modified_at": "2013-01-19T08:04:23.559Z", "weekday": 1, "close": "08:00:00", "open": "06:30:00"}}, {"pk": 100, "model": "roaster.businesshours", "fields": {"business": 28, "created_at": "2013-01-19T08:04:23.769Z", "modified_at": "2013-01-19T08:04:23.769Z", "weekday": 1, "close": "06:00:00", "open": "06:30:00"}}, {"pk": 107, "model": "roaster.businesshours", "fields": {"business": 30, "created_at": "2013-01-19T08:04:24.146Z", "modified_at": "2013-01-19T08:04:24.146Z", "weekday": 1, "close": "05:00:00", "open": "09:00:00"}}, {"pk": 113, "model": "roaster.businesshours", "fields": {"business": 31, "created_at": "2013-01-19T08:04:24.353Z", "modified_at": "2013-01-19T08:04:24.353Z", "weekday": 1, "close": "06:00:00", "open": "07:30:00"}}, {"pk": 119, "model": "roaster.businesshours", "fields": {"business": 32, "created_at": "2013-01-19T08:04:24.564Z", "modified_at": "2013-01-19T08:04:24.564Z", "weekday": 1, "close": "03:30:00", "open": "07:30:00"}}, {"pk": 124, "model": "roaster.businesshours", "fields": {"business": 33, "created_at": "2013-01-19T08:04:24.768Z", "modified_at": "2013-01-19T08:04:24.768Z", "weekday": 1, "close": "05:00:00", "open": "07:00:00"}}, {"pk": 131, "model": "roaster.businesshours", "fields": {"business": 34, "created_at": "2013-01-19T08:04:24.975Z", "modified_at": "2013-01-19T08:04:24.975Z", "weekday": 1, "close": "04:00:00", "open": "07:00:00"}}, {"pk": 138, "model": "roaster.businesshours", "fields": {"business": 36, "created_at": "2013-01-19T08:04:25.401Z", "modified_at": "2013-01-19T08:04:25.401Z", "weekday": 1, "close": "04:00:00", "open": "07:00:00"}}, {"pk": 144, "model": "roaster.businesshours", "fields": {"business": 37, "created_at": "2013-01-19T08:04:25.613Z", "modified_at": "2013-01-19T08:04:25.613Z", "weekday": 1, "close": "02:00:00", "open": "09:00:00"}}, {"pk": 149, "model": "roaster.businesshours", "fields": {"business": 38, "created_at": "2013-01-19T08:04:25.812Z", "modified_at": "2013-01-19T08:04:25.812Z", "weekday": 1, "close": "04:00:00", "open": "10:00:00"}}, {"pk": 154, "model": "roaster.businesshours", "fields": {"business": 39, "created_at": "2013-01-19T08:04:26.017Z", "modified_at": "2013-01-19T08:04:26.017Z", "weekday": 1, "close": "08:00:00", "open": "06:00:00"}}, {"pk": 161, "model": "roaster.businesshours", "fields": {"business": 40, "created_at": "2013-01-19T08:04:26.228Z", "modified_at": "2013-01-19T08:04:26.228Z", "weekday": 1, "close": "05:00:00", "open": "07:00:00"}}, {"pk": 168, "model": "roaster.businesshours", "fields": {"business": 41, "created_at": "2013-01-19T08:04:26.436Z", "modified_at": "2013-01-19T08:04:26.436Z", "weekday": 1, "close": "08:00:00", "open": "06:30:00"}}, {"pk": 3, "model": "roaster.businesshours", "fields": {"business": 4, "created_at": "2013-01-19T08:04:15.893Z", "modified_at": "2013-01-19T08:04:15.893Z", "weekday": 2, "close": "06:00:00", "open": "06:30:00"}}, {"pk": 10, "model": "roaster.businesshours", "fields": {"business": 5, "created_at": "2013-01-19T08:04:16.824Z", "modified_at": "2013-01-19T08:04:16.824Z", "weekday": 2, "close": "04:00:00", "open": "07:30:00"}}, {"pk": 15, "model": "roaster.businesshours", "fields": {"business": 7, "created_at": "2013-01-19T08:04:18.300Z", "modified_at": "2013-01-19T08:04:18.300Z", "weekday": 2, "close": "05:00:00", "open": "06:00:00"}}, {"pk": 22, "model": "roaster.businesshours", "fields": {"business": 8, "created_at": "2013-01-19T08:04:19.281Z", "modified_at": "2013-01-19T08:04:19.281Z", "weekday": 2, "close": "07:00:00", "open": "07:00:00"}}, {"pk": 28, "model": "roaster.businesshours", "fields": {"business": 9, "created_at": "2013-01-19T08:04:19.991Z", "modified_at": "2013-01-19T08:04:19.991Z", "weekday": 2, "close": "06:00:00", "open": "12:00:00"}}, {"pk": 34, "model": "roaster.businesshours", "fields": {"business": 10, "created_at": "2013-01-19T08:04:20.197Z", "modified_at": "2013-01-19T08:04:20.197Z", "weekday": 2, "close": "06:00:00", "open": "06:00:00"}}, {"pk": 41, "model": "roaster.businesshours", "fields": {"business": 11, "created_at": "2013-01-19T08:04:20.402Z", "modified_at": "2013-01-19T08:04:20.402Z", "weekday": 2, "close": "07:00:00", "open": "06:00:00"}}, {"pk": 48, "model": "roaster.businesshours", "fields": {"business": 12, "created_at": "2013-01-19T08:04:20.607Z", "modified_at": "2013-01-19T08:04:20.607Z", "weekday": 2, "close": "05:00:00", "open": "07:00:00"}}, {"pk": 54, "model": "roaster.businesshours", "fields": {"business": 13, "created_at": "2013-01-19T08:04:20.807Z", "modified_at": "2013-01-19T08:04:20.807Z", "weekday": 2, "close": "06:00:00", "open": "06:00:00"}}, {"pk": 61, "model": "roaster.businesshours", "fields": {"business": 17, "created_at": "2013-01-19T08:04:21.534Z", "modified_at": "2013-01-19T08:04:21.534Z", "weekday": 2, "close": "07:00:00", "open": "07:00:00"}}, {"pk": 68, "model": "roaster.businesshours", "fields": {"business": 18, "created_at": "2013-01-19T08:04:21.777Z", "modified_at": "2013-01-19T08:04:21.777Z", "weekday": 2, "close": "08:00:00", "open": "06:00:00"}}, {"pk": 75, "model": "roaster.businesshours", "fields": {"business": 19, "created_at": "2013-01-19T08:04:21.980Z", "modified_at": "2013-01-19T08:04:21.980Z", "weekday": 2, "close": "06:00:00", "open": "06:00:00"}}, {"pk": 82, "model": "roaster.businesshours", "fields": {"business": 22, "created_at": "2013-01-19T08:04:22.570Z", "modified_at": "2013-01-19T08:04:22.570Z", "weekday": 2, "close": "03:00:00", "open": "07:30:00"}}, {"pk": 87, "model": "roaster.businesshours", "fields": {"business": 25, "created_at": "2013-01-19T08:04:23.150Z", "modified_at": "2013-01-19T08:04:23.150Z", "weekday": 2, "close": "05:00:00", "open": "06:00:00"}}, {"pk": 94, "model": "roaster.businesshours", "fields": {"business": 27, "created_at": "2013-01-19T08:04:23.561Z", "modified_at": "2013-01-19T08:04:23.562Z", "weekday": 2, "close": "08:00:00", "open": "06:30:00"}}, {"pk": 101, "model": "roaster.businesshours", "fields": {"business": 28, "created_at": "2013-01-19T08:04:23.772Z", "modified_at": "2013-01-19T08:04:23.772Z", "weekday": 2, "close": "06:00:00", "open": "06:30:00"}}, {"pk": 108, "model": "roaster.businesshours", "fields": {"business": 30, "created_at": "2013-01-19T08:04:24.148Z", "modified_at": "2013-01-19T08:04:24.148Z", "weekday": 2, "close": "05:00:00", "open": "09:00:00"}}, {"pk": 114, "model": "roaster.businesshours", "fields": {"business": 31, "created_at": "2013-01-19T08:04:24.356Z", "modified_at": "2013-01-19T08:04:24.356Z", "weekday": 2, "close": "06:00:00", "open": "07:30:00"}}, {"pk": 120, "model": "roaster.businesshours", "fields": {"business": 32, "created_at": "2013-01-19T08:04:24.566Z", "modified_at": "2013-01-19T08:04:24.566Z", "weekday": 2, "close": "03:30:00", "open": "07:30:00"}}, {"pk": 125, "model": "roaster.businesshours", "fields": {"business": 33, "created_at": "2013-01-19T08:04:24.770Z", "modified_at": "2013-01-19T08:04:24.770Z", "weekday": 2, "close": "05:00:00", "open": "07:00:00"}}, {"pk": 132, "model": "roaster.businesshours", "fields": {"business": 34, "created_at": "2013-01-19T08:04:24.978Z", "modified_at": "2013-01-19T08:04:24.978Z", "weekday": 2, "close": "04:00:00", "open": "07:00:00"}}, {"pk": 139, "model": "roaster.businesshours", "fields": {"business": 36, "created_at": "2013-01-19T08:04:25.412Z", "modified_at": "2013-01-19T08:04:25.412Z", "weekday": 2, "close": "04:00:00", "open": "07:00:00"}}, {"pk": 145, "model": "roaster.businesshours", "fields": {"business": 37, "created_at": "2013-01-19T08:04:25.615Z", "modified_at": "2013-01-19T08:04:25.615Z", "weekday": 2, "close": "02:00:00", "open": "09:00:00"}}, {"pk": 150, "model": "roaster.businesshours", "fields": {"business": 38, "created_at": "2013-01-19T08:04:25.815Z", "modified_at": "2013-01-19T08:04:25.815Z", "weekday": 2, "close": "04:00:00", "open": "10:00:00"}}, {"pk": 155, "model": "roaster.businesshours", "fields": {"business": 39, "created_at": "2013-01-19T08:04:26.020Z", "modified_at": "2013-01-19T08:04:26.020Z", "weekday": 2, "close": "08:00:00", "open": "06:00:00"}}, {"pk": 162, "model": "roaster.businesshours", "fields": {"business": 40, "created_at": "2013-01-19T08:04:26.231Z", "modified_at": "2013-01-19T08:04:26.231Z", "weekday": 2, "close": "05:00:00", "open": "07:00:00"}}, {"pk": 169, "model": "roaster.businesshours", "fields": {"business": 41, "created_at": "2013-01-19T08:04:26.439Z", "modified_at": "2013-01-19T08:04:26.439Z", "weekday": 2, "close": "08:00:00", "open": "06:30:00"}}, {"pk": 4, "model": "roaster.businesshours", "fields": {"business": 4, "created_at": "2013-01-19T08:04:15.896Z", "modified_at": "2013-01-19T08:04:15.896Z", "weekday": 3, "close": "06:00:00", "open": "06:30:00"}}, {"pk": 11, "model": "roaster.businesshours", "fields": {"business": 5, "created_at": "2013-01-19T08:04:16.837Z", "modified_at": "2013-01-19T08:04:16.837Z", "weekday": 3, "close": "04:00:00", "open": "07:30:00"}}, {"pk": 16, "model": "roaster.businesshours", "fields": {"business": 7, "created_at": "2013-01-19T08:04:18.303Z", "modified_at": "2013-01-19T08:04:18.303Z", "weekday": 3, "close": "05:00:00", "open": "06:00:00"}}, {"pk": 23, "model": "roaster.businesshours", "fields": {"business": 8, "created_at": "2013-01-19T08:04:19.285Z", "modified_at": "2013-01-19T08:04:19.285Z", "weekday": 3, "close": "07:00:00", "open": "07:00:00"}}, {"pk": 29, "model": "roaster.businesshours", "fields": {"business": 9, "created_at": "2013-01-19T08:04:19.994Z", "modified_at": "2013-01-19T08:04:19.994Z", "weekday": 3, "close": "06:00:00", "open": "12:00:00"}}, {"pk": 35, "model": "roaster.businesshours", "fields": {"business": 10, "created_at": "2013-01-19T08:04:20.200Z", "modified_at": "2013-01-19T08:04:20.200Z", "weekday": 3, "close": "06:00:00", "open": "06:00:00"}}, {"pk": 42, "model": "roaster.businesshours", "fields": {"business": 11, "created_at": "2013-01-19T08:04:20.404Z", "modified_at": "2013-01-19T08:04:20.404Z", "weekday": 3, "close": "07:00:00", "open": "06:00:00"}}, {"pk": 49, "model": "roaster.businesshours", "fields": {"business": 12, "created_at": "2013-01-19T08:04:20.609Z", "modified_at": "2013-01-19T08:04:20.609Z", "weekday": 3, "close": "05:00:00", "open": "07:00:00"}}, {"pk": 55, "model": "roaster.businesshours", "fields": {"business": 13, "created_at": "2013-01-19T08:04:20.810Z", "modified_at": "2013-01-19T08:04:20.810Z", "weekday": 3, "close": "06:00:00", "open": "06:00:00"}}, {"pk": 62, "model": "roaster.businesshours", "fields": {"business": 17, "created_at": "2013-01-19T08:04:21.536Z", "modified_at": "2013-01-19T08:04:21.536Z", "weekday": 3, "close": "07:00:00", "open": "07:00:00"}}, {"pk": 69, "model": "roaster.businesshours", "fields": {"business": 18, "created_at": "2013-01-19T08:04:21.779Z", "modified_at": "2013-01-19T08:04:21.779Z", "weekday": 3, "close": "08:00:00", "open": "06:00:00"}}, {"pk": 76, "model": "roaster.businesshours", "fields": {"business": 19, "created_at": "2013-01-19T08:04:21.983Z", "modified_at": "2013-01-19T08:04:21.983Z", "weekday": 3, "close": "06:00:00", "open": "06:00:00"}}, {"pk": 83, "model": "roaster.businesshours", "fields": {"business": 22, "created_at": "2013-01-19T08:04:22.573Z", "modified_at": "2013-01-19T08:04:22.573Z", "weekday": 3, "close": "03:00:00", "open": "07:30:00"}}, {"pk": 88, "model": "roaster.businesshours", "fields": {"business": 25, "created_at": "2013-01-19T08:04:23.152Z", "modified_at": "2013-01-19T08:04:23.152Z", "weekday": 3, "close": "05:00:00", "open": "06:00:00"}}, {"pk": 95, "model": "roaster.businesshours", "fields": {"business": 27, "created_at": "2013-01-19T08:04:23.564Z", "modified_at": "2013-01-19T08:04:23.564Z", "weekday": 3, "close": "08:00:00", "open": "06:30:00"}}, {"pk": 102, "model": "roaster.businesshours", "fields": {"business": 28, "created_at": "2013-01-19T08:04:23.774Z", "modified_at": "2013-01-19T08:04:23.774Z", "weekday": 3, "close": "06:00:00", "open": "06:30:00"}}, {"pk": 109, "model": "roaster.businesshours", "fields": {"business": 30, "created_at": "2013-01-19T08:04:24.151Z", "modified_at": "2013-01-19T08:04:24.151Z", "weekday": 3, "close": "05:00:00", "open": "09:00:00"}}, {"pk": 115, "model": "roaster.businesshours", "fields": {"business": 31, "created_at": "2013-01-19T08:04:24.358Z", "modified_at": "2013-01-19T08:04:24.358Z", "weekday": 3, "close": "06:00:00", "open": "07:30:00"}}, {"pk": 121, "model": "roaster.businesshours", "fields": {"business": 32, "created_at": "2013-01-19T08:04:24.569Z", "modified_at": "2013-01-19T08:04:24.569Z", "weekday": 3, "close": "03:30:00", "open": "07:30:00"}}, {"pk": 126, "model": "roaster.businesshours", "fields": {"business": 33, "created_at": "2013-01-19T08:04:24.773Z", "modified_at": "2013-01-19T08:04:24.773Z", "weekday": 3, "close": "05:00:00", "open": "07:00:00"}}, {"pk": 133, "model": "roaster.businesshours", "fields": {"business": 34, "created_at": "2013-01-19T08:04:24.980Z", "modified_at": "2013-01-19T08:04:24.980Z", "weekday": 3, "close": "04:00:00", "open": "07:00:00"}}, {"pk": 140, "model": "roaster.businesshours", "fields": {"business": 36, "created_at": "2013-01-19T08:04:25.415Z", "modified_at": "2013-01-19T08:04:25.415Z", "weekday": 3, "close": "04:00:00", "open": "07:00:00"}}, {"pk": 146, "model": "roaster.businesshours", "fields": {"business": 37, "created_at": "2013-01-19T08:04:25.618Z", "modified_at": "2013-01-19T08:04:25.618Z", "weekday": 3, "close": "02:00:00", "open": "09:00:00"}}, {"pk": 151, "model": "roaster.businesshours", "fields": {"business": 38, "created_at": "2013-01-19T08:04:25.818Z", "modified_at": "2013-01-19T08:04:25.818Z", "weekday": 3, "close": "04:00:00", "open": "10:00:00"}}, {"pk": 156, "model": "roaster.businesshours", "fields": {"business": 39, "created_at": "2013-01-19T08:04:26.023Z", "modified_at": "2013-01-19T08:04:26.023Z", "weekday": 3, "close": "08:00:00", "open": "06:00:00"}}, {"pk": 163, "model": "roaster.businesshours", "fields": {"business": 40, "created_at": "2013-01-19T08:04:26.234Z", "modified_at": "2013-01-19T08:04:26.234Z", "weekday": 3, "close": "05:00:00", "open": "07:00:00"}}, {"pk": 170, "model": "roaster.businesshours", "fields": {"business": 41, "created_at": "2013-01-19T08:04:26.441Z", "modified_at": "2013-01-19T08:04:26.441Z", "weekday": 3, "close": "08:00:00", "open": "06:30:00"}}, {"pk": 5, "model": "roaster.businesshours", "fields": {"business": 4, "created_at": "2013-01-19T08:04:16.126Z", "modified_at": "2013-01-19T08:04:16.126Z", "weekday": 4, "close": "06:00:00", "open": "06:30:00"}}, {"pk": 12, "model": "roaster.businesshours", "fields": {"business": 5, "created_at": "2013-01-19T08:04:16.839Z", "modified_at": "2013-01-19T08:04:16.839Z", "weekday": 4, "close": "04:00:00", "open": "07:30:00"}}, {"pk": 17, "model": "roaster.businesshours", "fields": {"business": 7, "created_at": "2013-01-19T08:04:18.557Z", "modified_at": "2013-01-19T08:04:18.557Z", "weekday": 4, "close": "05:00:00", "open": "06:00:00"}}, {"pk": 24, "model": "roaster.businesshours", "fields": {"business": 8, "created_at": "2013-01-19T08:04:19.288Z", "modified_at": "2013-01-19T08:04:19.288Z", "weekday": 4, "close": "07:00:00", "open": "07:00:00"}}, {"pk": 30, "model": "roaster.businesshours", "fields": {"business": 9, "created_at": "2013-01-19T08:04:19.997Z", "modified_at": "2013-01-19T08:04:19.997Z", "weekday": 4, "close": "06:00:00", "open": "12:00:00"}}, {"pk": 36, "model": "roaster.businesshours", "fields": {"business": 10, "created_at": "2013-01-19T08:04:20.202Z", "modified_at": "2013-01-19T08:04:20.202Z", "weekday": 4, "close": "06:00:00", "open": "06:00:00"}}, {"pk": 43, "model": "roaster.businesshours", "fields": {"business": 11, "created_at": "2013-01-19T08:04:20.407Z", "modified_at": "2013-01-19T08:04:20.407Z", "weekday": 4, "close": "07:00:00", "open": "06:00:00"}}, {"pk": 50, "model": "roaster.businesshours", "fields": {"business": 12, "created_at": "2013-01-19T08:04:20.611Z", "modified_at": "2013-01-19T08:04:20.611Z", "weekday": 4, "close": "05:00:00", "open": "07:00:00"}}, {"pk": 56, "model": "roaster.businesshours", "fields": {"business": 13, "created_at": "2013-01-19T08:04:20.812Z", "modified_at": "2013-01-19T08:04:20.812Z", "weekday": 4, "close": "06:00:00", "open": "06:00:00"}}, {"pk": 63, "model": "roaster.businesshours", "fields": {"business": 17, "created_at": "2013-01-19T08:04:21.539Z", "modified_at": "2013-01-19T08:04:21.539Z", "weekday": 4, "close": "07:00:00", "open": "07:00:00"}}, {"pk": 70, "model": "roaster.businesshours", "fields": {"business": 18, "created_at": "2013-01-19T08:04:21.781Z", "modified_at": "2013-01-19T08:04:21.781Z", "weekday": 4, "close": "08:00:00", "open": "06:00:00"}}, {"pk": 77, "model": "roaster.businesshours", "fields": {"business": 19, "created_at": "2013-01-19T08:04:21.985Z", "modified_at": "2013-01-19T08:04:21.985Z", "weekday": 4, "close": "06:00:00", "open": "06:00:00"}}, {"pk": 84, "model": "roaster.businesshours", "fields": {"business": 22, "created_at": "2013-01-19T08:04:22.575Z", "modified_at": "2013-01-19T08:04:22.575Z", "weekday": 4, "close": "03:00:00", "open": "07:30:00"}}, {"pk": 89, "model": "roaster.businesshours", "fields": {"business": 25, "created_at": "2013-01-19T08:04:23.156Z", "modified_at": "2013-01-19T08:04:23.156Z", "weekday": 4, "close": "05:00:00", "open": "06:00:00"}}, {"pk": 96, "model": "roaster.businesshours", "fields": {"business": 27, "created_at": "2013-01-19T08:04:23.567Z", "modified_at": "2013-01-19T08:04:23.567Z", "weekday": 4, "close": "08:00:00", "open": "06:30:00"}}, {"pk": 103, "model": "roaster.businesshours", "fields": {"business": 28, "created_at": "2013-01-19T08:04:23.776Z", "modified_at": "2013-01-19T08:04:23.776Z", "weekday": 4, "close": "06:00:00", "open": "06:30:00"}}, {"pk": 110, "model": "roaster.businesshours", "fields": {"business": 30, "created_at": "2013-01-19T08:04:24.153Z", "modified_at": "2013-01-19T08:04:24.153Z", "weekday": 4, "close": "05:00:00", "open": "09:00:00"}}, {"pk": 116, "model": "roaster.businesshours", "fields": {"business": 31, "created_at": "2013-01-19T08:04:24.360Z", "modified_at": "2013-01-19T08:04:24.360Z", "weekday": 4, "close": "05:00:00", "open": "07:30:00"}}, {"pk": 122, "model": "roaster.businesshours", "fields": {"business": 32, "created_at": "2013-01-19T08:04:24.571Z", "modified_at": "2013-01-19T08:04:24.571Z", "weekday": 4, "close": "03:30:00", "open": "07:30:00"}}, {"pk": 127, "model": "roaster.businesshours", "fields": {"business": 33, "created_at": "2013-01-19T08:04:24.775Z", "modified_at": "2013-01-19T08:04:24.775Z", "weekday": 4, "close": "05:00:00", "open": "07:00:00"}}, {"pk": 134, "model": "roaster.businesshours", "fields": {"business": 34, "created_at": "2013-01-19T08:04:24.983Z", "modified_at": "2013-01-19T08:04:24.983Z", "weekday": 4, "close": "04:00:00", "open": "07:00:00"}}, {"pk": 141, "model": "roaster.businesshours", "fields": {"business": 36, "created_at": "2013-01-19T08:04:25.418Z", "modified_at": "2013-01-19T08:04:25.418Z", "weekday": 4, "close": "04:00:00", "open": "07:00:00"}}, {"pk": 147, "model": "roaster.businesshours", "fields": {"business": 37, "created_at": "2013-01-19T08:04:25.620Z", "modified_at": "2013-01-19T08:04:25.620Z", "weekday": 4, "close": "02:00:00", "open": "09:00:00"}}, {"pk": 152, "model": "roaster.businesshours", "fields": {"business": 38, "created_at": "2013-01-19T08:04:25.821Z", "modified_at": "2013-01-19T08:04:25.821Z", "weekday": 4, "close": "04:00:00", "open": "10:00:00"}}, {"pk": 157, "model": "roaster.businesshours", "fields": {"business": 39, "created_at": "2013-01-19T08:04:26.026Z", "modified_at": "2013-01-19T08:04:26.026Z", "weekday": 4, "close": "08:00:00", "open": "06:00:00"}}, {"pk": 164, "model": "roaster.businesshours", "fields": {"business": 40, "created_at": "2013-01-19T08:04:26.237Z", "modified_at": "2013-01-19T08:04:26.237Z", "weekday": 4, "close": "05:00:00", "open": "07:00:00"}}, {"pk": 171, "model": "roaster.businesshours", "fields": {"business": 41, "created_at": "2013-01-19T08:04:26.444Z", "modified_at": "2013-01-19T08:04:26.444Z", "weekday": 4, "close": "08:00:00", "open": "06:30:00"}}, {"pk": 6, "model": "roaster.businesshours", "fields": {"business": 4, "created_at": "2013-01-19T08:04:16.129Z", "modified_at": "2013-01-19T08:04:16.129Z", "weekday": 5, "close": "06:00:00", "open": "07:00:00"}}, {"pk": 18, "model": "roaster.businesshours", "fields": {"business": 7, "created_at": "2013-01-19T08:04:18.560Z", "modified_at": "2013-01-19T08:04:18.560Z", "weekday": 5, "close": "06:00:00", "open": "08:00:00"}}, {"pk": 25, "model": "roaster.businesshours", "fields": {"business": 8, "created_at": "2013-01-19T08:04:19.292Z", "modified_at": "2013-01-19T08:04:19.292Z", "weekday": 5, "close": "07:00:00", "open": "07:00:00"}}, {"pk": 31, "model": "roaster.businesshours", "fields": {"business": 9, "created_at": "2013-01-19T08:04:19.999Z", "modified_at": "2013-01-19T08:04:19.999Z", "weekday": 5, "close": "04:00:00", "open": "11:00:00"}}, {"pk": 37, "model": "roaster.businesshours", "fields": {"business": 10, "created_at": "2013-01-19T08:04:20.204Z", "modified_at": "2013-01-19T08:04:20.204Z", "weekday": 5, "close": "06:00:00", "open": "07:00:00"}}, {"pk": 44, "model": "roaster.businesshours", "fields": {"business": 11, "created_at": "2013-01-19T08:04:20.410Z", "modified_at": "2013-01-19T08:04:20.410Z", "weekday": 5, "close": "07:00:00", "open": "07:00:00"}}, {"pk": 51, "model": "roaster.businesshours", "fields": {"business": 12, "created_at": "2013-01-19T08:04:20.613Z", "modified_at": "2013-01-19T08:04:20.613Z", "weekday": 5, "close": "04:00:00", "open": "09:00:00"}}, {"pk": 57, "model": "roaster.businesshours", "fields": {"business": 13, "created_at": "2013-01-19T08:04:20.814Z", "modified_at": "2013-01-19T08:04:20.814Z", "weekday": 5, "close": "06:00:00", "open": "07:00:00"}}, {"pk": 64, "model": "roaster.businesshours", "fields": {"business": 17, "created_at": "2013-01-19T08:04:21.542Z", "modified_at": "2013-01-19T08:04:21.542Z", "weekday": 5, "close": "07:00:00", "open": "07:00:00"}}, {"pk": 71, "model": "roaster.businesshours", "fields": {"business": 18, "created_at": "2013-01-19T08:04:21.783Z", "modified_at": "2013-01-19T08:04:21.783Z", "weekday": 5, "close": "07:00:00", "open": "07:00:00"}}, {"pk": 78, "model": "roaster.businesshours", "fields": {"business": 19, "created_at": "2013-01-19T08:04:21.989Z", "modified_at": "2013-01-19T08:04:21.989Z", "weekday": 5, "close": "06:00:00", "open": "08:00:00"}}, {"pk": 90, "model": "roaster.businesshours", "fields": {"business": 25, "created_at": "2013-01-19T08:04:23.159Z", "modified_at": "2013-01-19T08:04:23.159Z", "weekday": 5, "close": "05:00:00", "open": "08:00:00"}}, {"pk": 97, "model": "roaster.businesshours", "fields": {"business": 27, "created_at": "2013-01-19T08:04:23.570Z", "modified_at": "2013-01-19T08:04:23.570Z", "weekday": 5, "close": "08:00:00", "open": "06:30:00"}}, {"pk": 104, "model": "roaster.businesshours", "fields": {"business": 28, "created_at": "2013-01-19T08:04:23.779Z", "modified_at": "2013-01-19T08:04:23.779Z", "weekday": 5, "close": "06:00:00", "open": "06:30:00"}}, {"pk": 111, "model": "roaster.businesshours", "fields": {"business": 30, "created_at": "2013-01-19T08:04:24.157Z", "modified_at": "2013-01-19T08:04:24.157Z", "weekday": 5, "close": "02:00:00", "open": "09:00:00"}}, {"pk": 117, "model": "roaster.businesshours", "fields": {"business": 31, "created_at": "2013-01-19T08:04:24.363Z", "modified_at": "2013-01-19T08:04:24.363Z", "weekday": 5, "close": "05:00:00", "open": "08:00:00"}}, {"pk": 128, "model": "roaster.businesshours", "fields": {"business": 33, "created_at": "2013-01-19T08:04:24.778Z", "modified_at": "2013-01-19T08:04:24.778Z", "weekday": 5, "close": "05:00:00", "open": "08:00:00"}}, {"pk": 135, "model": "roaster.businesshours", "fields": {"business": 34, "created_at": "2013-01-19T08:04:24.986Z", "modified_at": "2013-01-19T08:04:24.986Z", "weekday": 5, "close": "03:00:00", "open": "08:00:00"}}, {"pk": 142, "model": "roaster.businesshours", "fields": {"business": 36, "created_at": "2013-01-19T08:04:25.421Z", "modified_at": "2013-01-19T08:04:25.421Z", "weekday": 5, "close": "04:00:00", "open": "08:00:00"}}, {"pk": 158, "model": "roaster.businesshours", "fields": {"business": 39, "created_at": "2013-01-19T08:04:26.029Z", "modified_at": "2013-01-19T08:04:26.029Z", "weekday": 5, "close": "08:00:00", "open": "07:00:00"}}, {"pk": 165, "model": "roaster.businesshours", "fields": {"business": 40, "created_at": "2013-01-19T08:04:26.239Z", "modified_at": "2013-01-19T08:04:26.239Z", "weekday": 5, "close": "05:00:00", "open": "08:00:00"}}, {"pk": 172, "model": "roaster.businesshours", "fields": {"business": 41, "created_at": "2013-01-19T08:04:26.446Z", "modified_at": "2013-01-19T08:04:26.446Z", "weekday": 5, "close": "07:00:00", "open": "07:00:00"}}, {"pk": 7, "model": "roaster.businesshours", "fields": {"business": 4, "created_at": "2013-01-19T08:04:16.132Z", "modified_at": "2013-01-19T08:04:16.132Z", "weekday": 6, "close": "06:00:00", "open": "07:00:00"}}, {"pk": 19, "model": "roaster.businesshours", "fields": {"business": 7, "created_at": "2013-01-19T08:04:18.562Z", "modified_at": "2013-01-19T08:04:18.562Z", "weekday": 6, "close": "06:00:00", "open": "08:00:00"}}, {"pk": 26, "model": "roaster.businesshours", "fields": {"business": 8, "created_at": "2013-01-19T08:04:19.525Z", "modified_at": "2013-01-19T08:04:19.525Z", "weekday": 6, "close": "07:00:00", "open": "07:00:00"}}, {"pk": 38, "model": "roaster.businesshours", "fields": {"business": 10, "created_at": "2013-01-19T08:04:20.206Z", "modified_at": "2013-01-19T08:04:20.206Z", "weekday": 6, "close": "06:00:00", "open": "08:00:00"}}, {"pk": 45, "model": "roaster.businesshours", "fields": {"business": 11, "created_at": "2013-01-19T08:04:20.412Z", "modified_at": "2013-01-19T08:04:20.412Z", "weekday": 6, "close": "07:00:00", "open": "07:00:00"}}, {"pk": 58, "model": "roaster.businesshours", "fields": {"business": 13, "created_at": "2013-01-19T08:04:20.817Z", "modified_at": "2013-01-19T08:04:20.817Z", "weekday": 6, "close": "06:00:00", "open": "07:00:00"}}, {"pk": 65, "model": "roaster.businesshours", "fields": {"business": 17, "created_at": "2013-01-19T08:04:21.544Z", "modified_at": "2013-01-19T08:04:21.544Z", "weekday": 6, "close": "07:00:00", "open": "07:00:00"}}, {"pk": 72, "model": "roaster.businesshours", "fields": {"business": 18, "created_at": "2013-01-19T08:04:21.785Z", "modified_at": "2013-01-19T08:04:21.785Z", "weekday": 6, "close": "07:00:00", "open": "07:00:00"}}, {"pk": 79, "model": "roaster.businesshours", "fields": {"business": 19, "created_at": "2013-01-19T08:04:21.991Z", "modified_at": "2013-01-19T08:04:21.991Z", "weekday": 6, "close": "05:00:00", "open": "12:00:00"}}, {"pk": 91, "model": "roaster.businesshours", "fields": {"business": 25, "created_at": "2013-01-19T08:04:23.161Z", "modified_at": "2013-01-19T08:04:23.161Z", "weekday": 6, "close": "05:00:00", "open": "08:00:00"}}, {"pk": 98, "model": "roaster.businesshours", "fields": {"business": 27, "created_at": "2013-01-19T08:04:23.572Z", "modified_at": "2013-01-19T08:04:23.572Z", "weekday": 6, "close": "08:00:00", "open": "06:30:00"}}, {"pk": 105, "model": "roaster.businesshours", "fields": {"business": 28, "created_at": "2013-01-19T08:04:23.782Z", "modified_at": "2013-01-19T08:04:23.782Z", "weekday": 6, "close": "06:00:00", "open": "07:00:00"}}, {"pk": 129, "model": "roaster.businesshours", "fields": {"business": 33, "created_at": "2013-01-19T08:04:24.780Z", "modified_at": "2013-01-19T08:04:24.780Z", "weekday": 6, "close": "05:00:00", "open": "08:00:00"}}, {"pk": 136, "model": "roaster.businesshours", "fields": {"business": 34, "created_at": "2013-01-19T08:04:24.989Z", "modified_at": "2013-01-19T08:04:24.989Z", "weekday": 6, "close": "03:00:00", "open": "08:00:00"}}, {"pk": 143, "model": "roaster.businesshours", "fields": {"business": 36, "created_at": "2013-01-19T08:04:25.424Z", "modified_at": "2013-01-19T08:04:25.424Z", "weekday": 6, "close": "04:00:00", "open": "08:00:00"}}, {"pk": 159, "model": "roaster.businesshours", "fields": {"business": 39, "created_at": "2013-01-19T08:04:26.032Z", "modified_at": "2013-01-19T08:04:26.032Z", "weekday": 6, "close": "08:00:00", "open": "07:00:00"}}, {"pk": 166, "model": "roaster.businesshours", "fields": {"business": 40, "created_at": "2013-01-19T08:04:26.242Z", "modified_at": "2013-01-19T08:04:26.242Z", "weekday": 6, "close": "05:00:00", "open": "09:00:00"}}, {"pk": 173, "model": "roaster.businesshours", "fields": {"business": 41, "created_at": "2013-01-19T08:04:26.449Z", "modified_at": "2013-01-19T08:04:26.449Z", "weekday": 6, "close": "07:00:00", "open": "07:00:00"}}, {"pk": 1, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 2, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 3, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 4, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 5, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 6, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 7, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 8, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 9, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 10, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 11, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 12, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 13, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 14, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 15, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 16, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 17, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 18, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 19, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 20, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 21, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 22, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 23, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 24, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 25, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 26, "model": "roaster.roaster", "fields": {"cafes": [], "description": "Portland Roasting Coffee", "video_url": "portland roasting coffee", "photo_url": "portland roasting coffee"}}, {"pk": 27, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 28, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "http://vimeo.com/dymaxicon/ristretto", "photo_url": ""}}, {"pk": 29, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 30, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 31, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 32, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 33, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 34, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 35, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 36, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 38, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 37, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 39, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 40, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 41, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 42, "model": "roaster.roaster", "fields": {"cafes": [], "description": "", "video_url": "", "photo_url": ""}}, {"pk": 1, "model": "roaster.roast", "fields": {"active": false, "roaster": 26, "created_at": "2013-01-19T08:04:23.366Z", "modified_at": "2013-01-19T08:04:23.366Z", "name": "Portland Roasting Coffee"}}]
+[
+  {
+    "pk": 1, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Altura Coffee Roasters", 
+      "phone": "(503) 380-6038", 
+      "url": "http://alturacoffeeroasters.com/", 
+      "created_at": "2013-01-19T08:10:04.951Z", 
+      "modified_at": "2013-01-19T08:10:05.123Z", 
+      "lat": null, 
+      "address": "Online Only", 
+      "active": true, 
+      "lng": null, 
+      "slug": "altura-coffee-roasters"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Badbeards Microroastery", 
+      "phone": "(503) 319-0576", 
+      "url": "http://www.badbeardscoffee.com/", 
+      "created_at": "2013-01-19T08:10:05.132Z", 
+      "modified_at": "2013-01-19T08:10:05.311Z", 
+      "lat": "45.464567", 
+      "address": "5508 SW Garden Home Rd.\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.733623", 
+      "slug": "badbeards-microroastery"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Blac Coffee Roasters", 
+      "phone": "", 
+      "url": "http://blaccoffee.com/", 
+      "created_at": "2013-01-19T08:10:05.324Z", 
+      "modified_at": "2013-01-19T08:10:05.472Z", 
+      "lat": null, 
+      "address": "Online Only", 
+      "active": true, 
+      "lng": null, 
+      "slug": "blac-coffee-roasters"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Blue Kangaroo Coffee Roasters", 
+      "phone": "(503) 756-0224", 
+      "url": "www.bluekangaroocoffee.com", 
+      "created_at": "2013-01-19T08:10:05.484Z", 
+      "modified_at": "2013-01-19T08:10:05.660Z", 
+      "lat": "45.467053", 
+      "address": "7901 SE 13th Ave\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.653141", 
+      "slug": "blue-kangaroo-coffee-roasters"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Boyd Coffee Company", 
+      "phone": "(800) 545-4077", 
+      "url": "http://www.boyds.com/", 
+      "created_at": "2013-01-19T08:10:05.689Z", 
+      "modified_at": "2013-01-19T08:10:05.858Z", 
+      "lat": "45.542885", 
+      "address": "19730 NE Sandy Blvd\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.460317", 
+      "slug": "boyd-coffee-company"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Bridgetown Coffee", 
+      "phone": "(503) 224-3330", 
+      "url": "http://bridgetowncoffeeexpress.com/", 
+      "created_at": "2013-01-19T08:10:05.880Z", 
+      "modified_at": "2013-01-19T08:10:06.058Z", 
+      "lat": "45.538873", 
+      "address": "2330 NW 31st Avenue\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.713473", 
+      "slug": "bridgetown-coffee"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Case Study Coffee", 
+      "phone": "(503) 477-8221", 
+      "url": "http://www.casestudycoffee.com/", 
+      "created_at": "2013-01-19T08:10:06.070Z", 
+      "modified_at": "2013-01-19T08:10:06.250Z", 
+      "lat": "45.540972", 
+      "address": "5347 Northeast Sandy Blvd.\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.608022", 
+      "slug": "case-study-coffee"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Cellar Door Coffee Roasters", 
+      "phone": "(503) 234-7155", 
+      "url": "http://www.cellardoorcoffee.com", 
+      "created_at": "2013-01-19T08:10:06.280Z", 
+      "modified_at": "2013-01-19T08:10:06.453Z", 
+      "lat": "45.508585", 
+      "address": "2001 SE 11th Ave\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.654815", 
+      "slug": "cellar-door-coffee-roasters"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Clive Coffee", 
+      "phone": "(800) 520-2890", 
+      "url": "http://www.clivecoffee.com/", 
+      "created_at": "2013-01-19T08:10:06.482Z", 
+      "modified_at": "2013-01-19T08:10:06.665Z", 
+      "lat": "45.515327", 
+      "address": "79 Southeast Taylor Street #100\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.665125", 
+      "slug": "clive-coffee"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Coava Coffee Roasters", 
+      "phone": "(503) 894-8134", 
+      "url": "http://coavacoffee.com", 
+      "created_at": "2013-01-19T08:10:06.690Z", 
+      "modified_at": "2013-01-19T08:10:06.862Z", 
+      "lat": "45.513622", 
+      "address": "1300 SE Grand Ave\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.660454", 
+      "slug": "coava-coffee-roasters"
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Coffee Bean Internation's Public Domain Caf\u00e9", 
+      "phone": "(503) 243-6374", 
+      "url": "http://www.publicdomaincoffee.com/", 
+      "created_at": "2013-01-19T08:10:06.891Z", 
+      "modified_at": "2013-01-19T08:10:07.062Z", 
+      "lat": "45.519967", 
+      "address": "603 Southwest Broadway\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.679468", 
+      "slug": "coffee-bean-internations-public-domain-cafe"
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Courier Coffee Roasters", 
+      "phone": "(503) 545-6444", 
+      "url": "http://www.couriercoffeeroasters.com", 
+      "created_at": "2013-01-19T08:10:07.090Z", 
+      "modified_at": "2013-01-19T08:10:07.263Z", 
+      "lat": "45.522534", 
+      "address": "923 SW Oak\nPortland Oregon", 
+      "active": true, 
+      "lng": "-122.679663", 
+      "slug": "courier-coffee-roasters"
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Extracto", 
+      "phone": "(503) 281-1764", 
+      "url": "http://extractocoffee.com/", 
+      "created_at": "2013-01-19T08:10:07.290Z", 
+      "modified_at": "2013-01-19T08:10:07.463Z", 
+      "lat": "45.562929", 
+      "address": "2921 Northeast Killingsworth St.\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.635377", 
+      "slug": "extracto"
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Greyhound Coffee Roasters", 
+      "phone": "(971) 506-0955", 
+      "url": "http://www.greyhoundcoffeeroasters.com/", 
+      "created_at": "2013-01-19T08:10:07.494Z", 
+      "modified_at": "2013-01-19T08:10:07.645Z", 
+      "lat": null, 
+      "address": "Online Only", 
+      "active": true, 
+      "lng": null, 
+      "slug": "greyhound-coffee-roasters"
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Happy Cup Coffee Company", 
+      "phone": "(503) 238-4604", 
+      "url": "http://happycup.com", 
+      "created_at": "2013-01-19T08:10:07.659Z", 
+      "modified_at": "2013-01-19T08:10:07.832Z", 
+      "lat": "45.529412", 
+      "address": "2850 NE Sandy Blvd.\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.636272", 
+      "slug": "happy-cup-coffee-company"
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Hawthorne Coffee Merchants", 
+      "phone": "(503) 445-8886", 
+      "url": "http://www.hawthornecoffee.com", 
+      "created_at": "2013-01-19T08:10:07.844Z", 
+      "modified_at": "2013-01-19T08:10:07.994Z", 
+      "lat": null, 
+      "address": "Online Only", 
+      "active": true, 
+      "lng": null, 
+      "slug": "hawthorne-coffee-merchants"
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Heart Roasters", 
+      "phone": "(503) 206-6602", 
+      "url": "http://www.heartroasters.com", 
+      "created_at": "2013-01-19T08:10:08.006Z", 
+      "modified_at": "2013-01-19T08:10:08.182Z", 
+      "lat": "45.522985", 
+      "address": "2211 E. Burnside\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.643231", 
+      "slug": "heart-roasters"
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "K&F Coffee Roasters", 
+      "phone": "(503) 234-7788", 
+      "url": "http://kfcoffee.com", 
+      "created_at": "2013-01-19T08:10:08.211Z", 
+      "modified_at": "2013-01-19T08:10:08.410Z", 
+      "lat": "45.503382", 
+      "address": "Retail Location: Clinton Street Coffeehouse\n2706 SE 26th Ave\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.639541", 
+      "slug": "kf-coffee-roasters"
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Kobos Coffee", 
+      "phone": "(503) 222-2181", 
+      "url": "http://www.koboscoffee.com", 
+      "created_at": "2013-01-19T08:10:08.438Z", 
+      "modified_at": "2013-01-19T08:10:08.608Z", 
+      "lat": "45.537116", 
+      "address": "2355 NW Vaughn St.\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.69996", 
+      "slug": "kobos-coffee"
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Marigold Coffee", 
+      "phone": "(503) 913-6537", 
+      "url": "http://marigoldcoffee.com", 
+      "created_at": "2013-01-19T08:10:08.637Z", 
+      "modified_at": "2013-01-19T08:10:08.819Z", 
+      "lat": "45.498909", 
+      "address": "3315 SE 19th Ave. Suite E\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.646768", 
+      "slug": "marigold-coffee"
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "McMenamins", 
+      "phone": "(503) 288-9447", 
+      "url": "http://www.mcmenamins.com/406-mcmenamins-coffee-roasters-home", 
+      "created_at": "2013-01-19T08:10:08.831Z", 
+      "modified_at": "2013-01-19T08:10:09.007Z", 
+      "lat": "45.542318", 
+      "address": "421 N.E. Knott St.\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.660991", 
+      "slug": "mcmenamins"
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Mudd Works Roastery", 
+      "phone": "(503) 235-6833", 
+      "url": "http://www.muddworks.com", 
+      "created_at": "2013-01-19T08:10:09.020Z", 
+      "modified_at": "2013-01-19T08:10:09.193Z", 
+      "lat": "45.521728", 
+      "address": "537 SE Ash St. #108\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.660014", 
+      "slug": "mudd-works-roastery"
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Night Owl Roasters", 
+      "phone": "(503) 502-8207", 
+      "url": "http://nightowlroasters.com", 
+      "created_at": "2013-01-19T08:10:09.217Z", 
+      "modified_at": "2013-01-19T08:10:09.388Z", 
+      "lat": "45.571054", 
+      "address": "6633 Northeast 25th Ave.\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.640588", 
+      "slug": "night-owl-roasters"
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Nossa Famillia", 
+      "phone": "(503) 719-6605", 
+      "url": "http://www.familyroast.com", 
+      "created_at": "2013-01-19T08:10:09.401Z", 
+      "modified_at": "2013-01-19T08:10:09.586Z", 
+      "lat": "45.528695", 
+      "address": "1319 NW Johnson St.\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.684863", 
+      "slug": "nossa-famillia"
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Oblique Coffee Roasters", 
+      "phone": "(503) 228-7883", 
+      "url": "http://obliquecoffeeroasters.com", 
+      "created_at": "2013-01-19T08:10:09.596Z", 
+      "modified_at": "2013-01-19T08:10:09.766Z", 
+      "lat": "45.519526", 
+      "address": "3039 SE Stark Street\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.634082", 
+      "slug": "oblique-coffee-roasters"
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Portland Roasting Coffee", 
+      "phone": "", 
+      "url": "portland roasting coffee", 
+      "created_at": "2013-01-19T08:10:09.797Z", 
+      "modified_at": "2013-01-19T08:10:09.982Z", 
+      "lat": null, 
+      "address": "Portland Roasting Coffee", 
+      "active": true, 
+      "lng": null, 
+      "slug": "portland-roasting-coffee"
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Red e", 
+      "phone": "(503) 998-1387", 
+      "url": "http://theredecafe.com", 
+      "created_at": "2013-01-19T08:10:09.998Z", 
+      "modified_at": "2013-01-19T08:10:10.169Z", 
+      "lat": "45.562601", 
+      "address": "1006 North Killingsworth St.\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.67722", 
+      "slug": "red-e"
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Ristretto Roasters", 
+      "phone": "(503) 288-8667", 
+      "url": "http://ristrettoroasters.com", 
+      "created_at": "2013-01-19T08:10:10.200Z", 
+      "modified_at": "2013-01-19T08:10:10.369Z", 
+      "lat": "45.550345", 
+      "address": "3808 North Williams Ave.\nPortland, Oregon ", 
+      "active": true, 
+      "lng": "-122.666584", 
+      "slug": "ristretto-roasters"
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Roseline Coffee Roasters", 
+      "phone": "", 
+      "url": "http://roselinecoffee.myshopify.com", 
+      "created_at": "2013-01-19T08:10:10.399Z", 
+      "modified_at": "2013-01-19T08:10:10.571Z", 
+      "lat": "45.516651", 
+      "address": "800 SE 10th Ave.\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.655574", 
+      "slug": "roseline-coffee-roasters"
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Schondecken Roasters", 
+      "phone": "(503) 236-8234", 
+      "url": "", 
+      "created_at": "2013-01-19T08:10:10.583Z", 
+      "modified_at": "2013-01-19T08:10:10.754Z", 
+      "lat": "45.474068", 
+      "address": "6720 Southeast 16th Ave.\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.649841", 
+      "slug": "schondecken-roasters"
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Seven Virtues", 
+      "phone": "(503) 236-7763", 
+      "url": "http://www.sevenvirtuespdx.com/", 
+      "created_at": "2013-01-19T08:10:10.782Z", 
+      "modified_at": "2013-01-19T08:10:10.949Z", 
+      "lat": "45.526481", 
+      "address": "5936 NE Glisan Street\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.602479", 
+      "slug": "seven-virtues"
+    }
+  }, 
+  {
+    "pk": 32, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Spella Caffe", 
+      "phone": "(503) 752-0264", 
+      "url": "http://www.spellacaffe.com/", 
+      "created_at": "2013-01-19T08:10:10.977Z", 
+      "modified_at": "2013-01-19T08:10:11.155Z", 
+      "lat": "45.519845", 
+      "address": "520 Southwest 5th Ave.\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.676849", 
+      "slug": "spella-caffe"
+    }
+  }, 
+  {
+    "pk": 33, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Spielman Coffee Roasters", 
+      "phone": "(503) 467-0600", 
+      "url": "", 
+      "created_at": "2013-01-19T08:10:11.179Z", 
+      "modified_at": "2013-01-19T08:10:11.350Z", 
+      "lat": "45.504744", 
+      "address": "2128 Southeast Division St.\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.6438", 
+      "slug": "spielman-coffee-roasters"
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Spunky Monkey", 
+      "phone": "(503) 234-1600", 
+      "url": "http://monkeyroasters.com/", 
+      "created_at": "2013-01-19T08:10:11.381Z", 
+      "modified_at": "2013-01-19T08:10:11.552Z", 
+      "lat": "45.522983", 
+      "address": "35 NE 20th Ave. \nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.645354", 
+      "slug": "spunky-monkey"
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "St. Johns Coffee Roasters", 
+      "phone": "(503) 445-2249", 
+      "url": "http://stjohnscoffee.com/", 
+      "created_at": "2013-01-19T08:10:11.583Z", 
+      "modified_at": "2013-01-19T08:10:11.752Z", 
+      "lat": "45.589352", 
+      "address": "7304 N Leavitt Ave.\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.754118", 
+      "slug": "st-johns-coffee-roasters"
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Sterling Coffee Roasters", 
+      "phone": "", 
+      "url": "http://sterlingcoffeeroasters.com", 
+      "created_at": "2013-01-19T08:10:11.764Z", 
+      "modified_at": "2013-01-19T08:10:11.932Z", 
+      "lat": "45.525878", 
+      "address": "417 NW 21st Ave.\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.694647", 
+      "slug": "sterling-coffee-roasters"
+    }
+  }, 
+  {
+    "pk": 38, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Stumptown Coffee Roasters", 
+      "phone": "(503) 467-4123", 
+      "url": "http://stumptowncoffee.com/", 
+      "created_at": "2013-01-19T08:10:12.166Z", 
+      "modified_at": "2013-01-19T08:10:12.337Z", 
+      "lat": "45.514303", 
+      "address": "100 SE Salmon Street\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.664607", 
+      "slug": "stumptown-coffee-roasters"
+    }
+  }, 
+  {
+    "pk": 37, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Trailhead Coffee Roasters", 
+      "phone": "", 
+      "url": "http://www.trailheadcoffeeroasters.com/home_page.html", 
+      "created_at": "2013-01-19T08:10:11.966Z", 
+      "modified_at": "2013-01-19T08:10:12.143Z", 
+      "lat": "45.523261", 
+      "address": "1847 E Burnside St.\nPortland, Oregon ", 
+      "active": true, 
+      "lng": "-122.646914", 
+      "slug": "trailhead-coffee-roasters"
+    }
+  }, 
+  {
+    "pk": 39, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Urban Grind", 
+      "phone": "(503) 546-5919", 
+      "url": "", 
+      "created_at": "2013-01-19T08:10:12.363Z", 
+      "modified_at": "2013-01-19T08:10:12.540Z", 
+      "lat": "45.529456", 
+      "address": "911 Northwest 14th Ave\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.685506", 
+      "slug": "urban-grind"
+    }
+  }, 
+  {
+    "pk": 40, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Water Avenue Coffee Company", 
+      "phone": "(503) 808-7083", 
+      "url": "http://www.wateravenuecoffee.com/", 
+      "created_at": "2013-01-19T08:10:12.571Z", 
+      "modified_at": "2013-01-19T08:10:12.744Z", 
+      "lat": "45.515399", 
+      "address": "1028 Southeast Water Ave.\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.665659", 
+      "slug": "water-avenue-coffee-company"
+    }
+  }, 
+  {
+    "pk": 41, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "World Cup Coffee", 
+      "phone": "(503) 228-4152", 
+      "url": "http://www.worldcupcoffee.com/", 
+      "created_at": "2013-01-19T08:10:12.776Z", 
+      "modified_at": "2013-01-19T08:10:12.953Z", 
+      "lat": "45.526185", 
+      "address": "1740 Northwest Glisan St.\nPortland, Oregon", 
+      "active": true, 
+      "lng": "-122.689029", 
+      "slug": "world-cup-coffee"
+    }
+  }, 
+  {
+    "pk": 42, 
+    "model": "roaster.business", 
+    "fields": {
+      "name": "Zbeans", 
+      "phone": "", 
+      "url": "http://zbeanz.com/", 
+      "created_at": "2013-01-19T08:10:12.986Z", 
+      "modified_at": "2013-01-19T08:10:13.138Z", 
+      "lat": null, 
+      "address": "Online Only", 
+      "active": true, 
+      "lng": null, 
+      "slug": "zbeans"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 4, 
+      "created_at": "2013-01-19T08:10:05.671Z", 
+      "modified_at": "2013-01-19T08:10:05.671Z", 
+      "weekday": 0, 
+      "close": "06:00:00", 
+      "open": "06:30:00"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 5, 
+      "created_at": "2013-01-19T08:10:05.868Z", 
+      "modified_at": "2013-01-19T08:10:05.868Z", 
+      "weekday": 0, 
+      "close": "04:00:00", 
+      "open": "07:30:00"
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 7, 
+      "created_at": "2013-01-19T08:10:06.262Z", 
+      "modified_at": "2013-01-19T08:10:06.262Z", 
+      "weekday": 0, 
+      "close": "05:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 8, 
+      "created_at": "2013-01-19T08:10:06.465Z", 
+      "modified_at": "2013-01-19T08:10:06.465Z", 
+      "weekday": 0, 
+      "close": "07:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 32, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 10, 
+      "created_at": "2013-01-19T08:10:06.874Z", 
+      "modified_at": "2013-01-19T08:10:06.874Z", 
+      "weekday": 0, 
+      "close": "06:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 39, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 11, 
+      "created_at": "2013-01-19T08:10:07.074Z", 
+      "modified_at": "2013-01-19T08:10:07.074Z", 
+      "weekday": 0, 
+      "close": "07:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 46, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 12, 
+      "created_at": "2013-01-19T08:10:07.275Z", 
+      "modified_at": "2013-01-19T08:10:07.275Z", 
+      "weekday": 0, 
+      "close": "05:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 52, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 13, 
+      "created_at": "2013-01-19T08:10:07.475Z", 
+      "modified_at": "2013-01-19T08:10:07.475Z", 
+      "weekday": 0, 
+      "close": "06:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 59, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 17, 
+      "created_at": "2013-01-19T08:10:08.193Z", 
+      "modified_at": "2013-01-19T08:10:08.194Z", 
+      "weekday": 0, 
+      "close": "07:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 66, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 18, 
+      "created_at": "2013-01-19T08:10:08.419Z", 
+      "modified_at": "2013-01-19T08:10:08.419Z", 
+      "weekday": 0, 
+      "close": "08:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 73, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 19, 
+      "created_at": "2013-01-19T08:10:08.618Z", 
+      "modified_at": "2013-01-19T08:10:08.618Z", 
+      "weekday": 0, 
+      "close": "06:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 80, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 22, 
+      "created_at": "2013-01-19T08:10:09.204Z", 
+      "modified_at": "2013-01-19T08:10:09.204Z", 
+      "weekday": 0, 
+      "close": "03:00:00", 
+      "open": "07:30:00"
+    }
+  }, 
+  {
+    "pk": 85, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 25, 
+      "created_at": "2013-01-19T08:10:09.777Z", 
+      "modified_at": "2013-01-19T08:10:09.777Z", 
+      "weekday": 0, 
+      "close": "05:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 92, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 27, 
+      "created_at": "2013-01-19T08:10:10.180Z", 
+      "modified_at": "2013-01-19T08:10:10.180Z", 
+      "weekday": 0, 
+      "close": "08:00:00", 
+      "open": "06:30:00"
+    }
+  }, 
+  {
+    "pk": 99, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 28, 
+      "created_at": "2013-01-19T08:10:10.381Z", 
+      "modified_at": "2013-01-19T08:10:10.381Z", 
+      "weekday": 0, 
+      "close": "06:00:00", 
+      "open": "06:30:00"
+    }
+  }, 
+  {
+    "pk": 106, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 30, 
+      "created_at": "2013-01-19T08:10:10.766Z", 
+      "modified_at": "2013-01-19T08:10:10.766Z", 
+      "weekday": 0, 
+      "close": "05:00:00", 
+      "open": "09:00:00"
+    }
+  }, 
+  {
+    "pk": 112, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 31, 
+      "created_at": "2013-01-19T08:10:10.961Z", 
+      "modified_at": "2013-01-19T08:10:10.961Z", 
+      "weekday": 0, 
+      "close": "06:00:00", 
+      "open": "07:30:00"
+    }
+  }, 
+  {
+    "pk": 118, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 32, 
+      "created_at": "2013-01-19T08:10:11.167Z", 
+      "modified_at": "2013-01-19T08:10:11.167Z", 
+      "weekday": 0, 
+      "close": "03:30:00", 
+      "open": "07:30:00"
+    }
+  }, 
+  {
+    "pk": 123, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 33, 
+      "created_at": "2013-01-19T08:10:11.362Z", 
+      "modified_at": "2013-01-19T08:10:11.362Z", 
+      "weekday": 0, 
+      "close": "05:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 130, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 34, 
+      "created_at": "2013-01-19T08:10:11.563Z", 
+      "modified_at": "2013-01-19T08:10:11.564Z", 
+      "weekday": 0, 
+      "close": "04:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 137, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 36, 
+      "created_at": "2013-01-19T08:10:11.944Z", 
+      "modified_at": "2013-01-19T08:10:11.944Z", 
+      "weekday": 0, 
+      "close": "04:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 148, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 38, 
+      "created_at": "2013-01-19T08:10:12.348Z", 
+      "modified_at": "2013-01-19T08:10:12.348Z", 
+      "weekday": 0, 
+      "close": "04:00:00", 
+      "open": "10:00:00"
+    }
+  }, 
+  {
+    "pk": 153, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 39, 
+      "created_at": "2013-01-19T08:10:12.551Z", 
+      "modified_at": "2013-01-19T08:10:12.551Z", 
+      "weekday": 0, 
+      "close": "08:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 160, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 40, 
+      "created_at": "2013-01-19T08:10:12.756Z", 
+      "modified_at": "2013-01-19T08:10:12.756Z", 
+      "weekday": 0, 
+      "close": "05:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 167, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 41, 
+      "created_at": "2013-01-19T08:10:12.965Z", 
+      "modified_at": "2013-01-19T08:10:12.965Z", 
+      "weekday": 0, 
+      "close": "08:00:00", 
+      "open": "06:30:00"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 4, 
+      "created_at": "2013-01-19T08:10:05.673Z", 
+      "modified_at": "2013-01-19T08:10:05.673Z", 
+      "weekday": 1, 
+      "close": "06:00:00", 
+      "open": "06:30:00"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 5, 
+      "created_at": "2013-01-19T08:10:05.870Z", 
+      "modified_at": "2013-01-19T08:10:05.871Z", 
+      "weekday": 1, 
+      "close": "04:00:00", 
+      "open": "07:30:00"
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 7, 
+      "created_at": "2013-01-19T08:10:06.264Z", 
+      "modified_at": "2013-01-19T08:10:06.264Z", 
+      "weekday": 1, 
+      "close": "05:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 8, 
+      "created_at": "2013-01-19T08:10:06.467Z", 
+      "modified_at": "2013-01-19T08:10:06.467Z", 
+      "weekday": 1, 
+      "close": "07:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 9, 
+      "created_at": "2013-01-19T08:10:06.676Z", 
+      "modified_at": "2013-01-19T08:10:06.676Z", 
+      "weekday": 1, 
+      "close": "06:00:00", 
+      "open": "12:00:00"
+    }
+  }, 
+  {
+    "pk": 33, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 10, 
+      "created_at": "2013-01-19T08:10:06.876Z", 
+      "modified_at": "2013-01-19T08:10:06.876Z", 
+      "weekday": 1, 
+      "close": "06:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 40, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 11, 
+      "created_at": "2013-01-19T08:10:07.076Z", 
+      "modified_at": "2013-01-19T08:10:07.076Z", 
+      "weekday": 1, 
+      "close": "07:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 47, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 12, 
+      "created_at": "2013-01-19T08:10:07.277Z", 
+      "modified_at": "2013-01-19T08:10:07.277Z", 
+      "weekday": 1, 
+      "close": "05:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 53, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 13, 
+      "created_at": "2013-01-19T08:10:07.477Z", 
+      "modified_at": "2013-01-19T08:10:07.477Z", 
+      "weekday": 1, 
+      "close": "06:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 60, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 17, 
+      "created_at": "2013-01-19T08:10:08.196Z", 
+      "modified_at": "2013-01-19T08:10:08.196Z", 
+      "weekday": 1, 
+      "close": "07:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 67, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 18, 
+      "created_at": "2013-01-19T08:10:08.422Z", 
+      "modified_at": "2013-01-19T08:10:08.422Z", 
+      "weekday": 1, 
+      "close": "08:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 74, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 19, 
+      "created_at": "2013-01-19T08:10:08.621Z", 
+      "modified_at": "2013-01-19T08:10:08.621Z", 
+      "weekday": 1, 
+      "close": "06:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 81, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 22, 
+      "created_at": "2013-01-19T08:10:09.207Z", 
+      "modified_at": "2013-01-19T08:10:09.207Z", 
+      "weekday": 1, 
+      "close": "03:00:00", 
+      "open": "07:30:00"
+    }
+  }, 
+  {
+    "pk": 86, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 25, 
+      "created_at": "2013-01-19T08:10:09.780Z", 
+      "modified_at": "2013-01-19T08:10:09.780Z", 
+      "weekday": 1, 
+      "close": "05:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 93, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 27, 
+      "created_at": "2013-01-19T08:10:10.183Z", 
+      "modified_at": "2013-01-19T08:10:10.183Z", 
+      "weekday": 1, 
+      "close": "08:00:00", 
+      "open": "06:30:00"
+    }
+  }, 
+  {
+    "pk": 100, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 28, 
+      "created_at": "2013-01-19T08:10:10.384Z", 
+      "modified_at": "2013-01-19T08:10:10.384Z", 
+      "weekday": 1, 
+      "close": "06:00:00", 
+      "open": "06:30:00"
+    }
+  }, 
+  {
+    "pk": 107, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 30, 
+      "created_at": "2013-01-19T08:10:10.768Z", 
+      "modified_at": "2013-01-19T08:10:10.768Z", 
+      "weekday": 1, 
+      "close": "05:00:00", 
+      "open": "09:00:00"
+    }
+  }, 
+  {
+    "pk": 113, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 31, 
+      "created_at": "2013-01-19T08:10:10.963Z", 
+      "modified_at": "2013-01-19T08:10:10.963Z", 
+      "weekday": 1, 
+      "close": "06:00:00", 
+      "open": "07:30:00"
+    }
+  }, 
+  {
+    "pk": 119, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 32, 
+      "created_at": "2013-01-19T08:10:11.169Z", 
+      "modified_at": "2013-01-19T08:10:11.169Z", 
+      "weekday": 1, 
+      "close": "03:30:00", 
+      "open": "07:30:00"
+    }
+  }, 
+  {
+    "pk": 124, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 33, 
+      "created_at": "2013-01-19T08:10:11.364Z", 
+      "modified_at": "2013-01-19T08:10:11.364Z", 
+      "weekday": 1, 
+      "close": "05:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 131, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 34, 
+      "created_at": "2013-01-19T08:10:11.566Z", 
+      "modified_at": "2013-01-19T08:10:11.566Z", 
+      "weekday": 1, 
+      "close": "04:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 138, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 36, 
+      "created_at": "2013-01-19T08:10:11.946Z", 
+      "modified_at": "2013-01-19T08:10:11.946Z", 
+      "weekday": 1, 
+      "close": "04:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 144, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 37, 
+      "created_at": "2013-01-19T08:10:12.154Z", 
+      "modified_at": "2013-01-19T08:10:12.154Z", 
+      "weekday": 1, 
+      "close": "02:00:00", 
+      "open": "09:00:00"
+    }
+  }, 
+  {
+    "pk": 149, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 38, 
+      "created_at": "2013-01-19T08:10:12.350Z", 
+      "modified_at": "2013-01-19T08:10:12.350Z", 
+      "weekday": 1, 
+      "close": "04:00:00", 
+      "open": "10:00:00"
+    }
+  }, 
+  {
+    "pk": 154, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 39, 
+      "created_at": "2013-01-19T08:10:12.554Z", 
+      "modified_at": "2013-01-19T08:10:12.554Z", 
+      "weekday": 1, 
+      "close": "08:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 161, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 40, 
+      "created_at": "2013-01-19T08:10:12.759Z", 
+      "modified_at": "2013-01-19T08:10:12.759Z", 
+      "weekday": 1, 
+      "close": "05:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 168, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 41, 
+      "created_at": "2013-01-19T08:10:12.967Z", 
+      "modified_at": "2013-01-19T08:10:12.967Z", 
+      "weekday": 1, 
+      "close": "08:00:00", 
+      "open": "06:30:00"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 4, 
+      "created_at": "2013-01-19T08:10:05.676Z", 
+      "modified_at": "2013-01-19T08:10:05.676Z", 
+      "weekday": 2, 
+      "close": "06:00:00", 
+      "open": "06:30:00"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 5, 
+      "created_at": "2013-01-19T08:10:05.873Z", 
+      "modified_at": "2013-01-19T08:10:05.873Z", 
+      "weekday": 2, 
+      "close": "04:00:00", 
+      "open": "07:30:00"
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 7, 
+      "created_at": "2013-01-19T08:10:06.267Z", 
+      "modified_at": "2013-01-19T08:10:06.267Z", 
+      "weekday": 2, 
+      "close": "05:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 8, 
+      "created_at": "2013-01-19T08:10:06.469Z", 
+      "modified_at": "2013-01-19T08:10:06.469Z", 
+      "weekday": 2, 
+      "close": "07:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 9, 
+      "created_at": "2013-01-19T08:10:06.679Z", 
+      "modified_at": "2013-01-19T08:10:06.679Z", 
+      "weekday": 2, 
+      "close": "06:00:00", 
+      "open": "12:00:00"
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 10, 
+      "created_at": "2013-01-19T08:10:06.879Z", 
+      "modified_at": "2013-01-19T08:10:06.879Z", 
+      "weekday": 2, 
+      "close": "06:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 41, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 11, 
+      "created_at": "2013-01-19T08:10:07.078Z", 
+      "modified_at": "2013-01-19T08:10:07.078Z", 
+      "weekday": 2, 
+      "close": "07:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 48, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 12, 
+      "created_at": "2013-01-19T08:10:07.280Z", 
+      "modified_at": "2013-01-19T08:10:07.280Z", 
+      "weekday": 2, 
+      "close": "05:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 54, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 13, 
+      "created_at": "2013-01-19T08:10:07.480Z", 
+      "modified_at": "2013-01-19T08:10:07.480Z", 
+      "weekday": 2, 
+      "close": "06:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 61, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 17, 
+      "created_at": "2013-01-19T08:10:08.198Z", 
+      "modified_at": "2013-01-19T08:10:08.198Z", 
+      "weekday": 2, 
+      "close": "07:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 68, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 18, 
+      "created_at": "2013-01-19T08:10:08.424Z", 
+      "modified_at": "2013-01-19T08:10:08.425Z", 
+      "weekday": 2, 
+      "close": "08:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 75, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 19, 
+      "created_at": "2013-01-19T08:10:08.623Z", 
+      "modified_at": "2013-01-19T08:10:08.623Z", 
+      "weekday": 2, 
+      "close": "06:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 82, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 22, 
+      "created_at": "2013-01-19T08:10:09.209Z", 
+      "modified_at": "2013-01-19T08:10:09.209Z", 
+      "weekday": 2, 
+      "close": "03:00:00", 
+      "open": "07:30:00"
+    }
+  }, 
+  {
+    "pk": 87, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 25, 
+      "created_at": "2013-01-19T08:10:09.783Z", 
+      "modified_at": "2013-01-19T08:10:09.783Z", 
+      "weekday": 2, 
+      "close": "05:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 94, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 27, 
+      "created_at": "2013-01-19T08:10:10.185Z", 
+      "modified_at": "2013-01-19T08:10:10.185Z", 
+      "weekday": 2, 
+      "close": "08:00:00", 
+      "open": "06:30:00"
+    }
+  }, 
+  {
+    "pk": 101, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 28, 
+      "created_at": "2013-01-19T08:10:10.386Z", 
+      "modified_at": "2013-01-19T08:10:10.386Z", 
+      "weekday": 2, 
+      "close": "06:00:00", 
+      "open": "06:30:00"
+    }
+  }, 
+  {
+    "pk": 108, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 30, 
+      "created_at": "2013-01-19T08:10:10.771Z", 
+      "modified_at": "2013-01-19T08:10:10.771Z", 
+      "weekday": 2, 
+      "close": "05:00:00", 
+      "open": "09:00:00"
+    }
+  }, 
+  {
+    "pk": 114, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 31, 
+      "created_at": "2013-01-19T08:10:10.966Z", 
+      "modified_at": "2013-01-19T08:10:10.966Z", 
+      "weekday": 2, 
+      "close": "06:00:00", 
+      "open": "07:30:00"
+    }
+  }, 
+  {
+    "pk": 120, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 32, 
+      "created_at": "2013-01-19T08:10:11.171Z", 
+      "modified_at": "2013-01-19T08:10:11.171Z", 
+      "weekday": 2, 
+      "close": "03:30:00", 
+      "open": "07:30:00"
+    }
+  }, 
+  {
+    "pk": 125, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 33, 
+      "created_at": "2013-01-19T08:10:11.367Z", 
+      "modified_at": "2013-01-19T08:10:11.367Z", 
+      "weekday": 2, 
+      "close": "05:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 132, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 34, 
+      "created_at": "2013-01-19T08:10:11.568Z", 
+      "modified_at": "2013-01-19T08:10:11.568Z", 
+      "weekday": 2, 
+      "close": "04:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 139, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 36, 
+      "created_at": "2013-01-19T08:10:11.950Z", 
+      "modified_at": "2013-01-19T08:10:11.950Z", 
+      "weekday": 2, 
+      "close": "04:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 145, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 37, 
+      "created_at": "2013-01-19T08:10:12.157Z", 
+      "modified_at": "2013-01-19T08:10:12.157Z", 
+      "weekday": 2, 
+      "close": "02:00:00", 
+      "open": "09:00:00"
+    }
+  }, 
+  {
+    "pk": 150, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 38, 
+      "created_at": "2013-01-19T08:10:12.353Z", 
+      "modified_at": "2013-01-19T08:10:12.353Z", 
+      "weekday": 2, 
+      "close": "04:00:00", 
+      "open": "10:00:00"
+    }
+  }, 
+  {
+    "pk": 155, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 39, 
+      "created_at": "2013-01-19T08:10:12.557Z", 
+      "modified_at": "2013-01-19T08:10:12.557Z", 
+      "weekday": 2, 
+      "close": "08:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 162, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 40, 
+      "created_at": "2013-01-19T08:10:12.762Z", 
+      "modified_at": "2013-01-19T08:10:12.762Z", 
+      "weekday": 2, 
+      "close": "05:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 169, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 41, 
+      "created_at": "2013-01-19T08:10:12.970Z", 
+      "modified_at": "2013-01-19T08:10:12.970Z", 
+      "weekday": 2, 
+      "close": "08:00:00", 
+      "open": "06:30:00"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 4, 
+      "created_at": "2013-01-19T08:10:05.678Z", 
+      "modified_at": "2013-01-19T08:10:05.678Z", 
+      "weekday": 3, 
+      "close": "06:00:00", 
+      "open": "06:30:00"
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 5, 
+      "created_at": "2013-01-19T08:10:05.875Z", 
+      "modified_at": "2013-01-19T08:10:05.875Z", 
+      "weekday": 3, 
+      "close": "04:00:00", 
+      "open": "07:30:00"
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 7, 
+      "created_at": "2013-01-19T08:10:06.269Z", 
+      "modified_at": "2013-01-19T08:10:06.269Z", 
+      "weekday": 3, 
+      "close": "05:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 8, 
+      "created_at": "2013-01-19T08:10:06.471Z", 
+      "modified_at": "2013-01-19T08:10:06.471Z", 
+      "weekday": 3, 
+      "close": "07:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 9, 
+      "created_at": "2013-01-19T08:10:06.681Z", 
+      "modified_at": "2013-01-19T08:10:06.681Z", 
+      "weekday": 3, 
+      "close": "06:00:00", 
+      "open": "12:00:00"
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 10, 
+      "created_at": "2013-01-19T08:10:06.881Z", 
+      "modified_at": "2013-01-19T08:10:06.881Z", 
+      "weekday": 3, 
+      "close": "06:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 42, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 11, 
+      "created_at": "2013-01-19T08:10:07.080Z", 
+      "modified_at": "2013-01-19T08:10:07.080Z", 
+      "weekday": 3, 
+      "close": "07:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 49, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 12, 
+      "created_at": "2013-01-19T08:10:07.282Z", 
+      "modified_at": "2013-01-19T08:10:07.282Z", 
+      "weekday": 3, 
+      "close": "05:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 55, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 13, 
+      "created_at": "2013-01-19T08:10:07.482Z", 
+      "modified_at": "2013-01-19T08:10:07.482Z", 
+      "weekday": 3, 
+      "close": "06:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 62, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 17, 
+      "created_at": "2013-01-19T08:10:08.201Z", 
+      "modified_at": "2013-01-19T08:10:08.201Z", 
+      "weekday": 3, 
+      "close": "07:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 69, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 18, 
+      "created_at": "2013-01-19T08:10:08.427Z", 
+      "modified_at": "2013-01-19T08:10:08.427Z", 
+      "weekday": 3, 
+      "close": "08:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 76, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 19, 
+      "created_at": "2013-01-19T08:10:08.626Z", 
+      "modified_at": "2013-01-19T08:10:08.626Z", 
+      "weekday": 3, 
+      "close": "06:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 83, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 22, 
+      "created_at": "2013-01-19T08:10:09.212Z", 
+      "modified_at": "2013-01-19T08:10:09.212Z", 
+      "weekday": 3, 
+      "close": "03:00:00", 
+      "open": "07:30:00"
+    }
+  }, 
+  {
+    "pk": 88, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 25, 
+      "created_at": "2013-01-19T08:10:09.785Z", 
+      "modified_at": "2013-01-19T08:10:09.785Z", 
+      "weekday": 3, 
+      "close": "05:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 95, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 27, 
+      "created_at": "2013-01-19T08:10:10.188Z", 
+      "modified_at": "2013-01-19T08:10:10.188Z", 
+      "weekday": 3, 
+      "close": "08:00:00", 
+      "open": "06:30:00"
+    }
+  }, 
+  {
+    "pk": 102, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 28, 
+      "created_at": "2013-01-19T08:10:10.388Z", 
+      "modified_at": "2013-01-19T08:10:10.388Z", 
+      "weekday": 3, 
+      "close": "06:00:00", 
+      "open": "06:30:00"
+    }
+  }, 
+  {
+    "pk": 109, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 30, 
+      "created_at": "2013-01-19T08:10:10.773Z", 
+      "modified_at": "2013-01-19T08:10:10.773Z", 
+      "weekday": 3, 
+      "close": "05:00:00", 
+      "open": "09:00:00"
+    }
+  }, 
+  {
+    "pk": 115, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 31, 
+      "created_at": "2013-01-19T08:10:10.968Z", 
+      "modified_at": "2013-01-19T08:10:10.968Z", 
+      "weekday": 3, 
+      "close": "06:00:00", 
+      "open": "07:30:00"
+    }
+  }, 
+  {
+    "pk": 121, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 32, 
+      "created_at": "2013-01-19T08:10:11.173Z", 
+      "modified_at": "2013-01-19T08:10:11.173Z", 
+      "weekday": 3, 
+      "close": "03:30:00", 
+      "open": "07:30:00"
+    }
+  }, 
+  {
+    "pk": 126, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 33, 
+      "created_at": "2013-01-19T08:10:11.370Z", 
+      "modified_at": "2013-01-19T08:10:11.370Z", 
+      "weekday": 3, 
+      "close": "05:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 133, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 34, 
+      "created_at": "2013-01-19T08:10:11.571Z", 
+      "modified_at": "2013-01-19T08:10:11.571Z", 
+      "weekday": 3, 
+      "close": "04:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 140, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 36, 
+      "created_at": "2013-01-19T08:10:11.953Z", 
+      "modified_at": "2013-01-19T08:10:11.954Z", 
+      "weekday": 3, 
+      "close": "04:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 146, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 37, 
+      "created_at": "2013-01-19T08:10:12.160Z", 
+      "modified_at": "2013-01-19T08:10:12.160Z", 
+      "weekday": 3, 
+      "close": "02:00:00", 
+      "open": "09:00:00"
+    }
+  }, 
+  {
+    "pk": 151, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 38, 
+      "created_at": "2013-01-19T08:10:12.356Z", 
+      "modified_at": "2013-01-19T08:10:12.356Z", 
+      "weekday": 3, 
+      "close": "04:00:00", 
+      "open": "10:00:00"
+    }
+  }, 
+  {
+    "pk": 156, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 39, 
+      "created_at": "2013-01-19T08:10:12.560Z", 
+      "modified_at": "2013-01-19T08:10:12.560Z", 
+      "weekday": 3, 
+      "close": "08:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 163, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 40, 
+      "created_at": "2013-01-19T08:10:12.764Z", 
+      "modified_at": "2013-01-19T08:10:12.764Z", 
+      "weekday": 3, 
+      "close": "05:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 170, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 41, 
+      "created_at": "2013-01-19T08:10:12.972Z", 
+      "modified_at": "2013-01-19T08:10:12.972Z", 
+      "weekday": 3, 
+      "close": "08:00:00", 
+      "open": "06:30:00"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 4, 
+      "created_at": "2013-01-19T08:10:05.680Z", 
+      "modified_at": "2013-01-19T08:10:05.680Z", 
+      "weekday": 4, 
+      "close": "06:00:00", 
+      "open": "06:30:00"
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 5, 
+      "created_at": "2013-01-19T08:10:05.877Z", 
+      "modified_at": "2013-01-19T08:10:05.877Z", 
+      "weekday": 4, 
+      "close": "04:00:00", 
+      "open": "07:30:00"
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 7, 
+      "created_at": "2013-01-19T08:10:06.272Z", 
+      "modified_at": "2013-01-19T08:10:06.272Z", 
+      "weekday": 4, 
+      "close": "05:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 8, 
+      "created_at": "2013-01-19T08:10:06.473Z", 
+      "modified_at": "2013-01-19T08:10:06.473Z", 
+      "weekday": 4, 
+      "close": "07:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 9, 
+      "created_at": "2013-01-19T08:10:06.684Z", 
+      "modified_at": "2013-01-19T08:10:06.684Z", 
+      "weekday": 4, 
+      "close": "06:00:00", 
+      "open": "12:00:00"
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 10, 
+      "created_at": "2013-01-19T08:10:06.883Z", 
+      "modified_at": "2013-01-19T08:10:06.883Z", 
+      "weekday": 4, 
+      "close": "06:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 43, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 11, 
+      "created_at": "2013-01-19T08:10:07.082Z", 
+      "modified_at": "2013-01-19T08:10:07.082Z", 
+      "weekday": 4, 
+      "close": "07:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 50, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 12, 
+      "created_at": "2013-01-19T08:10:07.284Z", 
+      "modified_at": "2013-01-19T08:10:07.284Z", 
+      "weekday": 4, 
+      "close": "05:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 56, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 13, 
+      "created_at": "2013-01-19T08:10:07.484Z", 
+      "modified_at": "2013-01-19T08:10:07.484Z", 
+      "weekday": 4, 
+      "close": "06:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 63, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 17, 
+      "created_at": "2013-01-19T08:10:08.203Z", 
+      "modified_at": "2013-01-19T08:10:08.203Z", 
+      "weekday": 4, 
+      "close": "07:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 70, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 18, 
+      "created_at": "2013-01-19T08:10:08.429Z", 
+      "modified_at": "2013-01-19T08:10:08.429Z", 
+      "weekday": 4, 
+      "close": "08:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 77, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 19, 
+      "created_at": "2013-01-19T08:10:08.628Z", 
+      "modified_at": "2013-01-19T08:10:08.628Z", 
+      "weekday": 4, 
+      "close": "06:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 84, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 22, 
+      "created_at": "2013-01-19T08:10:09.214Z", 
+      "modified_at": "2013-01-19T08:10:09.214Z", 
+      "weekday": 4, 
+      "close": "03:00:00", 
+      "open": "07:30:00"
+    }
+  }, 
+  {
+    "pk": 89, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 25, 
+      "created_at": "2013-01-19T08:10:09.788Z", 
+      "modified_at": "2013-01-19T08:10:09.788Z", 
+      "weekday": 4, 
+      "close": "05:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 96, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 27, 
+      "created_at": "2013-01-19T08:10:10.191Z", 
+      "modified_at": "2013-01-19T08:10:10.191Z", 
+      "weekday": 4, 
+      "close": "08:00:00", 
+      "open": "06:30:00"
+    }
+  }, 
+  {
+    "pk": 103, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 28, 
+      "created_at": "2013-01-19T08:10:10.391Z", 
+      "modified_at": "2013-01-19T08:10:10.391Z", 
+      "weekday": 4, 
+      "close": "06:00:00", 
+      "open": "06:30:00"
+    }
+  }, 
+  {
+    "pk": 110, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 30, 
+      "created_at": "2013-01-19T08:10:10.775Z", 
+      "modified_at": "2013-01-19T08:10:10.776Z", 
+      "weekday": 4, 
+      "close": "05:00:00", 
+      "open": "09:00:00"
+    }
+  }, 
+  {
+    "pk": 116, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 31, 
+      "created_at": "2013-01-19T08:10:10.970Z", 
+      "modified_at": "2013-01-19T08:10:10.970Z", 
+      "weekday": 4, 
+      "close": "05:00:00", 
+      "open": "07:30:00"
+    }
+  }, 
+  {
+    "pk": 122, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 32, 
+      "created_at": "2013-01-19T08:10:11.176Z", 
+      "modified_at": "2013-01-19T08:10:11.176Z", 
+      "weekday": 4, 
+      "close": "03:30:00", 
+      "open": "07:30:00"
+    }
+  }, 
+  {
+    "pk": 127, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 33, 
+      "created_at": "2013-01-19T08:10:11.372Z", 
+      "modified_at": "2013-01-19T08:10:11.372Z", 
+      "weekday": 4, 
+      "close": "05:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 134, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 34, 
+      "created_at": "2013-01-19T08:10:11.573Z", 
+      "modified_at": "2013-01-19T08:10:11.573Z", 
+      "weekday": 4, 
+      "close": "04:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 141, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 36, 
+      "created_at": "2013-01-19T08:10:11.956Z", 
+      "modified_at": "2013-01-19T08:10:11.956Z", 
+      "weekday": 4, 
+      "close": "04:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 147, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 37, 
+      "created_at": "2013-01-19T08:10:12.162Z", 
+      "modified_at": "2013-01-19T08:10:12.162Z", 
+      "weekday": 4, 
+      "close": "02:00:00", 
+      "open": "09:00:00"
+    }
+  }, 
+  {
+    "pk": 152, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 38, 
+      "created_at": "2013-01-19T08:10:12.359Z", 
+      "modified_at": "2013-01-19T08:10:12.359Z", 
+      "weekday": 4, 
+      "close": "04:00:00", 
+      "open": "10:00:00"
+    }
+  }, 
+  {
+    "pk": 157, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 39, 
+      "created_at": "2013-01-19T08:10:12.562Z", 
+      "modified_at": "2013-01-19T08:10:12.562Z", 
+      "weekday": 4, 
+      "close": "08:00:00", 
+      "open": "06:00:00"
+    }
+  }, 
+  {
+    "pk": 164, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 40, 
+      "created_at": "2013-01-19T08:10:12.766Z", 
+      "modified_at": "2013-01-19T08:10:12.767Z", 
+      "weekday": 4, 
+      "close": "05:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 171, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 41, 
+      "created_at": "2013-01-19T08:10:12.975Z", 
+      "modified_at": "2013-01-19T08:10:12.975Z", 
+      "weekday": 4, 
+      "close": "08:00:00", 
+      "open": "06:30:00"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 4, 
+      "created_at": "2013-01-19T08:10:05.683Z", 
+      "modified_at": "2013-01-19T08:10:05.683Z", 
+      "weekday": 5, 
+      "close": "06:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 7, 
+      "created_at": "2013-01-19T08:10:06.275Z", 
+      "modified_at": "2013-01-19T08:10:06.275Z", 
+      "weekday": 5, 
+      "close": "06:00:00", 
+      "open": "08:00:00"
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 8, 
+      "created_at": "2013-01-19T08:10:06.476Z", 
+      "modified_at": "2013-01-19T08:10:06.476Z", 
+      "weekday": 5, 
+      "close": "07:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 9, 
+      "created_at": "2013-01-19T08:10:06.686Z", 
+      "modified_at": "2013-01-19T08:10:06.686Z", 
+      "weekday": 5, 
+      "close": "04:00:00", 
+      "open": "11:00:00"
+    }
+  }, 
+  {
+    "pk": 37, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 10, 
+      "created_at": "2013-01-19T08:10:06.886Z", 
+      "modified_at": "2013-01-19T08:10:06.886Z", 
+      "weekday": 5, 
+      "close": "06:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 44, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 11, 
+      "created_at": "2013-01-19T08:10:07.084Z", 
+      "modified_at": "2013-01-19T08:10:07.084Z", 
+      "weekday": 5, 
+      "close": "07:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 51, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 12, 
+      "created_at": "2013-01-19T08:10:07.286Z", 
+      "modified_at": "2013-01-19T08:10:07.286Z", 
+      "weekday": 5, 
+      "close": "04:00:00", 
+      "open": "09:00:00"
+    }
+  }, 
+  {
+    "pk": 57, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 13, 
+      "created_at": "2013-01-19T08:10:07.487Z", 
+      "modified_at": "2013-01-19T08:10:07.487Z", 
+      "weekday": 5, 
+      "close": "06:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 64, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 17, 
+      "created_at": "2013-01-19T08:10:08.205Z", 
+      "modified_at": "2013-01-19T08:10:08.205Z", 
+      "weekday": 5, 
+      "close": "07:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 71, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 18, 
+      "created_at": "2013-01-19T08:10:08.431Z", 
+      "modified_at": "2013-01-19T08:10:08.431Z", 
+      "weekday": 5, 
+      "close": "07:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 78, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 19, 
+      "created_at": "2013-01-19T08:10:08.631Z", 
+      "modified_at": "2013-01-19T08:10:08.631Z", 
+      "weekday": 5, 
+      "close": "06:00:00", 
+      "open": "08:00:00"
+    }
+  }, 
+  {
+    "pk": 90, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 25, 
+      "created_at": "2013-01-19T08:10:09.791Z", 
+      "modified_at": "2013-01-19T08:10:09.791Z", 
+      "weekday": 5, 
+      "close": "05:00:00", 
+      "open": "08:00:00"
+    }
+  }, 
+  {
+    "pk": 97, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 27, 
+      "created_at": "2013-01-19T08:10:10.194Z", 
+      "modified_at": "2013-01-19T08:10:10.194Z", 
+      "weekday": 5, 
+      "close": "08:00:00", 
+      "open": "06:30:00"
+    }
+  }, 
+  {
+    "pk": 104, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 28, 
+      "created_at": "2013-01-19T08:10:10.393Z", 
+      "modified_at": "2013-01-19T08:10:10.393Z", 
+      "weekday": 5, 
+      "close": "06:00:00", 
+      "open": "06:30:00"
+    }
+  }, 
+  {
+    "pk": 111, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 30, 
+      "created_at": "2013-01-19T08:10:10.778Z", 
+      "modified_at": "2013-01-19T08:10:10.778Z", 
+      "weekday": 5, 
+      "close": "02:00:00", 
+      "open": "09:00:00"
+    }
+  }, 
+  {
+    "pk": 117, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 31, 
+      "created_at": "2013-01-19T08:10:10.973Z", 
+      "modified_at": "2013-01-19T08:10:10.973Z", 
+      "weekday": 5, 
+      "close": "05:00:00", 
+      "open": "08:00:00"
+    }
+  }, 
+  {
+    "pk": 128, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 33, 
+      "created_at": "2013-01-19T08:10:11.375Z", 
+      "modified_at": "2013-01-19T08:10:11.375Z", 
+      "weekday": 5, 
+      "close": "05:00:00", 
+      "open": "08:00:00"
+    }
+  }, 
+  {
+    "pk": 135, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 34, 
+      "created_at": "2013-01-19T08:10:11.576Z", 
+      "modified_at": "2013-01-19T08:10:11.576Z", 
+      "weekday": 5, 
+      "close": "03:00:00", 
+      "open": "08:00:00"
+    }
+  }, 
+  {
+    "pk": 142, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 36, 
+      "created_at": "2013-01-19T08:10:11.959Z", 
+      "modified_at": "2013-01-19T08:10:11.959Z", 
+      "weekday": 5, 
+      "close": "04:00:00", 
+      "open": "08:00:00"
+    }
+  }, 
+  {
+    "pk": 158, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 39, 
+      "created_at": "2013-01-19T08:10:12.565Z", 
+      "modified_at": "2013-01-19T08:10:12.565Z", 
+      "weekday": 5, 
+      "close": "08:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 165, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 40, 
+      "created_at": "2013-01-19T08:10:12.769Z", 
+      "modified_at": "2013-01-19T08:10:12.769Z", 
+      "weekday": 5, 
+      "close": "05:00:00", 
+      "open": "08:00:00"
+    }
+  }, 
+  {
+    "pk": 172, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 41, 
+      "created_at": "2013-01-19T08:10:12.978Z", 
+      "modified_at": "2013-01-19T08:10:12.979Z", 
+      "weekday": 5, 
+      "close": "07:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 4, 
+      "created_at": "2013-01-19T08:10:05.685Z", 
+      "modified_at": "2013-01-19T08:10:05.685Z", 
+      "weekday": 6, 
+      "close": "06:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 7, 
+      "created_at": "2013-01-19T08:10:06.277Z", 
+      "modified_at": "2013-01-19T08:10:06.277Z", 
+      "weekday": 6, 
+      "close": "06:00:00", 
+      "open": "08:00:00"
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 8, 
+      "created_at": "2013-01-19T08:10:06.478Z", 
+      "modified_at": "2013-01-19T08:10:06.478Z", 
+      "weekday": 6, 
+      "close": "07:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 38, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 10, 
+      "created_at": "2013-01-19T08:10:06.888Z", 
+      "modified_at": "2013-01-19T08:10:06.888Z", 
+      "weekday": 6, 
+      "close": "06:00:00", 
+      "open": "08:00:00"
+    }
+  }, 
+  {
+    "pk": 45, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 11, 
+      "created_at": "2013-01-19T08:10:07.087Z", 
+      "modified_at": "2013-01-19T08:10:07.087Z", 
+      "weekday": 6, 
+      "close": "07:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 58, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 13, 
+      "created_at": "2013-01-19T08:10:07.489Z", 
+      "modified_at": "2013-01-19T08:10:07.489Z", 
+      "weekday": 6, 
+      "close": "06:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 65, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 17, 
+      "created_at": "2013-01-19T08:10:08.208Z", 
+      "modified_at": "2013-01-19T08:10:08.208Z", 
+      "weekday": 6, 
+      "close": "07:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 72, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 18, 
+      "created_at": "2013-01-19T08:10:08.434Z", 
+      "modified_at": "2013-01-19T08:10:08.434Z", 
+      "weekday": 6, 
+      "close": "07:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 79, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 19, 
+      "created_at": "2013-01-19T08:10:08.633Z", 
+      "modified_at": "2013-01-19T08:10:08.633Z", 
+      "weekday": 6, 
+      "close": "05:00:00", 
+      "open": "12:00:00"
+    }
+  }, 
+  {
+    "pk": 91, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 25, 
+      "created_at": "2013-01-19T08:10:09.794Z", 
+      "modified_at": "2013-01-19T08:10:09.794Z", 
+      "weekday": 6, 
+      "close": "05:00:00", 
+      "open": "08:00:00"
+    }
+  }, 
+  {
+    "pk": 98, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 27, 
+      "created_at": "2013-01-19T08:10:10.196Z", 
+      "modified_at": "2013-01-19T08:10:10.196Z", 
+      "weekday": 6, 
+      "close": "08:00:00", 
+      "open": "06:30:00"
+    }
+  }, 
+  {
+    "pk": 105, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 28, 
+      "created_at": "2013-01-19T08:10:10.395Z", 
+      "modified_at": "2013-01-19T08:10:10.395Z", 
+      "weekday": 6, 
+      "close": "06:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 129, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 33, 
+      "created_at": "2013-01-19T08:10:11.377Z", 
+      "modified_at": "2013-01-19T08:10:11.377Z", 
+      "weekday": 6, 
+      "close": "05:00:00", 
+      "open": "08:00:00"
+    }
+  }, 
+  {
+    "pk": 136, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 34, 
+      "created_at": "2013-01-19T08:10:11.579Z", 
+      "modified_at": "2013-01-19T08:10:11.579Z", 
+      "weekday": 6, 
+      "close": "03:00:00", 
+      "open": "08:00:00"
+    }
+  }, 
+  {
+    "pk": 143, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 36, 
+      "created_at": "2013-01-19T08:10:11.962Z", 
+      "modified_at": "2013-01-19T08:10:11.962Z", 
+      "weekday": 6, 
+      "close": "04:00:00", 
+      "open": "08:00:00"
+    }
+  }, 
+  {
+    "pk": 159, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 39, 
+      "created_at": "2013-01-19T08:10:12.567Z", 
+      "modified_at": "2013-01-19T08:10:12.567Z", 
+      "weekday": 6, 
+      "close": "08:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 166, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 40, 
+      "created_at": "2013-01-19T08:10:12.772Z", 
+      "modified_at": "2013-01-19T08:10:12.772Z", 
+      "weekday": 6, 
+      "close": "05:00:00", 
+      "open": "09:00:00"
+    }
+  }, 
+  {
+    "pk": 173, 
+    "model": "roaster.businesshours", 
+    "fields": {
+      "business": 41, 
+      "created_at": "2013-01-19T08:10:12.982Z", 
+      "modified_at": "2013-01-19T08:10:12.982Z", 
+      "weekday": 6, 
+      "close": "07:00:00", 
+      "open": "07:00:00"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "Portland Roasting Coffee", 
+      "video_url": "portland roasting coffee", 
+      "photo_url": "portland roasting coffee"
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "http://vimeo.com/dymaxicon/ristretto", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 32, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 33, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 38, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 37, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 39, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 40, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 41, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 42, 
+    "model": "roaster.roaster", 
+    "fields": {
+      "cafes": [], 
+      "description": "", 
+      "video_url": "", 
+      "photo_url": ""
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "roaster.roast", 
+    "fields": {
+      "active": false, 
+      "roaster": 26, 
+      "created_at": "2013-01-19T08:10:09.994Z", 
+      "modified_at": "2013-01-19T08:10:09.994Z", 
+      "name": "Portland Roasting Coffee"
+    }
+  }
+]
