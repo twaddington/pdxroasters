@@ -114,9 +114,13 @@ class Command(BaseCommand):
                         c = h[1]
 
                         if len(o) < 3:
-                            o = "%s:00" % o
+                            o = '%s:00' % o
                         if len(c) < 3:
-                            c = "%s:00" % c
+                            c = '%s:00' % c
+
+                        # Zulu time
+                        tmp = c.split(':')
+                        c = '%s:%s' % (int(tmp[0]) + 12, tmp[1])
  
                         BusinessHours.objects.create(weekday=d,
                                 open=o, close=c, business=roaster)
