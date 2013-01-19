@@ -3,6 +3,8 @@ from roaster.models import BusinessHours, Cafe, Roaster, Roast
 
 class BusinessHoursInline(admin.TabularInline):
     model = BusinessHours
+    max_num = 7
+    extra = 0
 
 class CafeAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}

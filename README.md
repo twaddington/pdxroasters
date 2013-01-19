@@ -43,56 +43,6 @@ serve you well:
 You should now be able to access the site in your browser by visiting
 `http://localhost:8000/` and the admin page by visiting `http://localhost:8000/admin/`.
 
-## TODO
-
-- Hours model.
-- Roaster detail page with stub template.
-- Submit a roaster form.
-- Contact form.
-- Base model (location/store)?
-
-## Features
-
-...
-
-- Submit a roaster
-- Contact
-
-## Models
-
-### Roaster
-
-- Name
-- Address
-- lat/lng (geocoded)
-- Hours (Mon-Fri: Open/Close, Sat: Open/Close, Sun: Open/Close)
-- Phone
-- Description
-- URL
-- Photo URL
-- Video URL
-- Roasts
-- Cafes
-
-### Roast
-
-- Name
-- Roaster
-
-### Cafe
-
-- Name
-- Address
-- lat/lng (geocoded)
-- Hours
-- Phone
-- URL
-- Roasters
-
-## UI
-
-...
-
 ### Compass
 
 Reference: `http://compass-style.org/install`

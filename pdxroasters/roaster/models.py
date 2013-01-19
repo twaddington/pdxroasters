@@ -58,8 +58,8 @@ class BusinessHours(models.Model):
 
     class Meta:
         ordering = ['weekday',]
-        verbose_name = 'Hours'
-        verbose_name_plural = 'Hours'
+        verbose_name = 'Business Hours'
+        verbose_name_plural = 'Business Hours'
         unique_together = (('weekday', 'business'),)
 
     def __unicode__(self):
