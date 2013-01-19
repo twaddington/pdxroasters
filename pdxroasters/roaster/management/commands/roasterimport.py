@@ -4,12 +4,26 @@ import csv
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from geopy import geocoders
+from optparse import make_option
 
 from roaster.models import Roaster, Roast
 
+IMPORT_TYPES = ('roasters', 'cafes',)
+
 class Command(BaseCommand):
+    args = "<filename>"
     help = """\
         Imports a list of roasters from a CSV."""
+
+    option_list = BaseCommand.option_list + (
+        make_option('--quiet', action='store_true', dest='quiet',
+            default=False, help='Suppress all output except errors'),
+        make_option('--import-type', choices=IMPORT_TYPES,
+            dest='import_type', default='roasters',
+            help='One of the following: %s' % (', '.join(IMPORT_TYPES),)),
+        make_option('--geocode', action='store_true', dest='geocode',
+            help='Geocode store addresses')
+    )
 
     fields = (
         'name',
@@ -42,7 +56,9 @@ class Command(BaseCommand):
             self.stdout.flush()
 
     def handle(self, *args, **options):
-        self.quiet = False
+        self.quiet = options.get('quiet', False)
+        self.geocode = options.get('geocode', False)
+        self.import_type = options.get('import_type')
 
         try:
             path = os.path.abspath(args[0])
@@ -66,16 +82,17 @@ class Command(BaseCommand):
                             else:
                                 self.uprint('Updating roaster: %s' % name)
 
-                            # Geocode our address
-                            g = geocoders.Google()
+                            if self.geocode:
+                                g = geocoders.Google()
 
-                            try:
-                                place, (lat, lng) = g.geocode(row.get('address'))
-                                self.uprint('  %s,%s' % (lat, lng))
-                                roaster.lat = lat
-                                roaster.lng = lng
-                            except Exception as e:
-                                self.uprint('  Failed to geocode address!')
+                                try:
+                                    # Geocode our address
+                                    place, (lat, lng) = g.geocode(row.get('address'))
+                                    self.uprint('  %s,%s' % (lat, lng))
+                                    roaster.lat = lat
+                                    roaster.lng = lng
+                                except Exception as e:
+                                    self.uprint('  Failed to geocode address!')
 
                             # TODO: Handle hours!
                             roaster.address = row.get('address')
