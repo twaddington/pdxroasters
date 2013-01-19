@@ -25,7 +25,7 @@ serve you well:
     $ git clone git@github.com:twaddington/pdxroasters.git src
 
     # Create a local settings file
-    $ cp src/pdxroasters/pdxroasters/settings_local.py.sample src/pdxroasters/pdxroasters/settings_local.py
+    $ cp src/site/pdxroasters/settings_local.py.sample src/site/pdxroasters/settings_local.py
 
     # Install the required libraries
     $ pip install -r src/requirements.txt
@@ -49,7 +49,7 @@ Reference: `http://compass-style.org/install`
 CSS files compiled by Compass will be ignored by git
 
     # Navigate to static directory from src
-    $ cd pdxroasters/pdxroasters/static
+    $ cd site/pdxroasters/static
     
     # Tell Compass to poll for changes
     $ compass watch
@@ -60,7 +60,7 @@ Reference: `http://ender.jit.su`
 All Ender files will be ignored by git other than custom packages
 
     # Navigate to ender directory from src
-    $ cd pdxroasters/pdxroasters/static/js/ender
+    $ cd site/pdxroasters/static/js/ender
     
     # View Ender status
     $ ender info
@@ -74,7 +74,7 @@ Reference: `http://gruntjs.com`
 Grunt's dist files will be ingored by git
     
     # Navigate to js directory
-    $ cd pdxroasters/pdxroasters/static/js
+    $ cd site/pdxroasters/static/js
     
     # Tell Grunt to poll for changes
     $ grunt watch
