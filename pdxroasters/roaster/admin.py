@@ -5,6 +5,7 @@ class CafeAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     list_display = ('name', 'address', 'phone', 'show_url', 'created_at',
             'modified_at', 'active',)
+    list_filter = ('active',)
     search_fields = ('name',)
 
     def show_url(self, obj):
@@ -17,6 +18,7 @@ class RoasterAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     list_display = ('name', 'address', 'phone', 'show_url', 'created_at',
             'modified_at', 'active',)
+    list_filter = ('active',)
     search_fields = ('name',)
 
     def show_url(self, obj):

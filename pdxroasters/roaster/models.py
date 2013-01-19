@@ -15,8 +15,10 @@ class Cafe(models.Model):
     slug = models.SlugField()
     active = models.BooleanField()
     address = models.CharField(max_length=200, blank=True,)
+    lat = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True,)
+    lng = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True,)
     # TODO: Hours
-    phone = models.CharField(max_length=10, blank=True,)
+    phone = models.CharField(max_length=14, blank=True,)
     url = models.URLField(max_length=200, verbose_name='URL', blank=True,)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
     modified_at = models.DateTimeField(auto_now=True, db_index=True)
@@ -41,8 +43,10 @@ class Roaster(models.Model):
     slug = models.SlugField()
     active = models.BooleanField()
     address = models.TextField(blank=True,)
+    lat = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True,)
+    lng = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True,)
     # TODO: Hours
-    phone = models.CharField(max_length=10, blank=True,)
+    phone = models.CharField(max_length=14, blank=True,)
     url = models.URLField(max_length=200, verbose_name='URL', blank=True,)
     description = models.TextField(blank=True,)
     photo_url = models.URLField(max_length=200, verbose_name='Photo URL',
