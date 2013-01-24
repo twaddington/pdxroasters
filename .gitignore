@@ -17,16 +17,16 @@ settings_local.py
 staticfiles
 
 # Ignore Compass files
-pdxroasters/pdxroasters/static/.sass-cache
-pdxroasters/pdxroasters/static/.sass-cache/*
-#pdxroasters/pdxroasters/static/css
-#pdxroasters/pdxroasters/static/css/*
+site/pdxroasters/static/.sass-cache
+site/pdxroasters/static/.sass-cache/*
+#site/pdxroasters/static/css
+#site/pdxroasters/static/css/*
 
 # Ignore Grunt files
 #pdxroasters/pdxroasters/static/js/dist/*
 
 # Ignore Ender files
-pdxroasters/pdxroasters/static/js/ender/ender.js
-pdxroasters/pdxroasters/static/js/ender/ender.min.js
-pdxroasters/pdxroasters/static/js/ender/node_modules
-pdxroasters/pdxroasters/static/js/ender/node_modules/*
+site/pdxroasters/static/js/ender/ender.js
+site/pdxroasters/static/js/ender/ender.min.js
+site/pdxroasters/static/js/ender/node_modules
+site/pdxroasters/static/js/ender/node_modules/*
