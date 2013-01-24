@@ -4650,6 +4650,31 @@ window.pdx.templates = {
 
 })( ender, window );
 /**
+ * PDX Roaster Error Javascript
+ *
+ * @dependencies:
+ * /static/js/ender/*
+ * /static/js/pdx.js
+ * /static/js/lib/*
+ *
+ */
+(function ( $, window, undefined ) {
+
+"use strict";
+
+// Closure globals
+var $document = $( document ),
+    $header = $( "#header" );
+
+// Error Controller
+window.pdx.app.error = {
+    init: function () {
+        
+    }
+};
+
+})( ender, window );
+/**
  * PDX Roaster Javascript
  *
  * @dependencies:

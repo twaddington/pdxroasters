@@ -1,11 +1,15 @@
 {% extends 'site_base.html' %}
+
 {% load i18n %}
 
-{% block title %}
-    404 - Not Found
-{% endblock %}
+{% block title %}Home{% endblock %}
+
+{% block controller %}error{% endblock %}
 
 {% block content %}
-    <h2 class="error">404'd!</h2>
+<div id="page-error">
+    <div class="page-error">
+        <h1>404 BIOTCH!</h1>
+    </div>
+</div>
 {% endblock %}
-
