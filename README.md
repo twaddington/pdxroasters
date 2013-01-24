@@ -43,6 +43,8 @@ serve you well:
 You should now be able to access the site in your browser by visiting
 `http://localhost:8000/` and the admin page by visiting `http://localhost:8000/admin/`.
 
+When anybody modifies the data models, you'll need to delete the `pdxroasters.db` and run `python manage.py syncdb`. 
+
 ### Compass
 
 Reference: `http://compass-style.org/install`
