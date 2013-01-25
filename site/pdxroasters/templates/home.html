@@ -87,7 +87,7 @@
     </a>
     <div class="roasters">
         {% for r in roasters %}
-        <div class="roaster" id="{{ r.id }}" data-latlng="" data-api="{{ r.resource_uri }}" data-name="{{ r.name }}" data-address="{{ r.address }}">
+        <div class="roaster" id="{{ r.id }}" data-latlng="[{{ r.lat }},{{ r.lng }}]" data-api="{{ r.resource_uri }}" data-name="{{ r.name }}" data-address="{{ r.address }}">
             <h3 class="handle group"><span>{{ r.name }}</span> <a href="#toggle" class="toggle"></a></h3>
             <div class="content group">
                 <div class="col col1of2">
@@ -106,9 +106,9 @@
                                 <div class="ci">
                                     <h5>Hours</h5>
                                     <p class="hours"> 
-                                        Mon. - Fri. <span>8 - 12</span><br />
-                                        Sat. <span>8 - 12</span><br />
-                                        Sun. <span>8 - 12</span>
+                                        {% for h in r.hours.all %}
+                                            {{ h.get_weekday_display }} {{ h.open }} - {{ h.close }}<br />
+                                        {% endfor %}
                                     </p>
                                 </div>
                             </div>

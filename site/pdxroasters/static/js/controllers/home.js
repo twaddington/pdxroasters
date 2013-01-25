@@ -138,7 +138,7 @@ window.pdx.app.home = {
                 id = this.id,
                 latLng,
                 marker;
-                
+            
             if ( !points ) {
             	window.pdx.maps.geocode(
                 	{ address: address+" Portland, Oregon" },
@@ -162,17 +162,26 @@ window.pdx.app.home = {
             	);
             	
             } else {
-                latLng = new google.maps.LatLng( points[ 0 ], points[ 1 ] );
-                marker = new window.pdx.maps.Marker({
-                    latLng: latLng,
-                    map: self.map,
-                    onAddCallback: function ( inst ) {
-                        self._onAddMarker( inst, data );
-                    }
-                });
+                try {
+                    points = JSON.parse( points );
+                    
+                } catch ( error ) {
+                    console.log( "[window.pdx.home]: Did not parse lat/lng" );
+                }
                 
-                self.mapMarkers.push( marker );
-                self.mapBounds.extend( latLng );
+                if ( typeof points === "object" ) {
+                	latLng = new google.maps.LatLng( points[ 0 ], points[ 1 ] );
+                    marker = new window.pdx.maps.Marker({
+                        latLng: latLng,
+                        map: self.map,
+                        onAddCallback: function ( inst ) {
+                            self._onAddMarker( inst, data );
+                        }
+                    });
+                    
+                    self.mapMarkers.push( marker );
+                    self.mapBounds.extend( latLng );
+                }
             }
         });
         

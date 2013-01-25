@@ -1,5 +1,10 @@
 from django.contrib import admin
-from roaster.models import Cafe, Roaster, Roast
+from roaster.models import BusinessHours, Cafe, Roaster, Roast
+
+class BusinessHoursInline(admin.TabularInline):
+    model = BusinessHours
+    max_num = 7
+    extra = 0
 
 class CafeAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
@@ -7,6 +12,10 @@ class CafeAdmin(admin.ModelAdmin):
             'modified_at', 'active',)
     list_filter = ('active',)
     search_fields = ('name',)
+
+    inlines = [
+        BusinessHoursInline,
+    ]
 
     def show_url(self, obj):
         return '<a href="%s">%s</a>' % (obj.url, obj.url)
@@ -20,6 +29,10 @@ class RoasterAdmin(admin.ModelAdmin):
             'modified_at', 'active',)
     list_filter = ('active',)
     search_fields = ('name',)
+
+    inlines = [
+        BusinessHoursInline,
+    ]
 
     def show_url(self, obj):
         return '<a href="%s">%s</a>' % (obj.url, obj.url)

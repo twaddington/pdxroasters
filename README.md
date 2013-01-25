@@ -25,7 +25,7 @@ serve you well:
     $ git clone git@github.com:twaddington/pdxroasters.git src
 
     # Create a local settings file
-    $ cp src/pdxroasters/pdxroasters/settings_local.py.sample src/pdxroasters/pdxroasters/settings_local.py
+    $ cp src/site/pdxroasters/settings_local.py.sample src/site/pdxroasters/settings_local.py
 
     # Install the required libraries
     $ pip install -r src/requirements.txt
@@ -43,55 +43,7 @@ serve you well:
 You should now be able to access the site in your browser by visiting
 `http://localhost:8000/` and the admin page by visiting `http://localhost:8000/admin/`.
 
-## TODO
-
-- Hours model.
-- Roaster detail page with stub template.
-- Submit a roaster form.
-- Contact form.
-- Base model (location/store)?
-
-## Features
-
-...
-
-- Submit a roaster
-- Contact
-
-## Models
-
-### Roaster
-
-- Name
-- Address
-- lat/lng (geocoded)
-- Hours (Mon-Fri: Open/Close, Sat: Open/Close, Sun: Open/Close)
-- Phone
-- Description
-- URL
-- Photo URL
-- Video URL
-- Roasts
-- Cafes
-
-### Roast
-
-- Name
-- Roaster
-
-### Cafe
-
-- Name
-- Address
-- lat/lng (geocoded)
-- Hours
-- Phone
-- URL
-- Roasters
-
-## UI
-
-...
+When anybody modifies the data models, you'll need to delete the `pdxroasters.db` and run `python manage.py syncdb`. 
 
 ### Compass
 
@@ -99,7 +51,7 @@ Reference: `http://compass-style.org/install`
 CSS files compiled by Compass will be ignored by git
 
     # Navigate to static directory from src
-    $ cd pdxroasters/pdxroasters/static
+    $ cd site/pdxroasters/static
     
     # Tell Compass to poll for changes
     $ compass watch
@@ -110,7 +62,7 @@ Reference: `http://ender.jit.su`
 All Ender files will be ignored by git other than custom packages
 
     # Navigate to ender directory from src
-    $ cd pdxroasters/pdxroasters/static/js/ender
+    $ cd site/pdxroasters/static/js/ender
     
     # View Ender status
     $ ender info
@@ -124,7 +76,7 @@ Reference: `http://gruntjs.com`
 Grunt's dist files will be ingored by git
     
     # Navigate to js directory
-    $ cd pdxroasters/pdxroasters/static/js
+    $ cd site/pdxroasters/static/js
     
     # Tell Grunt to poll for changes
     $ grunt watch
