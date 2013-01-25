@@ -14,7 +14,18 @@
 @import 'compass/utilities';
 
 /* -- variables -- */
-$blue: #0099ff;
+$dark-red:#CA4C29;
+$red:#DD6A5A;
+$light-red:#DD6A5A;
+$yellow:#FFC434;
+$dark-blue:#00555F;
+$blue:#13A1AF;
+$light-blue:#0AAEBE;
+$darker-gray:#323232;
+$dark-gray:#d2d0cb;
+$gray:#DDDBD4;
+$light-gray:#F0F0F0;
+$white:#FFFFFF;
 $skolar: 'Skolar', Helvetica, Arial, Sans-serif;
 $din: 'DIN', Helvetica, Arial, Sans-serif;
 
@@ -253,17 +264,19 @@ body {
             position: relative;
             width: 20px;
             background: transparent url("../img/roaster-marker.png") no-repeat top left;
-            
+            @include retina-display(){
+                background: transparent url("../img/roaster-marker@2x.png") no-repeat top left;
+                background-size: 20px 32px;
+            }   
             // Map Marker Hover State
             &:hover {
                 > div {
-                    background-color: #fff;
                 }
             }
         }
         // Mouse over Title of Roaster
         > span {
-            border: 1px solid #959595;
+            background-color:transparent;
             padding: 10px;
             position: absolute;
             text-align: center;
@@ -271,11 +284,11 @@ body {
             visibility: hidden;
             white-space: nowrap;
             z-index: -1;
+            font-size:18px;
+            color:$dark-gray;
+            @include text-shadow(0 0 2px rgba(0,0,0,.5));
             @include opacity(0);
-            @include box-shadow(0 0 2px rgba(0,0,0,.5));
-            @include border-radius(5px);
-            @include background-image(linear-gradient(#fff,#ebebeb));
-            @include transition(all 100ms linear);
+            @include transition(all 150ms linear);
 
         }
         // Full Info Modal
@@ -285,7 +298,38 @@ body {
             white-space: normal;
             visibility: visible;
             width: 320px;
+            background: $light-gray;
             @include opacity(1);
+    //line-height:36px;
+            border:1px solid #d2d0cb;
+    //border-radius:4px;
+    //text-align:left;
+    //width:auto;
+    //max-width:500px;
+    //z-index:11;
+    //position:absolute;
+    //padding:2em 2em;
+    //display:none;
+    //opacity:0;
+            &:before{
+                content:" ";
+                background:#f8f6f4;
+                width:16px;
+                height:16px;
+                border:1px solid #d2d0cb;
+                left:50%;
+                margin-left:-8px;
+                position:absolute;
+                display:block;
+                bottom:-7px;
+                -webkit-transform: rotate(45deg);
+                   -moz-transform: rotate(45deg);
+                    -ms-transform: rotate(45deg);
+                     -o-transform: rotate(45deg);
+                        transform: rotate(45deg);
+                             zoom: 1;
+                box-shadow: 0px 0px 5px #ebe9e4;
+            }
             &.inactive {
                 visibility: hidden;        
                 @include opacity(0);
