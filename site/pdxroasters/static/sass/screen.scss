@@ -24,7 +24,7 @@ $light-blue:#0AAEBE;
 $darker-gray:#323232;
 $dark-gray:#d2d0cb;
 $gray:#DDDBD4;
-$light-gray:#F0F0F0;
+$light-gray:#F8f6f4;
 $white:#FFFFFF;
 $skolar: 'Skolar', Helvetica, Arial, Sans-serif;
 $din: 'DIN', Helvetica, Arial, Sans-serif;
@@ -90,15 +90,17 @@ body {
     position: relative;
 }
 #header {
-    background: rgba(0,0,0,.8);
+    background: white;
     left: 0;
-    padding: 10px 0 10px 40px;
-    position: fixed;
-    right: 0; 
-    top: 0; 
+    right: 0;
+    top: 0;
     z-index: 10;
-    
-    @include box-shadow(0 1px 3px rgba(0,0,0,.8));
+    position: absolute;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    height: 7.25em;
+    padding: 0 2em;
 }
 #footer {
     background-color: #000;
@@ -111,13 +113,12 @@ body {
 /* -- nav -- */
 #nav {
     position: absolute; 
-    top: 0; 
-    right: -338px;
-    
+    top: 28px;
+    right: -280px;
     @include transition(all 200ms ease-in-out 200ms);
     
     &.active {
-        right: 40px;
+        right: 133px;
     }
     
     ul {
@@ -133,12 +134,12 @@ body {
             
             a {
                 letter-spacing: 1px;
-                color: #fff;
-                text-transform: uppercase;
-                
+                color: #303030;
+                text-transform: none;
+                font-size: 1.25em;
                 &:hover,
                 &.on {
-                    color: #0099ff;
+                    color: #292929;
                 }
             }
         }
@@ -146,7 +147,7 @@ body {
     
     .plus {
         display: inline-block;
-        background: transparent url(../img/plus-nav.png) no-repeat 0 0;
+        background: transparent url("../img/plusthin.png") no-repeat 0 0;
         width: 22px;
         height: 22px;
         vertical-align: middle;
@@ -191,7 +192,7 @@ body {
         width: 100%;
         
         .panel-inner {
-            padding: 100px;
+            padding: 300px 50px;
         }
     }
 }
@@ -280,55 +281,47 @@ body {
             padding: 10px;
             position: absolute;
             text-align: center;
-            top: -50%;
+            top: -40px;
             visibility: hidden;
             white-space: nowrap;
             z-index: -1;
             font-size:18px;
-            color:$dark-gray;
-            @include text-shadow(0 0 2px rgba(0,0,0,.5));
+            color:$darker-gray;
             @include opacity(0);
-            @include transition(all 150ms linear);
+            @include transition(all 100ms linear);
 
         }
         // Full Info Modal
         > .infowindow {
-            padding: 2em;
+            background: #f8f6f4;
+            line-height: 36px;
+            border: 1px solid #d2d0cb;
+            border-radius: 4px;
             text-align: left;
+            z-index: 11;
+            position: absolute;
+            padding: 2em 2em;
             white-space: normal;
             visibility: visible;
             width: 320px;
             background: $light-gray;
             @include opacity(1);
-    //line-height:36px;
-            border:1px solid #d2d0cb;
-    //border-radius:4px;
-    //text-align:left;
-    //width:auto;
-    //max-width:500px;
-    //z-index:11;
-    //position:absolute;
-    //padding:2em 2em;
-    //display:none;
-    //opacity:0;
+            margin-bottom:20px;
             &:before{
                 content:" ";
-                background:#f8f6f4;
+                background:$light-gray;
                 width:16px;
                 height:16px;
-                border:1px solid #d2d0cb;
+                border-bottom:1px solid #d2d0cb;
+                border-right:1px solid #d2d0cb;
                 left:50%;
                 margin-left:-8px;
                 position:absolute;
                 display:block;
-                bottom:-7px;
-                -webkit-transform: rotate(45deg);
-                   -moz-transform: rotate(45deg);
-                    -ms-transform: rotate(45deg);
-                     -o-transform: rotate(45deg);
-                        transform: rotate(45deg);
-                             zoom: 1;
-                box-shadow: 0px 0px 5px #ebe9e4;
+                bottom:-10px;
+                z-index:1;
+                @include rotate(45deg);
+                zoom: 1;
             }
             &.inactive {
                 visibility: hidden;        
@@ -341,7 +334,7 @@ body {
             
             .btn {
                 margin: 0;
-                padding: 5px 10px;
+                padding: 6px 12px;
             }
             
             .btns {
@@ -364,19 +357,19 @@ body {
         
         > .plus-spinner {
              &.active {
-                 visibility: visible;            
-                 @include opacity(1);
+                 //visibility: visible;            
+                 //@include opacity(1);
              }
             // Loading Indicator for Modal Info            
              > div {
-                background: url(../img/plusthin.png) no-repeat 0 0;
-                height: 22px;
-                width: 22px;
+                //background: url(../img/plusthin.png) no-repeat 0 0;
+                //height: 22px;
+                //width: 22px;
                 
-                @include transition(all 300ms ease-in-out);
+                //@include transition(all 300ms ease-in-out);
                 
                 &.loading {
-                    @include transform(rotate(360deg));
+                   // @include transform(rotate(360deg));
                 }
             }
         }
@@ -474,9 +467,11 @@ body {
         
         .handle {
             cursor: pointer;
-            padding: 10px 40px;
             position: relative;
-            
+            padding: 1.5em 40px;
+            border-bottom: 1px solid #efefef;
+            border-top: 1px solid #efefef;
+            margin-top:-1px;
             @include transition(all 200ms linear);
             
             span {

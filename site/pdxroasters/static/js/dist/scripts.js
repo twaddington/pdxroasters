@@ -1,4 +1,4 @@
-/*! PDX Roasters - v0.1.0 - 2013-01-23
+/*! PDX Roasters - v0.1.0 - 2013-02-06
 * http://PROJECT_WEBSITE/
 * Copyright (c) 2013 PDX Roasters; Licensed MIT */
 
@@ -4764,7 +4764,7 @@ window.pdx.app.home = {
 				position: google.maps.ControlPosition.LEFT_CENTER
 			},
 			scrollwheel: false,
-			streetViewControl: true,
+			streetViewControl: false,
 			zoom: 15,
 			zoomControlOptions: {
 				position: google.maps.ControlPosition.LEFT_CENTER,
@@ -4774,7 +4774,156 @@ window.pdx.app.home = {
         
         this.mapBounds = new google.maps.LatLngBounds();
         this.map = new google.maps.Map( this.mapElem, this.mapSettings );
-        
+        var mapStyles = [
+          {
+            "featureType": "water",
+            "elementType": "geometry.fill",
+            "stylers": [
+              { "visibility": "on" },
+              { "color": "#c4d3d8" }
+            ]
+          },{
+            "featureType": "road",
+            "elementType": "geometry.fill",
+            "stylers": [
+              { "color": "#ffffff" },
+              { "visibility": "on" }
+            ]
+          },{
+            "featureType": "landscape.man_made",
+            "stylers": [
+              { "visibility": "on" },
+              { "color": "#e7e4d9" }
+            ]
+          },{
+            "featureType": "poi.park",
+            "elementType": "geometry.fill",
+            "stylers": [
+              { "visibility": "on" },
+              { "color": "#c2dc96" }
+            ]
+          },{
+            "featureType": "road",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              { "color": "#adafae" },
+              { "visibility": "on" }
+            ]
+          },{
+            "featureType": "road.arterial",
+            "elementType": "labels.text.stroke",
+            "stylers": [
+              { "weight": 1.6 },
+              { "visibility": "on" },
+              { "color": "#f9f6ed" }
+            ]
+          },{
+            "featureType": "road.arterial",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              { "color": "#aeaead" }
+            ]
+          },{
+            "featureType": "poi",
+            "elementType": "labels",
+            "stylers": [
+              { "visibility": "off" }
+            ]
+          },{
+            "featureType": "transit",
+            "elementType": "labels.icon",
+            "stylers": [
+              { "visibility": "off" }
+            ]
+          },{
+            "featureType": "road.highway",
+            "elementType": "labels.icon",
+            "stylers": [
+              { "visibility": "off" }
+            ]
+          },{
+            "featureType": "road.arterial",
+            "elementType": "geometry.stroke",
+            "stylers": [
+              { "visibility": "on" },
+              { "color": "#c8c9c9" }
+            ]
+          },{
+            "featureType": "road.highway",
+            "elementType": "geometry.stroke",
+            "stylers": [
+              { "visibility": "on" },
+              { "color": "#c1c2c2" }
+            ]
+          },{
+            "featureType": "road.local",
+            "elementType": "labels.text.fill"  },{
+            "featureType": "road.local",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              { "color": "#bebab4" }
+            ]
+          },{
+            "featureType": "road.highway",
+            "elementType": "labels.text.stroke",
+            "stylers": [
+              { "color": "#fffffe" }
+            ]
+          },{
+            "featureType": "road.highway",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              { "color": "#898c8c" }
+            ]
+          },{
+            "featureType": "road.arterial",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              { "color": "#969694" }
+            ]
+          },{
+            "featureType": "transit.line",
+            "elementType": "geometry.fill",
+            "stylers": [
+              { "lightness": 9 },
+              { "visibility": "on" },
+              { "color": "#8f908d" }
+            ]
+          },{
+            "featureType": "administrative.land_parcel",
+            "elementType": "geometry.stroke",
+            "stylers": [
+              { "color": "#d6d2cc" }
+            ]
+          },{
+            "featureType": "poi.sports_complex",
+            "elementType": "geometry.fill",
+            "stylers": [
+              { "color": "#ccd89d" }
+            ]
+          },{
+            "featureType": "administrative",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              { "color": "#9e9a97" },
+              { "visibility": "off" }
+            ]
+          },{
+            "featureType": "administrative",
+            "elementType": "labels.text.stroke",
+            "stylers": [
+              { "visibility": "off" }
+            ]
+          },{
+            "featureType": "transit",
+            "elementType": "labels.text",
+            "stylers": [
+              { "color": "#6c9e85" },
+              { "visibility": "off" }
+            ]
+          }
+        ];
+        this.map.setOptions({styles: mapStyles});      
         if ( !this.$roasterItems.length ) {
         	return false;
         }
@@ -4863,7 +5012,7 @@ window.pdx.app.home = {
             
             $instance.addClass( "active" );
             $tip.removeClass( "loading" )
-                .css( "top", -($tip.height()+3) );
+                .css( "top", -($tip.height() - 4) );
         
         // Hide roaster content
         }).on( "mouseleave", "> div", function ( e ) {
@@ -4894,7 +5043,7 @@ window.pdx.app.home = {
             	   .css( "top", "50%" );
             	
             	if ( $infowindow.is( ".inactive" ) ) {
-                	$infowindow.css( "top", "50%" );
+                	$infowindow.css( "top", "80%" );
                 	
                 } else {
                     $infowindow.css( "top", -($infowindow.height()+3) );
@@ -4943,7 +5092,7 @@ window.pdx.app.home = {
                     
                     $infowindow.html( html )
                         .insertAfter( $tip )
-                        .css( "top", -($infowindow.height()+3) )
+                        .css( "top", -($infowindow.height() + 20) )
                         .css( "left", -(($infowindow.width()/2)-($elem.width()/2)) );
                     
                     $infowindow.find( ".plus-close" ).on( "click", function ( e ) {
