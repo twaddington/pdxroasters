@@ -9,9 +9,15 @@ a {
     }
 }
 h1 {
-    color: #fff;
-    font-size: 28px;
-    letter-spacing: 2px;
+    color: #22a1ae;
+    font-size: 30px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin-left: 1em;
+    line-height: 3.5em;
+}
+h1:before{
+
 }
 h2 {
     font-size: 36px;
@@ -46,6 +52,7 @@ h6 {
     font-weight: normal;
 }
 p {
+    line-height:2em;
     &.skolar {
         font-family: $skolar;
         margin-bottom: 1em;
@@ -59,6 +66,7 @@ p {
     &.caption {
         color: #bebebe;
         font-style: italic; 
+        line-height: 4em;
     }
 }
 strong {

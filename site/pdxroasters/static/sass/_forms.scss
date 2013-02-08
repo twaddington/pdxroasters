@@ -36,9 +36,6 @@ button[type="submit"] {
     text-transform: none;
     text-align: left;
     text-indent: 0px;
-    
-    @include border-top-left-radius(8px);
-    @include border-bottom-right-radius(8px);
     @include transition(background-color 200ms linear);
     
     &:hover {
