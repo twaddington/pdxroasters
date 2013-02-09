@@ -14,7 +14,7 @@ INTERNAL_IPS = (
 )
 
 ADMINS = (
-    ('PDX Roasters', 'pdxroasters@gmail.com'),
+    ('Tristan Waddington', 'tristan.waddington@gmail.com'),
 )
 
 MANAGERS = ADMINS
