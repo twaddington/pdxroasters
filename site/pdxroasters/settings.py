@@ -166,12 +166,19 @@ LOGGING = {
     }
 }
 
+# The email account to send from
+DEFAULT_FROM_EMAIL = 'no-reply@pdxroasters.com'
+
+# The email account to receive contact form messages
+DEFAULT_CONTACT_EMAIL = 'pdxroasters@gmail.com'
+
 # Configure our mail backend
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.getenv('GMAIL_HOST', 'smtp.gmail.com')
 EMAIL_HOST_USER = os.getenv('GMAIL_SMTP_USER', 'pdxroasters@gmail.com')
 EMAIL_HOST_PASSWORD = os.getenv('GMAIL_SMTP_PASSWORD', '')
 EMAIL_PORT = os.getenv('GMAIL_PORT', 587)
+EMAIL_SUBJECT_PREFIX = '[%s] ' % 'PDX Roasters'
 EMAIL_USE_TLS = True
 
 # Import local settings

@@ -11,6 +11,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', 'pdxroasters.views.home', name='home'),
+    url(r'^contact/$', 'pdxroasters.views.contact', name='contact'),
 
     # Wire up the api
     url(r'^api/', include(CafeResource().urls)),
