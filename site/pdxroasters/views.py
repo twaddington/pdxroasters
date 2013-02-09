@@ -22,6 +22,17 @@ as soon as possible.
 PDX Roasters
 www.pdxroasters.com"""
 
+def home(request):
+    """
+    Display the home page.
+    """
+    context = {
+        'roasters': Roaster.objects.all(),
+    }
+
+    return render_to_response('home.html',
+            context, context_instance=RequestContext(request))
+
 def contact(request):
     """
     Send a simple contact email.
@@ -61,14 +72,3 @@ def contact(request):
                         mimetype=CONTENT_TYPE_JSON)
 
     raise Http404()
-
-def home(request):
-    """
-    Display the home page.
-    """
-    context = {
-        'roasters': Roaster.objects.all(),
-    }
-
-    return render_to_response('home.html',
-            context, context_instance=RequestContext(request))

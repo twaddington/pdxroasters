@@ -13,6 +13,9 @@ urlpatterns = patterns('',
     url(r'^$', 'pdxroasters.views.home', name='home'),
     url(r'^contact/$', 'pdxroasters.views.contact', name='contact'),
 
+    # Import our roaster paths
+    url(r'^', include('roaster.urls')),
+
     # Wire up the api
     url(r'^api/', include(CafeResource().urls)),
     url(r'^api/', include(RoasterResource().urls)),
