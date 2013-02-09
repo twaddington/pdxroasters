@@ -14,7 +14,7 @@ INTERNAL_IPS = (
 )
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('PDX Roasters', 'pdxroasters@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -165,6 +165,14 @@ LOGGING = {
         },
     }
 }
+
+# Configure our mail backend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.getenv('GMAIL_HOST', 'smtp.gmail.com')
+EMAIL_HOST_USER = os.getenv('GMAIL_SMTP_USER', 'pdxroasters@gmail.com')
+EMAIL_HOST_PASSWORD = os.getenv('GMAIL_SMTP_PASSWORD', '')
+EMAIL_PORT = os.getenv('GMAIL_PORT', 587)
+EMAIL_USE_TLS = True
 
 # Import local settings
 try:
