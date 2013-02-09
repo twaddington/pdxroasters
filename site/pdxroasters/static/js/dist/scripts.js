@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-/*! PDX Roasters - v0.1.0 - 2013-02-08
-* http://PROJECT_WEBSITE/
-* Copyright (c) 2013 PDX Roasters; Licensed MIT */
-
-=======
 /*! PDX Roasters - v0.1.0 - 2013-02-09
 * http://PROJECT_WEBSITE/
 * Copyright (c) 2013 PDX Roasters; Licensed MIT */
@@ -4076,7 +4070,6 @@
   $.ender(module.exports);
 
 }());
->>>>>>> 1cc12833eeb664e2121481adffc5142c23264362
 /**
  * PDX Roaster Namespace
  *
