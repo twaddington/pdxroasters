@@ -6,7 +6,7 @@ from django.core.management.base import BaseCommand, CommandError
 from geopy import geocoders
 from optparse import make_option
 
-from roaster.models import BusinessHours, Roaster, Roast
+from roaster.models import BusinessHours, Roaster, Roast, Cafe
 
 IMPORT_TYPES = ('roasters', 'cafes',)
 
@@ -25,7 +25,15 @@ class Command(BaseCommand):
             help='Geocode store addresses')
     )
 
-    fields = (
+    cafe_fields = (
+        'roaster',
+        'name',
+        'address',
+        'phone',
+        'url',
+    )
+
+    roaster_fields = (
         'name',
         'order_online',
         'cafe_on_site',
@@ -56,14 +64,39 @@ class Command(BaseCommand):
             self.stdout.flush()
 
     def import_cafe(self, reader):
-        pass
+        num_created = 0
+        for row in reader:
+            # Skip the first row
+            name = row.get('name').strip()
+            roaster = row.get('roaster').strip()
+            if name and name != 'Cafe' and roaster and roaster != 'Roaster':
+                cafe, created = Cafe.objects.get_or_create(name=name)
+
+                if created:
+                    self.uprint('Importing new cafe: %s' % name)
+                    num_created += 1
+                else:
+                    self.uprint('Updating cafe: %s' % name)
+
+                cafe.address = row.get('address')
+                cafe.phone = row.get('phone')
+                cafe.url = row.get('url')
+                cafe.save()
+
+                try:
+                    # Associate roaster with the cafe
+                    Roaster.objects.get(name=roaster).cafes.add(cafe)
+                except Roaster.DoesNotExist:
+                    self.uprint('Roaster %s does not exist!' % roaster)
+
+        self.uprint('Imported %s new cafes.' % num_created)
 
     def import_roaster(self, reader):
         num_created = 0
         for row in reader:
             # Skip the first row
             name = row.get('name').strip()
-            if row.get('name') and row.get('name') != 'Name':
+            if name and name != 'Name':
                 roaster, created = Roaster.objects.get_or_create(
                         name=name)
 
@@ -150,11 +183,11 @@ class Command(BaseCommand):
                 self.uprint('Importing from "%s"' % path)
 
                 with open(path, 'rb') as f:
-                    reader = csv.DictReader(f, fieldnames=self.fields)
-
-                    if self.import_type is 'cafes':
+                    if self.import_type == 'cafes':
+                        reader = csv.DictReader(f, fieldnames=self.cafe_fields)
                         self.import_cafe(reader)
                     else:
+                        reader = csv.DictReader(f, fieldnames=self.roaster_fields)
                         self.import_roaster(reader)
             else:
                 raise CommandError('The given path is not a valid file!')
