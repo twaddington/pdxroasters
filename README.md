@@ -31,10 +31,10 @@ serve you well:
     $ pip install -r src/requirements.txt
 
     # Create the dev database
-    $ python src/pdxroasters/manage.py syncdb
+    $ python src/site/manage.py syncdb
 
     # Run the development server
-    $ python src/pdxroasters/manage.py runserver
+    $ python src/site/manage.py runserver
 
 > Note: When the Python virtualenv is activated, you'll see your shell prompt
 > change to include a prefix like `(django-pdxroasters)shin:src tristanw$`.
