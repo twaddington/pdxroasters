@@ -56,6 +56,10 @@ $.ender({
     // Simple compat for jQuery.fn.add()
     // Because this needs to return a new set
     add: function ( mixed ) {
+        if ( !mixed ) {
+        	return this;
+        }
+        
         var add,
             set = this.toArray();
         

@@ -45,7 +45,7 @@ window.pdx.app.home = {
             	self.$info.removeClass( "active" );
             	
             } else {
-                $( "[href='"+self.activeHash+"']" ).click();
+                $( "[data-page='"+self.activePage+"']" ).click();
             }
         });
         
@@ -56,15 +56,26 @@ window.pdx.app.home = {
             	self.$info.addClass( "active" );
             }
             
-            self.$info.css( "top", $( window ).scrollTop() );
+            var $this = $( this ),
+            	page = $this.data( "page" ),
+            	$lastPage = self.$activePage;
+            
+            //self.$info.css( "top", $( window ).scrollTop() );
             
             self.$navLinks.removeClass( "on" );
-            $( this ).addClass( "on" );
+            $this.addClass( "on" );
             
-            self.$activePanel = $( this.hash );
-            self.activeHash = this.hash;
+            self.$activePage = $( "#"+page );
+            self.activePage = page;
             
-            self.$panelWrap.css( "left", -(self.$activePanel.index()*$document.width()) );
+            if ( $lastPage && $lastPage.index() > self.$activePage.index() ) {
+            	$lastPage.css( "left", "100%" );
+            	
+            } else if ( $lastPage && $lastPage.index() < self.$activePage.index() ) {
+	            $lastPage.css( "left", "-100%" );
+            }
+            
+            self.$activePage.css( "left", 0 );
         });
     },
     
@@ -73,18 +84,10 @@ window.pdx.app.home = {
         
         this.$mapWrap = $( "#map-wrap" );
         this.$map = $( "#map" );
-        this.$mapPage = $( "#map-page" );
-        this.$closeMapPage = this.$mapPage.find( ".plus-close" );
         this.mapElem = this.$map.get( 0 );
         this.mapMarkers = [];
         
-        this.$mapWrap.add( this.$mapPage ).height( window.innerHeight );
-        
-        this.$closeMapPage.on( "click", function ( e ) {
-            e.preventDefault();
-            
-            self.$mapPage.removeClass( "active" );
-        });
+        this.$mapWrap.height( window.innerHeight );
         
         // Listen for maps to be loaded and ready
         window.pdx.maps.onmapsready(function () {
@@ -114,6 +117,7 @@ window.pdx.app.home = {
 			},
 			scrollwheel: false,
 			streetViewControl: false,
+			styles: window.pdx.mapstyles || [],
 			zoom: 15,
 			zoomControlOptions: {
 				position: google.maps.ControlPosition.LEFT_CENTER,
@@ -123,156 +127,7 @@ window.pdx.app.home = {
         
         this.mapBounds = new google.maps.LatLngBounds();
         this.map = new google.maps.Map( this.mapElem, this.mapSettings );
-        var mapStyles = [
-          {
-            "featureType": "water",
-            "elementType": "geometry.fill",
-            "stylers": [
-              { "visibility": "on" },
-              { "color": "#c4d3d8" }
-            ]
-          },{
-            "featureType": "road",
-            "elementType": "geometry.fill",
-            "stylers": [
-              { "color": "#ffffff" },
-              { "visibility": "on" }
-            ]
-          },{
-            "featureType": "landscape.man_made",
-            "stylers": [
-              { "visibility": "on" },
-              { "color": "#e7e4d9" }
-            ]
-          },{
-            "featureType": "poi.park",
-            "elementType": "geometry.fill",
-            "stylers": [
-              { "visibility": "on" },
-              { "color": "#c2dc96" }
-            ]
-          },{
-            "featureType": "road",
-            "elementType": "labels.text.fill",
-            "stylers": [
-              { "color": "#adafae" },
-              { "visibility": "on" }
-            ]
-          },{
-            "featureType": "road.arterial",
-            "elementType": "labels.text.stroke",
-            "stylers": [
-              { "weight": 1.6 },
-              { "visibility": "on" },
-              { "color": "#f9f6ed" }
-            ]
-          },{
-            "featureType": "road.arterial",
-            "elementType": "labels.text.fill",
-            "stylers": [
-              { "color": "#aeaead" }
-            ]
-          },{
-            "featureType": "poi",
-            "elementType": "labels",
-            "stylers": [
-              { "visibility": "off" }
-            ]
-          },{
-            "featureType": "transit",
-            "elementType": "labels.icon",
-            "stylers": [
-              { "visibility": "off" }
-            ]
-          },{
-            "featureType": "road.highway",
-            "elementType": "labels.icon",
-            "stylers": [
-              { "visibility": "off" }
-            ]
-          },{
-            "featureType": "road.arterial",
-            "elementType": "geometry.stroke",
-            "stylers": [
-              { "visibility": "on" },
-              { "color": "#c8c9c9" }
-            ]
-          },{
-            "featureType": "road.highway",
-            "elementType": "geometry.stroke",
-            "stylers": [
-              { "visibility": "on" },
-              { "color": "#c1c2c2" }
-            ]
-          },{
-            "featureType": "road.local",
-            "elementType": "labels.text.fill"  },{
-            "featureType": "road.local",
-            "elementType": "labels.text.fill",
-            "stylers": [
-              { "color": "#bebab4" }
-            ]
-          },{
-            "featureType": "road.highway",
-            "elementType": "labels.text.stroke",
-            "stylers": [
-              { "color": "#fffffe" }
-            ]
-          },{
-            "featureType": "road.highway",
-            "elementType": "labels.text.fill",
-            "stylers": [
-              { "color": "#898c8c" }
-            ]
-          },{
-            "featureType": "road.arterial",
-            "elementType": "labels.text.fill",
-            "stylers": [
-              { "color": "#969694" }
-            ]
-          },{
-            "featureType": "transit.line",
-            "elementType": "geometry.fill",
-            "stylers": [
-              { "lightness": 9 },
-              { "visibility": "on" },
-              { "color": "#8f908d" }
-            ]
-          },{
-            "featureType": "administrative.land_parcel",
-            "elementType": "geometry.stroke",
-            "stylers": [
-              { "color": "#d6d2cc" }
-            ]
-          },{
-            "featureType": "poi.sports_complex",
-            "elementType": "geometry.fill",
-            "stylers": [
-              { "color": "#ccd89d" }
-            ]
-          },{
-            "featureType": "administrative",
-            "elementType": "labels.text.fill",
-            "stylers": [
-              { "color": "#9e9a97" },
-              { "visibility": "off" }
-            ]
-          },{
-            "featureType": "administrative",
-            "elementType": "labels.text.stroke",
-            "stylers": [
-              { "visibility": "off" }
-            ]
-          },{
-            "featureType": "transit",
-            "elementType": "labels.text",
-            "stylers": [
-              { "color": "#6c9e85" },
-              { "visibility": "off" }
-            ]
-          }
-        ];
-        this.map.setOptions({styles: mapStyles});      
+             
         if ( !this.$roasterItems.length ) {
         	return false;
         }
@@ -464,7 +319,7 @@ window.pdx.app.home = {
                             $toggle = $elem.find( ".toggle" );
                         
                         if ( $elem.is( ".active" ) ) {
-                        	$.scrollTo( $elem.offset().top-$header.height() );
+                        	$.scrollTo( $elem.offset().top );
                         	
                         	return false;
                         }
@@ -475,7 +330,7 @@ window.pdx.app.home = {
                         self.$roasterItems.removeClass( "active" );
                         $elem.addClass( "active" );
                         
-                        $.scrollTo( $elem.offset().top-$header.height() );
+                        $.scrollTo( $elem.offset().top );
                     });
                     
                     $infowindow.find( ".more" ).on( "click", function ( e ) {
@@ -509,14 +364,9 @@ window.pdx.app.home = {
     },
     
     _info: function () {
-        this.$info = $( "#info-panel" );
-        this.$panelWrap = this.$info.find( ".panels" );
-        this.$panels = this.$info.find( ".panel" );
-        
-        this.$panels.width( $document.width() );
-        this.$panelWrap.width( $document.width()*this.$panels.length );
-        
-        this.$info.add( this.$panels ).height( window.innerHeight );
+        this.$info = $( "#info-pages" );
+        this.$pages = this.$info.find( ".page" );
+        this.$info.add( this.$pages ).height( window.innerHeight );
     },
     
     _roasters: function () {
@@ -557,7 +407,7 @@ window.pdx.app.home = {
             self.$roasterItems.removeClass( "active" );
             $roaster.addClass( "active" );
             
-            $.scrollTo( $roaster.offset().top-$header.height() );
+            $.scrollTo( $roaster.offset().top );
         });
     },
     
@@ -566,13 +416,9 @@ window.pdx.app.home = {
         
         window.onresize = function () {
             self.$mapWrap
-                .add( self.$mapPage )
                 .add( self.$info )
-                .add( self.$panels )
+                .add( self.$pages )
                 .height( window.innerHeight );
-            
-            self.$panels.width( $document.width() );
-            self.$panelWrap.width( $document.width()*self.$panels.length );
         };
     },
     

@@ -20,7 +20,7 @@ $( ".scroll-to" ).on( "click", function ( e ) {
     
     var $elem = $( this.hash );
     
-    $.scrollTo( $elem.offset().top-$header.height() );
+    $.scrollTo( $elem.offset().top );
 });
 
 // Async form handling

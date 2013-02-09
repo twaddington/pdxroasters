@@ -20,6 +20,6 @@ staticfiles
 .sass-cache
 
 # Ignore Ender files
-ender/ender.js
-ender/ender.min.js
-ender/node_modules
+ender.js
+ender.min.js
+node_modules
