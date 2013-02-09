@@ -85,7 +85,8 @@ body {
 }
 
 /* -- structure -- */
-#page {
+#page,
+#content {
     overflow: hidden;
     position: relative;
 }
@@ -139,7 +140,7 @@ body {
                 font-size: 1.25em;
                 &:hover,
                 &.on {
-                    color: #292929;
+                    color: $blue;
                 }
             }
         }
@@ -161,9 +162,9 @@ body {
 }
 
 
-/* -- info panels -- */
-#info-panel {
-    background-color: #f0f0f0;
+/* -- push pages -- */
+.push-pages {
+	background-color: #f0f0f0;
     bottom: 0;
     left: 100%;
     overflow: hidden;
@@ -179,21 +180,18 @@ body {
         left: 0;
     }
     
-    .panels {
-        position: relative;
-        
-        @include transition(left 300ms ease-in-out);
-    }
-    
-    .panel {
-        float: left;
-        height: 100%;
-        position: relative;
-        width: 100%;
-        
-        .panel-inner {
-            padding: 300px 50px;
-        }
+    > .page {
+    	left: 100%;
+    	overflow: hidden;
+    	position: absolute;
+    	top: 0;
+    	width: 100%;
+    	
+    	@include transition(left 300ms ease-in-out);
+	    
+	    > .page-inner {
+		    padding: 170px 50px;
+	    }
     }
 }
 
@@ -204,32 +202,6 @@ body {
     height: 100%;
     width: 100%;
     z-index: 7;
-}
-#map-page {
-    background-color: #f0f0f0;
-    bottom: 0;
-    left: 100%;
-    overflow: hidden;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 100%;
-    z-index: 9;
-    
-    @include transition(left 300ms ease-in-out);
-    
-    &.active {
-        left: 0;
-    }
-    
-    .plus-close {
-        right: 40px;
-        top: 100px;
-    }
-    
-    .page-inner {
-        padding: 100px;
-    }
 }
 #map {
     position: relative;
@@ -456,12 +428,16 @@ body {
             
             @include box-shadow(0 0 30px rgba(0,0,0,.1) inset);
             
-            .content {
-                height: 555px;
+            .handle {
+	            border-bottom: 0;
             }
             
             .handle span {
                 color: $blue;
+            }
+            
+            .content {
+	            display: block;
             }
         }
         
@@ -511,11 +487,9 @@ body {
         }
         
         .content {
-            height: 0;
+            display: none;
             overflow: hidden;
-            padding: 0 20px;
-            
-            @include transition(height 300ms linear 200ms);
+            padding: 0 20px 20px;
         }
         
         .figure {
