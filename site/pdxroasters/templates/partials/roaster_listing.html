@@ -41,7 +41,7 @@
                     <div class="ci">
                         <h4>About {{ r.name }}</h4>
                         <p class="skolar">{{ r.description }}</p>
-                        <a href="/roaster/{{ r.slug }}/" data-api="{{ r.resource_uri }}" class="btn">Find this Roast</a>
+                        <a href="{{ r.get_absolute_url }}" data-api="{{ r.resource_uri }}" class="btn">Find this Roast</a>
                     </div>
                 </div>
             </div>

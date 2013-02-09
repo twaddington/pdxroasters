@@ -1,11 +1,21 @@
 /* TEAM */
-Lead Developer:Tristan Waddington
-Site:http://www.tristanwaddington.com/
-Twitter:@twaddington
-Location:Portland, Oregon, United States
+    Project lead: Isaac Viel
+    From: Portland, Oregon, United States
+    
+    Lead developer: Tristan Waddington
+    Twitter: @twaddington
+    From: Portland, Oregon, United States
+
+    Frontend developer: Brandon Kitajchuk
+    Twitter: @kitajchuk
+    From: Portland, Oregon, United States
+
+    Designer: Paul C. Pederson
+    Twitter: @paulcpederson
+    From: Portland, Oregon, United States
 
 /* SITE */
-Standards:HTML5, CSS3
-Components:Modernizr, jQuery
-Software:Django,Python
-IDE:Vim
+    IDE: Vim, Sublime Text
+    Hosting: Heroku
+    Software: Django, Python
+    GitHub: https://github.com/twaddington/pdxroasters

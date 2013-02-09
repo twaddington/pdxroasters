@@ -1,5 +1,6 @@
 import re
 
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.template.defaultfilters import slugify
 
@@ -17,8 +18,7 @@ def format_phone_number(phone):
     phone = re.sub('[^\w]', '', phone)
     if (len(phone) == 10):
         return '(%s) %s-%s' % (phone[:3], phone[3:6], phone[6:10])
-    else:
-        return ''
+    return ''
 
 class Business(models.Model):
     name = models.CharField(max_length=200, unique=True, db_index=True,)
@@ -68,7 +68,8 @@ class BusinessHours(models.Model):
                 close=self.close)
 
 class Cafe(Business):
-    pass
+    def get_absolute_url(self):
+        return reverse('roaster.views.cafe_details', args=[self.slug])
 
 class Roaster(Business):
     description = models.TextField(blank=True,)
@@ -78,6 +79,9 @@ class Roaster(Business):
             blank=True,)
     cafes = models.ManyToManyField('Cafe', blank=True,)
 
+    def get_absolute_url(self):
+        return reverse('roaster.views.roaster_details', args=[self.slug])
+
 class Roast(models.Model):
     name = models.CharField(max_length=200, unique=True, db_index=True,)
     roaster = models.ForeignKey('Roaster', related_name='roasts',)
@@ -85,9 +89,8 @@ class Roast(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, db_index=True,)
     modified_at = models.DateTimeField(auto_now=True, db_index=True,)
 
-    def __unicode__(self):
-        return self.name
-
     class Meta:
         ordering = ['name',]
 
+    def __unicode__(self):
+        return self.name
