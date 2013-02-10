@@ -4528,7 +4528,6 @@ window.pdx.maps.settings = {
 		position: google.maps.ControlPosition.LEFT_CENTER
 	},
 	scrollwheel: false,
-	streetViewControl: false,
 	styles: window.pdx.mapstyles || [],
 	zoom: 15,
 	zoomControlOptions: {
