@@ -4124,14 +4124,15 @@ $( ".ajax-form" ).on( "submit", function ( e ) {
         type: "json",
         url: this.action,
         success: function ( response ) {
-	        if ( window.pdx.forms[ form ] && typeof window.pdx.forms[ form ].done === "function" ) {
-	        	window.pdx.forms[ form ].done( $this, response );
+	        if ( response.status === 204 ) {
+	        	window.pdx.forms[ form ].done( $this );
+	        	
+	        } else {
+		        window.pdx.forms[ form ].fail( $this, response.error || response );
 	        }
         },
         error: function ( error ) {
-	        if ( window.pdx.forms[ form ] && typeof window.pdx.forms[ form ].fail === "function" ) {
-	        	window.pdx.forms[ form ].fail( $this, error );
-	        }
+	        window.pdx.forms[ form ].fail( $this, error );
         }
     });
 });
@@ -4151,22 +4152,22 @@ $( ".ajax-form" ).on( "submit", function ( e ) {
 // Forms namespace
 window.pdx.forms = {
 	contact: {
-		done: function ( response ) {
-			
+		done: function ( $elem ) {
+			console.log( "[pdx.forms.contact.done]" );
 		},
 		
-		fail: function ( error ) {
-			
+		fail: function ( $elem, error ) {
+			console.log( "[pdx.forms.contact.fail]: ", error );
 		}
 	},
 	
 	roaster: {
-		done: function ( response ) {
-			
+		done: function ( $elem ) {
+			console.log( "[pdx.forms.roaster.done]" );
 		},
 		
-		fail: function ( error ) {
-			
+		fail: function ( $elem, error ) {
+			console.log( "[pdx.forms.roaster.fail]: ", error );
 		}
 	}
 };

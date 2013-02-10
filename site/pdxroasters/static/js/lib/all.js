@@ -34,14 +34,15 @@ $( ".ajax-form" ).on( "submit", function ( e ) {
         type: "json",
         url: this.action,
         success: function ( response ) {
-	        if ( window.pdx.forms[ form ] && typeof window.pdx.forms[ form ].done === "function" ) {
-	        	window.pdx.forms[ form ].done( $this, response );
+	        if ( response.status === 204 ) {
+	        	window.pdx.forms[ form ].done( $this );
+	        	
+	        } else {
+		        window.pdx.forms[ form ].fail( $this, response.error || response );
 	        }
         },
         error: function ( error ) {
-	        if ( window.pdx.forms[ form ] && typeof window.pdx.forms[ form ].fail === "function" ) {
-	        	window.pdx.forms[ form ].fail( $this, error );
-	        }
+	        window.pdx.forms[ form ].fail( $this, error );
         }
     });
 });
