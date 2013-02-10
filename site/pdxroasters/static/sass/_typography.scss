@@ -1,29 +1,23 @@
+body{ font-size: 16px };
 a {
     color: $blue;
-    text-decoration: none;
-    
+    text-decoration: none;  
     @include transition(color 200ms linear);
-    
     &:hover {
         color: #111;
     }
 }
-h1 {
-    color: #22a1ae;
-    font-size: 30px;
+h1{
+    font-size: 1.65em;
     letter-spacing: 1px;
-    font-weight: 700;
-    margin-left: 1em;
-    line-height: 3.5em;
-}
-h1:before{
-
+    line-height: 2em;
 }
 h2 {
     font-size: 36px;
     margin-bottom: .5em;
     color: #323232;
     letter-spacing: 1px;
+    line-height: 2em;
 }
 h3 {
     font-size: 26px;

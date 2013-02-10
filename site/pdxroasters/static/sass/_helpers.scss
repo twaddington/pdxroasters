@@ -21,3 +21,11 @@
            -o-transform: rotate($degrees);
               transform: rotate($degrees);
 }
+@mixin radius-multiple($width, $height){
+  -moz-border-radius: #{$width} / #{$height};
+  -webkit-border-radius: #{$width} / #{$height};
+  border-radius: #{$width} / #{$height};
+}
+@mixin empty3D(){
+  -webkit-transform: translateZ(0);
+}
