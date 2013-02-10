@@ -45,6 +45,7 @@
             </div>
             <div class="col col1of2">
                 <form class="ci ajax-form" data-form="contact" method="post" action="{% url contact %}">
+                    {% csrf_token %}
                     <input name="name" type="text" placeholder="Full Name" />             
                     <input name="email" type="email" placeholder="E-mail" />
                     <textarea name="message" placeholder="Message"></textarea>

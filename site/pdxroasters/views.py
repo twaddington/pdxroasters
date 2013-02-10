@@ -40,8 +40,8 @@ def contact(request):
     if request.is_ajax():
         if request.method == 'POST':
             name = request.POST.get('name').strip()
-            email = data.POST.get('email').strip()
-            message = data.POST.get('message')
+            email = request.POST.get('email').strip()
+            message = request.POST.get('message')
 
             try:
                 # Format the subject
