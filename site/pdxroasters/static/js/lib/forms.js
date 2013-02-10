@@ -1,6 +1,9 @@
 /**
  * PDX Roaster Form handling
  *
+ * @dependencies:
+ * /static/js/pdx.js
+ *
  */
 (function ( $, window ) {
 

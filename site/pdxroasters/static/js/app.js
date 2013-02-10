@@ -2,9 +2,8 @@
  * PDX Roaster Application Contoller
  *
  * @dependencies:
- * /static/js/ender/*
  * /static/js/pdx.js
- * /static/js/lib/*
+ * /static/js/controllers/*
  *
  */
 (function ( $, window ) {
