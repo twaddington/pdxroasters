@@ -331,7 +331,36 @@ window.pdx.maps.geocode = function ( data, callback ) {
 			callback( results[ 0 ].geometry.location, results[ 0 ] );
 		}
 	});
-}
+};
+
+// Location
+window.pdx.maps.location = {
+	lat: 45.5239,
+    lng: -122.67,
+    latLng: new google.maps.LatLng( 45.5239, -122.67 )
+};
+
+// Map settings
+window.pdx.maps.settings = {
+    center: window.pdx.maps.location.latLng,
+	disableDoubleClickZoom: false,
+	draggingCursor: "move",
+	draggableCursor: "default",
+	mapTypeId: google.maps.MapTypeId.ROADMAP,
+	mapTypeControl: false,
+	panControl: false,
+	panControlOptions: {
+		position: google.maps.ControlPosition.LEFT_CENTER
+	},
+	scrollwheel: false,
+	streetViewControl: false,
+	styles: window.pdx.mapstyles || [],
+	zoom: 15,
+	zoomControlOptions: {
+		position: google.maps.ControlPosition.LEFT_CENTER,
+		style: google.maps.ZoomControlStyle.LARGE
+	}
+};
 
 // Fire onmapsready callbacks
 window.pdx.maps.firemapsready();

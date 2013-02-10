@@ -26,7 +26,7 @@
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 </head>
-<body data-controller="{% block controller %}{% endblock %}" data-environment="{% if debug %}development{% else %}production{% endif %}" data-csrftoken="{{ csrf_token }}">
+<body class="{% block pageclass %}{% endblock %}" data-controller="{% block controller %}{% endblock %}" data-environment="{% if debug %}development{% else %}production{% endif %}" data-csrftoken="{{ csrf_token }}">
     <div id="page">
         {% block header %}
         <header id="header">

@@ -1,10 +1,22 @@
 {% extends 'site_base.html' %}
+
 {% load i18n %}
 
-{% block title %}
-    {{ roaster.name }}
-{% endblock %}
+{% block title %}{{ roaster.name }}{% endblock %}
+
+{% block controller %}roaster{% endblock %}
+
+{% block pageclass %}roaster{% endblock %}
 
 {% block content %}
-    <h2>{{ roaster.name }}</h2>
+	<div id="roaster">
+		<div class="inner group">
+			<div class="col col1of2">
+				<h2>{{ roaster.name }}</h2>
+			</div>
+			<div class="col col1of2">
+				{% include 'partials/map.html' %}
+			</div>
+		</div>
+	</div>
 {% endblock %}

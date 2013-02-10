@@ -1,11 +1,14 @@
 /* -- grid -- */
+.inner {
+	padding: 2em;
+}
 .col {
     display: block;
     float: left;
     position: relative;
 }
 .ci {
-    padding: 0 20px;
+    padding: 0 1em;
 }
 .last {
     float: right;

@@ -4506,7 +4506,36 @@ window.pdx.maps.geocode = function ( data, callback ) {
 			callback( results[ 0 ].geometry.location, results[ 0 ] );
 		}
 	});
-}
+};
+
+// Location
+window.pdx.maps.location = {
+	lat: 45.5239,
+    lng: -122.67,
+    latLng: new google.maps.LatLng( 45.5239, -122.67 )
+};
+
+// Map settings
+window.pdx.maps.settings = {
+    center: window.pdx.maps.location.latLng,
+	disableDoubleClickZoom: false,
+	draggingCursor: "move",
+	draggableCursor: "default",
+	mapTypeId: google.maps.MapTypeId.ROADMAP,
+	mapTypeControl: false,
+	panControl: false,
+	panControlOptions: {
+		position: google.maps.ControlPosition.LEFT_CENTER
+	},
+	scrollwheel: false,
+	streetViewControl: false,
+	styles: window.pdx.mapstyles || [],
+	zoom: 15,
+	zoomControlOptions: {
+		position: google.maps.ControlPosition.LEFT_CENTER,
+		style: google.maps.ZoomControlStyle.LARGE
+	}
+};
 
 // Fire onmapsready callbacks
 window.pdx.maps.firemapsready();
@@ -5004,35 +5033,8 @@ window.pdx.app.home = {
     _map: function () {
         var self = this;
         
-        // Google maps
-        this.portland = {
-            lat: 45.5239,
-            lng: -122.67,
-            latLng: new google.maps.LatLng( 45.5239, -122.67 )
-        };
-        this.mapSettings = {
-            center: this.portland.latLng,
-			disableDoubleClickZoom: false,
-			draggingCursor: "move",
-			draggableCursor: "default",
-			mapTypeId: google.maps.MapTypeId.ROADMAP,
-			mapTypeControl: false,
-			panControl: false,
-			panControlOptions: {
-				position: google.maps.ControlPosition.LEFT_CENTER
-			},
-			scrollwheel: false,
-			streetViewControl: false,
-			styles: window.pdx.mapstyles || [],
-			zoom: 15,
-			zoomControlOptions: {
-				position: google.maps.ControlPosition.LEFT_CENTER,
-				style: google.maps.ZoomControlStyle.LARGE
-			}
-        };
-        
         this.mapBounds = new google.maps.LatLngBounds();
-        this.map = new google.maps.Map( this.mapElem, this.mapSettings );
+        this.map = new google.maps.Map( this.mapElem, window.pdx.maps.settings );
              
         if ( !this.$roasterItems.length ) {
         	return false;
@@ -5246,8 +5248,6 @@ window.pdx.app.home = {
                             if ( res.error ) {
                             	//return false;
                             }
-                            
-                            self.$mapPage.addClass( "active" );
                         });
                     });
                     
