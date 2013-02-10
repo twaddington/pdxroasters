@@ -39,12 +39,9 @@ def contact(request):
     """
     if request.is_ajax():
         if request.method == 'POST':
-            data = json.loads(request.raw_post_data)
-
-            # Get our Ajax content
-            name = data.get('name').strip()
-            email = data.get('email').strip()
-            message = data.get('message')
+            name = request.POST.get('name').strip()
+            email = data.POST.get('email').strip()
+            message = data.POST.get('message')
 
             try:
                 # Format the subject

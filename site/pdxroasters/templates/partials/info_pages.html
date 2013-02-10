@@ -44,10 +44,10 @@
                 </div>
             </div>
             <div class="col col1of2">
-                <form class="ci ajax-form" data-form="contact" method="post" action="/contact/">
-                    <input name="name" type="text" placeholder="Full Name" class="required" />             
-                    <input name="email" type="email" placeholder="E-mail" class="required" />
-                    <textarea name="message" placeholder="Message" class="required"></textarea>
+                <form class="ci ajax-form" data-form="contact" method="post" action="{% url contact %}">
+                    <input name="name" type="text" placeholder="Full Name" />             
+                    <input name="email" type="email" placeholder="E-mail" />
+                    <textarea name="message" placeholder="Message"></textarea>
                     <p class="caption">* All fields are required.</p>
                     <button type="submit">Submit</button>
                 </form>
