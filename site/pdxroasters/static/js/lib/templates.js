@@ -2,7 +2,6 @@
  * PDX Roaster Templates
  *
  * @dependencies:
- * /static/js/ender/*
  * /static/js/pdx.js
  *
  * Using Mustache compiled with Ender:

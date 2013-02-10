@@ -2,7 +2,6 @@
  * PDX Roaster Javascript
  *
  * @dependencies:
- * /static/js/ender/*
  * /static/js/pdx.js
  * /static/js/lib/*
  *
