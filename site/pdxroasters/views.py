@@ -40,8 +40,20 @@ def contact(request):
     if request.is_ajax():
         if request.method == 'POST':
             name = request.POST.get('name').strip()
-            email = data.POST.get('email').strip()
-            message = data.POST.get('message')
+            email = request.POST.get('email').strip()
+            message = request.POST.get('message')
+
+            if len(name) == 0:
+                return HttpResponse(json.dumps({'error':
+                    'Your name cannot be blank!'}), mimetype=CONTENT_TYPE_JSON)
+
+            if len(email) == 0:
+                return HttpResponse(json.dumps({'error':
+                    'Your email must be valid!'}), mimetype=CONTENT_TYPE_JSON)
+
+            if len(message) == 0:
+                return HttpResponse(json.dumps({'error':
+                    'Your message cannot be blank!'}), mimetype=CONTENT_TYPE_JSON)
 
             try:
                 # Format the subject
@@ -63,7 +75,7 @@ def contact(request):
                 EmailMessage(CONFIRMATION_EMAIL_SUBJECT,
                         CONFIRMATION_EMAIL_BODY, from_email, [email]).send()
 
-                return HttpResponse()
+                return HttpResponse(status=204)
             except BadHeaderError:
                 return HttpResponse(json.dumps({'error': 'Invalid name or email!'}),
                         mimetype=CONTENT_TYPE_JSON)
