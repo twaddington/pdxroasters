@@ -24,10 +24,14 @@ $( ".ajax-form" ).on( "submit", function ( e ) {
     e.preventDefault();
     
     var	$this = $( this ),
-    	form = $this.data( "form" );
+    	form = $this.data( "form" ),
+    	csrftoken = $this.find( "[name='csrfmiddlewaretoken']" ).val();
     
     $.ajax({
     	data: $this.serialize(),
+    	headers: {
+	    	"X-CSRFToken": csrftoken
+    	},
         method: this.method,
         type: "json",
         url: this.action,
