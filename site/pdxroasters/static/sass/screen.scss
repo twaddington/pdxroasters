@@ -100,12 +100,15 @@ body {
     right: 0;
     top: 0;
     z-index: 10;
-    position: absolute;
+    position: relative;
     width: 100%;
     max-width: 100%;
     overflow: hidden;
     height: 7em;
     padding: 0 2em;
+}
+.home #header {
+	position: absolute;
 }
 #footer {
     background-color: #000;
