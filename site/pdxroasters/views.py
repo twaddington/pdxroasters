@@ -59,6 +59,10 @@ def contact(request):
                 # Format the subject
                 subject = 'PDX Roasters - %s' % name
 
+                # Format the message
+                message = 'Sent from: {name} <{email}>\n\n{message}'.format(\
+                        name=name, email=email, message=message)
+
                 # The email of the sender
                 from_email = settings.DEFAULT_FROM_EMAIL
 
