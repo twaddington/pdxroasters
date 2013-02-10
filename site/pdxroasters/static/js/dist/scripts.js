@@ -4100,10 +4100,6 @@ window.pdx.app = {};
 
 "use strict";
 
-// Closure globals
-var $document = $( document ),
-    $header = $( "#header" );
-
 // Smooth scroll links
 $( ".scroll-to" ).on( "click", function ( e ) {
     e.preventDefault();
@@ -4117,18 +4113,58 @@ $( ".scroll-to" ).on( "click", function ( e ) {
 $( ".ajax-form" ).on( "submit", function ( e ) {
     e.preventDefault();
     
+    var	$this = $( this ),
+    	form = $this.data( "form" );
+    
     $.ajax({
-        url: this.action,
+    	data: $this.serialize(),
+        method: this.method,
         type: "json",
-        data: $( this ).serialize(),
-        error: function () {
-            console.log( "Ajax form error" );
+        url: this.action,
+        success: function ( response ) {
+	        if ( window.pdx.forms[ form ] && typeof window.pdx.forms[ form ].done === "function" ) {
+	        	window.pdx.forms[ form ].done( $this, response );
+	        }
         },
-        success: function () {
-            console.log( "Ajax form success" );
+        error: function ( error ) {
+	        if ( window.pdx.forms[ form ] && typeof window.pdx.forms[ form ].fail === "function" ) {
+	        	window.pdx.forms[ form ].fail( $this, error );
+	        }
         }
     });
 });
+
+})( ender, window );
+/**
+ * PDX Roaster Form handling
+ *
+ */
+(function ( $, window ) {
+
+"use strict";
+
+// Forms namespace
+window.pdx.forms = {
+	contact: {
+		done: function ( response ) {
+			
+		},
+		
+		fail: function ( error ) {
+			
+		}
+	},
+	
+	roaster: {
+		done: function ( response ) {
+			
+		},
+		
+		fail: function ( error ) {
+			
+		}
+	}
+};
 
 })( ender, window );
 /**
@@ -4846,8 +4882,7 @@ window.pdx.templates = {
 "use strict";
 
 // Closure globals
-var $document = $( document ),
-    $header = $( "#header" );
+var $document = $( document );
 
 // Home Controller
 window.pdx.app.home = {
@@ -5285,6 +5320,9 @@ window.pdx.app.home = {
 (function ( $, window ) {
 
 "use strict";
+
+// Establish environment
+window.pdx.environment = $( document.body ).data( "environment" );
 
 // Run controller
 var controller = $( document.body ).data( "controller" );

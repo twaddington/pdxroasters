@@ -10,6 +10,6 @@ textarea { overflow: auto; resize: vertical; }
 embed, iframe, img, input, object, select, textarea { margin: 0; max-width: 100%; vertical-align: top; }
 a:hover, a:active, embed, object { outline: 0; }
 a, button { cursor: pointer; }
-button { line-height: normal; }
+button { border: 0; line-height: normal; }
 button[disabled] { cursor: default; }
 button::-moz-focus-inner { border: 0; padding: 0; }

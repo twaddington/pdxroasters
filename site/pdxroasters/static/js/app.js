@@ -11,6 +11,9 @@
 
 "use strict";
 
+// Establish environment
+window.pdx.environment = $( document.body ).data( "environment" );
+
 // Run controller
 var controller = $( document.body ).data( "controller" );
 

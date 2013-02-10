@@ -10,10 +10,6 @@
 
 "use strict";
 
-// Closure globals
-var $document = $( document ),
-    $header = $( "#header" );
-
 // Smooth scroll links
 $( ".scroll-to" ).on( "click", function ( e ) {
     e.preventDefault();
@@ -27,15 +23,23 @@ $( ".scroll-to" ).on( "click", function ( e ) {
 $( ".ajax-form" ).on( "submit", function ( e ) {
     e.preventDefault();
     
+    var	$this = $( this ),
+    	form = $this.data( "form" );
+    
     $.ajax({
-        url: this.action,
+    	data: $this.serialize(),
+        method: this.method,
         type: "json",
-        data: $( this ).serialize(),
-        error: function () {
-            console.log( "Ajax form error" );
+        url: this.action,
+        success: function ( response ) {
+	        if ( window.pdx.forms[ form ] && typeof window.pdx.forms[ form ].done === "function" ) {
+	        	window.pdx.forms[ form ].done( $this, response );
+	        }
         },
-        success: function () {
-            console.log( "Ajax form success" );
+        error: function ( error ) {
+	        if ( window.pdx.forms[ form ] && typeof window.pdx.forms[ form ].fail === "function" ) {
+	        	window.pdx.forms[ form ].fail( $this, error );
+	        }
         }
     });
 });
