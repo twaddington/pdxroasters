@@ -11,11 +11,16 @@
 
 "use strict";
 
-// Run controller
-var controller = $( document.body ).data( "controller" );
+var $docBody = $( document.body ),
+	docData = $docBody.data();
 
-if ( window.pdx.app[ controller ] && window.pdx.app[ controller ].init ) {
-	window.pdx.app[ controller ].init();
+// Get all data into pdx namespace
+for ( var i in docData ) {
+	window.pdx[ i ] = docData[ i ];
+}
+
+if ( docData.controller && window.pdx.app[ docData.controller ] && window.pdx.app[ docData.controller ].init ) {
+	window.pdx.app[ docData.controller ].init();
 }
 
 })( ender, window );

@@ -12,8 +12,7 @@
 "use strict";
 
 // Closure globals
-var $document = $( document ),
-    $header = $( "#header" );
+var $document = $( document );
 
 // Home Controller
 window.pdx.app.home = {
