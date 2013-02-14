@@ -20,6 +20,15 @@ staticfiles
 .sass-cache
 
 # Ignore Ender files
-ender.js
-ender.min.js
-node_modules
+site/pdxroasters/static/js/ender/ender.js
+site/pdxroasters/static/js/ender/ender.min.js
+site/pdxroasters/static/js/ender/node_modules
+site/pdxroasters/static/js/ender/node_modules/*
+
+# Ignore Grunt build files
+site/pdxroasters/static/js/dist
+site/pdxroasters/static/js/dist/*
+
+# Ignore Compass build files
+site/pdxroasters/static/css/
+site/pdxroasters/static/css/*
