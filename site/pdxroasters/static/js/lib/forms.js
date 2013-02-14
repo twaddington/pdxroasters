@@ -1,6 +1,9 @@
 /**
  * PDX Roaster Form handling
  *
+ * @dependencies:
+ * /static/js/pdx.js
+ *
  */
 (function ( $, window ) {
 
@@ -9,22 +12,22 @@
 // Forms namespace
 window.pdx.forms = {
 	contact: {
-		done: function ( response ) {
-			
+		done: function ( $elem ) {
+			console.log( "[pdx.forms.contact.done]" );
 		},
 		
-		fail: function ( error ) {
-			
+		fail: function ( $elem, error ) {
+			console.log( "[pdx.forms.contact.fail]: ", error );
 		}
 	},
 	
 	roaster: {
-		done: function ( response ) {
-			
+		done: function ( $elem ) {
+			console.log( "[pdx.forms.roaster.done]" );
 		},
 		
-		fail: function ( error ) {
-			
+		fail: function ( $elem, error ) {
+			console.log( "[pdx.forms.roaster.fail]: ", error );
 		}
 	}
 };

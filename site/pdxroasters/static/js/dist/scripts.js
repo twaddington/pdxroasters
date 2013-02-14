@@ -1,4 +1,4 @@
-/*! PDX Roasters - v0.1.0 - 2013-02-09
+/*! PDX Roasters - v0.1.0 - 2013-02-13
 * http://PROJECT_WEBSITE/
 * Copyright (c) 2013 PDX Roasters; Licensed MIT */
 
@@ -4092,7 +4092,6 @@ window.pdx.app = {};
  * PDX Roaster Sitewide Javascript
  *
  * @dependencies:
- * /static/js/ender/*
  * /static/js/pdx.js
  *
  */
@@ -4125,14 +4124,15 @@ $( ".ajax-form" ).on( "submit", function ( e ) {
         type: "json",
         url: this.action,
         success: function ( response ) {
-	        if ( window.pdx.forms[ form ] && typeof window.pdx.forms[ form ].done === "function" ) {
-	        	window.pdx.forms[ form ].done( $this, response );
+	        if ( response.status === 204 ) {
+	        	window.pdx.forms[ form ].done( $this );
+	        	
+	        } else {
+		        window.pdx.forms[ form ].fail( $this, response.error || response );
 	        }
         },
         error: function ( error ) {
-	        if ( window.pdx.forms[ form ] && typeof window.pdx.forms[ form ].fail === "function" ) {
-	        	window.pdx.forms[ form ].fail( $this, error );
-	        }
+	        window.pdx.forms[ form ].fail( $this, error );
         }
     });
 });
@@ -4140,6 +4140,9 @@ $( ".ajax-form" ).on( "submit", function ( e ) {
 })( ender, window );
 /**
  * PDX Roaster Form handling
+ *
+ * @dependencies:
+ * /static/js/pdx.js
  *
  */
 (function ( $, window ) {
@@ -4149,22 +4152,22 @@ $( ".ajax-form" ).on( "submit", function ( e ) {
 // Forms namespace
 window.pdx.forms = {
 	contact: {
-		done: function ( response ) {
-			
+		done: function ( $elem ) {
+			console.log( "[pdx.forms.contact.done]" );
 		},
 		
-		fail: function ( error ) {
-			
+		fail: function ( $elem, error ) {
+			console.log( "[pdx.forms.contact.fail]: ", error );
 		}
 	},
 	
 	roaster: {
-		done: function ( response ) {
-			
+		done: function ( $elem ) {
+			console.log( "[pdx.forms.roaster.done]" );
 		},
 		
-		fail: function ( error ) {
-			
+		fail: function ( $elem, error ) {
+			console.log( "[pdx.forms.roaster.fail]: ", error );
 		}
 	}
 };
@@ -4175,7 +4178,6 @@ window.pdx.forms = {
  *
  * @dependencies:
  * http://maps.google.com/maps/api/js?sensor=false
- * /static/js/ender/*
  * /static/js/pdx.js
  *
  * @see:
@@ -4504,7 +4506,35 @@ window.pdx.maps.geocode = function ( data, callback ) {
 			callback( results[ 0 ].geometry.location, results[ 0 ] );
 		}
 	});
-}
+};
+
+// Location
+window.pdx.maps.location = {
+	lat: 45.5239,
+    lng: -122.67,
+    latLng: new google.maps.LatLng( 45.5239, -122.67 )
+};
+
+// Map settings
+window.pdx.maps.settings = {
+    center: window.pdx.maps.location.latLng,
+	disableDoubleClickZoom: false,
+	draggingCursor: "move",
+	draggableCursor: "default",
+	mapTypeId: google.maps.MapTypeId.ROADMAP,
+	mapTypeControl: false,
+	panControl: false,
+	panControlOptions: {
+		position: google.maps.ControlPosition.LEFT_CENTER
+	},
+	scrollwheel: false,
+	styles: window.pdx.mapstyles || [],
+	zoom: 15,
+	zoomControlOptions: {
+		position: google.maps.ControlPosition.LEFT_CENTER,
+		style: google.maps.ZoomControlStyle.LARGE
+	}
+};
 
 // Fire onmapsready callbacks
 window.pdx.maps.firemapsready();
@@ -4517,6 +4547,9 @@ window.pdx.maps.mapsloaded = true;
 })( window );
 /**
  * PDX Roaster Map Styles Object
+ *
+ * @dependencies:
+ * /static/js/pdx.js
  *
  */
 (function () {
@@ -4698,7 +4731,6 @@ window.pdx.mapstyles = [
  * PDX Roaster Pushstate Javascript
  *
  * @dependencies:
- * /static/js/ender/*
  * /static/js/pdx.js
  *
  */
@@ -4808,7 +4840,6 @@ window.pdx.PushState = Class.extend({
  * PDX Roaster Templates
  *
  * @dependencies:
- * /static/js/ender/*
  * /static/js/pdx.js
  *
  * Using Mustache compiled with Ender:
@@ -4872,10 +4903,41 @@ window.pdx.templates = {
 
 })( ender, window );
 /**
+ * PDX Roaster Google Analytics
+ *
+ * @dependencies:
+ * /static/js/pdx.js
+ *
+ */
+(function ( $, window, undefined ) {
+
+"use strict";
+
+// Tracking namespace
+window.pdx.tracking = {
+	UAID: "UA-2012911-16",
+	
+	init: function () {
+		window._gaq = window._gaq || [];
+		window._gaq.push(["_setAccount", this.UAID]);
+		window._gaq.push(["_trackPageview"]);
+		
+		(function() {
+			var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+			ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+			var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	}
+};
+
+// Auto init
+window.pdx.tracking.init();
+
+})( ender, window );
+/**
  * PDX Roaster Javascript
  *
  * @dependencies:
- * /static/js/ender/*
  * /static/js/pdx.js
  * /static/js/lib/*
  *
@@ -4970,35 +5032,8 @@ window.pdx.app.home = {
     _map: function () {
         var self = this;
         
-        // Google maps
-        this.portland = {
-            lat: 45.5239,
-            lng: -122.67,
-            latLng: new google.maps.LatLng( 45.5239, -122.67 )
-        };
-        this.mapSettings = {
-            center: this.portland.latLng,
-			disableDoubleClickZoom: false,
-			draggingCursor: "move",
-			draggableCursor: "default",
-			mapTypeId: google.maps.MapTypeId.ROADMAP,
-			mapTypeControl: false,
-			panControl: false,
-			panControlOptions: {
-				position: google.maps.ControlPosition.LEFT_CENTER
-			},
-			scrollwheel: false,
-			streetViewControl: false,
-			styles: window.pdx.mapstyles || [],
-			zoom: 15,
-			zoomControlOptions: {
-				position: google.maps.ControlPosition.LEFT_CENTER,
-				style: google.maps.ZoomControlStyle.LARGE
-			}
-        };
-        
         this.mapBounds = new google.maps.LatLngBounds();
-        this.map = new google.maps.Map( this.mapElem, this.mapSettings );
+        this.map = new google.maps.Map( this.mapElem, window.pdx.maps.settings );
              
         if ( !this.$roasterItems.length ) {
         	return false;
@@ -5027,7 +5062,6 @@ window.pdx.app.home = {
                                 self._onAddMarker( inst, data );
                             }
                         });
-                        
                         self.mapMarkers.push( marker );
                         self.mapBounds.extend( latLng );
                         
@@ -5076,33 +5110,29 @@ window.pdx.app.home = {
         
         $instance.find( ".tooltip" ).text( data.name );
         
-        // Reveal roaster content
+        // Reveal Roaster name rollover
         $instance.on( "mouseenter", "> div", function () {
             var $elem = $( this );
-            
+            // If modal is active...
             if ( $infowindow && !$infowindow.is( ".inactive" ) ) {
-                $tip.addClass( "loading" )
-                    .css( "top", "50%" );
-            	return false;
+                $tip.addClass( "loading" );
+                return false;
             }
-            
+            // When modal is not active...
             $instance.addClass( "active" );
-            $tip.removeClass( "loading" )
-                .css( "top", -($tip.height() - 4) );
+            $tip.removeClass( "loading" );
         
-        // Hide roaster content
+        // Hide Roaster Name rollover
         }).on( "mouseleave", "> div", function ( e ) {
             var $elem = $( this );
-            
+            // When infowindow is active...
             if ( $infowindow && !$infowindow.is( ".inactive" ) ) {
-            	$tip.addClass( "loading" )
-            	   .css( "top", "50%" );
-            	return false;
+                $tip.addClass( "loading" );
+                return false;
             }
-            
+            // When it's not active...
             $instance.removeClass( "active" );
-            $tip.removeClass( "loading" )
-                .css( "top", "50%" );
+            $tip.removeClass( "loading" );
         });
         
         // Request the detailed content
@@ -5212,8 +5242,6 @@ window.pdx.app.home = {
                             if ( res.error ) {
                             	//return false;
                             }
-                            
-                            self.$mapPage.addClass( "active" );
                         });
                     });
                     
@@ -5315,9 +5343,8 @@ window.pdx.app.home = {
  * PDX Roaster Application Contoller
  *
  * @dependencies:
- * /static/js/ender/*
  * /static/js/pdx.js
- * /static/js/lib/*
+ * /static/js/controllers/*
  *
  */
 (function ( $, window ) {

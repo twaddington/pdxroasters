@@ -26,6 +26,10 @@ $dark-gray:#d2d0cb;
 $gray:#DDDBD4;
 $light-gray:#F8f6f4;
 $white:#FFFFFF;
+$tan: #e9e1bd;
+$dark-brown: #44372c;
+$brown: #563f29;
+$light-brown:#6d543d;
 $skolar: 'Skolar', Helvetica, Arial, Sans-serif;
 $din: 'DIN', Helvetica, Arial, Sans-serif;
 
@@ -96,12 +100,15 @@ body {
     right: 0;
     top: 0;
     z-index: 10;
-    position: absolute;
+    position: relative;
     width: 100%;
     max-width: 100%;
     overflow: hidden;
-    height: 7.25em;
+    height: 7em;
     padding: 0 2em;
+}
+.home #header {
+	position: absolute;
 }
 #footer {
     background-color: #000;
@@ -110,8 +117,32 @@ body {
     z-index: 10;
 }
 
-
 /* -- nav -- */
+#logo {
+    color: $brown;
+    font-size: 1.5em;
+    letter-spacing: 1px;
+    &:before{
+        content: "";
+        width: 2.5em;
+        height: 2.5em;
+        background: $tan url("../img/logo.png") no-repeat center center;
+        @include retina-display(){
+            background: $tan url("../img/logo@2x.png") no-repeat center center;
+            background-size: 2.5em 2.5em;
+        }
+        position: relative;
+        display: inline-block;
+        margin-top: 1em;
+        margin-right: .5em;
+        vertical-align: -0.85em;
+        @include border-radius(2.5em);
+        &:hover{
+            border: 10px solid $tan;   
+        }
+    }
+
+}
 #nav {
     position: absolute; 
     top: 28px;
@@ -236,24 +267,45 @@ body {
             height: 40px;
             position: relative;
             width: 20px;
-            background: transparent url("../img/roaster-marker.png") no-repeat top left;
+            background: transparent url("../img/roaster-marker-sans.png") no-repeat top left;
+            @include transition(all .05s linear);
             @include retina-display(){
-                background: transparent url("../img/roaster-marker@2x.png") no-repeat top left;
+                background: transparent url("../img/roaster-marker-sans@2x.png") no-repeat top left;
                 background-size: 20px 32px;
-            }   
+            }
             // Map Marker Hover State
+            &:before{
+                content:"";
+                display:inline-block;
+                width:16px;
+                height:8px;
+                background-color:rgba(0,0,0,.2);
+                position:absolute;
+                top:100%;
+                left:50%;
+                margin-top:-14px;
+                margin-left:-8px;
+                z-index:-1;
+                @include radius-multiple(8px, 4px);
+            }
             &:hover {
-                > div {
+                margin-top:-5px;
+                &:before{
+                    width:20px;
+                    height:10px;
+                    margin-top:-11px;
+                    margin-left:-10px;
+                    @include radius-multiple(10px, 5px);
                 }
             }
         }
         // Mouse over Title of Roaster
         > span {
-            background-color:transparent;
-            padding: 10px;
+            background-color:$white;
+            padding: .5em;
             position: absolute;
             text-align: center;
-            top: -40px;
+            top: -60px;
             visibility: hidden;
             white-space: nowrap;
             z-index: -1;
@@ -261,7 +313,7 @@ body {
             color:$darker-gray;
             @include opacity(0);
             @include transition(all 100ms linear);
-
+            @include box-shadow(0 0 12px rgba(0,0,0,.1));
         }
         // Full Info Modal
         > .infowindow {

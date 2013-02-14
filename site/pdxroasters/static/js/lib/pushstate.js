@@ -2,7 +2,6 @@
  * PDX Roaster Pushstate Javascript
  *
  * @dependencies:
- * /static/js/ender/*
  * /static/js/pdx.js
  *
  */

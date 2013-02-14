@@ -2,7 +2,6 @@
  * PDX Roaster Javascript
  *
  * @dependencies:
- * /static/js/ender/*
  * /static/js/pdx.js
  * /static/js/lib/*
  *
@@ -97,35 +96,8 @@ window.pdx.app.home = {
     _map: function () {
         var self = this;
         
-        // Google maps
-        this.portland = {
-            lat: 45.5239,
-            lng: -122.67,
-            latLng: new google.maps.LatLng( 45.5239, -122.67 )
-        };
-        this.mapSettings = {
-            center: this.portland.latLng,
-			disableDoubleClickZoom: false,
-			draggingCursor: "move",
-			draggableCursor: "default",
-			mapTypeId: google.maps.MapTypeId.ROADMAP,
-			mapTypeControl: false,
-			panControl: false,
-			panControlOptions: {
-				position: google.maps.ControlPosition.LEFT_CENTER
-			},
-			scrollwheel: false,
-			streetViewControl: false,
-			styles: window.pdx.mapstyles || [],
-			zoom: 15,
-			zoomControlOptions: {
-				position: google.maps.ControlPosition.LEFT_CENTER,
-				style: google.maps.ZoomControlStyle.LARGE
-			}
-        };
-        
         this.mapBounds = new google.maps.LatLngBounds();
-        this.map = new google.maps.Map( this.mapElem, this.mapSettings );
+        this.map = new google.maps.Map( this.mapElem, window.pdx.maps.settings );
              
         if ( !this.$roasterItems.length ) {
         	return false;
@@ -154,7 +126,6 @@ window.pdx.app.home = {
                                 self._onAddMarker( inst, data );
                             }
                         });
-                        
                         self.mapMarkers.push( marker );
                         self.mapBounds.extend( latLng );
                         
@@ -203,33 +174,29 @@ window.pdx.app.home = {
         
         $instance.find( ".tooltip" ).text( data.name );
         
-        // Reveal roaster content
+        // Reveal Roaster name rollover
         $instance.on( "mouseenter", "> div", function () {
             var $elem = $( this );
-            
+            // If modal is active...
             if ( $infowindow && !$infowindow.is( ".inactive" ) ) {
-                $tip.addClass( "loading" )
-                    .css( "top", "50%" );
-            	return false;
+                $tip.addClass( "loading" );
+                return false;
             }
-            
+            // When modal is not active...
             $instance.addClass( "active" );
-            $tip.removeClass( "loading" )
-                .css( "top", -($tip.height() - 4) );
+            $tip.removeClass( "loading" );
         
-        // Hide roaster content
+        // Hide Roaster Name rollover
         }).on( "mouseleave", "> div", function ( e ) {
             var $elem = $( this );
-            
+            // When infowindow is active...
             if ( $infowindow && !$infowindow.is( ".inactive" ) ) {
-            	$tip.addClass( "loading" )
-            	   .css( "top", "50%" );
-            	return false;
+                $tip.addClass( "loading" );
+                return false;
             }
-            
+            // When it's not active...
             $instance.removeClass( "active" );
-            $tip.removeClass( "loading" )
-                .css( "top", "50%" );
+            $tip.removeClass( "loading" );
         });
         
         // Request the detailed content
@@ -339,8 +306,6 @@ window.pdx.app.home = {
                             if ( res.error ) {
                             	//return false;
                             }
-                            
-                            self.$mapPage.addClass( "active" );
                         });
                     });
                     
