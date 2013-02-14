@@ -56,6 +56,7 @@ window.pdx.PushState = Class.extend({
         
         this._call( "before" );
         
+<<<<<<< HEAD
         // Are we needing to make a request?
         if ( this.async ) {
         	this._get( url, function ( res ) {
@@ -84,6 +85,23 @@ window.pdx.PushState = Class.extend({
             	this.states.push( state );
             	
             	this._call( "after" );
+=======
+        if ( typeof this.before === "function" ) {
+        	this.before();
+        }
+        
+        this._get( url, function ( res ) {
+            if ( typeof callback === "function" ) {
+            	callback( res );
+            }
+            
+            if ( self.pushable ) {
+            	window.history.pushState( {from:self.from,to:url}, "", url );
+            }
+            
+            if ( typeof self.after === "function" ) {
+            	self.after( res );
+>>>>>>> adding pauls mapstyles and updating tracking.js
             }
         }
     },
@@ -149,6 +167,7 @@ window.pdx.PushState = Class.extend({
         this.poppable = true;
         
         // Add the handler
+<<<<<<< HEAD
         // Use framework here so we can bind multiple
         // instances of the popstate handler
         $( window ).on( "popstate", function ( e ) {
@@ -193,6 +212,16 @@ window.pdx.PushState = Class.extend({
 	    for ( var i = 0, len = this.callbacks[ event ].length; i < len; i++ ) {
         	this.callbacks[ event ][ i ].apply( null, args );
         }
+=======
+        window.onpopstate = function ( e ) {
+            self.state = e.state;
+            
+            $( "#content" ).removeClass( "inactive" );
+            $( "#pages" ).removeClass( "active" );
+            
+            console.log( e );
+        };
+>>>>>>> adding pauls mapstyles and updating tracking.js
     }
 });
 

@@ -423,7 +423,11 @@ body {
 	background-color: #fff;
 	height: 100%;
 	left: 100%;
+<<<<<<< HEAD
 	position: fixed;
+=======
+	position: absolute;
+>>>>>>> adding pauls mapstyles and updating tracking.js
 	top: 0;
 	width: 100%;
 	z-index: 7;
@@ -434,11 +438,18 @@ body {
 	}
 	
 	.roasters {
+<<<<<<< HEAD
 		padding: 1em;
 		
 		.content {
             display: none;
             overflow: hidden;
+=======
+		.content {
+            display: none;
+            overflow: hidden;
+            padding: 0 20px 20px;
+>>>>>>> adding pauls mapstyles and updating tracking.js
             
             &.active {
 				display: block;
@@ -448,7 +459,10 @@ body {
         .figure {
             display: inline-block;
             position: relative;
+<<<<<<< HEAD
             width: 100%;
+=======
+>>>>>>> adding pauls mapstyles and updating tracking.js
             
             &:after {
                 bottom: 0;
@@ -462,9 +476,12 @@ body {
         }
 	}
 }
+<<<<<<< HEAD
 #page-back {
 	margin-bottom: 1em;
 }
+=======
+>>>>>>> adding pauls mapstyles and updating tracking.js
 #roasters {
     position: relative;
     z-index: 9;
