@@ -45,7 +45,7 @@ window.pdx.PushState = Class.extend({
             }
             
             if ( self.pushable ) {
-            	window.history.pushState( {}, "", url );
+            	window.history.pushState( {from:self.from,to:url}, "", url );
             }
             
             if ( typeof self.after === "function" ) {
@@ -102,6 +102,11 @@ window.pdx.PushState = Class.extend({
         // Add the handler
         window.onpopstate = function ( e ) {
             self.state = e.state;
+            
+            $( "#content" ).removeClass( "inactive" );
+            $( "#pages" ).removeClass( "active" );
+            
+            console.log( e );
         };
     }
 });

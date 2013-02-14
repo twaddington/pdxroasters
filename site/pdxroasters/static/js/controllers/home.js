@@ -11,7 +11,8 @@
 "use strict";
 
 // Closure globals
-var $document = $( document );
+var $document = $( document ),
+	$content = $( "#content" );
 
 // Home Controller
 window.pdx.app.home = {
@@ -340,6 +341,8 @@ window.pdx.app.home = {
         this.$roasterItems = this.$roasters.find( ".roaster" );
         this.$roasterTogs = this.$roasters.find( ".toggle" );
         this.$roasterHandles = this.$roasters.find( ".handle" );
+        this.$roasterPagesWrapper = $( "#pages" );
+        this.$roasterPages = this.$roasterPagesWrapper.find( ".content" );
         
         if ( !this.$roasterItems.length ) {
         	this.$roasters.find( ".suggest" ).on( "click", function ( e ) {
@@ -351,27 +354,35 @@ window.pdx.app.home = {
         	return false;
         }
         
-        this.$roasterHandles.on( "click", function ( e ) {
+        this.$roasterItems.on( "click", function ( e ) {
             e.preventDefault();
             
             var $elem = $( this ),
                 $toggle = $elem.find( ".toggle" ),
-                $roaster = $elem.closest( ".roaster" );
+                $roaster = $( "#roaster-"+this.id );
             
-            if ( $roaster.is( ".active" ) ) {
+            if ( $elem.is( ".active" ) ) {
             	$toggle.removeClass( "active" );
             	self.$roasterItems.removeClass( "active" );
             	
             	return false;
             }
             
+            self.$roasterPagesWrapper.css( "top", $( window ).scrollTop() );
+            
+            self.$roasterPages.removeClass( "active" );
+            $roaster.addClass( "active" );
+            
             self.$roasterTogs.removeClass( "active" );
             $toggle.addClass( "active" );
             
             self.$roasterItems.removeClass( "active" );
-            $roaster.addClass( "active" );
+            $elem.addClass( "active" );
             
-            $.scrollTo( $roaster.offset().top );
+            $content.addClass( "inactive" );
+            self.$roasterPagesWrapper.addClass( "active" );
+            
+            self.pushState.push( this.href );
         });
     },
     
@@ -399,6 +410,8 @@ window.pdx.app.home = {
         this.pushState.after = function () {
             console.log( "after", arguments );
         };
+        
+        this.pushState.push( window.location.href );
     }
 };
 

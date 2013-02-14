@@ -1,5 +1,3 @@
-{% load i18n %}
-
 {% if roasters %}
 <div id="roasters">
     <a href="#roasters" class="scroll-to roasters-toggle">
@@ -9,43 +7,9 @@
     </a>
     <div class="roasters">
         {% for r in roasters %}
-        <div class="roaster" id="{{ r.id }}" data-latlng="[{{ r.lat }},{{ r.lng }}]" data-api="{{ r.resource_uri }}" data-name="{{ r.name }}" data-address="{{ r.address }}">
-            <h3 class="handle group"><span>{{ r.name }}</span> <a href="#toggle" class="toggle"></a></h3>
-            <div class="content group">
-                <div class="col col1of2">
-                    <div class="ci">
-                        <div class="figure">
-                            <img src="/static/img/roaster-image.jpg" alt="{{ r.name }} Photo">
-                        </div>
-                        <div class="meta group">
-                            <div class="col col1of3">
-                                <div class="ci">
-                                    <h5>Address</h5>
-                                    <p class="address">{{ r.address }}</p>
-                                </div>
-                            </div>
-                            <div class="col col1of3">
-                                <div class="ci">
-                                    <h5>Hours</h5>
-                                    <p class="hours"> 
-                                        {% for h in r.hours.all %}
-                                            {{ h.get_weekday_display }} {{ h.open }} - {{ h.close }}<br />
-                                        {% endfor %}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col col1of2 last">
-                    <div class="ci">
-                        <h4>About {{ r.name }}</h4>
-                        <p class="skolar">{{ r.description }}</p>
-                        <a href="{{ r.get_absolute_url }}" data-api="{{ r.resource_uri }}" class="btn">Find this Roast</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <a href="/roaster/{{ r.slug }}/" class="roaster" id="{{ r.id }}" data-latlng="[{{ r.lat }},{{ r.lng }}]" data-api="{{ r.resource_uri }}" data-name="{{ r.name }}" data-address="{{ r.address }}">
+            <h3 class="handle group"><span>{{ r.name }}</span> <div class="toggle"></div></h3>
+        </a>
         {% empty %}
         <div class="message">
             <h3>There are no Roasters yet.</h3>
