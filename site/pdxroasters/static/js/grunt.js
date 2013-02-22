@@ -53,6 +53,11 @@ module.exports = function ( grunt ) {
 		},
 		watch: {
 			site: {
+				files: ["<config:lint.files.site>"],
+				tasks: ["concat:site", "min:site"]
+			},
+			
+			all: {
 				files: ["<config:lint.files.site>", "../sass/*.scss"],
 				tasks: ["concat:site", "min:site", "compass:development"]
 			}
@@ -89,8 +94,11 @@ module.exports = function ( grunt ) {
 	grunt.registerTask( "default", "lint qunit concat:site min:site" );
 	grunt.registerTask( "build", "concat:site min:site" );
 	
-	// Site task.
+	// Site task. Javascript only.
 	grunt.registerTask( "build_site", "concat:site min:site" );
 	grunt.registerTask( "watch_site", "watch:site" );
+	
+	// All task. Watches Compass also.
+	grunt.registerTask( "watch_all", "watch:all" );
 
 };
