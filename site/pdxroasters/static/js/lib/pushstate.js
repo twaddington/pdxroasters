@@ -14,52 +14,99 @@ var Class = require( "Class" );
 
 // PushState Class
 window.pdx.PushState = Class.extend({
-    init: function () {
-        this.state;
-        this.from;
-        this.on;
+    init: function ( options ) {
         this.cache = {};
         this.poppable = false;
         this.pushable = ("history" in window && "pushState" in window.history);
+        this.uid = 0;
+        
+        // Set initial state object
+        this.lastState = undefined;
+        this.states = [];
+        this.state = {
+        	from: window.location.href,
+        	to:  window.location.href,
+        	uid: this.uid++
+        };
+        this.states.push( this.state );
+        
+        // Configurable options
+        this.async = ( options.async !== undefined ) ? options.async : true;
+        this.caching = ( options.caching !== undefined ) ? options.caching : true;
         
         // Enable the popstate event
+        this.callbacks = {
+	        pop: []
+        };
         this._popEnable();
     },
     
     push: function ( url, callback ) {
-        var self = this;
+        var self = this,
+        	state = {
+        		from: window.location.href,
+        		to: url,
+        		uid: this.uid++
+        	};
         
-        // Keep track of where we came from when pushing
-        this.from = window.location.href;
-        
-        // And where we are going to be afterwards
-        this.on = url;
+        this.lastState = this.state;
+        this.state = state;
         
         if ( typeof this.before === "function" ) {
         	this.before();
         }
         
-        this._get( url, function ( res ) {
-            if ( typeof callback === "function" ) {
-            	callback( res );
+        // Are we needing to make a request?
+        if ( this.async ) {
+        	this._get( url, function ( res ) {
+	            if ( typeof callback === "function" ) {
+	            	callback( res );
+	            }
+	            
+	            if ( self.pushable ) {
+	            	window.history.pushState( state, "", url );
+	            	
+	            	self.states.push( state );
+	            }
+	            
+	            if ( typeof self.after === "function" ) {
+	            	self.after( res );
+	            }
+	            
+	            // Cache that shit
+	            if ( self.caching ) {
+	            	self.cache[ url ] = res;
+	            }
+	        });
+        	
+        } else {
+	        if ( this.pushable ) {
+            	window.history.pushState( state, "", url );
+            	
+            	this.states.push( state );
+            	
+            	if ( typeof this.after === "function" ) {
+	            	this.after();
+	            }
             }
-            
-            if ( self.pushable ) {
-            	window.history.pushState( {from:self.from,to:url}, "", url );
-            }
-            
-            if ( typeof self.after === "function" ) {
-            	self.after( res );
-            }
-            
-            // Cache that shit
-            self.cache[ url ] = res;
-        });
+        }
+    },
+    
+    pop: function () {
+	    window.history.back();
+	    
+	    this._callPops();
+    },
+    
+    onpop: function ( callback ) {
+	    if ( typeof callback === "function" ) {
+	    	this.callbacks.pop.push( callback );
+	    }
     },
     
     _get: function ( url, callback ) {
         // Pull from cache if we can
-        if ( this.cache[ url ] ) {
+        if ( this.caching && this.cache[ url ] ) {
         	if ( typeof callback === "function" ) {
         		callback( this.cache[ url ] );
         	}
@@ -101,13 +148,35 @@ window.pdx.PushState = Class.extend({
         
         // Add the handler
         window.onpopstate = function ( e ) {
-            self.state = e.state;
+            if ( !e.state ) {
+            	self.lastState = undefined;
+            	self.state = self.state;
+            	
+            } else {
+	            self.lastState = self.state;
+            	self.state = e.state;
+            }
             
-            $( "#content" ).removeClass( "inactive" );
-            $( "#pages" ).removeClass( "active" );
-            
-            console.log( e );
+            self._callPops();
         };
+    },
+    
+    _callPops: function () {
+	    var backward,
+	    	forward;
+	    
+	    if ( !this.lastState || (this.state.uid < this.lastState.uid) ) {
+	    	backward = true;
+	    	forward = false;
+	    	
+	    } else {
+		    backward = false;
+	    	forward = true;
+	    }
+	    
+	    for ( var i = 0, len = this.callbacks.pop.length; i < len; i++ ) {
+        	this.callbacks.pop[ i ].call( null, backward, forward );
+        }
     }
 });
 

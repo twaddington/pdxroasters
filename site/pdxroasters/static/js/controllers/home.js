@@ -19,63 +19,14 @@ window.pdx.app.home = {
     init: function () {
         var self = this;
         
-        this._nav();
         this._premaps();
         this._roasters();
         this._info();
         this._resize();
         this._pushes();
-    },
-    
-    _nav: function () {
-        var self = this;
         
-        this.$nav = $( "#nav" );
-        this.$navTog = this.$nav.find( ".plus" );
-        this.$navLinks = this.$nav.find( "a:not(.plus)" );
-        
-        this.$navTog.on( "click", function ( e ) {
-            e.preventDefault();
-            
-            self.$navTog.toggleClass( "active" );
-            self.$nav.toggleClass( "active" );
-            
-            if ( !self.$navTog.is( ".active" ) ) {
-            	self.$info.removeClass( "active" );
-            	
-            } else {
-                $( "[data-page='"+self.activePage+"']" ).click();
-            }
-        });
-        
-        this.$navLinks.on( "click", function ( e ) {
-            e.preventDefault();
-            
-            if ( !self.$info.is( ".active" ) ) {
-            	self.$info.addClass( "active" );
-            }
-            
-            var $this = $( this ),
-            	page = $this.data( "page" ),
-            	$lastPage = self.$activePage;
-            
-            //self.$info.css( "top", $( window ).scrollTop() );
-            
-            self.$navLinks.removeClass( "on" );
-            $this.addClass( "on" );
-            
-            self.$activePage = $( "#"+page );
-            self.activePage = page;
-            
-            if ( $lastPage && $lastPage.index() > self.$activePage.index() ) {
-            	$lastPage.css( "left", "100%" );
-            	
-            } else if ( $lastPage && $lastPage.index() < self.$activePage.index() ) {
-	            $lastPage.css( "left", "-100%" );
-            }
-            
-            self.$activePage.css( "left", 0 );
-        });
+        // Activate global nav module
+        window.pdx.nav.init();
     },
     
     _premaps: function () {
@@ -343,6 +294,7 @@ window.pdx.app.home = {
         this.$roasterHandles = this.$roasters.find( ".handle" );
         this.$roasterPagesWrapper = $( "#pages" );
         this.$roasterPages = this.$roasterPagesWrapper.find( ".content" );
+        this.$pageBack = $( "#page-back" );
         
         if ( !this.$roasterItems.length ) {
         	this.$roasters.find( ".suggest" ).on( "click", function ( e ) {
@@ -354,6 +306,12 @@ window.pdx.app.home = {
         	return false;
         }
         
+        this.$pageBack.on( "click", function ( e ) {
+	        e.preventDefault();
+	        
+	        self.pushState.pop();
+        });
+        
         this.$roasterItems.on( "click", function ( e ) {
             e.preventDefault();
             
@@ -361,23 +319,16 @@ window.pdx.app.home = {
                 $toggle = $elem.find( ".toggle" ),
                 $roaster = $( "#roaster-"+this.id );
             
-            if ( $elem.is( ".active" ) ) {
-            	$toggle.removeClass( "active" );
-            	self.$roasterItems.removeClass( "active" );
-            	
-            	return false;
-            }
-            
             self.$roasterPagesWrapper.css( "top", $( window ).scrollTop() );
             
             self.$roasterPages.removeClass( "active" );
             $roaster.addClass( "active" );
             
             self.$roasterTogs.removeClass( "active" );
-            $toggle.addClass( "active" );
+            //$toggle.addClass( "active" );
             
             self.$roasterItems.removeClass( "active" );
-            $elem.addClass( "active" );
+            //$elem.addClass( "active" );
             
             $content.addClass( "inactive" );
             self.$roasterPagesWrapper.addClass( "active" );
@@ -400,7 +351,9 @@ window.pdx.app.home = {
     _pushes: function () {
         var self = this;
         
-        this.pushState = new window.pdx.PushState();
+        this.pushState = new window.pdx.PushState({
+	        async: false
+        });
         
         // Global before/after pushstate handlers
         this.pushState.before = function () {
@@ -411,7 +364,10 @@ window.pdx.app.home = {
             console.log( "after", arguments );
         };
         
-        this.pushState.push( window.location.href );
+        this.pushState.onpop(function () {
+	        $( "#content" ).removeClass( "inactive" );
+            $( "#pages" ).removeClass( "active" );
+        });
     }
 };
 
