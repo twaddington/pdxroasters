@@ -27,17 +27,7 @@ window.pdx.nav = {
         });
         
         this.pushState.onpop(function ( back, forward ) {
-        	// Open popstate flag
-        	self.isPopStateEvent = true;
-        	
-        	//var $page = $( "#"+self.lastPage ),
-        	//	$item = $( "[data-page='"+self.lastPage+"']" );
-        	
-        	console.log( self.activePage );
-        	console.log( self.lastPage );
-        	
-        	// Close popstate flag
-        	self.isPopStateEvent = false;
+        	// Figure this out...
         });
         
         this.$navTog.on( "click", function ( e ) {
@@ -52,6 +42,8 @@ window.pdx.nav = {
             } else {
                 $( "[data-page='"+self.activePage+"']" ).click();
             }
+            
+            self.pushState.push( "/" );
         });
         
         this.$navLinks.on( "click", function ( e ) {

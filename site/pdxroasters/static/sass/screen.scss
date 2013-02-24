@@ -47,6 +47,10 @@ body {
     min-height: 100%;
     font-size: 16px;
     font-family: $din;
+    
+    &.no-scroll {
+	    overflow-y: hidden;
+    }
 }
 
 /* -- classes -- */
@@ -55,7 +59,7 @@ body {
     border: 1px solid #d2d0cb;
     padding:.5em 2em;
     cursor: pointer;
-    margin-right: 1em;
+    //margin-right: 1em;
     text-transform: none;
     letter-spacing: 1px;
     text-align: center;
@@ -415,7 +419,7 @@ body {
 	background-color: #fff;
 	height: 100%;
 	left: 100%;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	width: 100%;
 	z-index: 7;
@@ -426,10 +430,11 @@ body {
 	}
 	
 	.roasters {
+		padding: 1em;
+		
 		.content {
             display: none;
             overflow: hidden;
-            padding: 0 20px 20px;
             
             &.active {
 				display: block;
@@ -439,6 +444,7 @@ body {
         .figure {
             display: inline-block;
             position: relative;
+            width: 100%;
             
             &:after {
                 bottom: 0;
@@ -451,6 +457,9 @@ body {
             }
         }
 	}
+}
+#page-back {
+	margin-bottom: 1em;
 }
 #roasters {
     position: relative;
@@ -545,7 +554,7 @@ body {
             padding: 1.5em 40px;
             border-bottom: 1px solid #efefef;
             border-top: 1px solid #efefef;
-            margin-top:-1px;
+            margin: -1px 0 0;
             @include transition(all 200ms linear);
             
             span {

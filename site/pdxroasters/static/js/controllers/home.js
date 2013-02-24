@@ -11,8 +11,11 @@
 "use strict";
 
 // Closure globals
-var $document = $( document ),
-	$content = $( "#content" );
+var $_document = $( document ),
+	$_body = $( document.body ),
+	$_window = $( window ),
+	$_content = $( "#content" ),
+	$_pages = $( "#pages" );
 
 // Home Controller
 window.pdx.app.home = {
@@ -281,20 +284,19 @@ window.pdx.app.home = {
     
     _info: function () {
         this.$info = $( "#info-pages" );
-        this.$pages = this.$info.find( ".page" );
-        this.$info.add( this.$pages ).height( window.innerHeight );
+        this.$infoPages = this.$info.find( ".page" );
+        this.$info.add( this.$infoPages ).height( window.innerHeight );
     },
     
     _roasters: function () {
         var self = this;
         
         this.$roasters = $( "#roasters" );
+        this.$pageBack = $( "#page-back" );
         this.$roasterItems = this.$roasters.find( ".roaster" );
         this.$roasterTogs = this.$roasters.find( ".toggle" );
         this.$roasterHandles = this.$roasters.find( ".handle" );
-        this.$roasterPagesWrapper = $( "#pages" );
-        this.$roasterPages = this.$roasterPagesWrapper.find( ".content" );
-        this.$pageBack = $( "#page-back" );
+        this.$roasterPages = $_pages.find( ".content" );
         
         if ( !this.$roasterItems.length ) {
         	this.$roasters.find( ".suggest" ).on( "click", function ( e ) {
@@ -319,19 +321,20 @@ window.pdx.app.home = {
                 $toggle = $elem.find( ".toggle" ),
                 $roaster = $( "#roaster-"+this.id );
             
-            self.$roasterPagesWrapper.css( "top", $( window ).scrollTop() );
-            
             self.$roasterPages.removeClass( "active" );
             $roaster.addClass( "active" );
             
             self.$roasterTogs.removeClass( "active" );
-            //$toggle.addClass( "active" );
             
             self.$roasterItems.removeClass( "active" );
-            //$elem.addClass( "active" );
             
-            $content.addClass( "inactive" );
-            self.$roasterPagesWrapper.addClass( "active" );
+            $_content.addClass( "inactive" );
+            $_pages.addClass( "active" );
+            
+            setTimeout(function () {
+            	$_body.addClass( "no-scroll" );
+            	
+            }, 300 );
             
             self.pushState.push( this.href );
         });
@@ -343,7 +346,7 @@ window.pdx.app.home = {
         window.onresize = function () {
             self.$mapWrap
                 .add( self.$info )
-                .add( self.$pages )
+                .add( self.$infoPages )
                 .height( window.innerHeight );
         };
     },
@@ -355,18 +358,22 @@ window.pdx.app.home = {
 	        async: false
         });
         
-        // Global before/after pushstate handlers
-        this.pushState.before = function () {
-            console.log( "before", arguments );
-        };
+        this.pushState.before(function () {
+            
+        });
         
-        this.pushState.after = function () {
-            console.log( "after", arguments );
-        };
+        this.pushState.after(function () {
+            
+        });
         
         this.pushState.onpop(function () {
-	        $( "#content" ).removeClass( "inactive" );
-            $( "#pages" ).removeClass( "active" );
+	        $_content.removeClass( "inactive" );
+            $_pages.removeClass( "active" );
+            
+            setTimeout(function () {
+            	$_body.removeClass( "no-scroll" );
+            	
+            }, 300 );
         });
     }
 };

@@ -25,7 +25,7 @@ window.pdx.PushState = Class.extend({
         this.states = [];
         this.state = {
         	from: window.location.href,
-        	to:  window.location.href,
+        	to: window.location.href,
         	uid: this.uid++
         };
         this.states.push( this.state );
@@ -36,7 +36,9 @@ window.pdx.PushState = Class.extend({
         
         // Enable the popstate event
         this.callbacks = {
-	        pop: []
+	        pop: [],
+	        before: [],
+	        after: []
         };
         this._popEnable();
     },
@@ -52,9 +54,7 @@ window.pdx.PushState = Class.extend({
         this.lastState = this.state;
         this.state = state;
         
-        if ( typeof this.before === "function" ) {
-        	this.before();
-        }
+        this._call( "before" );
         
         // Are we needing to make a request?
         if ( this.async ) {
@@ -69,9 +69,7 @@ window.pdx.PushState = Class.extend({
 	            	self.states.push( state );
 	            }
 	            
-	            if ( typeof self.after === "function" ) {
-	            	self.after( res );
-	            }
+	            self._call( "after", res );
 	            
 	            // Cache that shit
 	            if ( self.caching ) {
@@ -85,23 +83,27 @@ window.pdx.PushState = Class.extend({
             	
             	this.states.push( state );
             	
-            	if ( typeof this.after === "function" ) {
-	            	this.after();
-	            }
+            	this._call( "after" );
             }
         }
+    },
+    
+    before: function ( callback ) {
+	    this._add( "before", callback );
+    },
+    
+    after: function ( callback ) {
+	    this._add( "after", callback );
+    },
+    
+    onpop: function ( callback ) {
+	    this._add( "pop", callback );
     },
     
     pop: function () {
 	    window.history.back();
 	    
-	    this._callPops();
-    },
-    
-    onpop: function ( callback ) {
-	    if ( typeof callback === "function" ) {
-	    	this.callbacks.pop.push( callback );
-	    }
+	    this._pop();
     },
     
     _get: function ( url, callback ) {
@@ -147,7 +149,9 @@ window.pdx.PushState = Class.extend({
         this.poppable = true;
         
         // Add the handler
-        window.onpopstate = function ( e ) {
+        // Use ender here so we can bind multiple
+        // instances of the popstate handler
+        $( window ).on( "popstate", function ( e ) {
             if ( !e.state ) {
             	self.lastState = undefined;
             	self.state = self.state;
@@ -157,11 +161,11 @@ window.pdx.PushState = Class.extend({
             	self.state = e.state;
             }
             
-            self._callPops();
-        };
+            self._pop();
+        });
     },
     
-    _callPops: function () {
+    _pop: function () {
 	    var backward,
 	    	forward;
 	    
@@ -174,8 +178,20 @@ window.pdx.PushState = Class.extend({
 	    	forward = true;
 	    }
 	    
-	    for ( var i = 0, len = this.callbacks.pop.length; i < len; i++ ) {
-        	this.callbacks.pop[ i ].call( null, backward, forward );
+	    this._call( "pop" );
+    },
+    
+    _add: function ( event, callback ) {
+	    if ( typeof callback === "function" ) {
+	    	this.callbacks[ event ].push( callback );
+	    }
+    },
+    
+    _call: function ( event ) {
+	    var args = [].slice.call( arguments, 1 );
+	    
+	    for ( var i = 0, len = this.callbacks[ event ].length; i < len; i++ ) {
+        	this.callbacks[ event ][ i ].apply( null, args );
         }
     }
 });

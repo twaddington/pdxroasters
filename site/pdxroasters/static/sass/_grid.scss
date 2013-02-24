@@ -23,6 +23,9 @@
 .col2of5 { width: 40%; }
 .col3of5 { width: 60%; }
 .col4of5 { width: 80%; }
+.group {
+	margin: 0 -1em;
+}
 .group:after {
     clear: both;
     content: '.';
