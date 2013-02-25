@@ -149,7 +149,7 @@ window.pdx.PushState = Class.extend({
         this.poppable = true;
         
         // Add the handler
-        // Use ender here so we can bind multiple
+        // Use framework here so we can bind multiple
         // instances of the popstate handler
         $( window ).on( "popstate", function ( e ) {
             if ( !e.state ) {
