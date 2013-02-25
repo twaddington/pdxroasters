@@ -2,11 +2,12 @@
  * PDX Roaster Stylesheet
  *
  * @notes:
- * Navigate to where you ran "compass init":
- * $ cd pdxroasters/pdxroasters/static
  *
- * Tell compass to poll for changes:
- * $ compass watch
+ * Navigate to where you watch files:
+ * $ cd src/site/pdxroasters/static/js
+ *
+ * Grunt will now watch compass:
+ * $ grunt watch_all
  *
  */
 
@@ -33,7 +34,6 @@ $light-brown:#6d543d;
 $skolar: 'Skolar', Helvetica, Arial, Sans-serif;
 $din: 'DIN', Helvetica, Arial, Sans-serif;
 
-/* - - - Import Assets - - - */
 @import 'reset';
 @import 'fonts';
 @import 'typography';
@@ -41,12 +41,14 @@ $din: 'DIN', Helvetica, Arial, Sans-serif;
 @import 'forms';
 @import 'helpers';
 
+
 /* -- elements -- */
 body {
     margin: 0;
     min-height: 100%;
     font-size: 16px;
     font-family: $din;
+    -webkit-font-smoothing: antialiased;
     
     &.no-scroll {
 	    overflow-y: hidden;
@@ -92,6 +94,7 @@ body {
     @include transform(rotate(-45deg));
 }
 
+
 /* -- structure -- */
 #page,
 #content {
@@ -129,6 +132,7 @@ body {
     padding: 10px 40px;
     z-index: 10;
 }
+
 
 /* -- nav -- */
 #logo {
@@ -614,42 +618,4 @@ body[data-controller=error] {
 
 
 /* -- @media -- */
-
-/* - - - - - - - - - - Small - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
-
-/*Portrait*/
-@media only screen and (min-width: 300px) {
-
-}
-
-/* Landscape */
-@media only screen and (min-width: 480px) {
-  
-}
-
-/* - - - - - - - - - - Medium  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
-
-/* iPad Portrait (Or android tablets, I don't judge.) */
-@media only screen and (min-width: 768px) {
-
-}
-
-/* iPad Landscape & Laptops */
-@media only screen and (min-width: 1024px) {
-  
-
-}
-
-/* - - - - - - - - - - Large  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
-
-/* Moving on up to desktops */
-@media only screen and (min-width: 1280px) {
-  
-
-}
-
-/* Now we're talkin. */
-@media only screen and (min-width: 1440px) {
-  
-
-}
+@import 'media';

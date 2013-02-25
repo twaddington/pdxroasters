@@ -17,6 +17,16 @@ var $_document = $( document ),
 	$_content = $( "#content" ),
 	$_pages = $( "#pages" );
 
+/* Smooth scroll links
+$( ".scroll-to" ).on( "click", function ( e ) {
+    e.preventDefault();
+    
+    var $elem = $( this.hash );
+    
+    $.scrollTo( $elem.offset().top );
+});
+*/
+
 // Home Controller
 window.pdx.app.home = {
     init: function () {
