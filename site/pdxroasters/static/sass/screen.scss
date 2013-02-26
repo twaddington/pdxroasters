@@ -2,11 +2,12 @@
  * PDX Roaster Stylesheet
  *
  * @notes:
- * Navigate to where you ran "compass init":
- * $ cd pdxroasters/pdxroasters/static
  *
- * Tell compass to poll for changes:
- * $ compass watch
+ * Navigate to where you watch files:
+ * $ cd src/site/pdxroasters/static/js
+ *
+ * Grunt will now watch compass:
+ * $ grunt watch_all
  *
  */
 
@@ -33,7 +34,6 @@ $light-brown:#6d543d;
 $skolar: 'Skolar', Helvetica, Arial, Sans-serif;
 $din: 'DIN', Helvetica, Arial, Sans-serif;
 
-/* - - - Import Assets - - - */
 @import 'reset';
 @import 'fonts';
 @import 'typography';
@@ -41,12 +41,18 @@ $din: 'DIN', Helvetica, Arial, Sans-serif;
 @import 'forms';
 @import 'helpers';
 
+
 /* -- elements -- */
 body {
     margin: 0;
     min-height: 100%;
     font-size: 16px;
     font-family: $din;
+    -webkit-font-smoothing: antialiased;
+    
+    &.no-scroll {
+	    overflow-y: hidden;
+    }
 }
 
 /* -- classes -- */
@@ -55,7 +61,7 @@ body {
     border: 1px solid #d2d0cb;
     padding:.5em 2em;
     cursor: pointer;
-    margin-right: 1em;
+    //margin-right: 1em;
     text-transform: none;
     letter-spacing: 1px;
     text-align: center;
@@ -88,11 +94,21 @@ body {
     @include transform(rotate(-45deg));
 }
 
+
 /* -- structure -- */
 #page,
 #content {
     overflow: hidden;
     position: relative;
+}
+#content {
+	left: 0;
+	width: 100%;
+	@include transition(all 300ms ease-in-out);
+	
+	&.inactive {
+		left: -100%;
+	}
 }
 #header {
     background: white;
@@ -116,6 +132,7 @@ body {
     padding: 10px 40px;
     z-index: 10;
 }
+
 
 /* -- nav -- */
 #logo {
@@ -402,6 +419,52 @@ body {
 
 
 /* -- listings -- */
+#pages {
+	background-color: #fff;
+	height: 100%;
+	left: 100%;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 7;
+	@include transition(left 300ms ease-in-out);
+	
+	&.active {
+		left: 0;
+	}
+	
+	.roasters {
+		padding: 1em;
+		
+		.content {
+            display: none;
+            overflow: hidden;
+            
+            &.active {
+				display: block;
+			}
+        }
+        
+        .figure {
+            display: inline-block;
+            position: relative;
+            width: 100%;
+            
+            &:after {
+                bottom: 0;
+                content: '';
+                left: 0;
+                position: absolute;
+                right: 0;
+                top: 0;
+                @include box-shadow(0 0 70px #000 inset);
+            }
+        }
+	}
+}
+#page-back {
+	margin-bottom: 1em;
+}
 #roasters {
     position: relative;
     z-index: 9;
@@ -487,10 +550,6 @@ body {
             .handle span {
                 color: $blue;
             }
-            
-            .content {
-	            display: block;
-            }
         }
         
         .handle {
@@ -499,7 +558,7 @@ body {
             padding: 1.5em 40px;
             border-bottom: 1px solid #efefef;
             border-top: 1px solid #efefef;
-            margin-top:-1px;
+            margin: -1px 0 0;
             @include transition(all 200ms linear);
             
             span {
@@ -537,27 +596,6 @@ body {
                 @include transform(rotate(-225deg));
             }
         }
-        
-        .content {
-            display: none;
-            overflow: hidden;
-            padding: 0 20px 20px;
-        }
-        
-        .figure {
-            display: inline-block;
-            position: relative;
-            
-            &:after {
-                bottom: 0;
-                content: '';
-                left: 0;
-                position: absolute;
-                right: 0;
-                top: 0;
-                @include box-shadow(0 0 70px #000 inset);
-            }
-        }
     }
 }
 
@@ -580,42 +618,4 @@ body[data-controller=error] {
 
 
 /* -- @media -- */
-
-/* - - - - - - - - - - Small - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
-
-/*Portrait*/
-@media only screen and (min-width: 300px) {
-
-}
-
-/* Landscape */
-@media only screen and (min-width: 480px) {
-  
-}
-
-/* - - - - - - - - - - Medium  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
-
-/* iPad Portrait (Or android tablets, I don't judge.) */
-@media only screen and (min-width: 768px) {
-
-}
-
-/* iPad Landscape & Laptops */
-@media only screen and (min-width: 1024px) {
-  
-
-}
-
-/* - - - - - - - - - - Large  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
-
-/* Moving on up to desktops */
-@media only screen and (min-width: 1280px) {
-  
-
-}
-
-/* Now we're talkin. */
-@media only screen and (min-width: 1440px) {
-  
-
-}
+@import 'media';

@@ -27,6 +27,13 @@ window.pdx.tracking = {
 };
 
 // Auto init
-window.pdx.tracking.init();
+window.onload = function () {
+	// Don't track dev
+	if ( window.pdx.environment === "development" ) {
+		return false;
+	}
+	
+	window.pdx.tracking.init();
+};
 
 })( ender, window );

@@ -11,70 +11,35 @@
 "use strict";
 
 // Closure globals
-var $document = $( document );
+var $_document = $( document ),
+	$_body = $( document.body ),
+	$_window = $( window ),
+	$_content = $( "#content" ),
+	$_pages = $( "#pages" );
+
+/* Smooth scroll links
+$( ".scroll-to" ).on( "click", function ( e ) {
+    e.preventDefault();
+    
+    var $elem = $( this.hash );
+    
+    $.scrollTo( $elem.offset().top );
+});
+*/
 
 // Home Controller
 window.pdx.app.home = {
     init: function () {
         var self = this;
         
-        this._nav();
         this._premaps();
         this._roasters();
         this._info();
         this._resize();
         this._pushes();
-    },
-    
-    _nav: function () {
-        var self = this;
         
-        this.$nav = $( "#nav" );
-        this.$navTog = this.$nav.find( ".plus" );
-        this.$navLinks = this.$nav.find( "a:not(.plus)" );
-        
-        this.$navTog.on( "click", function ( e ) {
-            e.preventDefault();
-            
-            self.$navTog.toggleClass( "active" );
-            self.$nav.toggleClass( "active" );
-            
-            if ( !self.$navTog.is( ".active" ) ) {
-            	self.$info.removeClass( "active" );
-            	
-            } else {
-                $( "[data-page='"+self.activePage+"']" ).click();
-            }
-        });
-        
-        this.$navLinks.on( "click", function ( e ) {
-            e.preventDefault();
-            
-            if ( !self.$info.is( ".active" ) ) {
-            	self.$info.addClass( "active" );
-            }
-            
-            var $this = $( this ),
-            	page = $this.data( "page" ),
-            	$lastPage = self.$activePage;
-            
-            //self.$info.css( "top", $( window ).scrollTop() );
-            
-            self.$navLinks.removeClass( "on" );
-            $this.addClass( "on" );
-            
-            self.$activePage = $( "#"+page );
-            self.activePage = page;
-            
-            if ( $lastPage && $lastPage.index() > self.$activePage.index() ) {
-            	$lastPage.css( "left", "100%" );
-            	
-            } else if ( $lastPage && $lastPage.index() < self.$activePage.index() ) {
-	            $lastPage.css( "left", "-100%" );
-            }
-            
-            self.$activePage.css( "left", 0 );
-        });
+        // Activate global nav module
+        window.pdx.nav.init();
     },
     
     _premaps: function () {
@@ -329,17 +294,19 @@ window.pdx.app.home = {
     
     _info: function () {
         this.$info = $( "#info-pages" );
-        this.$pages = this.$info.find( ".page" );
-        this.$info.add( this.$pages ).height( window.innerHeight );
+        this.$infoPages = this.$info.find( ".page" );
+        this.$info.add( this.$infoPages ).height( window.innerHeight );
     },
     
     _roasters: function () {
         var self = this;
         
         this.$roasters = $( "#roasters" );
+        this.$pageBack = $( "#page-back" );
         this.$roasterItems = this.$roasters.find( ".roaster" );
         this.$roasterTogs = this.$roasters.find( ".toggle" );
         this.$roasterHandles = this.$roasters.find( ".handle" );
+        this.$roasterPages = $_pages.find( ".content" );
         
         if ( !this.$roasterItems.length ) {
         	this.$roasters.find( ".suggest" ).on( "click", function ( e ) {
@@ -351,27 +318,35 @@ window.pdx.app.home = {
         	return false;
         }
         
-        this.$roasterHandles.on( "click", function ( e ) {
+        this.$pageBack.on( "click", function ( e ) {
+	        e.preventDefault();
+	        
+	        self.pushState.pop();
+        });
+        
+        this.$roasterItems.on( "click", function ( e ) {
             e.preventDefault();
             
             var $elem = $( this ),
                 $toggle = $elem.find( ".toggle" ),
-                $roaster = $elem.closest( ".roaster" );
+                $roaster = $( "#roaster-"+this.id );
             
-            if ( $roaster.is( ".active" ) ) {
-            	$toggle.removeClass( "active" );
-            	self.$roasterItems.removeClass( "active" );
-            	
-            	return false;
-            }
-            
-            self.$roasterTogs.removeClass( "active" );
-            $toggle.addClass( "active" );
-            
-            self.$roasterItems.removeClass( "active" );
+            self.$roasterPages.removeClass( "active" );
             $roaster.addClass( "active" );
             
-            $.scrollTo( $roaster.offset().top );
+            self.$roasterTogs.removeClass( "active" );
+            
+            self.$roasterItems.removeClass( "active" );
+            
+            $_content.addClass( "inactive" );
+            $_pages.addClass( "active" );
+            
+            setTimeout(function () {
+            	$_body.addClass( "no-scroll" );
+            	
+            }, 300 );
+            
+            self.pushState.push( this.href );
         });
     },
     
@@ -381,7 +356,7 @@ window.pdx.app.home = {
         window.onresize = function () {
             self.$mapWrap
                 .add( self.$info )
-                .add( self.$pages )
+                .add( self.$infoPages )
                 .height( window.innerHeight );
         };
     },
@@ -389,16 +364,27 @@ window.pdx.app.home = {
     _pushes: function () {
         var self = this;
         
-        this.pushState = new window.pdx.PushState();
+        this.pushState = new window.pdx.PushState({
+	        async: false
+        });
         
-        // Global before/after pushstate handlers
-        this.pushState.before = function () {
-            console.log( "before", arguments );
-        };
+        this.pushState.before(function () {
+            
+        });
         
-        this.pushState.after = function () {
-            console.log( "after", arguments );
-        };
+        this.pushState.after(function () {
+            
+        });
+        
+        this.pushState.onpop(function () {
+	        $_content.removeClass( "inactive" );
+            $_pages.removeClass( "active" );
+            
+            setTimeout(function () {
+            	$_body.removeClass( "no-scroll" );
+            	
+            }, 300 );
+        });
     }
 };
 

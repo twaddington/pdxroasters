@@ -18,8 +18,7 @@ for ( var i in docData ) {
 	window.pdx[ i ] = docData[ i ];
 }
 
-if ( docData.controller && window.pdx.app[ docData.controller ] && window.pdx.app[ docData.controller ].init ) {
-	window.pdx.app[ docData.controller ].init();
-}
+// Run the controller
+window.pdx.exec( docData.controller );
 
 })( ender, window );
