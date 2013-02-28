@@ -207,5 +207,4 @@ window.pdx.mapstyles = [
 		]
 	}
 ];
-
 })();
