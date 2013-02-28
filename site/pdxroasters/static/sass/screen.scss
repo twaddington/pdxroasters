@@ -19,6 +19,7 @@ $dark-red:#CA4C29;
 $red:#DD6A5A;
 $light-red:#DD6A5A;
 $yellow:#FFC434;
+$light-green:#C0DC93;
 $dark-blue:#00555F;
 $blue:#13A1AF;
 $light-blue:#0AAEBE;
@@ -33,6 +34,7 @@ $brown: #563f29;
 $light-brown:#6d543d;
 $skolar: 'Skolar', Helvetica, Arial, Sans-serif;
 $din: 'DIN', Helvetica, Arial, Sans-serif;
+$cabin: 'Cabin', Helvetica, Arial, Sans-serif;
 
 @import 'reset';
 @import 'fonts';
@@ -43,11 +45,14 @@ $din: 'DIN', Helvetica, Arial, Sans-serif;
 
 
 /* -- elements -- */
+html{
+    background-color:$light-gray;
+}
 body {
     margin: 0;
     min-height: 100%;
     font-size: 16px;
-    font-family: $din;
+    font-family: $cabin;
     -webkit-font-smoothing: antialiased;
     
     &.no-scroll {
@@ -74,13 +79,6 @@ body {
         color: #555;
     }
 }
-.hours {
-    span {
-        float: right;
-        display: inline;
-        text-align: right;
-    }
-}
 .plus-close {
     background: url(../img/plusthin.png) no-repeat 0 0;
     display: block;
@@ -104,10 +102,18 @@ body {
 #content {
 	left: 0;
 	width: 100%;
-	@include transition(all 300ms ease-in-out);
-	
+	@include transition(all 500ms ease-in);
+    @include transform(translate3d(0,0,0));	
 	&.inactive {
 		left: -100%;
+        #roasters{
+            .roasters{
+                /* thought about limiting height on roasters when individual roaster is selected to get around the position-fixed scroll debacle. 
+                height:0;
+                overflow:hidden;
+                */
+            }
+        }
 	}
 }
 #header {
@@ -124,7 +130,7 @@ body {
     padding: 0 2em;
 }
 .home #header {
-	position: absolute;
+	position: fixed;
 }
 #footer {
     background-color: #000;
@@ -238,7 +244,7 @@ body {
     	@include transition(left 300ms ease-in-out);
 	    
 	    > .page-inner {
-		    padding: 170px 50px;
+		    padding: 400px 200px 170px 200px;
 	    }
     }
 }
@@ -423,11 +429,7 @@ body {
 	background-color: #fff;
 	height: 100%;
 	left: 100%;
-<<<<<<< HEAD
 	position: fixed;
-=======
-	position: absolute;
->>>>>>> adding pauls mapstyles and updating tracking.js
 	top: 0;
 	width: 100%;
 	z-index: 7;
@@ -438,31 +440,34 @@ body {
 	}
 	
 	.roasters {
-<<<<<<< HEAD
 		padding: 1em;
 		
 		.content {
+            background-color: $light-green;
+            color:$white;
             display: none;
             overflow: hidden;
-=======
-		.content {
-            display: none;
-            overflow: hidden;
-            padding: 0 20px 20px;
->>>>>>> adding pauls mapstyles and updating tracking.js
-            
+            padding:154px 100px 100px 100px;
+
             &.active {
 				display: block;
 			}
         }
-        
+        .roaster-title{
+            margin-bottom:2em;
+            color:$white;
+        }
+        h4{
+            color:$white;
+        }
+        h5 {
+            color:$white;
+        }
         .figure {
             display: inline-block;
             position: relative;
-<<<<<<< HEAD
             width: 100%;
-=======
->>>>>>> adding pauls mapstyles and updating tracking.js
+            border:10px solid $white;
             
             &:after {
                 bottom: 0;
@@ -476,12 +481,36 @@ body {
         }
 	}
 }
-<<<<<<< HEAD
-#page-back {
-	margin-bottom: 1em;
+.hours {
+    font-size:14px;
+    font-weight:400;
+    color:$darker-gray;
+    color:$white;
+    span {
+        float: right;
+        display: inline;
+        text-align: right;
+    }
 }
-=======
->>>>>>> adding pauls mapstyles and updating tracking.js
+.address {
+    @extend .hours;
+}
+
+#page-back {
+    position: fixed;
+    top: 164px;
+    left: 10px;
+    width: 40px;
+    height:40px;
+    background: transparent url('../img/left.png') center center no-repeat;
+    border: none;
+    @include transition(left 200ms linear);
+    &:hover{
+        border:none;
+        left:5px;
+
+    }
+}
 #roasters {
     position: relative;
     z-index: 9;
@@ -506,7 +535,7 @@ body {
     
     .roasters {
         background-color: #fff;
-        padding: 20px 0;
+        padding: 0;
         position: relative;
         z-index: 8;
         
@@ -516,24 +545,23 @@ body {
     }
     
     .roasters-toggle {
-        background: #fff;
+        background: $red url('../img/list.png') 50% 5px no-repeat;
         display: block;
-        height: 22px;
+        height: 100px;
         left: 50%;
-        margin-left: -25px;
+        margin-left: -50px;
         position: absolute;
         text-align: center;
-        top: -20px;
-        width: 50px;
+        top: -35px;
+        width: 100px;
         z-index: 7;
-        
         @include transition(top 200ms linear);
         @include box-shadow(0 0 3px rgba(0,0,0,.8));
-        @include border-top-left-radius(5px);
-        @include border-top-right-radius(5px);
+        @include border-top-left-radius(50px);
+        @include border-top-right-radius(50px);
         
         &:hover {
-            top: -22px;
+            top: -42px;
         }
         
         .line {
@@ -579,13 +607,14 @@ body {
             @include transition(all 200ms linear);
             
             span {
-                @include text-shadow(0 1px #fff);
                 @include transition(all 200ms linear);
             }
             
             &:hover {
                 background-color: rgba(0,0,0,.02);
-                
+                .toggle{
+                    right:40px;
+                }
                 span {
                     color: $blue;
                 }
@@ -597,21 +626,16 @@ body {
         }
         
         .toggle {
-            background: transparent url(../img/plusthin.png) no-repeat 0 0;
+            background: transparent url(../img/eye.png) no-repeat 0 0;
             display: block;
-            height: 22px;
-            margin-top: -11px;
+            height: 40px;
+            margin-top: -20px;
             position: absolute;
-            right: 40px;
+            right: -40px;
             top: 50%;
-            width: 22px;
-            
-            
+            width: 40px;
             @include transition(all 400ms cubic-bezier(0.095, 0.910, 0.245, 1.000));
-            
-            &.active {
-                @include transform(rotate(-225deg));
-            }
+            @include transition-delay(200ms);
         }
     }
 }

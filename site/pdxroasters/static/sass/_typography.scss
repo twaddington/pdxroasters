@@ -14,11 +14,13 @@ h1{
     font-weight: 700;
 }
 h2 {
-    font-size: 36px;
-    margin-bottom: .5em;
+    font-size: 16px;
+    margin-bottom: 2em;
     color: #323232;
     letter-spacing: 1px;
     line-height: 2em;
+    text-transform: uppercase;
+    font-weight: 900;
 }
 h3 {
     font-size: 26px;
@@ -33,18 +35,13 @@ h4 {
     letter-spacing: 1px;
 }
 h5 {
-    font-size: 22px;
-    margin-bottom: .5em;
+    font-size: 14px;
+    margin-bottom: 1em;
     color: #323232;
     letter-spacing: 1px;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: normal;
+    text-transform: uppercase;
+    font-weight: 700 !important;
+    margin-top: 2em;
 }
 p {
     line-height:2em;
@@ -67,3 +64,5 @@ p {
 strong {
     font-weight: bold;
 }
+
+.right{text-align:right !important;}
