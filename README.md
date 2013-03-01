@@ -87,3 +87,21 @@ When pushing to the dev site and ultimately to prod we'll need to manually push 
 
     /static/css/*
     /static/js/dist/*
+
+### Deploying to Heroku
+
+To deploy the production site you need to first generate the compressed static
+resources. Start by switching to the release branch:
+
+    $ git checkout release
+
+Then compile the necessary resources:
+
+    $ cd site/pdxroasters/static/js
+    $ grunt deploy
+
+Finally check-in the updated files and push to heroku:
+
+    $ git add -u .
+    $ git commit -m "Updated resources."
+    $ git push heroku release:master
