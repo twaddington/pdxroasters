@@ -24,9 +24,9 @@ window.pdx.PushState = Class.extend({
         this.lastState = undefined;
         this.states = [];
         this.state = {
-        	from: window.location.href,
-        	to: window.location.href,
-        	uid: this.uid++
+            from: window.location.href,
+            to: window.location.href,
+            uid: this.uid++
         };
         this.states.push( this.state );
         
@@ -36,20 +36,20 @@ window.pdx.PushState = Class.extend({
         
         // Enable the popstate event
         this.callbacks = {
-	        pop: [],
-	        before: [],
-	        after: []
+            pop: [],
+            before: [],
+            after: []
         };
         this._popEnable();
     },
     
     push: function ( url, callback ) {
         var self = this,
-        	state = {
-        		from: window.location.href,
-        		to: url,
-        		uid: this.uid++
-        	};
+            state = {
+                from: window.location.href,
+                to: url,
+                uid: this.uid++
+            };
         
         this.lastState = this.state;
         this.state = state;
@@ -58,62 +58,62 @@ window.pdx.PushState = Class.extend({
         
         // Are we needing to make a request?
         if ( this.async ) {
-        	this._get( url, function ( res ) {
-	            if ( typeof callback === "function" ) {
-	            	callback( res );
-	            }
-	            
-	            if ( self.pushable ) {
-	            	window.history.pushState( state, "", url );
-	            	
-	            	self.states.push( state );
-	            }
-	            
-	            self._call( "after", res );
-	            
-	            // Cache that shit
-	            if ( self.caching ) {
-	            	self.cache[ url ] = res;
-	            }
-	        });
-        	
+            this._get( url, function ( res ) {
+                if ( typeof callback === "function" ) {
+                    callback( res );
+                }
+                
+                if ( self.pushable ) {
+                    window.history.pushState( state, "", url );
+                    
+                    self.states.push( state );
+                }
+                
+                self._call( "after", res );
+                
+                // Cache that shit
+                if ( self.caching ) {
+                    self.cache[ url ] = res;
+                }
+            });
+            
         } else {
-	        if ( this.pushable ) {
-            	window.history.pushState( state, "", url );
-            	
-            	this.states.push( state );
-            	
-            	this._call( "after" );
+            if ( this.pushable ) {
+                window.history.pushState( state, "", url );
+                
+                this.states.push( state );
+                
+                this._call( "after" );
             }
         }
     },
     
     before: function ( callback ) {
-	    this._add( "before", callback );
+        this._add( "before", callback );
     },
     
     after: function ( callback ) {
-	    this._add( "after", callback );
+        this._add( "after", callback );
     },
     
     onpop: function ( callback ) {
-	    this._add( "pop", callback );
+        this._add( "pop", callback );
     },
     
     pop: function () {
-	    window.history.back();
-	    
-	    this._pop();
+        window.history.back();
+        
+        this._pop();
     },
     
     _get: function ( url, callback ) {
         // Pull from cache if we can
         if ( this.caching && this.cache[ url ] ) {
-        	if ( typeof callback === "function" ) {
-        		callback( this.cache[ url ] );
-        	}
-        	
-        	return false;
+            if ( typeof callback === "function" ) {
+                callback( this.cache[ url ] );
+            }
+            
+            return false;
         }
         
         $.ajax({
@@ -127,12 +127,12 @@ window.pdx.PushState = Class.extend({
                 }
                 
                 if ( typeof callback === "function" ) {
-                	callback( err );
+                    callback( err );
                 }
             },
             success: function ( res ) {
                 if ( typeof callback === "function" ) {
-                	callback( res );
+                    callback( res );
                 }
             }
         });
@@ -140,7 +140,7 @@ window.pdx.PushState = Class.extend({
     
     _popEnable: function () {
         if ( !this.pushable || this.poppable ) {
-        	return false;
+            return false;
         }
         
         var self = this;
@@ -153,12 +153,12 @@ window.pdx.PushState = Class.extend({
         // instances of the popstate handler
         $( window ).on( "popstate", function ( e ) {
             if ( !e.state ) {
-            	self.lastState = undefined;
-            	self.state = self.state;
-            	
+                self.lastState = undefined;
+                self.state = self.state;
+                
             } else {
-	            self.lastState = self.state;
-            	self.state = e.state;
+                self.lastState = self.state;
+                self.state = e.state;
             }
             
             self._pop();
@@ -166,32 +166,32 @@ window.pdx.PushState = Class.extend({
     },
     
     _pop: function () {
-	    var backward,
-	    	forward;
-	    
-	    if ( !this.lastState || (this.state.uid < this.lastState.uid) ) {
-	    	backward = true;
-	    	forward = false;
-	    	
-	    } else {
-		    backward = false;
-	    	forward = true;
-	    }
-	    
-	    this._call( "pop" );
+        var backward,
+            forward;
+        
+        if ( !this.lastState || (this.state.uid < this.lastState.uid) ) {
+            backward = true;
+            forward = false;
+            
+        } else {
+            backward = false;
+            forward = true;
+        }
+        
+        this._call( "pop" );
     },
     
     _add: function ( event, callback ) {
-	    if ( typeof callback === "function" ) {
-	    	this.callbacks[ event ].push( callback );
-	    }
+        if ( typeof callback === "function" ) {
+            this.callbacks[ event ].push( callback );
+        }
     },
     
     _call: function ( event ) {
-	    var args = [].slice.call( arguments, 1 );
-	    
-	    for ( var i = 0, len = this.callbacks[ event ].length; i < len; i++ ) {
-        	this.callbacks[ event ][ i ].apply( null, args );
+        var args = [].slice.call( arguments, 1 );
+        
+        for ( var i = 0, len = this.callbacks[ event ].length; i < len; i++ ) {
+            this.callbacks[ event ][ i ].apply( null, args );
         }
     }
 });

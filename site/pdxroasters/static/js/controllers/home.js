@@ -12,10 +12,10 @@
 
 // Closure globals
 var $_document = $( document ),
-	$_body = $( document.body ),
-	$_window = $( window ),
-	$_content = $( "#content" ),
-	$_pages = $( "#pages" );
+    $_body = $( document.body ),
+    $_window = $( window ),
+    $_content = $( "#content" ),
+    $_pages = $( "#pages" );
 
 /* Smooth scroll links
 $( ".scroll-to" ).on( "click", function ( e ) {
@@ -65,7 +65,7 @@ window.pdx.app.home = {
         this.map = new google.maps.Map( this.mapElem, window.pdx.maps.settings );
              
         if ( !this.$roasterItems.length ) {
-        	return false;
+            return false;
         }
         
         this.$roasterItems.each(function ( i ) {
@@ -80,11 +80,11 @@ window.pdx.app.home = {
                 marker;
             
             if ( !points ) {
-            	window.pdx.maps.geocode(
-                	{ address: address+" Portland, Oregon" },
-                	function ( location ) {
-                    	latLng = location;
-                    	marker = new window.pdx.maps.Marker({
+                window.pdx.maps.geocode(
+                    { address: address+" Portland, Oregon" },
+                    function ( location ) {
+                        latLng = location;
+                        marker = new window.pdx.maps.Marker({
                             latLng: latLng,
                             map: self.map,
                             onAddCallback: function ( inst ) {
@@ -97,9 +97,9 @@ window.pdx.app.home = {
                         if ( self.mapMarkers.length === self.$roasterItems.length ) {
                             self.map.fitBounds( self.mapBounds );
                         }
-                	}
-            	);
-            	
+                    }
+                );
+                
             } else {
                 try {
                     points = JSON.parse( points );
@@ -109,7 +109,7 @@ window.pdx.app.home = {
                 }
                 
                 if ( typeof points === "object" ) {
-                	latLng = new google.maps.LatLng( points[ 0 ], points[ 1 ] );
+                    latLng = new google.maps.LatLng( points[ 0 ], points[ 1 ] );
                     marker = new window.pdx.maps.Marker({
                         latLng: latLng,
                         map: self.map,
@@ -125,7 +125,7 @@ window.pdx.app.home = {
         });
         
         if ( this.mapMarkers.length === this.$roasterItems.length ) {
-        	this.map.fitBounds( this.mapBounds );
+            this.map.fitBounds( this.mapBounds );
         }
     },
     
@@ -173,18 +173,18 @@ window.pdx.app.home = {
             
             if ( instance.loaded ) {
                 $instance.addClass( "active" );
-            	$infowindow.toggleClass( "inactive" );
-            	$tip.addClass( "loading" )
-            	   .css( "top", "50%" );
-            	
-            	if ( $infowindow.is( ".inactive" ) ) {
-                	$infowindow.css( "top", "80%" );
-                	
+                $infowindow.toggleClass( "inactive" );
+                $tip.addClass( "loading" )
+                   .css( "top", "50%" );
+                
+                if ( $infowindow.is( ".inactive" ) ) {
+                    $infowindow.css( "top", "80%" );
+                    
                 } else {
                     $infowindow.css( "top", -($infowindow.height()+3) );
                 }
-            	
-            	return false;
+                
+                return false;
             }
             
             $tip.addClass( "loading" );
@@ -236,8 +236,8 @@ window.pdx.app.home = {
                         $infowindow.toggleClass( "inactive" );
                         
                         if ( $infowindow.is( "inactive" ) ) {
-                        	$infowindow.css( "top", "50%" );
-                        	
+                            $infowindow.css( "top", "50%" );
+                            
                         } else {
                             $infowindow.css( "top", -($infowindow.height()+3) );
                         }
@@ -250,9 +250,9 @@ window.pdx.app.home = {
                             $toggle = $elem.find( ".toggle" );
                         
                         if ( $elem.is( ".active" ) ) {
-                        	$.scrollTo( $elem.offset().top );
-                        	
-                        	return false;
+                            $.scrollTo( $elem.offset().top );
+                            
+                            return false;
                         }
                         
                         self.$roasterTogs.removeClass( "active" );
@@ -269,7 +269,7 @@ window.pdx.app.home = {
                         
                         self.pushState.push( this.href, function ( res ) {
                             if ( res.error ) {
-                            	//return false;
+                                //return false;
                             }
                         });
                     });
@@ -309,19 +309,19 @@ window.pdx.app.home = {
         this.$roasterPages = $_pages.find( ".content" );
         
         if ( !this.$roasterItems.length ) {
-        	this.$roasters.find( ".suggest" ).on( "click", function ( e ) {
-            	e.preventDefault();
-            	
-            	$( "[href='"+this.hash+"']" ).click();
-        	});
-        	
-        	return false;
+            this.$roasters.find( ".suggest" ).on( "click", function ( e ) {
+                e.preventDefault();
+                
+                $( "[href='"+this.hash+"']" ).click();
+            });
+            
+            return false;
         }
         
         this.$pageBack.on( "click", function ( e ) {
-	        e.preventDefault();
-	        
-	        self.pushState.pop();
+            e.preventDefault();
+            
+            self.pushState.pop();
         });
         
         this.$roasterItems.on( "click", function ( e ) {
@@ -342,8 +342,8 @@ window.pdx.app.home = {
             $_pages.addClass( "active" );
             
             setTimeout(function () {
-            	$_body.addClass( "no-scroll" );
-            	
+                $_body.addClass( "no-scroll" );
+                
             }, 300 );
             
             self.pushState.push( this.href );
@@ -365,7 +365,7 @@ window.pdx.app.home = {
         var self = this;
         
         this.pushState = new window.pdx.PushState({
-	        async: false
+            async: false
         });
         
         this.pushState.before(function () {
@@ -377,12 +377,12 @@ window.pdx.app.home = {
         });
         
         this.pushState.onpop(function () {
-	        $_content.removeClass( "inactive" );
+            $_content.removeClass( "inactive" );
             $_pages.removeClass( "active" );
             
             setTimeout(function () {
-            	$_body.removeClass( "no-scroll" );
-            	
+                $_body.removeClass( "no-scroll" );
+                
             }, 300 );
         });
     }
