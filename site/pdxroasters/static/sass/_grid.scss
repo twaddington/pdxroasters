@@ -6,6 +6,9 @@
     display: block;
     float: left;
     position: relative;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
 }
 .ci {
     padding: 0 1em;
@@ -24,7 +27,9 @@
 .col3of5 { width: 60%; }
 .col4of5 { width: 80%; }
 .group {
-	margin: 0 -1em;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
 }
 .group:after {
     clear: both;
