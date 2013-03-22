@@ -98,12 +98,12 @@ body {
     position: relative;
 }
 #content {
-	left: 0;
-	width: 100%;
-	@include transition(all 500ms ease-in);
+    left: 0;
+    width: 100%;
+    @include transition(all 500ms ease-in);
     @include transform(translate3d(0,0,0));
-	&.inactive {
-		left: -100%;
+    &.inactive {
+       left: -100%;
         #roasters{
             .roasters{
                 /* thought about limiting height on roasters when individual roaster is selected to get around the position-fixed scroll debacle.
@@ -112,7 +112,7 @@ body {
                 */
             }
         }
-	}
+    }
 }
 #header {
     background: white;
@@ -130,7 +130,7 @@ body {
     border-bottom: 1px solid #efefef;
 }
 .home #header {
-	position: fixed;
+    position: fixed;
 }
 #footer {
     background-color: #000;
@@ -216,7 +216,7 @@ body {
 
 /* -- push pages -- */
 .push-pages {
-	background-color: #f0f0f0;
+    background-color: #f0f0f0;
     bottom: 0;
     left: 100%;
     overflow: hidden;
@@ -233,17 +233,17 @@ body {
     }
 
     > .page {
-    	left: 100%;
-    	overflow: hidden;
-    	position: absolute;
-    	top: 0;
-    	width: 100%;
+        left: 100%;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        width: 100%;
 
-    	@include transition(left 300ms ease-in-out);
+        @include transition(left 300ms ease-in-out);
 
-	    > .page-inner {
-		    padding: 400px 200px 170px 200px;
-	    }
+        > .page-inner {
+           padding: 400px 200px 170px 200px;
+        }
     }
 }
 
@@ -423,23 +423,23 @@ body {
 
 /* -- listings -- */
 #pages {
-	background-color: #fff;
-	height: 100%;
-	left: 100%;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index: 7;
-	@include transition(left 300ms ease-in-out);
+    background-color: #fff;
+    height: 100%;
+    left: 100%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 7;
+    @include transition(left 300ms ease-in-out);
 
-	&.active {
-		left: 0;
-	}
+    &.active {
+       left: 0;
+    }
 
-	.roasters {
-		padding: 1em;
+    .roasters {
+       padding: 1em;
 
-		.content {
+       .content {
             background-color: $tan;
             color:$white;
             display: none;
@@ -447,8 +447,8 @@ body {
             padding:154px 100px 100px 100px;
 
             &.active {
-				display: block;
-			}
+          display: block;
+         }
         }
         .roaster-title{
             margin-bottom:2em;
@@ -476,7 +476,7 @@ body {
                 @include box-shadow(0 0 70px #000 inset);
             }
         }
-	}
+    }
 }
 .hours {
     font-size:14px;
@@ -585,7 +585,7 @@ body {
             @include box-shadow(0 0 30px rgba(0,0,0,.1) inset);
 
             .handle {
-	            border-bottom: 0;
+                border-bottom: 0;
             }
 
             .handle span {
