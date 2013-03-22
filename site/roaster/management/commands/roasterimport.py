@@ -77,6 +77,17 @@ class Command(BaseCommand):
                 else:
                     self.uprint('Updating cafe: %s' % name)
 
+                if self.geocode:
+                    g = geocoders.Google()
+
+                    try:
+                        place, (lat, lng) = g.geocode(row.get('address'))
+                        self.uprint('  %s,%s' % (lat, lng))
+                        cafe.lat = lat
+                        cafe.lng = lng
+                    except Exception as e:
+                        self.uprint('  Failed to geocode address!')
+
                 cafe.address = row.get('address')
                 cafe.phone = row.get('phone')
                 cafe.url = row.get('url')
