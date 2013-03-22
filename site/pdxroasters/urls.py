@@ -12,6 +12,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^$', 'pdxroasters.views.home', name='home'),
     url(r'^contact/$', 'pdxroasters.views.contact', name='contact'),
+    url(r'^add-roaster/$', 'pdxroasters.views.add_roaster', name='add-roaster'),
 
     # Import our roaster paths
     url(r'^', include('roaster.urls')),

@@ -33,6 +33,12 @@ def home(request):
     return render_to_response('home.html',
             context, context_instance=RequestContext(request))
 
+def add_roaster(request):
+    """
+    Add a new roaster.
+    """
+    raise Http404()
+
 def contact(request):
     """
     Send a simple contact email.
@@ -45,15 +51,15 @@ def contact(request):
 
             if len(name) == 0:
                 return HttpResponse(json.dumps({'error':
-                    'Your name cannot be blank!'}), mimetype=CONTENT_TYPE_JSON)
+                    'Your name cannot be blank'}), mimetype=CONTENT_TYPE_JSON)
 
             if len(email) == 0:
                 return HttpResponse(json.dumps({'error':
-                    'Your email must be valid!'}), mimetype=CONTENT_TYPE_JSON)
+                    'Your email must be valid'}), mimetype=CONTENT_TYPE_JSON)
 
             if len(message) == 0:
                 return HttpResponse(json.dumps({'error':
-                    'Your message cannot be blank!'}), mimetype=CONTENT_TYPE_JSON)
+                    'Your message cannot be blank'}), mimetype=CONTENT_TYPE_JSON)
 
             try:
                 # Format the subject

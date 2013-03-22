@@ -20,6 +20,9 @@ def format_phone_number(phone):
         return '(%s) %s-%s' % (phone[:3], phone[3:6], phone[6:10])
     return ''
 
+# TODO: Move Business and BusinessHours models to generic app.
+# TODO: Add tests
+
 class Business(models.Model):
     name = models.CharField(max_length=200, unique=True, db_index=True,)
     slug = models.SlugField()
