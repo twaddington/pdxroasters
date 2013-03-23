@@ -36,6 +36,10 @@ urlpatterns = patterns('',
     # crossdomain.xml
     (r'^crossdomain\.xml$', direct_to_template,
         {'template': 'crossdomain.xml', 'mimetype': 'application/xml'}),
+
+    # BingSiteAuth.xml
+    (r'BingSiteAuth\.xml$', direct_to_template,
+        {'template': 'BingSiteAuth.xml', 'mimetype': 'application/xml'}),
 )
 
 # Static files
