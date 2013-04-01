@@ -1,0 +1,17 @@
+{% if roasters %}
+<div id="roasters" class="roasters">
+    <a href="#roasters" class="scroll-to roasters-toggle"></a>
+    {% for roaster in roasters %}
+    <div class="roaster">
+        <a href="/roaster/{{ roaster.slug }}/" class="push-link" id="{{ roaster.id }}" data-latlng="[{{ roaster.lat }},{{ roaster.lng }}]" data-name="{{ roaster.name }}" data-address="{{ roaster.address }}">
+            <h3 class="handle group"><span>{{ roaster.name }}</span> <div class="toggle"></div></h3>
+        </a>
+    </div>
+    {% empty %}
+    <div class="message">
+        <h3>There are no Roasters yet.</h3>
+        <p>Perhaps you would like to <a href="/add-a-roaster/" class="push-link">suggest one</a> to us.</p>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}

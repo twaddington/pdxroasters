@@ -9,13 +9,25 @@
 {% block pageclass %}home{% endblock %}
 
 {% block content %}
-	{% include 'partials/info_pages.html' %}
 	{% include 'partials/map.html' %}
-	{% include 'partials/roaster_listing.html' %}
+	{% include 'partials/roasters.html' %}
 {% endblock %}
 
 {% block pre_footer %}
-<section id="pages">
-	{% include 'partials/roaster_pages.html' %}
-</section>
+<div class="push-container" id="nav-push-page">
+	<div class="push-pages">
+		{% include 'add-a-roaster.html' %}
+		{% include 'about.html' %}
+		{% include 'contact.html' %}
+	</div>
+</div>
+<div class="push-container" id="roaster-push-page">
+	<div class="roaster">
+		{% if roasters %}
+		    {% for roaster in roasters %}
+		    	{% include 'partials/roaster_detail.html' %}
+		    {% endfor %}
+		{% endif %}
+	</div>
+</div>
 {% endblock %}

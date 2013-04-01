@@ -11,6 +11,10 @@ only screen and (min-device-width : 320px) and (max-device-width : 480px) {
 		display: none;
 	}
 	
+	#page {
+		padding-top: 120px;
+	}
+	
 	#roasters {
 		.roaster {
 			.handle {
