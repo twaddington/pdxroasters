@@ -9,14 +9,9 @@
 {% block pageclass %}roaster{% endblock %}
 
 {% block content %}
-	<div id="roaster">
-		<div class="inner group">
-			<div class="col col1of2">
-				<h2>{{ roaster.name }}</h2>
-			</div>
-			<div class="col col1of2">
-				{% include 'partials/map.html' %}
-			</div>
+	<div id="roasters" class="roasters">
+		<div class="roaster active">
+			{% include 'partials/roaster_detail.html' %}
 		</div>
 	</div>
 {% endblock %}

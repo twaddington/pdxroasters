@@ -7,18 +7,47 @@
  */
 (function ( $, window, undefined ) {
 
+// Have 1 popstate event bound
+// Decide which instance to call based on state object ?
+
 "use strict";
 
 // Closure globals
-var Class = require( "Class" );
+var Class = require( "Class" ),
+	PushState,
+	_counter = 0,
+	_instances = {};
+
+window.onpopstate = function ( e ) {
+    var instance;
+    
+    if ( e.state ) {
+    	instance = _instances[ e.state.iid ];
+    	
+    	instance.lastState = instance.state;
+        instance.state = e.state;
+        
+        instance._pop();
+    }
+};
 
 // PushState Class
-window.pdx.PushState = Class.extend({
-    init: function ( options ) {
+window.pdx.pushstate = function ( options ) {
+	var id = _counter++,
+		instance = new PushState( options, id );
+		
+	_instances[ id ] = instance;
+	
+	return instance;
+};
+
+PushState = Class.extend({
+    init: function ( options, id ) {
         this.cache = {};
         this.poppable = false;
         this.pushable = ("history" in window && "pushState" in window.history);
         this.uid = 0;
+        this.id = id;
         
         // Set initial state object
         this.lastState = undefined;
@@ -48,7 +77,8 @@ window.pdx.PushState = Class.extend({
             state = {
                 from: window.location.href,
                 to: url,
-                uid: this.uid++
+                uid: this.uid++,
+                iid: this.id
             };
         
         this.lastState = this.state;
@@ -147,22 +177,6 @@ window.pdx.PushState = Class.extend({
         
         // Popping
         this.poppable = true;
-        
-        // Add the handler
-        // Use framework here so we can bind multiple
-        // instances of the popstate handler
-        $( window ).on( "popstate", function ( e ) {
-            if ( !e.state ) {
-                self.lastState = undefined;
-                self.state = self.state;
-                
-            } else {
-                self.lastState = self.state;
-                self.state = e.state;
-            }
-            
-            self._pop();
-        });
     },
     
     _pop: function () {
@@ -182,6 +196,8 @@ window.pdx.PushState = Class.extend({
     },
     
     _add: function ( event, callback ) {
+        console.log( arguments );
+        
         if ( typeof callback === "function" ) {
             this.callbacks[ event ].push( callback );
         }
@@ -191,7 +207,7 @@ window.pdx.PushState = Class.extend({
         var args = [].slice.call( arguments, 1 );
         
         for ( var i = 0, len = this.callbacks[ event ].length; i < len; i++ ) {
-            this.callbacks[ event ][ i ].apply( null, args );
+            this.callbacks[ event ][ i ].apply( null, [this.state] );
         }
     }
 });
