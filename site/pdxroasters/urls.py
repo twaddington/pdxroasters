@@ -12,6 +12,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^$', 'pdxroasters.views.home', name='home'),
     url(r'^contact/$', 'pdxroasters.views.contact', name='contact'),
+    url(r'^add-roaster/$', 'pdxroasters.views.add_roaster', name='add-roaster'),
 
     # Import our roaster paths
     url(r'^', include('roaster.urls')),
@@ -35,6 +36,10 @@ urlpatterns = patterns('',
     # crossdomain.xml
     (r'^crossdomain\.xml$', direct_to_template,
         {'template': 'crossdomain.xml', 'mimetype': 'application/xml'}),
+
+    # BingSiteAuth.xml
+    (r'BingSiteAuth\.xml$', direct_to_template,
+        {'template': 'BingSiteAuth.xml', 'mimetype': 'application/xml'}),
 )
 
 # Static files
