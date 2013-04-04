@@ -8,8 +8,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="{% block meta-keywords %}{% endblock %}" />
-    <meta name="description" content="{% block meta-description %}{% endblock %}" />
+    <meta name="keywords" content="{% block meta_keywords %}Portland&rsquo;s coffee scene is pioneering, unique and fiercely dedicated to craft and quality. Use PDX Roasters to find a local coffee roaster in Portland, Ore.{% endblock %}" />
+    <meta name="description" content="{% block meta_description %}{% endblock %}" />
     <meta name="author" content="Isaac Viel" />
     <meta name="author" content="Tristan Waddington" />
     <meta name="author" content="Paul C. Pederson" />
@@ -34,9 +34,8 @@
             <nav id="nav">     
                 <ul>
                     <li><a href="#more" class="plus"></a></li>
+                    <li><a href="/about/" data-page="page2">About</a></li>
                     <li><a href="{% url add-roaster %}" data-page="page1">Add Roaster</a></li>
-                    <li><a href="/about/" data-page="page2">About</a></li> 
-                    <li><a href="{% url contact %}" data-page="page3">Contact</a></li>
                 </ul>
             </nav>
         </header>
@@ -51,6 +50,10 @@
         </footer>
         {% endblock %}
     </div>
+    {% if debug %}
     <script src="{% static 'js/dist/scripts.js' %}"></script>
+    {% else %}
+    <script src="{% static 'js/dist/scripts.min.js' %}"></script>
+    {% endif %}
 </body>
 </html>

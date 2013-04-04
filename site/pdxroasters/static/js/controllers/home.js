@@ -14,18 +14,10 @@
 var $_document = $( document ),
     $_body = $( document.body ),
     $_window = $( window ),
+    $_header = $( "#header" ),
     $_content = $( "#content" ),
-    $_pages = $( "#pages" );
-
-/* Smooth scroll links
-$( ".scroll-to" ).on( "click", function ( e ) {
-    e.preventDefault();
-    
-    var $elem = $( this.hash );
-    
-    $.scrollTo( $elem.offset().top );
-});
-*/
+    $_pushPage = $( "#roaster-push-page" ),
+    $_pushRoaster = $_pushPage.find( ".roaster" );
 
 // Home Controller
 window.pdx.app.home = {
@@ -34,12 +26,20 @@ window.pdx.app.home = {
         
         this._premaps();
         this._roasters();
-        this._info();
         this._resize();
         this._pushes();
         
         // Activate global nav module
         window.pdx.nav.init();
+        
+        // TEMP
+        $( ".scroll-to" ).on( "click", function ( e ) {
+		    e.preventDefault();
+		    
+		    var $elem = $( this.hash );
+		    
+		    $.scrollTo( $elem.offset().top-$_header.height() );
+		});
     },
     
     _premaps: function () {
@@ -142,11 +142,13 @@ window.pdx.app.home = {
         // Reveal Roaster name rollover
         $instance.on( "mouseenter", "> div", function () {
             var $elem = $( this );
+            
             // If modal is active...
             if ( $infowindow && !$infowindow.is( ".inactive" ) ) {
                 $tip.addClass( "loading" );
                 return false;
             }
+            
             // When modal is not active...
             $instance.addClass( "active" );
             $tip.removeClass( "loading" );
@@ -154,11 +156,13 @@ window.pdx.app.home = {
         // Hide Roaster Name rollover
         }).on( "mouseleave", "> div", function ( e ) {
             var $elem = $( this );
+            
             // When infowindow is active...
             if ( $infowindow && !$infowindow.is( ".inactive" ) ) {
                 $tip.addClass( "loading" );
                 return false;
             }
+            
             // When it's not active...
             $instance.removeClass( "active" );
             $tip.removeClass( "loading" );
@@ -268,9 +272,7 @@ window.pdx.app.home = {
                         e.preventDefault();
                         
                         self.pushState.push( this.href, function ( res ) {
-                            if ( res.error ) {
-                                //return false;
-                            }
+                            console.log( "info more click...?" );
                         });
                     });
                     
@@ -302,24 +304,17 @@ window.pdx.app.home = {
         var self = this;
         
         this.$roasters = $( "#roasters" );
-        this.$pageBack = $( "#page-back" );
-        this.$roasterItems = this.$roasters.find( ".roaster" );
+        this.$logoBack = $( "#logo" );
+        this.$roasterItems = this.$roasters.find( ".push-link" );
         this.$roasterTogs = this.$roasters.find( ".toggle" );
         this.$roasterHandles = this.$roasters.find( ".handle" );
-        this.$roasterPages = $_pages.find( ".content" );
         
-        if ( !this.$roasterItems.length ) {
-            this.$roasters.find( ".suggest" ).on( "click", function ( e ) {
-                e.preventDefault();
-                
-                $( "[href='"+this.hash+"']" ).click();
-            });
-            
-            return false;
-        }
-        
-        this.$pageBack.on( "click", function ( e ) {
+        this.$logoBack.on( "click", function ( e ) {
             e.preventDefault();
+            
+            if ( !self.$logoBack.is( ".page-back" ) ) {
+            	return false;
+            }
             
             self.pushState.pop();
         });
@@ -331,20 +326,15 @@ window.pdx.app.home = {
                 $toggle = $elem.find( ".toggle" ),
                 $roaster = $( "#roaster-"+this.id );
             
-            self.$roasterPages.removeClass( "active" );
+            $_pushPage.find( ".content" ).removeClass( "active" );
+            
             $roaster.addClass( "active" );
             
             self.$roasterTogs.removeClass( "active" );
-            
             self.$roasterItems.removeClass( "active" );
             
             $_content.addClass( "inactive" );
-            $_pages.addClass( "active" );
-            
-            setTimeout(function () {
-                $_body.addClass( "no-scroll" );
-                
-            }, 300 );
+            $_pushPage.addClass( "active" );
             
             self.pushState.push( this.href );
         });
@@ -354,10 +344,7 @@ window.pdx.app.home = {
         var self = this;
         
         window.onresize = function () {
-            self.$mapWrap
-                .add( self.$info )
-                .add( self.$infoPages )
-                .height( window.innerHeight );
+            self.$mapWrap.height( window.innerHeight );
         };
     },
     
@@ -368,22 +355,9 @@ window.pdx.app.home = {
             async: false
         });
         
-        this.pushState.before(function () {
-            
-        });
-        
-        this.pushState.after(function () {
-            
-        });
-        
         this.pushState.onpop(function () {
             $_content.removeClass( "inactive" );
-            $_pages.removeClass( "active" );
-            
-            setTimeout(function () {
-                $_body.removeClass( "no-scroll" );
-                
-            }, 300 );
+            $_pushPage.removeClass( "active" );
         });
     }
 };

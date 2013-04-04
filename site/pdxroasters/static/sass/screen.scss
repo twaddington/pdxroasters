@@ -46,7 +46,7 @@ $cabin: 'Cabin', Helvetica, Arial, Sans-serif;
 
 /* -- elements -- */
 html{
-    background-color:$light-gray;
+/*     background-color:$light-gray; */
 }
 body {
     margin: 0;
@@ -102,18 +102,10 @@ body {
 #content {
 	left: 0;
 	width: 100%;
-	@include transition(all 500ms ease-in);
+	@include transition(left 300ms ease-in);
     @include transform(translate3d(0,0,0));	
 	&.inactive {
 		left: -100%;
-        #roasters{
-            .roasters{
-                /* thought about limiting height on roasters when individual roaster is selected to get around the position-fixed scroll debacle. 
-                height:0;
-                overflow:hidden;
-                */
-            }
-        }
 	}
 }
 #header {
@@ -169,11 +161,11 @@ body {
 #nav {
     position: absolute; 
     top: 28px;
-    right: -280px;
+    right: -155px;
     @include transition(all 200ms ease-in-out 200ms);
     
     &.active {
-        right: 133px;
+        right: 103px;
     }
     
     ul {
@@ -218,35 +210,36 @@ body {
 
 /* -- push pages -- */
 .push-pages {
-	background-color: #f0f0f0;
-    bottom: 0;
-    left: 100%;
-    overflow: hidden;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 100%;
-    z-index: 9;
-    
-    @include transition(left 300ms ease-in-out);
-    
-    &.active {
-        left: 0;
-    }
-    
-    > .page {
-    	left: 100%;
-    	overflow: hidden;
-    	position: absolute;
-    	top: 0;
-    	width: 100%;
-    	
-    	@include transition(left 300ms ease-in-out);
-	    
-	    > .page-inner {
-		    padding: 400px 200px 170px 200px;
+	> .page {
+    	> .page-inner {
+    		margin: 0;
+		    padding: 160px 40px 40px;
+		    
+		    .ci {
+			    padding: 0;
+		    }
+		    
+		    .col:first-child .ci {
+			    padding-right: 20px;
+		    }
+		    
+		    .col:last-child .ci {
+			    padding-left: 20px;
+		    }
 	    }
     }
+}
+
+
+/* -- nav-push-pages --*/
+#nav-push-page {
+	.page {
+		display: none;
+		
+		&.active {
+			display: block;
+		}
+	}
 }
 
 
@@ -401,31 +394,12 @@ body {
                 padding-left: 0;
             }
         }
-        
-        > .plus-spinner {
-             &.active {
-                 //visibility: visible;            
-                 //@include opacity(1);
-             }
-            // Loading Indicator for Modal Info            
-             > div {
-                //background: url(../img/plusthin.png) no-repeat 0 0;
-                //height: 22px;
-                //width: 22px;
-                
-                //@include transition(all 300ms ease-in-out);
-                
-                &.loading {
-                   // @include transform(rotate(360deg));
-                }
-            }
-        }
     }
 }
 
 
-/* -- listings -- */
-#pages {
+/* -- pushstate container -- */
+.push-container {
 	background-color: #fff;
 	height: 100%;
 	left: 100%;
@@ -433,59 +407,20 @@ body {
 	top: 0;
 	width: 100%;
 	z-index: 7;
+	@include transform(translate3d(0,0,0));
 	@include transition(left 300ms ease-in-out);
 	
 	&.active {
 		left: 0;
 	}
-	
-	.roasters {
-		padding: 1em;
-		
-		.content {
-            background-color: $light-green;
-            color:$white;
-            display: none;
-            overflow: hidden;
-            padding:154px 100px 100px 100px;
-
-            &.active {
-				display: block;
-			}
-        }
-        .roaster-title{
-            margin-bottom:2em;
-            color:$white;
-        }
-        h4{
-            color:$white;
-        }
-        h5 {
-            color:$white;
-        }
-        .figure {
-            display: inline-block;
-            position: relative;
-            width: 100%;
-            border:10px solid $white;
-            
-            &:after {
-                bottom: 0;
-                content: '';
-                left: 0;
-                position: absolute;
-                right: 0;
-                top: 0;
-                @include box-shadow(0 0 70px #000 inset);
-            }
-        }
-	}
 }
+
+
+/* -- listings -- */
 .hours {
     font-size:14px;
     font-weight:400;
     color:$darker-gray;
-    color:$white;
     span {
         float: right;
         display: inline;
@@ -495,53 +430,17 @@ body {
 .address {
     @extend .hours;
 }
-
-#page-back {
-    position: fixed;
-    top: 164px;
-    left: 10px;
-    width: 40px;
-    height:40px;
-    background: transparent url('../img/left.png') center center no-repeat;
-    border: none;
-    @include transition(left 200ms linear);
-    &:hover{
-        border:none;
-        left:5px;
-
-    }
-}
 #roasters {
+	background-color: #fff;
+    padding: 0;
     position: relative;
     z-index: 9;
-    
     @include box-shadow(0 -1px 3px rgba(0,0,0,.5));
     
-    h3 {
-        margin-bottom: 0;
-    }
-    
-    h4 {
-        margin: 0 0 1em 0;
-    }
-    
-    .figcaption {
-        font-family: $skolar;
-    }
-    
-    .meta {
-        margin-top: 20px;
-    }
-    
-    .roasters {
-        background-color: #fff;
-        padding: 0;
-        position: relative;
-        z-index: 8;
-        
-        .message {
-            padding: 0 40px 40px;
-        }
+    .roaster {
+	    background: $white;
+	    position: relative;
+	    z-index: 8;
     }
     
     .roasters-toggle {
@@ -579,6 +478,28 @@ body {
             }
         }
     }
+}
+#roasters,
+#roaster-push-page {
+    h3 {
+        margin-bottom: 0;
+    }
+    
+    h4 {
+        margin: 0 0 1em 0;
+    }
+    
+    .message {
+        padding: 0 40px 40px;
+    }
+    
+    .figcaption {
+        font-family: $skolar;
+    }
+    
+    .meta {
+        margin-top: 20px;
+    }
     
     .roaster {
         &.active {
@@ -595,6 +516,18 @@ body {
             .handle span {
                 color: $blue;
             }
+            
+            .content {
+	            display: block;
+            }
+        }
+        
+        .content {
+	        display: none;
+	        
+	        &.active {
+		        display: block;
+	        }
         }
         
         .handle {
@@ -638,6 +571,26 @@ body {
             @include transition-delay(200ms);
         }
     }
+}
+#roaster-push-page {
+	overflow-y: scroll;
+	
+	-webkit-overflow-scrolling: touch;
+    -webkit-transition: -webkit-transform 0ms;
+    -webkit-transform-origin: 0px 0px;
+    -webkit-transform: translate3d(0px, 0px, 0px);
+	
+	.roaster {
+		padding: 120px 40px 0;
+		
+		.group {
+			margin: 0;
+		}
+		
+		.col1of2 {
+			width: 48%;
+		}
+	}
 }
 
 

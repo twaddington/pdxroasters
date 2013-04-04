@@ -9,6 +9,12 @@
 
 "use strict";
 
+// Closure globals
+var $_document = $( document ),
+    $_body = $( document.body ),
+    $_window = $( window ),
+    $_content = $( "#content" );
+
 window.pdx.nav = {
 	init: function () {
 		var self = this;
@@ -16,19 +22,7 @@ window.pdx.nav = {
         this.$nav = $( "#nav" );
         this.$navTog = this.$nav.find( ".plus" );
         this.$navLinks = this.$nav.find( "a:not(.plus)" );
-        this.$pages = $( "#info-pages" );
-        this.$activePage;
-        this.$lastPage;
-        this.activePage;
-        this.lastPage;
-        this.isPopStateEvent = false;
-        this.pushState = new window.pdx.PushState({
-	        async: false
-        });
-        
-        this.pushState.onpop(function ( back, forward ) {
-        	// Figure this out...
-        });
+        this.$pushPage = $( "#nav-push-page" );
         
         this.$navTog.on( "click", function ( e ) {
             e.preventDefault();
@@ -37,46 +31,33 @@ window.pdx.nav = {
             self.$nav.toggleClass( "active" );
             
             if ( !self.$navTog.is( ".active" ) ) {
-            	self.$pages.removeClass( "active" );
+            	self.$pushPage.removeClass( "active" );
+            	self.$navLinks.removeClass( "on" );
             	
             } else {
-                $( "[data-page='"+self.activePage+"']" ).click();
+                // Open the last one?
             }
-            
-            self.pushState.push( "/" );
         });
         
         this.$navLinks.on( "click", function ( e ) {
             e.preventDefault();
             
-            if ( !self.$pages.is( ".active" ) ) {
-            	self.$pages.addClass( "active" );
+            if ( !self.$pushPage.is( ".active" ) ) {
+            	self.$pushPage.addClass( "active" );
             }
             
             var $this = $( this ),
-            	page = $this.data( "page" );
-            
-            self.lastPage = self.activePage;
-            self.$lastPage = self.$activePage;
+            	path = this.href
+            		.replace( location.protocol, "" )
+            		.replace( location.host, "" )
+            		.replace( /\//g, "" ),
+            	$page = $( "#"+path );
             
             self.$navLinks.removeClass( "on" );
             $this.addClass( "on" );
             
-            self.$activePage = $( "#"+page );
-            self.activePage = page;
-            
-            if ( self.$lastPage && self.$lastPage.index() > self.$activePage.index() ) {
-            	self.$lastPage.css( "left", "100%" );
-            	
-            } else if ( self.$lastPage && self.$lastPage.index() < self.$activePage.index() ) {
-	            self.$lastPage.css( "left", "-100%" );
-            }
-            
-            self.$activePage.css( "left", 0 );
-            
-            if ( !self.isPopStateEvent ) {
-            	self.pushState.push( this.href );
-            }
+            self.$pushPage.find( ".page" ).removeClass( "active" );
+            $page.addClass( "active" );
         });
 	}
 }
