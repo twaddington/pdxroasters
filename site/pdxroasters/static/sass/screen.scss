@@ -62,8 +62,8 @@ body {
 
 /* -- classes -- */
 .btn {
-    background: #dddbd4;
-    border: 1px solid #d2d0cb;
+    background: $light-red;
+    @include border-radius(4px);
     padding:.5em 2em;
     cursor: pointer;
     //margin-right: 1em;
@@ -74,9 +74,10 @@ body {
     text-decoration: none;
     color: #fff;
     display: block;
+    @include transition(all 200ms linear);
     &:hover {
-        border-color: #b6b4b0;
-        color: #555;
+        background: rgb(211, 101, 85);
+        color: $white;
     }
 }
 .plus-close {
@@ -129,9 +130,9 @@ body {
     position: fixed;
 }
 #footer {
-    background-color: #000;
+    background-color: #333;
     color: #fff;
-    padding: 10px 40px;
+    padding: 2em 40px;
     z-index: 10;
 }
 
@@ -388,11 +389,11 @@ body {
             margin-bottom: 20px;
             &:before{
                 content:" ";
-                background:$light-gray;
+                background:$white;
                 width:16px;
                 height:16px;
-                border-bottom:1px solid #d2d0cb;
-                border-right:1px solid #d2d0cb;
+                border-bottom:1px solid #dfdfdf;
+                border-right:1px solid #dfdfdf;
                 left:50%;
                 margin-left:-8px;
                 position:absolute;
@@ -531,8 +532,9 @@ body {
 }
 #roasters,
 #roaster-push-page {
+
     h3 {
-        margin-bottom: 0;
+        margin-bottom: 1.5em;
     }
 
     h4 {
