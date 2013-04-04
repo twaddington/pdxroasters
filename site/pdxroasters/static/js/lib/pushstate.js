@@ -148,17 +148,16 @@ window.pdx.PushState = Class.extend({
         // Popping
         this.poppable = true;
         
-        // Add the handler
         // Use framework here so we can bind multiple
         // instances of the popstate handler
         $( window ).on( "popstate", function ( e ) {
             if ( !e.state ) {
-                self.lastState = undefined;
-                self.state = self.state;
-                
+            	self.lastState = undefined;
+            	self.state = self.state;
+            	
             } else {
-                self.lastState = self.state;
-                self.state = e.state;
+	            self.lastState = self.state;
+            	self.state = e.state;
             }
             
             self._pop();
@@ -191,7 +190,7 @@ window.pdx.PushState = Class.extend({
         var args = [].slice.call( arguments, 1 );
         
         for ( var i = 0, len = this.callbacks[ event ].length; i < len; i++ ) {
-            this.callbacks[ event ][ i ].apply( null, args );
+            this.callbacks[ event ][ i ].apply( null, [this.state] );
         }
     }
 });
