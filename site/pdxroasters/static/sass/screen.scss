@@ -161,7 +161,7 @@ body {
 #nav {
     position: absolute; 
     top: 28px;
-    right: -280px;
+    right: -155px;
     @include transition(all 200ms ease-in-out 200ms);
     
     &.active {

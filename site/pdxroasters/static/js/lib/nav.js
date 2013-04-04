@@ -23,34 +23,6 @@ window.pdx.nav = {
         this.$navTog = this.$nav.find( ".plus" );
         this.$navLinks = this.$nav.find( "a:not(.plus)" );
         this.$pushPage = $( "#nav-push-page" );
-        this.isPopStateEvent = false;
-        this.isOnLoad = true;
-        this.pushState = window.pdx.pushstate({
-	        async: false
-        });
-        
-        this.pushState.onpop(function ( state ) {
-        	if ( self.isOnLoad ) {
-        		self.isOnLoad = false;
-        		return;
-        	}
-        	
-        	self.isPopStateEvent = true;
-        	
-        	var path = state.to
-        		.replace( location.protocol, "" )
-        		.replace( location.host, "" )
-        		.replace( /\//g, "" );
-        	
-        	if ( path === "" && !self.isOnLoad ) {
-        		self.$navTog.click();
-        		
-        	} else {
-	        	self.$nav.find( "[href*='"+path+"']" ).click();
-        	}
-        	
-        	self.isPopStateEvent = false;
-        });
         
         this.$navTog.on( "click", function ( e ) {
             e.preventDefault();
@@ -60,12 +32,11 @@ window.pdx.nav = {
             
             if ( !self.$navTog.is( ".active" ) ) {
             	self.$pushPage.removeClass( "active" );
+            	self.$navLinks.removeClass( "on" );
             	
             } else {
-                //$( "[data-page='"+self.activePage+"']" ).click();
+                // Open the last one?
             }
-            
-            self.pushState.push( "/" );
         });
         
         this.$navLinks.on( "click", function ( e ) {
@@ -87,10 +58,6 @@ window.pdx.nav = {
             
             self.$pushPage.find( ".page" ).removeClass( "active" );
             $page.addClass( "active" );
-            
-            if ( !self.isPopStateEvent ) {
-            	self.pushState.push( this.href );
-            }
         });
 	}
 }

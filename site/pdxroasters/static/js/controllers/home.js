@@ -351,7 +351,7 @@ window.pdx.app.home = {
     _pushes: function () {
         var self = this;
         
-        this.pushState = window.pdx.pushstate({
+        this.pushState = new window.pdx.PushState({
             async: false
         });
         
