@@ -48,6 +48,7 @@ $cabin: 'Cabin', Helvetica, Arial, Sans-serif;
 html{
 /*     background-color:$light-gray; */
 }
+
 body {
     margin: 0;
     min-height: 100%;
@@ -80,6 +81,7 @@ body {
         color: $white;
     }
 }
+
 .plus-close {
     background: url(../img/plusthin.png) no-repeat 0 0;
     display: block;
@@ -92,6 +94,7 @@ body {
 
     @include transform(rotate(-45deg));
 }
+
 .s-hidden {
 	display: none;
 }
@@ -250,8 +253,8 @@ body {
     }
 }
 
-/* -- search field -- */
-#search {
+/* -- filter field -- */
+#filter {
 	input {
 		background-color: $red;
 		border: 0;
@@ -478,9 +481,11 @@ body {
         text-align: right;
     }
 }
+
 .address {
     @extend .hours;
 }
+
 #roasters {
     background-color: #fff;
     padding: 0;
@@ -530,6 +535,7 @@ body {
         }
     }
 }
+
 #roasters,
 #roaster-push-page {
 
@@ -594,8 +600,8 @@ body {
             span {
                 @include transition(all 200ms linear);
             }
-
-            &:hover {
+            &:hover,
+            &.s-focused {
                 background-color: rgba(0,0,0,.02);
                 .toggle{
                     right:40px;
@@ -624,6 +630,7 @@ body {
         }
     }
 }
+
 #roaster-push-page {
     overflow-y: scroll;
 
@@ -645,7 +652,6 @@ body {
     }
 }
 
-
 /* -- error pages -- */
 #page-error {
     padding: 100px;
@@ -661,7 +667,6 @@ body[data-controller=error] {
         right: 0;
     }
 }
-
 
 /* -- @media -- */
 @import 'media';
