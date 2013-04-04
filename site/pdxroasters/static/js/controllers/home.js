@@ -14,7 +14,7 @@
 var $_document = $( document ),
     $_body = $( document.body ),
     $_window = $( window ),
-    $_search = $( "#search > input" ),
+    $_filter = $( "#filter > input" ),
     $_header = $( "#header" ),
     $_content = $( "#content" ),
     $_pushPage = $( "#roaster-push-page" ),
@@ -32,7 +32,7 @@ window.pdx.app.home = {
         
         this._premaps();
         this._roasters();
-        this._search();
+        this._filter();
         this._resize();
         this._pushes();
         
@@ -49,31 +49,83 @@ window.pdx.app.home = {
 		});
     },
     
-    _search: function () {
-	    $_search.on( "focus", function () {
-		    $.scrollTo( $_search.offset().top-$_header.height() );
+    _filter: function () {
+	    var current = -1,
+	    	lastKey;
+	    
+	    $_filter.on( "focus", function () {
+	    	current = -1;
+	    	
+		    $.scrollTo( $_filter.offset().top-$_header.height() );
 		    
 		    $_roasters.css( "min-height", window.innerHeight-$_header.height() );
 	    })
-	    .on( "keyup", function ( e ) {
-		    var value = this.value;
+	    .on( "blur", function () {
+	    	current = -1;
+	    	
+		    $_roasterItems.removeClass( "s-hidden" );
+		    $( ".s-focused" ).removeClass( "s-focused" );
 		    
+		    $_filter.val( "" );
+		    
+		    $.scrollTo( 0 );
+	    })
+	    .on( "keyup", function ( e ) {
+		    var value = this.value,
+		    	filtered = [],
+		    	$focused;
+		    
+		    // Show all items in the list
 		    if ( !value.length ) {
+		    	current = -1;
+		    	
 		    	$_roasterItems.removeClass( "s-hidden" );
+		    	$( ".s-focused" ).removeClass( "s-focused" );
+		    
+		    // We can filter the list
+		    } else {
+			    $_roasterItems.each(function () {
+			        var regex = new RegExp( "^"+value, "i" ),
+			            $this = $( this ),
+			            name = $this.data( "name" );
+			        
+			        if ( value !== "" && !regex.exec( name ) ) {
+			        	$this.addClass( "s-hidden" );
+			        	
+			        } else {
+				        $this.removeClass( "s-hidden" );
+				        
+				        filtered.push( this );
+			        }
+			    });
 		    }
 		    
-		    $_roasterItems.each(function () {
-		        var regex = new RegExp( "^"+value, "i" ),
-		            $this = $( this ),
-		            name = $this.data( "name" );
-		        
-		        if ( value !== "" && !regex.exec( name ) ) {
-		        	$this.addClass( "s-hidden" );
-		        	
-		        } else {
-			        $this.removeClass( "s-hidden" );
-		        }
-		    });
+		    if ( e.keyCode === 38 || e.keyCode === 40 ) {
+		    	// Down
+		    	if ( e.keyCode === 40 ) {
+		    		if ( current !== filtered.length-1 ) {
+		    			current++;
+		    		}
+		    	
+		    	// Up	
+		    	} else {
+			    	if ( current !== 0 ) {
+			    		current--;
+			    	}
+		    	}
+		    	
+		    	$( ".s-focused" ).removeClass( "s-focused" );
+		    	$( filtered[ current ] ).find( ".handle" ).addClass( "s-focused" );
+		    }
+		    
+		    // Enter
+		    if ( e.keyCode === 13 ) {
+		    	$focused = $( ".s-focused" );
+		    	
+		    	if ( $focused.length ) {
+		    		$focused.click();
+		    	}
+		    }
 		});
     },
     
@@ -85,7 +137,7 @@ window.pdx.app.home = {
         this.mapElem = this.$map.get( 0 );
         this.mapMarkers = [];
         
-        this.$mapWrap.height( window.innerHeight-$_search.height() );
+        this.$mapWrap.height( window.innerHeight-$_filter.height() );
         
         // Listen for maps to be loaded and ready
         window.pdx.maps.onmapsready(function () {
@@ -367,7 +419,7 @@ window.pdx.app.home = {
         var self = this;
         
         window.onresize = function () {
-            self.$mapWrap.height( window.innerHeight-$_search.height() );
+            self.$mapWrap.height( window.innerHeight-$_filter.height() );
         };
     },
     
