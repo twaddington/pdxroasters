@@ -305,9 +305,10 @@ window.pdx.maps.Marker = window.pdx.maps.Overlay.extend({
 		containsSW = bounds.contains( iwSWLatLng );
 		
 		if ( !containsNE || !containsSW ) {
-			// Need to figure out newX/newY better than this
 			newX = coords.x;
-			newY = coords.y;
+			
+			// Padding by 100px to clear the fixed header
+			newY = coords.y-100;
 			
 			newPoint = new google.maps.Point( newX, newY );
 			newLatLng = this.getProjection().fromDivPixelToLatLng( newPoint );

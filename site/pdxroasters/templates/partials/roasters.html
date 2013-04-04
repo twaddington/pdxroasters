@@ -1,6 +1,6 @@
 {% if roasters %}
 <div id="roasters" class="roasters">
-    <a href="#roasters" class="scroll-to roasters-toggle"></a>
+	{% include 'partials/search.html' %}
     {% for roaster in roasters %}
     <div class="roaster">
         <a href="/roaster/{{ roaster.slug }}/" class="push-link" id="{{ roaster.id }}" data-latlng="[{{ roaster.lat }},{{ roaster.lng }}]" data-name="{{ roaster.name }}" data-address="{{ roaster.address }}">
