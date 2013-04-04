@@ -91,6 +91,9 @@ body {
     
     @include transform(rotate(-45deg));
 }
+.s-hidden {
+	display: none;
+}
 
 
 /* -- structure -- */
@@ -239,6 +242,22 @@ body {
 		&.active {
 			display: block;
 		}
+	}
+}
+
+
+/* -- search field -- */
+#search {
+	input {
+		background-color: $red;
+		border: 0;
+		color: $white;
+		font-family: $cabin;
+		font-size: 26px;
+		font-weight: bold;
+		letter-spacing: 1px;
+		margin: 0;
+		padding: 1em 40px;
 	}
 }
 
@@ -533,7 +552,7 @@ body {
         .handle {
             cursor: pointer;
             position: relative;
-            padding: 1.5em 40px;
+            padding: 1em 40px;
             border-bottom: 1px solid #efefef;
             border-top: 1px solid #efefef;
             margin: -1px 0 0;

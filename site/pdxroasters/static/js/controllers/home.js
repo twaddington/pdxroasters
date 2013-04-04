@@ -14,10 +14,16 @@
 var $_document = $( document ),
     $_body = $( document.body ),
     $_window = $( window ),
+    $_search = $( "#search > input" ),
     $_header = $( "#header" ),
     $_content = $( "#content" ),
     $_pushPage = $( "#roaster-push-page" ),
-    $_pushRoaster = $_pushPage.find( ".roaster" );
+    $_pushRoaster = $_pushPage.find( ".roaster" ),
+    $_roasters = $( "#roasters" ),
+    $_logoBack = $( "#logo" ),
+    $_roasterItems = $_roasters.find( ".push-link" ),
+    $_roasterTogs = $_roasters.find( ".toggle" ),
+    $_roasterHandles = $_roasters.find( ".handle" );
 
 // Home Controller
 window.pdx.app.home = {
@@ -26,6 +32,7 @@ window.pdx.app.home = {
         
         this._premaps();
         this._roasters();
+        this._search();
         this._resize();
         this._pushes();
         
@@ -42,6 +49,34 @@ window.pdx.app.home = {
 		});
     },
     
+    _search: function () {
+	    $_search.on( "focus", function () {
+		    $.scrollTo( $_search.offset().top-$_header.height() );
+		    
+		    $_roasters.css( "min-height", window.innerHeight-$_header.height() );
+	    })
+	    .on( "keyup", function ( e ) {
+		    var value = this.value;
+		    
+		    if ( !value.length ) {
+		    	$_roasterItems.removeClass( "s-hidden" );
+		    }
+		    
+		    $_roasterItems.each(function () {
+		        var regex = new RegExp( "^"+value, "i" ),
+		            $this = $( this ),
+		            name = $this.data( "name" );
+		        
+		        if ( value !== "" && !regex.exec( name ) ) {
+		        	$this.addClass( "s-hidden" );
+		        	
+		        } else {
+			        $this.removeClass( "s-hidden" );
+		        }
+		    });
+		});
+    },
+    
     _premaps: function () {
         var self = this;
         
@@ -50,7 +85,7 @@ window.pdx.app.home = {
         this.mapElem = this.$map.get( 0 );
         this.mapMarkers = [];
         
-        this.$mapWrap.height( window.innerHeight );
+        this.$mapWrap.height( window.innerHeight-$_search.height() );
         
         // Listen for maps to be loaded and ready
         window.pdx.maps.onmapsready(function () {
@@ -64,11 +99,11 @@ window.pdx.app.home = {
         this.mapBounds = new google.maps.LatLngBounds();
         this.map = new google.maps.Map( this.mapElem, window.pdx.maps.settings );
              
-        if ( !this.$roasterItems.length ) {
+        if ( !$_roasterItems.length ) {
             return false;
         }
         
-        this.$roasterItems.each(function ( i ) {
+        $_roasterItems.each(function ( i ) {
             var $elem = $( this ),
                 data = $elem.data(),
                 points = data.latlng,
@@ -94,7 +129,7 @@ window.pdx.app.home = {
                         self.mapMarkers.push( marker );
                         self.mapBounds.extend( latLng );
                         
-                        if ( self.mapMarkers.length === self.$roasterItems.length ) {
+                        if ( self.mapMarkers.length === $_roasterItems.length ) {
                             self.map.fitBounds( self.mapBounds );
                         }
                     }
@@ -124,7 +159,7 @@ window.pdx.app.home = {
             }
         });
         
-        if ( this.mapMarkers.length === this.$roasterItems.length ) {
+        if ( this.mapMarkers.length === $_roasterItems.length ) {
             this.map.fitBounds( this.mapBounds );
         }
     },
@@ -259,10 +294,10 @@ window.pdx.app.home = {
                             return false;
                         }
                         
-                        self.$roasterTogs.removeClass( "active" );
+                        $_roasterTogs.removeClass( "active" );
                         $toggle.addClass( "active" );
                         
-                        self.$roasterItems.removeClass( "active" );
+                        $_roasterItems.removeClass( "active" );
                         $elem.addClass( "active" );
                         
                         $.scrollTo( $elem.offset().top );
@@ -294,32 +329,20 @@ window.pdx.app.home = {
         });
     },
     
-    _info: function () {
-        this.$info = $( "#info-pages" );
-        this.$infoPages = this.$info.find( ".page" );
-        this.$info.add( this.$infoPages ).height( window.innerHeight );
-    },
-    
     _roasters: function () {
         var self = this;
         
-        this.$roasters = $( "#roasters" );
-        this.$logoBack = $( "#logo" );
-        this.$roasterItems = this.$roasters.find( ".push-link" );
-        this.$roasterTogs = this.$roasters.find( ".toggle" );
-        this.$roasterHandles = this.$roasters.find( ".handle" );
-        
-        this.$logoBack.on( "click", function ( e ) {
+        $_logoBack.on( "click", function ( e ) {
             e.preventDefault();
             
-            if ( !self.$logoBack.is( ".page-back" ) ) {
+            if ( !$_logoBack.is( ".page-back" ) ) {
             	return false;
             }
             
             self.pushState.pop();
         });
         
-        this.$roasterItems.on( "click", function ( e ) {
+        $_roasterItems.on( "click", function ( e ) {
             e.preventDefault();
             
             var $elem = $( this ),
@@ -330,8 +353,8 @@ window.pdx.app.home = {
             
             $roaster.addClass( "active" );
             
-            self.$roasterTogs.removeClass( "active" );
-            self.$roasterItems.removeClass( "active" );
+            $_roasterTogs.removeClass( "active" );
+            $_roasterItems.removeClass( "active" );
             
             $_content.addClass( "inactive" );
             $_pushPage.addClass( "active" );
@@ -344,7 +367,7 @@ window.pdx.app.home = {
         var self = this;
         
         window.onresize = function () {
-            self.$mapWrap.height( window.innerHeight );
+            self.$mapWrap.height( window.innerHeight-$_search.height() );
         };
     },
     
