@@ -4,6 +4,8 @@
 
 {% block title %}Home{% endblock %}
 
+{% block meta_description %}Portland’s coffee scene is pioneering, unique and fiercely dedicated to craft and quality. Use PDX Roasters to find a local coffee roaster in Portland, Ore.{% endblock %}
+
 {% block controller %}home{% endblock %}
 
 {% block pageclass %}home{% endblock %}
@@ -16,9 +18,8 @@
 {% block pre_footer %}
 <div class="push-container" id="nav-push-page">
 	<div class="push-pages">
-		{% include 'add-a-roaster.html' %}
-		{% include 'about.html' %}
-		{% include 'contact.html' %}
+		{% include 'partials/about.html' %}
+		{% include 'partials/add_a_roaster.html' %}
 	</div>
 </div>
 <div class="push-container" id="roaster-push-page">
