@@ -26,7 +26,8 @@ $light-blue:#0AAEBE;
 $darker-gray:#323232;
 $dark-gray:#d2d0cb;
 $gray:#DDDBD4;
-$light-gray:#F8f6f4;
+$light-gray: #e6e6e6;
+$lighter-gray:#F8f6f4;
 $white:#FFFFFF;
 $tan: #e9e1bd;
 $dark-brown: #44372c;
@@ -42,7 +43,6 @@ $cabin: 'Cabin', Helvetica, Arial, Sans-serif;
 @import 'grid';
 @import 'forms';
 @import 'helpers';
-
 
 /* -- elements -- */
 html{
@@ -112,7 +112,7 @@ body {
     }
 }
 #header {
-    background: white;
+    background: $white;
     left: 0;
     right: 0;
     top: 0;
@@ -121,8 +121,9 @@ body {
     width: 100%;
     max-width: 100%;
     overflow: hidden;
-    height: 7em;
+    height: 5em;
     padding: 0 2em;
+    @include box-shadow(0 0 12px rgba(0,0,0,.2));
 }
 .home #header {
     position: fixed;
@@ -134,11 +135,10 @@ body {
     z-index: 10;
 }
 
-
 /* -- nav -- */
 #logo {
     color: $brown;
-    font-size: 1.5em;
+    font-size: 1.25em;
     letter-spacing: 1px;
     &:before{
         content: "";
@@ -151,7 +151,7 @@ body {
         }
         position: relative;
         display: inline-block;
-        margin-top: 1em;
+        margin-top: .75em;
         margin-right: .5em;
         vertical-align: -0.85em;
         @include border-radius(2.5em);
@@ -164,7 +164,7 @@ body {
 
 #nav {
     position: absolute;
-    top: 28px;
+    top: 14px;
     right: -155px;
     @include transition(all 200ms ease-in-out 200ms);
 
@@ -176,7 +176,7 @@ body {
         li {
             display: inline-block;
             margin-left: 40px;
-            padding: 15px 0;
+            padding: 8px 0;
             vertical-align: middle;
 
             &:first-child {
@@ -197,16 +197,21 @@ body {
     }
 
     .plus {
-        display: inline-block;
-        background: transparent url("../img/plusthin.png") no-repeat 0 0;
-        width: 22px;
-        height: 22px;
+        //background: transparent url("../img/plusthin.png") no-repeat 0 0;
+
+        display:inline-block;
+        width: 40px;
+        height: 40px;
+        background: transparent;
         vertical-align: middle;
-
         @include transition(all 400ms cubic-bezier(0.095, 0.910, 0.245, 1.000));
-
         &.active {
             @include transform(rotate(-225deg));
+        }
+        span{
+            font-size:50px;
+            line-height:33px;
+            padding-left: 8px;
         }
     }
 }
@@ -256,9 +261,26 @@ body {
 		letter-spacing: 1px;
 		margin: 0;
 		padding: 1em 40px;
-	}
+	   &:focus{
+        outline: none;
+       }
+    }
+}
+::-webkit-input-placeholder {
+   color: $light-gray;
 }
 
+:-moz-placeholder { /* Firefox 18- */
+   color: $light-gray;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: $light-gray;
+}
+
+:-ms-input-placeholder {
+   color: $light-gray;
+}
 
 /* -- maps -- */
 #map-wrap {
@@ -428,7 +450,7 @@ body {
 
 /* -- pushstate container -- */
 .push-container {
-    background-color: #fff;
+    background-color: #efefef;
     height: 100%;
     left: 100%;
     position: fixed;
