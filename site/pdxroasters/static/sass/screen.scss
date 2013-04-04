@@ -142,7 +142,7 @@ body {
 /* -- nav -- */
 #logo {
     color: $brown;
-    font-size: 1.5em;
+    font-size: 1.4em;
     letter-spacing: 1px;
     &:before{
         content: "";
@@ -156,9 +156,9 @@ body {
         }
         position: relative;
         display: inline-block;
-        margin-top: .75em;
+        margin-top: 0.85em;
         margin-right: .5em;
-        vertical-align: -0.85em;
+        vertical-align: -0.65em;
         @include border-radius(2.5em);
         &:hover{
             border: 10px solid $tan;
@@ -168,7 +168,7 @@ body {
 
 #nav {
     position: absolute;
-    top: 28px;
+    top: 14px;
     right: -280px;
     @include transition(all 200ms ease-in-out 200ms);
     &.active {
