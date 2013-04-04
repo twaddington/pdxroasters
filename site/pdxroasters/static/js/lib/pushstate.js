@@ -7,47 +7,18 @@
  */
 (function ( $, window, undefined ) {
 
-// Have 1 popstate event bound
-// Decide which instance to call based on state object ?
-
 "use strict";
 
 // Closure globals
-var Class = require( "Class" ),
-	PushState,
-	_counter = 0,
-	_instances = {};
-
-window.onpopstate = function ( e ) {
-    var instance;
-    
-    if ( e.state ) {
-    	instance = _instances[ e.state.iid ];
-    	
-    	instance.lastState = instance.state;
-        instance.state = e.state;
-        
-        instance._pop();
-    }
-};
+var Class = require( "Class" );
 
 // PushState Class
-window.pdx.pushstate = function ( options ) {
-	var id = _counter++,
-		instance = new PushState( options, id );
-		
-	_instances[ id ] = instance;
-	
-	return instance;
-};
-
-PushState = Class.extend({
-    init: function ( options, id ) {
+window.pdx.PushState = Class.extend({
+    init: function ( options ) {
         this.cache = {};
         this.poppable = false;
         this.pushable = ("history" in window && "pushState" in window.history);
         this.uid = 0;
-        this.id = id;
         
         // Set initial state object
         this.lastState = undefined;
@@ -77,8 +48,7 @@ PushState = Class.extend({
             state = {
                 from: window.location.href,
                 to: url,
-                uid: this.uid++,
-                iid: this.id
+                uid: this.uid++
             };
         
         this.lastState = this.state;
@@ -177,6 +147,21 @@ PushState = Class.extend({
         
         // Popping
         this.poppable = true;
+        
+        // Use framework here so we can bind multiple
+        // instances of the popstate handler
+        $( window ).on( "popstate", function ( e ) {
+            if ( !e.state ) {
+            	self.lastState = undefined;
+            	self.state = self.state;
+            	
+            } else {
+	            self.lastState = self.state;
+            	self.state = e.state;
+            }
+            
+            self._pop();
+        });
     },
     
     _pop: function () {
@@ -196,8 +181,6 @@ PushState = Class.extend({
     },
     
     _add: function ( event, callback ) {
-        console.log( arguments );
-        
         if ( typeof callback === "function" ) {
             this.callbacks[ event ].push( callback );
         }
