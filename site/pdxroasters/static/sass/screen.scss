@@ -158,6 +158,7 @@ body {
     }
 
 }
+
 #nav {
     position: absolute;
     top: 28px;
@@ -207,7 +208,6 @@ body {
     }
 }
 
-
 /* -- push pages -- */
 .push-pages {
     > .page {
@@ -230,7 +230,6 @@ body {
     }
 }
 
-
 /* -- nav-push-pages --*/
 #nav-push-page {
     .page {
@@ -241,7 +240,6 @@ body {
         }
     }
 }
-
 
 /* -- maps -- */
 #map-wrap {
@@ -333,20 +331,20 @@ body {
         }
         // Full Info Modal
         > .infowindow {
-            background: #f8f6f4;
-            line-height: 36px;
-            border: 1px solid #d2d0cb;
+            line-height: 22px;
+            border: 1px solid #dfdfdf;
             border-radius: 4px;
             text-align: left;
             z-index: 11;
             position: absolute;
-            padding: 2em 2em;
+            padding: 1em 1em;
             white-space: normal;
             visibility: visible;
-            width: 320px;
-            background: $light-gray;
-            @include opacity(1);
-            margin-bottom:20px;
+            width: 370px;
+            background: $white;
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+            opacity: 1;
+            margin-bottom: 20px;
             &:before{
                 content:" ";
                 background:$light-gray;
@@ -366,6 +364,17 @@ body {
             &.inactive {
                 visibility: hidden;
                 @include opacity(0);
+            }
+
+            h3 {
+                font-size: 18px;
+                margin-bottom: .5em;
+                color: $darker-gray;
+                letter-spacing: 1px;
+            }
+
+            .hours {
+                line-height:22px;
             }
 
             p {
