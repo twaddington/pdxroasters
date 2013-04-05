@@ -14,6 +14,7 @@
 var $_document = $( document ),
     $_body = $( document.body ),
     $_window = $( window ),
+    $_mapWrap = $( "#map-wrap" ),
     $_filter = $( "#filter > input" ),
     $_header = $( "#header" ),
     $_content = $( "#content" ),
@@ -23,33 +24,24 @@ var $_document = $( document ),
     $_logoBack = $( "#logo" ),
     $_roasterItems = $_roasters.find( ".push-link" ),
     $_roasterTogs = $_roasters.find( ".toggle" ),
-    $_roasterHandles = $_roasters.find( ".handle" );
+    $_roasterHandles = $_roasters.find( ".handle" ),
+    _pagePosition = 0,
+    _pushState = new window.pdx.PushState( {async: false} );
 
 // Home Controller
 window.pdx.app.home = {
     init: function () {
         var self = this;
         
-        this._premaps();
-        this._roasters();
-        this._filter();
-        this._resize();
-        this._pushes();
+        this.handlePreMap();
+        this.handleRoasters();
+        this.handleFilter();
         
-        // Activate global nav module
+        // Global nav module
         window.pdx.nav.init();
-        
-        // TEMP
-        $( ".scroll-to" ).on( "click", function ( e ) {
-		    e.preventDefault();
-		    
-		    var $elem = $( this.hash );
-		    
-		    $.scrollTo( $elem.offset().top-$_header.height() );
-		});
     },
     
-    _filter: function () {
+    handleFilter: function () {
 	    var current = -1,
 	    	lastKey;
 	    
@@ -68,7 +60,7 @@ window.pdx.app.home = {
 		    
 		    $_filter.val( "" );
 		    
-		    $.scrollTo( 0 );
+		    //$.scrollTo( 0 );
 	    })
 	    .on( "keyup", function ( e ) {
 		    var value = this.value,
@@ -129,27 +121,28 @@ window.pdx.app.home = {
 		});
     },
     
-    _premaps: function () {
+    handlePreMap: function () {
         var self = this;
         
-        this.$mapWrap = $( "#map-wrap" );
-        this.$map = $( "#map" );
-        this.mapElem = this.$map.get( 0 );
         this.mapMarkers = [];
+        this.mapElement = document.getElementById( "map" );
         
-        this.$mapWrap.height( window.innerHeight-$_filter.height() );
+        $_mapWrap.height( window.innerHeight-$_filter.height() );
         
         // Listen for maps to be loaded and ready
         window.pdx.maps.onmapsready(function () {
-            self._map();
+            self.handleMap();
         });
     },
     
-    _map: function () {
+    handleMap: function () {
         var self = this;
         
         this.mapBounds = new google.maps.LatLngBounds();
-        this.map = new google.maps.Map( this.mapElem, window.pdx.maps.settings );
+        this.map = new google.maps.Map(
+        	this.mapElement,
+        	window.pdx.maps.settings
+        );
              
         if ( !$_roasterItems.length ) {
             return false;
@@ -175,7 +168,7 @@ window.pdx.app.home = {
                             latLng: latLng,
                             map: self.map,
                             onAddCallback: function ( inst ) {
-                                self._onAddMarker( inst, data );
+                                self.handleOnAddMarker( inst, data );
                             }
                         });
                         self.mapMarkers.push( marker );
@@ -192,7 +185,7 @@ window.pdx.app.home = {
                     points = JSON.parse( points );
                     
                 } catch ( error ) {
-                    console.log( "[window.pdx.home]: Did not parse lat/lng" );
+                    //console.log( "[window.pdx.home]: Did not parse lat/lng" );
                 }
                 
                 if ( typeof points === "object" ) {
@@ -201,7 +194,7 @@ window.pdx.app.home = {
                         latLng: latLng,
                         map: self.map,
                         onAddCallback: function ( inst ) {
-                            self._onAddMarker( inst, data );
+                            self.handleOnAddMarker( inst, data );
                         }
                     });
                     
@@ -216,7 +209,7 @@ window.pdx.app.home = {
         }
     },
     
-    _onAddMarker: function ( instance, data ) {
+    handleOnAddMarker: function ( instance, data ) {
         var self = this,
             $instance = $( instance.element ),
             $tip = $instance.find( ".tooltip" ),
@@ -358,7 +351,7 @@ window.pdx.app.home = {
                     $infowindow.find( ".more" ).on( "click", function ( e ) {
                         e.preventDefault();
                         
-                        self.pushState.push( this.href, function ( res ) {
+                        _pushState.push( this.href, function ( res ) {
                             console.log( "info more click...?" );
                         });
                     });
@@ -381,7 +374,7 @@ window.pdx.app.home = {
         });
     },
     
-    _roasters: function () {
+    handleRoasters: function () {
         var self = this;
         
         $_logoBack.on( "click", function ( e ) {
@@ -391,7 +384,7 @@ window.pdx.app.home = {
             	return false;
             }
             
-            self.pushState.pop();
+            _pushState.pop();
         });
         
         $_roasterItems.on( "click", function ( e ) {
@@ -411,30 +404,28 @@ window.pdx.app.home = {
             $_content.addClass( "inactive" );
             $_pushPage.addClass( "active" );
             
-            self.pushState.push( this.href );
-        });
-    },
-    
-    _resize: function () {
-        var self = this;
-        
-        window.onresize = function () {
-            self.$mapWrap.height( window.innerHeight-$_filter.height() );
-        };
-    },
-    
-    _pushes: function () {
-        var self = this;
-        
-        this.pushState = new window.pdx.PushState({
-            async: false
-        });
-        
-        this.pushState.onpop(function () {
-            $_content.removeClass( "inactive" );
-            $_pushPage.removeClass( "active" );
+            _pushState.push( this.href );
+            
+            setTimeout(function () {
+            	_pagePosition = $_window.scrollTop();
+            	
+            	$_content.hide();
+            				
+            }, 300 );
         });
     }
+};
+
+// Global handlers
+_pushState.onpop(function () {
+    $_content.show();
+    window.scrollTo( 0, _pagePosition );
+    $_content.removeClass( "inactive" );
+    $_pushPage.removeClass( "active" );
+});
+
+window.onresize = function () {
+	$_mapWrap.height( window.innerHeight-$_filter.height() );
 };
 
 })( ender, window );

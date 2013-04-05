@@ -9,11 +9,8 @@
 
 "use strict";
 
-// Closure globals
-var Class = require( "Class" );
-
 // PushState Class
-window.pdx.PushState = Class.extend({
+window.pdx.PushState = require( "Class" ).extend({
     init: function ( options ) {
         this.cache = {};
         this.poppable = false;
@@ -148,9 +145,8 @@ window.pdx.PushState = Class.extend({
         // Popping
         this.poppable = true;
         
-        // Use framework here so we can bind multiple
-        // instances of the popstate handler
-        $( window ).on( "popstate", function ( e ) {
+        // Bind the popstate event
+        window.onpopstate = function ( e ) {
             if ( !e.state ) {
             	self.lastState = undefined;
             	self.state = self.state;
@@ -161,7 +157,7 @@ window.pdx.PushState = Class.extend({
             }
             
             self._pop();
-        });
+        };
     },
     
     _pop: function () {
