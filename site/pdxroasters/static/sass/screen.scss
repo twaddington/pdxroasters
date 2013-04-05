@@ -593,12 +593,14 @@ body {
     }
 }
 #roaster-push-page {
+	/*
 	overflow-y: scroll;
 	
 	-webkit-overflow-scrolling: touch;
     -webkit-transition: -webkit-transform 0ms;
     -webkit-transform-origin: 0px 0px;
     -webkit-transform: translate3d(0px, 0px, 0px);
+    */
 	
 	.roaster {
 		padding: 120px 40px 0;
