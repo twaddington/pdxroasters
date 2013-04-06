@@ -94,6 +94,7 @@ To deploy the production site you need to first generate the compressed static
 resources. Start by switching to the release branch:
 
     $ git checkout release
+    $ git merge master
 
 Then compile the necessary resources:
 
