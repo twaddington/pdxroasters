@@ -26,7 +26,8 @@ var $_document = $( document ),
     $_roasterTogs = $_roasters.find( ".toggle" ),
     $_roasterHandles = $_roasters.find( ".handle" ),
     _pagePosition = 0,
-    _pushState = new window.pdx.PushState( {async: false} );
+    _pushState = new window.pdx.PushState( {async: false} ),
+    _pushDuration = 300;
 
 // Home Controller
 window.pdx.app.home = {
@@ -282,7 +283,7 @@ window.pdx.app.home = {
                     
                     _loading();
                     
-                }, 300 );
+                }, _pushDuration );
             }
             
             _loading();
@@ -368,7 +369,7 @@ window.pdx.app.home = {
                         
                         instance.panMap();
                         
-                    }, 300 );
+                    }, _pushDuration );
                 }
             });
         });
@@ -408,10 +409,11 @@ window.pdx.app.home = {
             
             setTimeout(function () {
             	_pagePosition = $_window.scrollTop();
-            	
+            	window.scrollTo( 0, 0 );
             	$_content.hide();
+            	$_pushPage.addClass( "active-page" );
             				
-            }, 300 );
+            }, _pushDuration );
         });
     }
 };
@@ -420,8 +422,9 @@ window.pdx.app.home = {
 _pushState.onpop(function () {
     $_content.show();
     window.scrollTo( 0, _pagePosition );
+    $_pushPage.removeClass( "active" )
+    	.removeClass( "active-page" );
     $_content.removeClass( "inactive" );
-    $_pushPage.removeClass( "active" );
 });
 
 window.onresize = function () {

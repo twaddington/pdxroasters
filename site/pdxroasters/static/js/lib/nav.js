@@ -13,37 +13,42 @@
 var $_document = $( document ),
     $_body = $( document.body ),
     $_window = $( window ),
-    $_content = $( "#content" );
+    $_content = $( "#content" ),
+    $_pushPage = $( "#nav-push-page" ),
+    $_nav = $( "#nav" ),
+    $_navTog = $_nav.find( ".plus" ),
+    $_navLinks = $_nav.find( "a:not(.plus)" ),
+    _lastOpenPage = null,
+    _pagePosition = 0,
+    _isPushPageOpen = false;
 
 window.pdx.nav = {
 	init: function () {
 		var self = this;
         
-        this.$nav = $( "#nav" );
-        this.$navTog = this.$nav.find( ".plus" );
-        this.$navLinks = this.$nav.find( "a:not(.plus)" );
-        this.$pushPage = $( "#nav-push-page" );
-        
-        this.$navTog.on( "click", function ( e ) {
+        $_navTog.on( "click", function ( e ) {
             e.preventDefault();
             
-            self.$navTog.toggleClass( "active" );
-            self.$nav.toggleClass( "active" );
+            $_navTog.toggleClass( "active" );
+            $_nav.toggleClass( "active" );
             
-            if ( !self.$navTog.is( ".active" ) ) {
-            	self.$pushPage.removeClass( "active" );
-            	self.$navLinks.removeClass( "on" );
-            	
-            } else {
-                // Open the last one?
+            // Closing
+            if ( !$_navTog.is( ".active" ) ) {
+            	$_content.show();
+            	window.scrollTo( 0, _pagePosition );
+            	$_content.removeClass( "inactive" );
+            	$_pushPage.removeClass( "active" );
+            	$_navLinks.removeClass( "on" );
+            	_isPushPageOpen = false;
             }
         });
         
-        this.$navLinks.on( "click", function ( e ) {
+        $_navLinks.on( "click", function ( e ) {
             e.preventDefault();
             
-            if ( !self.$pushPage.is( ".active" ) ) {
-            	self.$pushPage.addClass( "active" );
+            if ( !_isPushPageOpen ) {
+            	$_pushPage.addClass( "active" );
+            	_isPushPageOpen = true;
             }
             
             var $this = $( this ),
@@ -53,11 +58,25 @@ window.pdx.nav = {
             		.replace( /\//g, "" ),
             	$page = $( "#"+path );
             
-            self.$navLinks.removeClass( "on" );
+            $_navLinks.removeClass( "on" );
             $this.addClass( "on" );
             
-            self.$pushPage.find( ".page" ).removeClass( "active" );
+            $_pushPage.find( ".page" ).removeClass( "active" );
             $page.addClass( "active" );
+            
+            /*
+            if ( _isPushPageOpen ) {
+            	$_content.addClass( "inactive" );
+	            $_pushPage.addClass( "active" );
+	            
+	            setTimeout(function () {
+	            	_pagePosition = $_window.scrollTop();
+	            	
+	            	$_content.hide();
+	            				
+	            }, 300 );
+            }
+            */
         });
 	}
 }
