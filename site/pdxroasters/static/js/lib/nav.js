@@ -24,8 +24,8 @@ var $_document = $( document ),
 window.pdx.nav = {
 	init: function () {
 		var self = this;
-        
-        $_navTog.on( "click", function ( e ) {
+		
+		$_navTog.on( "click", function ( e ) {
             e.preventDefault();
             
             $_navTog.toggleClass( "active" );

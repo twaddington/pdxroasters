@@ -246,7 +246,6 @@ body {
 #nav-push-page {
     left: 0;
     top: -100%;
-    @include transform(translate3d(0,0,0));
 	@include transition(top 300ms ease-in-out);
 	z-index: 8;
     
