@@ -25,6 +25,12 @@ var $_document = $( document ),
 window.pdx.nav = {
 	init: function () {
 		var self = this;
+		
+		//$_pushPage.height( window.innerHeight );
+		
+		//$_window.on( "resize", function () {
+		//	$_pushPage.height( window.innerHeight );
+		//});
         
         $_navTog.on( "click", function ( e ) {
             e.preventDefault();
@@ -63,20 +69,6 @@ window.pdx.nav = {
             
             $_pushPage.find( ".page" ).removeClass( "active" );
             $page.addClass( "active" );
-            
-            /*
-            if ( _isPushPageOpen ) {
-            	$_content.addClass( "inactive" );
-	            $_pushPage.addClass( "active" );
-	            
-	            setTimeout(function () {
-	            	_pagePosition = $_window.scrollTop();
-	            	
-	            	$_content.hide();
-	            				
-	            }, 300 );
-            }
-            */
         });
 	}
 }
