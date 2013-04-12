@@ -511,42 +511,6 @@ body {
         position: relative;
         z-index: 8;
     }
-
-    .roasters-toggle {
-        background: $red url('../img/list.png') 50% 5px no-repeat;
-        display: block;
-        height: 100px;
-        left: 50%;
-        margin-left: -50px;
-        position: absolute;
-        text-align: center;
-        top: -35px;
-        width: 100px;
-        z-index: 7;
-        @include transition(top 200ms linear);
-        @include box-shadow(0 0 3px rgba(0,0,0,.8));
-        @include border-top-left-radius(50px);
-        @include border-top-right-radius(50px);
-
-        &:hover {
-            top: -42px;
-        }
-
-        .line {
-            background: #959595;
-            display: block;
-            height: 2px;
-            margin: 0 20% 1px;
-            width: 60%;
-
-            @include box-shadow(0 0 1px rgba(0,0,0,.8) inset);
-            @include border-radius(1px);
-
-            &:first-child {
-                margin-top: 7px;
-            }
-        }
-    }
 }
 
 #roasters,
@@ -723,7 +687,7 @@ body {
     position: absolute;
     text-align: center;
     top: 50%;
-    margin-top: -50px;
+    margin-top: -25px;
     width: 50px;
     z-index: 7;
     @include transition(margin-left 100ms linear);
