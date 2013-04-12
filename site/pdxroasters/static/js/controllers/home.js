@@ -22,13 +22,16 @@ var $_document = $( document ),
     $_pushPage = $( "#roaster-push-page" ),
     $_pushRoaster = $_pushPage.find( ".roaster" ),
     $_roasters = $( "#roasters" ),
-    $_logoBack = $( "#logo" ),
+    $_logo = $( "#logo" ),
     $_roasterItems = $_roasters.find( ".push-link" ),
     $_roasterTogs = $_roasters.find( ".toggle" ),
     $_roasterHandles = $_roasters.find( ".handle" ),
     _pagePosition = 0,
     _pushState = new window.pdx.PushState( {async: false} ),
-    _pushDuration = 300;
+    _pushDuration = 300,
+    
+    _testItems = [],
+    _testMarkers = [];
 
 // Home Controller
 window.pdx.app.home = {
@@ -44,13 +47,14 @@ window.pdx.app.home = {
     },
     
     handleFilter: function () {
-	    var current = -1,
+	    var self = this,
+	    	current = -1,
 	    	lastKey;
 	    
 	    $_filter.on( "focus", function () {
 	    	current = -1;
 	    	
-		    $.scrollTo( $_filter.offset().top-$_header.height() );
+		    $.scrollTo( $_filter.offset().top-$_header.height()-(window.innerHeight/2) );
 		    
 		    $_roasters.css( "min-height", window.innerHeight-$_header.height() );
 	    })
@@ -66,6 +70,8 @@ window.pdx.app.home = {
 	    })
 	    .on( "keyup", function ( e ) {
 		    var value = this.value,
+		    	regex = new RegExp( "^"+value, "i" ),
+		    	tempBounds = new google.maps.LatLngBounds(),
 		    	filtered = [],
 		    	$focused;
 		    
@@ -74,13 +80,15 @@ window.pdx.app.home = {
 		    	current = -1;
 		    	
 		    	$_roasterItems.removeClass( "s-hidden" );
+		    	$( ".marker-custom" ).removeClass( "s-hidden" );
 		    	$( ".s-focused" ).removeClass( "s-focused" );
+		    	
+		    	self.map.fitBounds( self.mapBounds );
 		    
 		    // We can filter the list
 		    } else {
-			    $_roasterItems.each(function () {
-			        var regex = new RegExp( "^"+value, "i" ),
-			            $this = $( this ),
+				$_roasterItems.each(function ( item, i ) {
+			        var $this = $( this ),
 			            name = $this.data( "name" );
 			        
 			        if ( value !== "" && !regex.exec( name ) ) {
@@ -92,6 +100,24 @@ window.pdx.app.home = {
 				        filtered.push( this );
 			        }
 			    });
+			    
+			    for ( var i = 0, len = self.mapMarkers.length; i < len; i++ ) {
+			    	var marker = self.mapMarkers[ i ],
+			    		$elem = $( marker.element );
+			    	
+			    	if ( value !== "" && !regex.exec( marker.tooltip.innerHTML ) ) {
+			        	$elem.addClass( "s-hidden" );
+			        	
+			        } else {
+				        $elem.removeClass( "s-hidden" );
+				        
+				        tempBounds.extend( marker.latLng );
+			        }
+			    }
+			    
+			    if ( !tempBounds.isEmpty() ) {
+			    	self.map.fitBounds( tempBounds );
+			    }
 		    }
 		    
 		    if ( e.keyCode === 38 || e.keyCode === 40 ) {
@@ -186,9 +212,7 @@ window.pdx.app.home = {
                 try {
                     points = JSON.parse( points );
                     
-                } catch ( error ) {
-                    //console.log( "[window.pdx.home]: Did not parse lat/lng" );
-                }
+                } catch ( error ) {}
                 
                 if ( typeof points === "object" ) {
                     latLng = new google.maps.LatLng( points[ 0 ], points[ 1 ] );
@@ -206,9 +230,7 @@ window.pdx.app.home = {
             }
         });
         
-        if ( this.mapMarkers.length === $_roasterItems.length ) {
-            this.map.fitBounds( this.mapBounds );
-        }
+        this.map.fitBounds( this.mapBounds );
     },
     
     handleOnAddMarker: function ( instance, data ) {
@@ -379,12 +401,14 @@ window.pdx.app.home = {
     handleRoasters: function () {
         var self = this;
         
-        $_logoBack.on( "click", function ( e ) {
+        $_logo.on( "click", function ( e ) {
             e.preventDefault();
             
-            if ( !$_logoBack.is( ".page-back" ) ) {
+            if ( !$_logo.is( ".page-back" ) ) {
             	return false;
             }
+            
+            $_logo.removeClass( "page-back" );
             
             _pushState.pop();
         });
@@ -399,6 +423,8 @@ window.pdx.app.home = {
             $_pushPage.find( ".content" ).removeClass( "active" );
             
             $roaster.addClass( "active" );
+            
+            $_logo.addClass( "page-back" );
             
             $_roasterTogs.removeClass( "active" );
             $_roasterItems.removeClass( "active" );

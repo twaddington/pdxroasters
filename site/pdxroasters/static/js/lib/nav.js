@@ -13,7 +13,6 @@
 var $_document = $( document ),
     $_body = $( document.body ),
     $_window = $( window ),
-    $_content = $( "#content" ),
     $_pushPage = $( "#nav-push-page" ),
     $_nav = $( "#nav" ),
     $_navTog = $_nav.find( ".plus" ),
@@ -25,12 +24,6 @@ var $_document = $( document ),
 window.pdx.nav = {
 	init: function () {
 		var self = this;
-		
-		//$_pushPage.height( window.innerHeight );
-		
-		//$_window.on( "resize", function () {
-		//	$_pushPage.height( window.innerHeight );
-		//});
         
         $_navTog.on( "click", function ( e ) {
             e.preventDefault();
@@ -40,9 +33,7 @@ window.pdx.nav = {
             
             // Closing
             if ( !$_navTog.is( ".active" ) ) {
-            	$_content.show();
             	window.scrollTo( 0, _pagePosition );
-            	$_content.removeClass( "inactive" );
             	$_pushPage.removeClass( "active" );
             	$_navLinks.removeClass( "on" );
             	_isPushPageOpen = false;

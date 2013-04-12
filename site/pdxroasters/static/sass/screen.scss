@@ -248,6 +248,7 @@ body {
     top: -100%;
     @include transform(translate3d(0,0,0));
 	@include transition(top 300ms ease-in-out);
+	z-index: 8;
     
     &.active {
 	    top: 0;
