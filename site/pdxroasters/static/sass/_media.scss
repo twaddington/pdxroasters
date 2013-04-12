@@ -10,16 +10,16 @@ only screen and (min-device-width : 320px) and (max-device-width : 480px) {
 	#map-wrap {
 		display: none;
 	}
-	
+
 	#page {
-		padding-top: 120px;
+		//padding-top: 120px;
 	}
-	
+
 	#roasters {
 		.roaster {
 			.handle {
 				font-size: 18px;
-				
+
 				span {
 					display: inline-block;
 					width: 80%;
