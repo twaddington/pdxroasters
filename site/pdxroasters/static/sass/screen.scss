@@ -713,6 +713,28 @@ body {
     }
 }
 
+.back-to-list {
+    background: $red url('../img/list.png') 70% 14px no-repeat;
+    background-size: 20px 20px;
+    display: block;
+    height: 50px;
+    left: 0%;
+    margin-left: -20px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    margin-top: -50px;
+    width: 50px;
+    z-index: 7;
+    @include transition(margin-left 100ms linear);
+    @include box-shadow(0 0 3px rgba(0,0,0,.8));
+    @include border-bottom-right-radius(25px);
+    @include border-top-right-radius(25px);
+    &:hover {
+        margin-left: -15px;
+    }
+}
+
 #roaster-push-page {
 	.roaster {
 		padding: 80px 0px 0px;
