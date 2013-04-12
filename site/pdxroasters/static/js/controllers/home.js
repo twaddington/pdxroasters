@@ -5,6 +5,7 @@
  * /static/js/pdx.js
  * /static/js/lib/*
  *
+ *
  */
 (function ( $, window, undefined ) {
 
@@ -56,10 +57,10 @@ window.pdx.app.home = {
 	    .on( "blur", function () {
 	    	current = -1;
 	    	
-		    $_roasterItems.removeClass( "s-hidden" );
-		    $( ".s-focused" ).removeClass( "s-focused" );
+		    //$_roasterItems.removeClass( "s-hidden" );
+		    //$( ".s-focused" ).removeClass( "s-focused" );
 		    
-		    $_filter.val( "" );
+		    //$_filter.val( "" );
 		    
 		    //$.scrollTo( 0 );
 	    })
