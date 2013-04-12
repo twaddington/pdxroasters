@@ -29,9 +29,7 @@ var $_document = $( document ),
     _pagePosition = 0,
     _pushState = new window.pdx.PushState( {async: false} ),
     _pushDuration = 300,
-    
-    _testItems = [],
-    _testMarkers = [];
+    _timeout;
 
 // Home Controller
 window.pdx.app.home = {
@@ -399,7 +397,8 @@ window.pdx.app.home = {
     },
     
     handleRoasters: function () {
-        var self = this;
+        var self = this,
+        	timeout;
         
         $_logo.on( "click", function ( e ) {
             e.preventDefault();
@@ -409,6 +408,21 @@ window.pdx.app.home = {
             }
             
             $_logo.removeClass( "page-back" );
+            
+            timeout = setTimeout(function () {
+            	clearTimeout( timeout );
+            	
+            	$.scrollTo( 0 );
+            				
+            }, _pushDuration );
+            
+            _pushState.pop();
+        });
+        
+        $_pushPage.on( "click", ".back-to-list", function ( e ) {
+	        e.preventDefault();
+	        
+	        $_logo.removeClass( "page-back" );
             
             _pushState.pop();
         });
@@ -434,7 +448,9 @@ window.pdx.app.home = {
             
             _pushState.push( this.href );
             
-            setTimeout(function () {
+            timeout = setTimeout(function () {
+            	clearTimeout( timeout );
+            	
             	_pagePosition = $_window.scrollTop();
             	window.scrollTo( 0, 0 );
             	$_content.hide();

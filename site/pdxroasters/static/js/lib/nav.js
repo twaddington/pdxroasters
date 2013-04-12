@@ -33,7 +33,6 @@ window.pdx.nav = {
             
             // Closing
             if ( !$_navTog.is( ".active" ) ) {
-            	window.scrollTo( 0, _pagePosition );
             	$_pushPage.removeClass( "active" );
             	$_navLinks.removeClass( "on" );
             	_isPushPageOpen = false;

@@ -144,6 +144,11 @@ body {
     color: $brown;
     font-size: 1.25em;
     letter-spacing: 1px;
+    
+    &.page-back {
+	    cursor: pointer;
+    }
+    
     &:before{
         content: "";
         width: 2.5em;
