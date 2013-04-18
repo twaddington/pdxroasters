@@ -127,15 +127,22 @@ class Command(BaseCommand):
                     except Exception as e:
                         self.uprint('  Failed to geocode address!')
 
-                roaster.address = row.get('address')
+
+                online_only = row.get('address').lower() == 'online only'
+                if not online_only:
+                    roaster.address = row.get('address')
+                else:
+                    roaster.address = ''
+
                 roaster.phone = row.get('phone')
                 roaster.description = row.get('description')
                 roaster.url = row.get('url').lower()
                 roaster.photo_url = row.get('photo_url').lower()
                 roaster.video_url = row.get('video_url').lower()
-                roaster.order_online = row.get('order_online') == 1
-                roaster.cafe_on_site = row.get('cafe_on_site') == 1
-                roaster.open_to_public = row.get('open_to_public') == 'Yes'
+                roaster.online_only = online_only
+                roaster.order_online = row.get('order_online') == '1'
+                roaster.cafe_on_site = row.get('cafe_on_site') == '1'
+                roaster.open_to_public = row.get('open_to_public').lower() == 'yes'
                 roaster.active = True
                 roaster.save()
 
