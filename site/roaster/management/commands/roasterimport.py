@@ -106,7 +106,7 @@ class Command(BaseCommand):
         for row in reader:
             # Skip the first row
             name = row.get('name').strip()
-            if name and name != 'Name':
+            if name and name != 'Roaster':
                 roaster, created = Roaster.objects.get_or_create(
                         name=name)
 
@@ -133,6 +133,9 @@ class Command(BaseCommand):
                 roaster.url = row.get('url').lower()
                 roaster.photo_url = row.get('photo_url').lower()
                 roaster.video_url = row.get('video_url').lower()
+                roaster.order_online = row.get('order_online') == 1
+                roaster.cafe_on_site = row.get('cafe_on_site') == 1
+                roaster.open_to_public = row.get('open_to_public') == 'Yes'
                 roaster.active = True
                 roaster.save()
 
