@@ -88,6 +88,9 @@ class Roaster(Business):
 class Roast(models.Model):
     name = models.CharField(max_length=200, unique=True, db_index=True,)
     roaster = models.ForeignKey('Roaster', related_name='roasts',)
+    order_online = models.BooleanField()
+    cafe_on_site = models.BooleanField()
+    open_to_publich = models.BooleanField()
     active = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True, db_index=True,)
     modified_at = models.DateTimeField(auto_now=True, db_index=True,)
