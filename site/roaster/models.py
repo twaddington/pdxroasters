@@ -94,14 +94,14 @@ class Cafe(Business):
 
 class Roaster(Business):
     description = models.TextField(blank=True,)
-    online_only = models.BooleanField()
-    order_online = models.BooleanField()
-    cafe_on_site = models.BooleanField()
-    open_to_public = models.BooleanField()
     photo_url = models.URLField(max_length=200, verbose_name='Photo URL',
             blank=True,)
     video_url = models.URLField(max_length=200, verbose_name='Video URL',
             blank=True,)
+    online_only = models.BooleanField(db_index=True)
+    order_online = models.BooleanField(db_index=True)
+    cafe_on_site = models.BooleanField(db_index=True)
+    open_to_public = models.BooleanField(db_index=True)
     cafes = models.ManyToManyField('Cafe', blank=True,)
 
     def get_absolute_url(self):
