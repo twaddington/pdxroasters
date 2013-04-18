@@ -17,8 +17,16 @@ textarea {
     
     &:focus {
         border-color: #0099ff;
-        background-color: #fff; 
+        background-color: #fff;
     }
+    
+    &.f-error {
+	    border-color: #ff0000;
+        background-color: #fff;
+    }
+}
+.error-message {
+	color: #ff0000;
 }
 textarea {
     min-height: 150px;

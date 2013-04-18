@@ -22,13 +22,14 @@ var $_document = $( document ),
     $_pushPage = $( "#roaster-push-page" ),
     $_pushRoaster = $_pushPage.find( ".roaster" ),
     $_roasters = $( "#roasters" ),
-    $_logoBack = $( "#logo" ),
+    $_logo = $( "#logo" ),
     $_roasterItems = $_roasters.find( ".push-link" ),
     $_roasterTogs = $_roasters.find( ".toggle" ),
     $_roasterHandles = $_roasters.find( ".handle" ),
     _pagePosition = 0,
     _pushState = new window.pdx.PushState( {async: false} ),
-    _pushDuration = 300;
+    _pushDuration = 300,
+    _timeout;
 
 // Home Controller
 window.pdx.app.home = {
@@ -44,13 +45,14 @@ window.pdx.app.home = {
     },
     
     handleFilter: function () {
-	    var current = -1,
+	    var self = this,
+	    	current = -1,
 	    	lastKey;
 	    
 	    $_filter.on( "focus", function () {
 	    	current = -1;
 	    	
-		    $.scrollTo( $_filter.offset().top-$_header.height() );
+		    $.scrollTo( $_filter.offset().top-$_header.height()-(window.innerHeight/2) );
 		    
 		    $_roasters.css( "min-height", window.innerHeight-$_header.height() );
 	    })
@@ -66,6 +68,8 @@ window.pdx.app.home = {
 	    })
 	    .on( "keyup", function ( e ) {
 		    var value = this.value,
+		    	regex = new RegExp( "^"+value, "i" ),
+		    	tempBounds = new google.maps.LatLngBounds(),
 		    	filtered = [],
 		    	$focused;
 		    
@@ -74,13 +78,15 @@ window.pdx.app.home = {
 		    	current = -1;
 		    	
 		    	$_roasterItems.removeClass( "s-hidden" );
+		    	$( ".marker-custom" ).removeClass( "s-hidden" );
 		    	$( ".s-focused" ).removeClass( "s-focused" );
+		    	
+		    	self.map.fitBounds( self.mapBounds );
 		    
 		    // We can filter the list
 		    } else {
-			    $_roasterItems.each(function () {
-			        var regex = new RegExp( "^"+value, "i" ),
-			            $this = $( this ),
+				$_roasterItems.each(function ( item, i ) {
+			        var $this = $( this ),
 			            name = $this.data( "name" );
 			        
 			        if ( value !== "" && !regex.exec( name ) ) {
@@ -92,6 +98,24 @@ window.pdx.app.home = {
 				        filtered.push( this );
 			        }
 			    });
+			    
+			    for ( var i = 0, len = self.mapMarkers.length; i < len; i++ ) {
+			    	var marker = self.mapMarkers[ i ],
+			    		$elem = $( marker.element );
+			    	
+			    	if ( value !== "" && !regex.exec( marker.tooltip.innerHTML ) ) {
+			        	$elem.addClass( "s-hidden" );
+			        	
+			        } else {
+				        $elem.removeClass( "s-hidden" );
+				        
+				        tempBounds.extend( marker.latLng );
+			        }
+			    }
+			    
+			    if ( !tempBounds.isEmpty() ) {
+			    	self.map.fitBounds( tempBounds );
+			    }
 		    }
 		    
 		    if ( e.keyCode === 38 || e.keyCode === 40 ) {
@@ -186,9 +210,7 @@ window.pdx.app.home = {
                 try {
                     points = JSON.parse( points );
                     
-                } catch ( error ) {
-                    //console.log( "[window.pdx.home]: Did not parse lat/lng" );
-                }
+                } catch ( error ) {}
                 
                 if ( typeof points === "object" ) {
                     latLng = new google.maps.LatLng( points[ 0 ], points[ 1 ] );
@@ -206,9 +228,7 @@ window.pdx.app.home = {
             }
         });
         
-        if ( this.mapMarkers.length === $_roasterItems.length ) {
-            this.map.fitBounds( this.mapBounds );
-        }
+        this.map.fitBounds( this.mapBounds );
     },
     
     handleOnAddMarker: function ( instance, data ) {
@@ -252,7 +272,15 @@ window.pdx.app.home = {
         
         // Request the detailed content
         $instance.on( "click", "> div", function ( e ) {
-            var $elem = $( this );
+            var $elem = $( this ),
+            	__loading = function () {
+	                timeout = setTimeout(function () {
+	                    $spin.toggleClass( "loading" );
+	                    
+	                    __loading();
+	                    
+	                }, _pushDuration );
+	            };
             
             $( ".marker-custom" ).removeClass( "active" );
             $( ".infowindow" ).addClass( "inactive" );
@@ -278,113 +306,122 @@ window.pdx.app.home = {
             $spin.parent().addClass( "active" );
             $spin.addClass( "loading" );
             
-            function _loading() {
-                timeout = setTimeout(function () {
-                    $spin.toggleClass( "loading" );
-                    
-                    _loading();
-                    
-                }, _pushDuration );
-            }
-            
-            _loading();
+            __loading();
             
             $.ajax({
                 url: data.api,
                 type: "json",
                 data: {
                     format: "json"
-                },
-                error: function () {
-                    clearTimeout( timeout );
-                    
-                    console.log( "Infowindow load error" );
-                },
-                success: function ( response ) {
-                    var html = window.pdx.templates.infowindow( response );
-                    
-                    clearTimeout( timeout );
-                    
-                    instance.loaded = true;
-                    
-                    $infowindow = $( "<span>" ).addClass( "infowindow" ).hide();
-                    
-                    instance.infowindow = $infowindow[ 0 ];
-                    
-                    $infowindow.html( html )
-                        .insertAfter( $tip )
-                        .css( "top", -($infowindow.height() + 20) )
-                        .css( "left", -(($infowindow.width()/2)-($elem.width()/2)) );
-                    
-                    $infowindow.find( ".plus-close" ).on( "click", function ( e ) {
-                        e.preventDefault();
-                        
-                        $infowindow.toggleClass( "inactive" );
-                        
-                        if ( $infowindow.is( "inactive" ) ) {
-                            $infowindow.css( "top", "50%" );
-                            
-                        } else {
-                            $infowindow.css( "top", -($infowindow.height()+3) );
-                        }
-                    });
-                    
-                    $infowindow.find( ".find" ).on( "click", function ( e ) {
-                        e.preventDefault();
-                        
-                        var $elem = $( this.hash ),
-                            $toggle = $elem.find( ".toggle" );
-                        
-                        if ( $elem.is( ".active" ) ) {
-                            $.scrollTo( $elem.offset().top );
-                            
-                            return false;
-                        }
-                        
-                        $_roasterTogs.removeClass( "active" );
-                        $toggle.addClass( "active" );
-                        
-                        $_roasterItems.removeClass( "active" );
-                        $elem.addClass( "active" );
-                        
-                        $.scrollTo( $elem.offset().top );
-                    });
-                    
-                    $infowindow.find( ".more" ).on( "click", function ( e ) {
-                        e.preventDefault();
-                        
-                        _pushState.push( this.href, function ( res ) {
-                            console.log( "info more click...?" );
-                        });
-                    });
-                    
-                    // Slight delay for loadout
-                    setTimeout(function () {
-                        $infowindow.show().removeClass( "loading" );
-                        
-                        $spin.parent().removeClass( "active" );
-                        $spin.removeClass( "loading" );
-                        
-                        $instance.addClass( "loaded" )
-                            .addClass( "active" );
-                        
-                        instance.panMap();
-                        
-                    }, _pushDuration );
                 }
+            })
+            .then(function ( response ) {
+	            var html = window.pdx.templates.infowindow( response );
+                
+                clearTimeout( timeout );
+                
+                instance.loaded = true;
+                
+                $infowindow = $( "<span>" ).addClass( "infowindow" ).hide();
+                
+                instance.infowindow = $infowindow[ 0 ];
+                
+                $infowindow.html( html )
+                    .insertAfter( $tip )
+                    .css( "top", -($infowindow.height() + 20) )
+                    .css( "left", -(($infowindow.width()/2)-($elem.width()/2)) );
+                
+                $infowindow.find( ".plus-close" ).on( "click", function ( e ) {
+                    e.preventDefault();
+                    
+                    $infowindow.toggleClass( "inactive" );
+                    
+                    if ( $infowindow.is( "inactive" ) ) {
+                        $infowindow.css( "top", "50%" );
+                        
+                    } else {
+                        $infowindow.css( "top", -($infowindow.height()+3) );
+                    }
+                });
+                
+                $infowindow.find( ".find" ).on( "click", function ( e ) {
+                    e.preventDefault();
+                    
+                    var $elem = $( this.hash ),
+                        $toggle = $elem.find( ".toggle" );
+                    
+                    if ( $elem.is( ".active" ) ) {
+                        $.scrollTo( $elem.offset().top );
+                        
+                        return false;
+                    }
+                    
+                    $_roasterTogs.removeClass( "active" );
+                    $toggle.addClass( "active" );
+                    
+                    $_roasterItems.removeClass( "active" );
+                    $elem.addClass( "active" );
+                    
+                    $.scrollTo( $elem.offset().top );
+                });
+                
+                $infowindow.find( ".more" ).on( "click", function ( e ) {
+                    e.preventDefault();
+                    
+                    _pushState.push( this.href, function ( res ) {
+                        console.log( "info more click...?" );
+                    });
+                });
+                
+                // Slight delay for loadout
+                setTimeout(function () {
+                    $infowindow.show().removeClass( "loading" );
+                    
+                    $spin.parent().removeClass( "active" );
+                    $spin.removeClass( "loading" );
+                    
+                    $instance.addClass( "loaded" )
+                        .addClass( "active" );
+                    
+                    instance.panMap();
+                    
+                }, _pushDuration );
+            })
+            .fail(function ( error, message ) {
+	            clearTimeout( timeout );
+                    
+                console.log( "Infowindow load error" );
             });
         });
     },
     
     handleRoasters: function () {
-        var self = this;
+        var self = this,
+        	timeout;
         
-        $_logoBack.on( "click", function ( e ) {
+        $_logo.on( "click", function ( e ) {
             e.preventDefault();
             
-            if ( !$_logoBack.is( ".page-back" ) ) {
+            if ( !$_logo.is( ".page-back" ) ) {
             	return false;
             }
+            
+            $_logo.removeClass( "page-back" );
+            
+            timeout = setTimeout(function () {
+            	clearTimeout( timeout );
+            	
+            	$.scrollTo( 0 );
+            				
+            }, _pushDuration );
+            
+            _pushState.pop();
+        });
+        
+        $_pushPage.on( "click", ".back-to-list", function ( e ) {
+	        e.preventDefault();
+	        
+	        $_logo.removeClass( "page-back" );
             
             _pushState.pop();
         });
@@ -400,6 +437,8 @@ window.pdx.app.home = {
             
             $roaster.addClass( "active" );
             
+            $_logo.addClass( "page-back" );
+            
             $_roasterTogs.removeClass( "active" );
             $_roasterItems.removeClass( "active" );
             
@@ -408,7 +447,9 @@ window.pdx.app.home = {
             
             _pushState.push( this.href );
             
-            setTimeout(function () {
+            timeout = setTimeout(function () {
+            	clearTimeout( timeout );
+            	
             	_pagePosition = $_window.scrollTop();
             	window.scrollTo( 0, 0 );
             	$_content.hide();
