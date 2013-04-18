@@ -13,7 +13,7 @@
 
 // Don't do it for mobile
 if ( window.pdx.mobile.isMobile ) {
-	return false;
+	//return false;
 }
 
 // Map namespace

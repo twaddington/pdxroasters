@@ -144,6 +144,11 @@ body {
     color: $brown;
     font-size: 1.25em;
     letter-spacing: 1px;
+    
+    &.page-back {
+	    cursor: pointer;
+    }
+    
     &:before{
         content: "";
         width: 2.5em;
@@ -244,11 +249,27 @@ body {
 
 /* -- nav-push-pages --*/
 #nav-push-page {
+    left: 0;
+    top: -100%;
+	@include transition(top 300ms ease-in-out);
+	z-index: 8;
+    
+    &.active {
+	    top: 0;
+    }
+    
     .page {
-        display: none;
+    	bottom: 0;
+    	left: -100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        @include opacity(0);
+        @include transition(opacity 200ms linear, left 300ms ease-in-out);
 
         &.active {
-            display: block;
+        	left: 0;
+            @include opacity(1);
         }
     }
 }
