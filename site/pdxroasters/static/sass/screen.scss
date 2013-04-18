@@ -144,11 +144,11 @@ body {
     color: $brown;
     font-size: 1.25em;
     letter-spacing: 1px;
-    
+
     &.page-back {
 	    cursor: pointer;
     }
-    
+
     &:before{
         content: "";
         width: 2.5em;
@@ -253,11 +253,11 @@ body {
     top: -100%;
 	@include transition(top 300ms ease-in-out);
 	z-index: 8;
-    
+
     &.active {
 	    top: 0;
     }
-    
+
     .page {
     	bottom: 0;
     	left: -100%;
@@ -682,10 +682,13 @@ body {
 }
 
 .roaster-about {
-    padding:0 6.5em 0 8%;
+    padding:0 6.5em 0 0;
     -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
     p {
         margin-bottom: 2em;
+    }
+    &.second-column{
+        padding-left: 8%;
     }
 }
 
