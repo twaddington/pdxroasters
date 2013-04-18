@@ -94,6 +94,10 @@ class Cafe(Business):
 
 class Roaster(Business):
     description = models.TextField(blank=True,)
+    online_only = models.BooleanField()
+    order_online = models.BooleanField()
+    cafe_on_site = models.BooleanField()
+    open_to_public = models.BooleanField()
     photo_url = models.URLField(max_length=200, verbose_name='Photo URL',
             blank=True,)
     video_url = models.URLField(max_length=200, verbose_name='Video URL',
@@ -106,9 +110,6 @@ class Roaster(Business):
 class Roast(models.Model):
     name = models.CharField(max_length=200, unique=True, db_index=True,)
     roaster = models.ForeignKey('Roaster', related_name='roasts',)
-    order_online = models.BooleanField()
-    cafe_on_site = models.BooleanField()
-    open_to_publich = models.BooleanField()
     active = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True, db_index=True,)
     modified_at = models.DateTimeField(auto_now=True, db_index=True,)
