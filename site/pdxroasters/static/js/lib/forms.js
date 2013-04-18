@@ -9,26 +9,39 @@
 
 "use strict";
 
+var _addRoasterSuccess = "Thank you for reminding us how much we suck at research. We'll get this roaster added soon!",
+	_contactSuccess = "Thank you for the note. We'll get back to you soon.";
+
 // Forms namespace
 window.pdx.forms = {
-	contact: {
-		done: function ( $elem ) {
-			console.log( "[pdx.forms.contact.done]" );
-		},
+	done: function ( $elem ) {
+		var $thanks = $( "<p>"+_addRoasterSuccess+"</p>" ),
+			timeout;
 		
-		fail: function ( $elem, error ) {
-			console.log( "[pdx.forms.contact.fail]: ", error );
-		}
+		$elem.hide();
+		
+		$thanks.insertBefore( $elem );
+		
+		$elem.find( "[name]" ).val( "" );
+		
+		timeout = setTimeout(function () {
+			clearTimeout( timeout );
+			
+			$thanks.remove();
+			
+			$elem.show();
+			
+		}, 5000 );
 	},
 	
-	roaster: {
-		done: function ( $elem ) {
-			console.log( "[pdx.forms.roaster.done]" );
-		},
+	fail: function ( $elem, response ) {
+		$elem.find( ".error-message" ).remove();
 		
-		fail: function ( $elem, error ) {
-			console.log( "[pdx.forms.roaster.fail]: ", error );
-		}
+		var $field = $elem.find( "[name='"+response.field+"']" );
+		
+		$field.addClass( "f-error" ).focus();
+		
+		$( '<span class="error-message">'+response.error+'</span>' ).insertBefore( $field );
 	}
 };
 
@@ -46,18 +59,18 @@ $( ".ajax-form" ).on( "submit", function ( e ) {
     	},
         method: this.method,
         type: "json",
-        url: this.action,
-        success: function ( response ) {
-	        if ( response.status === 204 ) {
-	        	window.pdx.forms[ form ].done( $this );
-	        	
-	        } else {
-		        window.pdx.forms[ form ].fail( $this, response.error || response );
-	        }
-        },
-        error: function ( error ) {
-	        window.pdx.forms[ form ].fail( $this, error );
+        url: this.action
+    })
+    .then(function ( response ) {
+	    if ( response.status === 204 ) {
+        	window.pdx.forms.done( $this );
+        	
+        } else {
+	        window.pdx.forms.fail( $this, response );
         }
+    })
+    .fail(function (  error, message  ) {
+	    window.pdx.forms.fail( $this, error );
     });
 });
 

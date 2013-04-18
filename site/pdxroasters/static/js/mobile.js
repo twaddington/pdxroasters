@@ -20,4 +20,10 @@ var _userAgent = navigator.userAgent.toLowerCase(),
 
 window.pdx.mobile = _getMobile();
 
+// Hide the address bar
+setTimeout(function () {
+	window.scrollTo( 0, 1 );
+				
+}, 100 );
+
 })( window );

@@ -259,10 +259,17 @@ body {
     }
     
     .page {
-        display: none;
+    	bottom: 0;
+    	left: -100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        @include opacity(0);
+        @include transition(opacity 200ms linear, left 300ms ease-in-out);
 
         &.active {
-            display: block;
+        	left: 0;
+            @include opacity(1);
         }
     }
 }

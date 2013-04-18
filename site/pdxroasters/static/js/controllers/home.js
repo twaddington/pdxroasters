@@ -272,7 +272,15 @@ window.pdx.app.home = {
         
         // Request the detailed content
         $instance.on( "click", "> div", function ( e ) {
-            var $elem = $( this );
+            var $elem = $( this ),
+            	__loading = function () {
+	                timeout = setTimeout(function () {
+	                    $spin.toggleClass( "loading" );
+	                    
+	                    __loading();
+	                    
+	                }, _pushDuration );
+	            };
             
             $( ".marker-custom" ).removeClass( "active" );
             $( ".infowindow" ).addClass( "inactive" );
@@ -298,100 +306,91 @@ window.pdx.app.home = {
             $spin.parent().addClass( "active" );
             $spin.addClass( "loading" );
             
-            function _loading() {
-                timeout = setTimeout(function () {
-                    $spin.toggleClass( "loading" );
-                    
-                    _loading();
-                    
-                }, _pushDuration );
-            }
-            
-            _loading();
+            __loading();
             
             $.ajax({
                 url: data.api,
                 type: "json",
                 data: {
                     format: "json"
-                },
-                error: function () {
-                    clearTimeout( timeout );
-                    
-                    console.log( "Infowindow load error" );
-                },
-                success: function ( response ) {
-                    var html = window.pdx.templates.infowindow( response );
-                    
-                    clearTimeout( timeout );
-                    
-                    instance.loaded = true;
-                    
-                    $infowindow = $( "<span>" ).addClass( "infowindow" ).hide();
-                    
-                    instance.infowindow = $infowindow[ 0 ];
-                    
-                    $infowindow.html( html )
-                        .insertAfter( $tip )
-                        .css( "top", -($infowindow.height() + 20) )
-                        .css( "left", -(($infowindow.width()/2)-($elem.width()/2)) );
-                    
-                    $infowindow.find( ".plus-close" ).on( "click", function ( e ) {
-                        e.preventDefault();
-                        
-                        $infowindow.toggleClass( "inactive" );
-                        
-                        if ( $infowindow.is( "inactive" ) ) {
-                            $infowindow.css( "top", "50%" );
-                            
-                        } else {
-                            $infowindow.css( "top", -($infowindow.height()+3) );
-                        }
-                    });
-                    
-                    $infowindow.find( ".find" ).on( "click", function ( e ) {
-                        e.preventDefault();
-                        
-                        var $elem = $( this.hash ),
-                            $toggle = $elem.find( ".toggle" );
-                        
-                        if ( $elem.is( ".active" ) ) {
-                            $.scrollTo( $elem.offset().top );
-                            
-                            return false;
-                        }
-                        
-                        $_roasterTogs.removeClass( "active" );
-                        $toggle.addClass( "active" );
-                        
-                        $_roasterItems.removeClass( "active" );
-                        $elem.addClass( "active" );
-                        
-                        $.scrollTo( $elem.offset().top );
-                    });
-                    
-                    $infowindow.find( ".more" ).on( "click", function ( e ) {
-                        e.preventDefault();
-                        
-                        _pushState.push( this.href, function ( res ) {
-                            console.log( "info more click...?" );
-                        });
-                    });
-                    
-                    // Slight delay for loadout
-                    setTimeout(function () {
-                        $infowindow.show().removeClass( "loading" );
-                        
-                        $spin.parent().removeClass( "active" );
-                        $spin.removeClass( "loading" );
-                        
-                        $instance.addClass( "loaded" )
-                            .addClass( "active" );
-                        
-                        instance.panMap();
-                        
-                    }, _pushDuration );
                 }
+            })
+            .then(function ( response ) {
+	            var html = window.pdx.templates.infowindow( response );
+                
+                clearTimeout( timeout );
+                
+                instance.loaded = true;
+                
+                $infowindow = $( "<span>" ).addClass( "infowindow" ).hide();
+                
+                instance.infowindow = $infowindow[ 0 ];
+                
+                $infowindow.html( html )
+                    .insertAfter( $tip )
+                    .css( "top", -($infowindow.height() + 20) )
+                    .css( "left", -(($infowindow.width()/2)-($elem.width()/2)) );
+                
+                $infowindow.find( ".plus-close" ).on( "click", function ( e ) {
+                    e.preventDefault();
+                    
+                    $infowindow.toggleClass( "inactive" );
+                    
+                    if ( $infowindow.is( "inactive" ) ) {
+                        $infowindow.css( "top", "50%" );
+                        
+                    } else {
+                        $infowindow.css( "top", -($infowindow.height()+3) );
+                    }
+                });
+                
+                $infowindow.find( ".find" ).on( "click", function ( e ) {
+                    e.preventDefault();
+                    
+                    var $elem = $( this.hash ),
+                        $toggle = $elem.find( ".toggle" );
+                    
+                    if ( $elem.is( ".active" ) ) {
+                        $.scrollTo( $elem.offset().top );
+                        
+                        return false;
+                    }
+                    
+                    $_roasterTogs.removeClass( "active" );
+                    $toggle.addClass( "active" );
+                    
+                    $_roasterItems.removeClass( "active" );
+                    $elem.addClass( "active" );
+                    
+                    $.scrollTo( $elem.offset().top );
+                });
+                
+                $infowindow.find( ".more" ).on( "click", function ( e ) {
+                    e.preventDefault();
+                    
+                    _pushState.push( this.href, function ( res ) {
+                        console.log( "info more click...?" );
+                    });
+                });
+                
+                // Slight delay for loadout
+                setTimeout(function () {
+                    $infowindow.show().removeClass( "loading" );
+                    
+                    $spin.parent().removeClass( "active" );
+                    $spin.removeClass( "loading" );
+                    
+                    $instance.addClass( "loaded" )
+                        .addClass( "active" );
+                    
+                    instance.panMap();
+                    
+                }, _pushDuration );
+            })
+            .fail(function ( error, message ) {
+	            clearTimeout( timeout );
+                    
+                console.log( "Infowindow load error" );
             });
         });
     },
