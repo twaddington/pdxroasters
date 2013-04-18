@@ -21,7 +21,7 @@ class Command(BaseCommand):
             dest='import_type', default='roasters',
             help='One of the following: %s' % (', '.join(IMPORT_TYPES),)),
         make_option('--geocode', action='store_true', dest='geocode',
-            help='Geocode store addresses')
+            help='Geocode addresses')
     )
 
     cafe_fields = (
@@ -69,7 +69,8 @@ class Command(BaseCommand):
             name = row.get('name').strip()
             roaster = row.get('roaster').strip()
             if name and name != 'Cafe' and roaster and roaster != 'Roaster':
-                cafe, created = Cafe.objects.get_or_create(name=name)
+                cafe, created = Cafe.objects.get_or_create(name=name,
+                        address=row.get('address'))
 
                 if created:
                     self.uprint('Importing new cafe: %s' % name)
@@ -77,8 +78,8 @@ class Command(BaseCommand):
                 else:
                     self.uprint('Updating cafe: %s' % name)
 
-                if self.geocode:
-                    g = geocoders.Google()
+                if self.geocode and created:
+                    g = geocoders.GoogleV3()
 
                     try:
                         place, (lat, lng) = g.geocode(row.get('address'))
@@ -91,6 +92,7 @@ class Command(BaseCommand):
                 cafe.address = row.get('address')
                 cafe.phone = row.get('phone')
                 cafe.url = row.get('url')
+                cafe.active = True
                 cafe.save()
 
                 try:
@@ -106,7 +108,7 @@ class Command(BaseCommand):
         for row in reader:
             # Skip the first row
             name = row.get('name').strip()
-            if name and name != 'Name':
+            if name and name != 'Roaster':
                 roaster, created = Roaster.objects.get_or_create(
                         name=name)
 
@@ -116,8 +118,8 @@ class Command(BaseCommand):
                 else:
                     self.uprint('Updating roaster: %s' % name)
 
-                if self.geocode:
-                    g = geocoders.Google()
+                if self.geocode and created:
+                    g = geocoders.GoogleV3()
 
                     try:
                         place, (lat, lng) = g.geocode(row.get('address'))
@@ -127,12 +129,22 @@ class Command(BaseCommand):
                     except Exception as e:
                         self.uprint('  Failed to geocode address!')
 
-                roaster.address = row.get('address')
+
+                online_only = row.get('address').lower() == 'online only'
+                if not online_only:
+                    roaster.address = row.get('address')
+                else:
+                    roaster.address = ''
+
                 roaster.phone = row.get('phone')
                 roaster.description = row.get('description')
                 roaster.url = row.get('url').lower()
                 roaster.photo_url = row.get('photo_url').lower()
                 roaster.video_url = row.get('video_url').lower()
+                roaster.online_only = online_only
+                roaster.order_online = row.get('order_online') == '1'
+                roaster.cafe_on_site = row.get('cafe_on_site') == '1'
+                roaster.open_to_public = row.get('open_to_public').lower() == 'yes'
                 roaster.active = True
                 roaster.save()
 

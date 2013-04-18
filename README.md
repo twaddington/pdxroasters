@@ -106,3 +106,5 @@ Finally check-in the updated files and push to heroku:
     $ git add -u .
     $ git commit -m "Updated resources."
     $ git push heroku release:master
+
+> Note: heroku pg:reset DATABASE

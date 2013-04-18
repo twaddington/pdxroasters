@@ -24,7 +24,7 @@ def format_phone_number(phone):
 # TODO: Add tests
 
 class Business(models.Model):
-    name = models.CharField(max_length=200, unique=True, db_index=True,)
+    name = models.CharField(max_length=200, db_index=True,)
     slug = models.SlugField()
     active = models.BooleanField()
     address = models.CharField(max_length=200, blank=True,)
@@ -44,12 +44,30 @@ class Business(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.pk:
-            self.slug = slugify(self.name)
+            self.slug = Business.unique_slugify(self.name)
 
         # Sanitize the phone number
         self.phone = format_phone_number(self.phone)
 
         super(Business, self).save(*args, **kwargs)
+
+    @staticmethod
+    def unique_slugify(value, num=0):
+        if (num > 0):
+            slug = slugify("%s-%s" % (value, num))
+        else:
+            slug = slugify(value)
+        
+        try:
+            Business.objects.get(slug=slug)
+
+            # Slug is not unique!
+            slug = Business.unique_slugify(value, num+1)
+        except Business.DoesNotExist:
+            pass
+
+        return slug
+
 
 class BusinessHours(models.Model):
     weekday = models.IntegerField(choices=WEEKDAY_CHOICES, default=0,)
@@ -80,6 +98,10 @@ class Roaster(Business):
             blank=True,)
     video_url = models.URLField(max_length=200, verbose_name='Video URL',
             blank=True,)
+    online_only = models.BooleanField(db_index=True)
+    order_online = models.BooleanField(db_index=True)
+    cafe_on_site = models.BooleanField(db_index=True)
+    open_to_public = models.BooleanField(db_index=True)
     cafes = models.ManyToManyField('Cafe', blank=True,)
 
     def get_absolute_url(self):
