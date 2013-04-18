@@ -21,7 +21,7 @@ class Command(BaseCommand):
             dest='import_type', default='roasters',
             help='One of the following: %s' % (', '.join(IMPORT_TYPES),)),
         make_option('--geocode', action='store_true', dest='geocode',
-            help='Geocode store addresses')
+            help='Geocode addresses')
     )
 
     cafe_fields = (
@@ -78,7 +78,7 @@ class Command(BaseCommand):
                     self.uprint('Updating cafe: %s' % name)
 
                 if self.geocode:
-                    g = geocoders.Google()
+                    g = geocoders.GoogleV3()
 
                     try:
                         place, (lat, lng) = g.geocode(row.get('address'))
@@ -117,7 +117,7 @@ class Command(BaseCommand):
                     self.uprint('Updating roaster: %s' % name)
 
                 if self.geocode:
-                    g = geocoders.Google()
+                    g = geocoders.GoogleV3()
 
                     try:
                         place, (lat, lng) = g.geocode(row.get('address'))
