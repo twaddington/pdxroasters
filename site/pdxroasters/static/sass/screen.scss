@@ -326,6 +326,7 @@ body {
 
     .marker-custom {
         z-index: 888;
+        -webkit-backface-visibility: hidden;
 
         &.active {
             z-index: 999;
