@@ -447,13 +447,15 @@ window.pdx.app.home = {
             
             _pushState.push( this.href );
             
+            _pagePosition = $_window.scrollTop();
+            
             timeout = setTimeout(function () {
             	clearTimeout( timeout );
             	
-            	_pagePosition = $_window.scrollTop();
-            	window.scrollTo( 0, 0 );
             	$_content.hide();
             	$_pushPage.addClass( "active-page" );
+            	
+            	window.scrollTo( 0, 0 );
             				
             }, _pushDuration );
         });
