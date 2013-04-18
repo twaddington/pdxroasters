@@ -144,11 +144,11 @@ body {
     color: $brown;
     font-size: 1.25em;
     letter-spacing: 1px;
-    
+
     &.page-back {
 	    cursor: pointer;
     }
-    
+
     &:before{
         content: "";
         width: 2.5em;
@@ -258,7 +258,7 @@ body {
     &.active {
 	    top: 0;
     }
-    
+
     .page {
     	bottom: 0;
     	left: -100%;
@@ -610,7 +610,6 @@ body {
         }
 
         .toggle {
-            background: transparent url(../img/eye.png) no-repeat 0 0;
             display: block;
             height: 40px;
             margin-top: -20px;
@@ -619,7 +618,6 @@ body {
             top: 50%;
             width: 40px;
             @include transition(all 400ms cubic-bezier(0.095, 0.910, 0.245, 1.000));
-            @include transition-delay(200ms);
         }
     }
 }
@@ -686,10 +684,13 @@ body {
 }
 
 .roaster-about {
-    padding:0 6.5em 0 8%;
+    padding:0 6.5em 0 0;
     -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
     p {
         margin-bottom: 2em;
+    }
+    &.second-column{
+        padding-left: 8%;
     }
 }
 

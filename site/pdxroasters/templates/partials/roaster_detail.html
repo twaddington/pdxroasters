@@ -8,22 +8,26 @@
     </div>
     <div class="group roaster-description">
         <div class="col col1of4">
+            {% if roaster.hours.count %}
             <h5>Hours</h5>
             <p class="hours">
                 {% for h in roaster.hours.all %}
                     {{ h.get_weekday_display }} <span class="right"> {{ h.open }} - {{ h.close }} </span> <br />
                 {% endfor %}
             </p>
+            {% endif %}
+            {% if roaster.phone.count %}
             <h5>Phone</h5>
             <p class="hours"> {{ roaster.phone }} </p>
+            {% endif %}
         </div>
-        <div class="col col3of4 roaster-about">
+        <div class="col col3of4 roaster-about {% if roaster.hours.count or roaster.phone.count %} second-column {% endif %}">
+
+            {% if roaster.description %}
             <h4 class="about-title">About {{ roaster.name }}</h4>
-            <p>{{ roaster.description }}
-                Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Nullam quis risus eget urna mollis ornare vel eu leo.
-            </p><p>
-                Nullam id dolor id nibh ultricies vehicula ut id elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Nulla vitae elit libero, a pharetra augue. Donec sed odio dui. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-            </p>
+            {{ roaster.description|linebreaks }}
+            {% endif %}
+
             <a href="{{ roaster.get_absolute_url }}" data-api="{{ roaster.resource_uri }}" class="btn">Find this Roast</a>
         </div>
     </div>
