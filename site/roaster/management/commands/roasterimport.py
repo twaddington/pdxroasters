@@ -69,7 +69,8 @@ class Command(BaseCommand):
             name = row.get('name').strip()
             roaster = row.get('roaster').strip()
             if name and name != 'Cafe' and roaster and roaster != 'Roaster':
-                cafe, created = Cafe.objects.get_or_create(name=name)
+                cafe, created = Cafe.objects.get_or_create(name=name,
+                        address=row.get('address'))
 
                 if created:
                     self.uprint('Importing new cafe: %s' % name)
@@ -91,6 +92,7 @@ class Command(BaseCommand):
                 cafe.address = row.get('address')
                 cafe.phone = row.get('phone')
                 cafe.url = row.get('url')
+                cafe.active = True
                 cafe.save()
 
                 try:
