@@ -30,7 +30,7 @@ window.pdx.templates = {
                 html += '<div class="ci"><a href="#'+view.id+'" class="btn find">Find this Roast</a></div>';
             html += '</div>';
             html += '<div class="col col1of2">';
-                html += '<div class="ci"><a href="/roaster/'+view.slug+'/" class="btn more">Learn More</a></div>';
+                html += '<div class="ci"><a href="#'+view.id+'" class="btn more">Learn More</a></div>';
             html += '</div>';
         html += '</div>';
         html += '<a href="#close" class="plus-close">Close</div>';

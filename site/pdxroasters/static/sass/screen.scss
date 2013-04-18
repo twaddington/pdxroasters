@@ -227,7 +227,7 @@ body {
 
 /* -- push pages -- */
 .push-pages {
-    > .page {
+	> .page {
         > .page-inner {
             margin: 0;
             padding: 160px 40px 40px;
@@ -253,6 +253,7 @@ body {
     top: -100%;
 	@include transition(top 300ms ease-in-out);
 	z-index: 8;
+	-webkit-backface-visibility: hidden;
     
     &.active {
 	    top: 0;
@@ -262,13 +263,15 @@ body {
     	bottom: 0;
     	left: -100%;
         position: absolute;
-        right: 0;
+        right: 100%;
         top: 0;
         @include opacity(0);
-        @include transition(opacity 200ms linear, left 300ms ease-in-out);
+        @include transition(opacity 200ms linear, left 300ms ease-in-out, right 300ms ease-in-out);
+        -webkit-backface-visibility: hidden;
 
         &.active {
         	left: 0;
+        	right: 0;
             @include opacity(1);
         }
     }
@@ -325,6 +328,7 @@ body {
 
     .marker-custom {
         z-index: 888;
+        -webkit-backface-visibility: hidden;
 
         &.active {
             z-index: 999;
