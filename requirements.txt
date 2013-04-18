@@ -4,7 +4,7 @@ dj-database-url==0.2.1
 django-debug-toolbar==0.9.4
 django-ses==0.4.1
 django-tastypie==0.9.11
-geopy==0.94.2
+geopy==0.95.1
 gunicorn==0.15.0
 ipython==0.13.1
 mimeparse==0.1.3
