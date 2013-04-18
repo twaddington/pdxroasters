@@ -262,13 +262,14 @@ body {
     	bottom: 0;
     	left: -100%;
         position: absolute;
-        right: 0;
+        right: 100%;
         top: 0;
         @include opacity(0);
-        @include transition(opacity 200ms linear, left 300ms ease-in-out);
+        @include transition(opacity 200ms linear, left 300ms ease-in-out, right 300ms ease-in-out);
 
         &.active {
         	left: 0;
+        	right: 0;
             @include opacity(1);
         }
     }

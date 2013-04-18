@@ -294,6 +294,8 @@ window.pdx.maps.Marker = window.pdx.maps.Overlay.extend({
 			containsSW,
 			iwNELatLng,
 			iwSWLatLng,
+			iwNWLatLng,
+			iwSELatLng,
 			newLatLng,
 			newPoint,
 			newX, 
@@ -305,11 +307,15 @@ window.pdx.maps.Marker = window.pdx.maps.Overlay.extend({
 		
 		iwNELatLng = this.getProjection().fromDivPixelToLatLng( o.iwTopRight );
 		iwSWLatLng = this.getProjection().fromDivPixelToLatLng( o.iwBottomLeft );
+		iwNWLatLng = this.getProjection().fromDivPixelToLatLng( o.iwTopLeft );
+		iwSELatLng = this.getProjection().fromDivPixelToLatLng( o.iwBottomRight );
 		
 		containsNE = bounds.contains( iwNELatLng );
 		containsSW = bounds.contains( iwSWLatLng );
+		containsNW = bounds.contains( iwNWLatLng );
+		containsSE = bounds.contains( iwSELatLng );
 		
-		if ( !containsNE || !containsSW ) {
+		//if ( !containsNE || !containsSW || !containsNW || !containsSE ) {
 			newX = coords.x;
 			
 			// Padding by 100px to clear the fixed header
@@ -319,7 +325,7 @@ window.pdx.maps.Marker = window.pdx.maps.Overlay.extend({
 			newLatLng = this.getProjection().fromDivPixelToLatLng( newPoint );
 			
 			this.map.panTo( newLatLng );
-		}
+		//}
 		
 		google.maps.event.removeListener( this.beChange );
     }
