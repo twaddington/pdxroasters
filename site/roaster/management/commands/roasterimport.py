@@ -77,7 +77,7 @@ class Command(BaseCommand):
                 else:
                     self.uprint('Updating cafe: %s' % name)
 
-                if self.geocode:
+                if self.geocode and created:
                     g = geocoders.GoogleV3()
 
                     try:
@@ -116,7 +116,7 @@ class Command(BaseCommand):
                 else:
                     self.uprint('Updating roaster: %s' % name)
 
-                if self.geocode:
+                if self.geocode and created:
                     g = geocoders.GoogleV3()
 
                     try:
