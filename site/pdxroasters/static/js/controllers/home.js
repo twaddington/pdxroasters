@@ -347,30 +347,13 @@ window.pdx.app.home = {
                 $infowindow.find( ".find" ).on( "click", function ( e ) {
                     e.preventDefault();
                     
-                    var $elem = $( this.hash ),
-                        $toggle = $elem.find( ".toggle" );
-                    
-                    if ( $elem.is( ".active" ) ) {
-                        $.scrollTo( $elem.offset().top );
-                        
-                        return false;
-                    }
-                    
-                    $_roasterTogs.removeClass( "active" );
-                    $toggle.addClass( "active" );
-                    
-                    $_roasterItems.removeClass( "active" );
-                    $elem.addClass( "active" );
-                    
-                    $.scrollTo( $elem.offset().top );
+                    alert( "Need to hook up to cafes!" );
                 });
                 
                 $infowindow.find( ".more" ).on( "click", function ( e ) {
                     e.preventDefault();
                     
-                    _pushState.push( this.href, function ( res ) {
-                        console.log( "info more click...?" );
-                    });
+                    $( this.hash ).click();
                 });
                 
                 // Slight delay for loadout
