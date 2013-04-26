@@ -1,7 +1,7 @@
 body{ font-size: 16px };
 a {
     color: $blue;
-    text-decoration: none;  
+    text-decoration: none;
     @include transition(color 200ms linear);
     &:hover {
         color: #111;
@@ -49,16 +49,19 @@ p {
         font-family: $skolar;
         margin-bottom: 1em;
     }
-    
+
     p a {
         text-decoration: none;
         border-bottom: 1px dotted #0099ff;
     }
-    
+
     &.caption {
         color: #bebebe;
-        font-style: italic; 
+        font-style: italic;
         line-height: 4em;
+    }
+    &.tight {
+        line-height: 1.5em;
     }
 }
 strong {
