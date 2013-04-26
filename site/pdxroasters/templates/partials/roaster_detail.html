@@ -25,15 +25,6 @@
             <h5>Website</h5>
             <p class="hours"> {% if roaster.url %} <a href="{{roaster.url}}" title="{{roaster.name}}" > {{ roaster.name }} </a> {% else %} Not available {% endif %}</p>
 
-            <h5>Cafes</h5>
-            <p class="hours">
-                {% for cafe in roaster.cafes.all %}
-                    <p><a href="{{ cafe.get_absolute_url }}">{{ cafe.name }}</a><br/>{{ cafe.phone }}</p>
-                {% empty %}
-                    No cafes!
-                {% endfor %}
-            </p>
-
         </div>
         <div class="col col3of4 roaster-about {% if roaster.hours.count or roaster.phone.count %} second-column {% endif %}">
 
@@ -69,6 +60,16 @@
             </div>
 
             {# <a href="{{ roaster.get_absolute_url }}" data-api="{{ roaster.resource_uri }}" class="btn"> Find this Roast</a> #}
+
+            <h4 class="about-title">Cafes Serving this Roast</h4>
+
+                {% for cafe in roaster.cafes.all %}
+                <div class="col col1of3">
+                    <p class="tight"><a href="{{ cafe.get_absolute_url }}">{{ cafe.name }}</a><br/><span class="phone-number">{% if cafe.phone %}{{ cafe.phone }}{% else %} N/A {% endif %}</span></p>
+                </div>
+                {% empty %}
+                    No cafes yet.
+                {% endfor %}
 
         </div>
     </div>

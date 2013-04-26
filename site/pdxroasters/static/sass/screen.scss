@@ -23,7 +23,8 @@ $light-green:#C0DC93;
 $dark-blue:#00555F;
 $blue:#13A1AF;
 $light-blue:#0AAEBE;
-$darker-gray:#323232;
+$darkest-gray:#323232;
+$darker-gray:#7b7676;
 $dark-gray:#d2d0cb;
 $gray:#DDDBD4;
 $light-gray: #e6e6e6;
@@ -254,7 +255,7 @@ body {
 	@include transition(top 300ms ease-in-out);
 	z-index: 8;
 	-webkit-backface-visibility: hidden;
-    
+
     &.active {
 	    top: 0;
     }
@@ -395,7 +396,7 @@ body {
             white-space: nowrap;
             z-index: -1;
             font-size:18px;
-            color:$darker-gray;
+            color:$darkest-gray;
             @include opacity(0);
             @include transition(opacity 100ms linear);
             @include box-shadow(0 0 12px rgba(0,0,0,.1));
@@ -439,7 +440,7 @@ body {
             h3 {
                 font-size: 18px;
                 margin-bottom: .5em;
-                color: $darker-gray;
+                color: $darkest-gray;
                 letter-spacing: 1px;
             }
 
@@ -503,7 +504,7 @@ body {
 .hours {
     font-size:14px;
     font-weight:400;
-    color:$darker-gray;
+    color:$darkest-gray;
     span {
         float: right;
         display: inline;
@@ -688,8 +689,15 @@ body {
     margin: 3em 0 3em 8%;
 }
 
+.phone-number {
+    color: $darker-gray;
+    font-size: 0.75em;
+    line-height:1.5em;
+}
+
 .roaster-fact {
     text-align: center;
+    margin-bottom:2em;
     > div{
         display:block;
         width: 100%;
@@ -707,7 +715,7 @@ body {
 
 .roaster-fact-icon {
     width:100%;
-    background: url('/static/img/onsite-cafe.png') no-repeat center center tansparent;
+    background: url('/static/img/onsite-cafe.png') no-repeat center center transparent;
     background-size: contain;
     @include retina-display(){
         background: transparent url("/static/img/onsite-cafe@2x.png") no-repeat center;
@@ -719,7 +727,7 @@ body {
 }
 
 .online-orders {
-    background: url('/static/img/online.png') no-repeat center center tansparent;
+    background: url('/static/img/online.png') no-repeat center center transparent;
     background-size: contain;
     @include retina-display(){
         background: transparent url("/static/img/online@2x.png") no-repeat center;
@@ -728,7 +736,7 @@ body {
 }
 
 .onsite-cafe {
-    background: url('/static/img/onsite-cafe.png') no-repeat center center tansparent;
+    background: url('/static/img/onsite-cafe.png') no-repeat center center transparent;
     background-size: contain;
     @include retina-display(){
         background: transparent url("/static/img/onsite-cafe@2x.png") no-repeat center;
@@ -737,7 +745,7 @@ body {
 }
 
 .open-to-public {
-    background: url('/static/img/public.png') no-repeat center center tansparent;
+    background: url('/static/img/public.png') no-repeat center center transparent;
     background-size: contain;
     @include retina-display(){
         background: transparent url("/static/img/public@2x.png") no-repeat center;
