@@ -15,6 +15,7 @@
 var $_document = $( document ),
     $_body = $( document.body ),
     $_window = $( window ),
+    $_page = $( "#page" ),
     $_mapWrap = $( "#map-wrap" ),
     $_filter = $( "#filter > input" ),
     $_header = $( "#header" ),
@@ -29,6 +30,8 @@ var $_document = $( document ),
     _pagePosition = 0,
     _pushState = new window.pdx.PushState( {async: false} ),
     _pushDuration = 300,
+    _scrollAble = document.body.clientHeight-window.innerHeight,
+    _atScrollEnd = false,
     _timeout;
 
 // Home Controller
@@ -58,13 +61,6 @@ window.pdx.app.home = {
 	    })
 	    .on( "blur", function () {
 	    	current = -1;
-	    	
-		    //$_roasterItems.removeClass( "s-hidden" );
-		    //$( ".s-focused" ).removeClass( "s-focused" );
-		    
-		    //$_filter.val( "" );
-		    
-		    //$.scrollTo( 0 );
 	    })
 	    .on( "keyup", function ( e ) {
 		    var value = this.value,
@@ -118,6 +114,9 @@ window.pdx.app.home = {
 			    }
 		    }
 		    
+		    // Update scrollable as page height changes
+		    _scrollAble = document.body.clientHeight-window.innerHeight;
+		    
 		    if ( e.keyCode === 38 || e.keyCode === 40 ) {
 		    	// Down
 		    	if ( e.keyCode === 40 ) {
@@ -132,8 +131,24 @@ window.pdx.app.home = {
 			    	}
 		    	}
 		    	
+		    	var $current = $( filtered[ current ] );
+		    	
 		    	$( ".s-focused" ).removeClass( "s-focused" );
-		    	$( filtered[ current ] ).find( ".handle" ).addClass( "s-focused" );
+		    	$current.find( ".handle" ).addClass( "s-focused" );
+		    	
+		    	if ( current === filtered.length-1 && !_atScrollEnd ) {
+		    		$.scrollTo( _scrollAble );
+		    		
+		    		_atScrollEnd = true;
+		    		
+		    	} else if ( current === 0 && e.keyCode === 38 ) {
+		    		$.scrollTo( $_filter.offset().top-$_header.height()-(window.innerHeight/2) );
+		    		
+		    		_atScrollEnd = false;
+		    		
+		    	} else if ( ($current.offset().top+$current.height()) > (window.innerHeight+$_window.scrollTop()) && e.keyCode === 40 && $_window.scrollTop() < _scrollAble ) {
+		    		$.scrollTo( $_window.scrollTop()+($current.height()*2) );
+		    	}
 		    }
 		    
 		    // Enter
@@ -153,7 +168,11 @@ window.pdx.app.home = {
         this.mapMarkers = [];
         this.mapElement = document.getElementById( "map" );
         
-        $_mapWrap.height( window.innerHeight-$_filter.height() );
+        $_mapWrap.height( window.innerHeight-$_filter.height()-$_header.height() );
+        $_mapWrap.css( "margin-top", $_header.height() );
+        
+        // Needs to be set after map gets its height set
+        _scrollAble = document.body.clientHeight-window.innerHeight;
         
         // Listen for maps to be loaded and ready
         window.pdx.maps.onmapsready(function () {
@@ -347,30 +366,13 @@ window.pdx.app.home = {
                 $infowindow.find( ".find" ).on( "click", function ( e ) {
                     e.preventDefault();
                     
-                    var $elem = $( this.hash ),
-                        $toggle = $elem.find( ".toggle" );
-                    
-                    if ( $elem.is( ".active" ) ) {
-                        $.scrollTo( $elem.offset().top );
-                        
-                        return false;
-                    }
-                    
-                    $_roasterTogs.removeClass( "active" );
-                    $toggle.addClass( "active" );
-                    
-                    $_roasterItems.removeClass( "active" );
-                    $elem.addClass( "active" );
-                    
-                    $.scrollTo( $elem.offset().top );
+                    alert( "Need to hook up to cafes!" );
                 });
                 
                 $infowindow.find( ".more" ).on( "click", function ( e ) {
                     e.preventDefault();
                     
-                    _pushState.push( this.href, function ( res ) {
-                        console.log( "info more click...?" );
-                    });
+                    $( this.hash ).click();
                 });
                 
                 // Slight delay for loadout
@@ -447,13 +449,15 @@ window.pdx.app.home = {
             
             _pushState.push( this.href );
             
+            _pagePosition = $_window.scrollTop();
+            
             timeout = setTimeout(function () {
             	clearTimeout( timeout );
             	
-            	_pagePosition = $_window.scrollTop();
-            	window.scrollTo( 0, 0 );
             	$_content.hide();
             	$_pushPage.addClass( "active-page" );
+            	
+            	window.scrollTo( 0, 0 );
             				
             }, _pushDuration );
         });
@@ -470,7 +474,7 @@ _pushState.onpop(function () {
 });
 
 window.onresize = function () {
-	$_mapWrap.height( window.innerHeight-$_filter.height() );
+	$_mapWrap.height( window.innerHeight-$_filter.height()-$_header.height() );
 };
 
 })( ender, window );
