@@ -3,7 +3,7 @@
         <a class="back-to-list" href="#"> </a>
         <div class="banner-title">
             <h3 class="roaster-title"> {{ roaster.name }} </h3>
-            <p class="banner-address"> <a href="#"> {{ roaster.address }} </a> </p>
+            <p class="banner-address"> <a class="banner-link" href="#"> {{ roaster.address|linebreaksbr }} </a> </p>
         </div>
     </div>
     <div class="group roaster-description">
@@ -25,10 +25,36 @@
 
             {% if roaster.description %}
             <h4 class="about-title">About {{ roaster.name }}</h4>
-            {{ roaster.description|linebreaks }}
+              {{ roaster.description|linebreaks }}
             {% endif %}
 
-            <a href="{{ roaster.get_absolute_url }}" data-api="{{ roaster.resource_uri }}" class="btn">Find this Roast</a>
+            <h4 class="about-title"> At a Glance </h4>
+
+
+            {% if not roaster.online_only %}
+            <div class="roaster-fact col col1of3">
+                <div class="roaster-fact-icon online-orders{% if not roaster.order_online %} false{% endif %}"></div>
+                <p{% if not roaster.order_online %}class="false"{% endif %}>{% if not roaster.order_online %} No {% endif %}Online Orders </p>
+            </div>
+
+            <div class="roaster-fact col col1of3">
+                <div class="roaster-fact-icon onsite-cafe {% if not roaster.cafe_on_site %} false{% endif %}"></div>
+                <p{% if not roaster.cafe_on_site %} class="false"{% endif %}>{% if not roaster.cafe_on_site %} No{% endif %} Onsite Cafe </p>
+            </div>
+
+            <div class="roaster-fact col col1of3">
+                <div class="roaster-fact-icon open-to-public{% if not roaster.open_to_public %} false{% endif %}"></div>
+                <p{% if not roaster.open_to_public %} class="false"{% endif %}>{% if not roaster.open_to_public %}Closed {% else %}Open {% endif %}to the Public </p>
+            </div>
+
+            {# <a href="{{ roaster.get_absolute_url }}" data-api="{{ roaster.resource_uri }}" class="btn">Find this Roast</a> #}
+
+            {% else %}
+            <div class="roaster-fact col col1of3">
+                <div class="roaster-fact-icon online-orders"></div>
+                <p> Online Only</p>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>

@@ -668,8 +668,13 @@ body {
 }
 
 .banner-address {
-    a {
-        color:white;
+    line-height: 1.5em;
+}
+
+.banner-link {
+    color: $white;
+    &:hover {
+        color: $lighter-gray;
     }
 }
 
@@ -678,6 +683,64 @@ body {
     max-width: 960px;
     margin: 3em 0 3em 8%;
 }
+
+.roaster-fact {
+    text-align: center;
+    > div{
+        display:block;
+        width: 100%;
+        -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+        padding: 4em;
+    }
+    p {
+        margin: 0.5em 0 2em 0;
+        font-size: 0.85em;
+        &.false {
+            color: $light-gray;
+        }
+    }
+}
+
+.roaster-fact-icon {
+    width:100%;
+    background: url('/static/img/onsite-cafe.png') no-repeat center center tansparent;
+    background-size: contain;
+    @include retina-display(){
+        background: transparent url("/static/img/onsite-cafe@2x.png") no-repeat center;
+        background-size: 100px;
+    }
+    &.false{
+        opacity: 0.2;
+    }
+}
+
+.online-orders {
+    background: url('/static/img/online.png') no-repeat center center tansparent;
+    background-size: contain;
+    @include retina-display(){
+        background: transparent url("/static/img/online@2x.png") no-repeat center;
+        background-size: 100px;
+    }
+}
+
+.onsite-cafe {
+    background: url('/static/img/onsite-cafe.png') no-repeat center center tansparent;
+    background-size: contain;
+    @include retina-display(){
+        background: transparent url("/static/img/onsite-cafe@2x.png") no-repeat center;
+        background-size: 100px;
+    }
+}
+
+.open-to-public {
+    background: url('/static/img/public.png') no-repeat center center tansparent;
+    background-size: contain;
+    @include retina-display(){
+        background: transparent url("/static/img/public@2x.png") no-repeat center;
+        background-size: 100px;
+    }
+}
+
 
 .roaster-about {
     padding:0 6.5em 0 0;
