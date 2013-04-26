@@ -20,10 +20,19 @@
             </p>
 
             <h5>Phone</h5>
-            <p class="hours">{% if roaster.phone %}{{ roaster.phone }}{% else %} N/A {% endif %} </p>
+            <p class="hours"> {% if roaster.phone %}{{ roaster.phone }}{% else %} N/A {% endif %} </p>
 
             <h5>Website</h5>
             <p class="hours"> {% if roaster.url %} <a href="{{roaster.url}}" title="{{roaster.name}}" > {{ roaster.name }} </a> {% else %} Not available {% endif %}</p>
+
+            <h5>Cafes</h5>
+            <p class="hours">
+                {% for cafe in roaster.cafes.all %}
+                    <p><a href="{{ cafe.get_absolute_url }}">{{ cafe.name }}</a><br/>{{ cafe.phone }}</p>
+                {% empty %}
+                    No cafes!
+                {% endfor %}
+            </p>
 
         </div>
         <div class="col col3of4 roaster-about {% if roaster.hours.count or roaster.phone.count %} second-column {% endif %}">
