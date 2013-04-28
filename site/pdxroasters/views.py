@@ -27,7 +27,7 @@ def home(request):
     Display the home page.
     """
     context = {
-        'roasters': Roaster.objects.all(),
+        'roasters': Roaster.objects.filter(active=True),
     }
 
     return render_to_response('home.html',
