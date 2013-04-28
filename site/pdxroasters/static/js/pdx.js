@@ -15,11 +15,18 @@ window.pdx = {};
 // Application space
 window.pdx.app = {};
 
+// Brand
+window.pdx.brand = "PDX Roasters";
+
 // Exec method for controllers
 window.pdx.exec = function ( controller ) {
 	if ( window.pdx.app[ controller ] && typeof window.pdx.app[ controller ].init === "function" ) {
 		window.pdx.app[ controller ].init();
 	}
+};
+
+window.pdx.documentTitle = function ( title ) {
+	return window.pdx.brand+" | "+title;
 };
 
 })( window );

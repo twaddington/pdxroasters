@@ -44,6 +44,7 @@ $cabin: 'Cabin', Helvetica, Arial, Sans-serif;
 @import 'grid';
 @import 'forms';
 @import 'helpers';
+@import 'anim';
 
 /* -- elements -- */
 html{
@@ -97,7 +98,7 @@ body {
 }
 
 .s-hidden {
-	display: none;
+	display: none !important;
 }
 
 
@@ -145,6 +146,10 @@ body {
     color: $brown;
     font-size: 1.25em;
     letter-spacing: 1px;
+    
+    a {
+	    color: $brown;
+    }
 
     &.page-back {
 	    cursor: pointer;
@@ -317,6 +322,7 @@ body {
     height: 100%;
     width: 100%;
     z-index: 7;
+    @include transition(height 300ms ease-in-out);
 }
 #map {
     position: relative;
@@ -325,6 +331,31 @@ body {
 
     img {
         max-width: none;
+    }
+    
+    .marker-location {
+    	background-color: $dark-blue;
+	    height: 8px;
+	    width: 8px;
+	    @include border-radius(5px);
+	    
+	    &:before {
+		    background-color: $blue;
+		    border: 1px solid $dark-blue;
+		    content: '';
+		    height: 32px;
+		    left: -13px;
+		    position: absolute;
+		    top: -13px;
+		    width: 32px;
+		    @include border-radius(16px);
+		    @include opacity(.25);
+		    
+		    -moz-animation: pulse 6000ms infinite ease-in-out;
+		    -o-animation: pulse 6000ms infinite ease-in-out;
+		    -webkit-animation: pulse 6000ms infinite ease-in-out;
+		    animation: pulse 6000ms infinite ease-in-out;
+	    }
     }
 
     .marker-custom {
@@ -341,10 +372,6 @@ body {
                     @include opacity(0);
                 }
             }
-        }
-
-        &.loaded {
-            //z-index: 999;
         }
         // Map Markers
         > div {
@@ -384,6 +411,10 @@ body {
                     @include radius-multiple(10px, 5px);
                 }
             }
+        }
+        // Cafe Markers
+        &.marker-cafe > div {
+            background-image: url("../img/cafe-marker.png");
         }
         // Mouse over Title of Roaster
         > span {
@@ -475,6 +506,43 @@ body {
             }
         }
     }
+}
+#close-cafes {
+	background-color: $red;
+	color: $white;
+	display: inline-block;
+	left: 50%;
+	padding: 20px 60px 20px 20px;
+	position: absolute;
+	top: -100%;
+	z-index: 1;
+	@include transition(top 300ms ease-in-out);
+	
+	&.active {
+		top: 0;
+	}
+	
+	> a {
+		color: $white;
+		font-weight: bold;
+		
+		&:hover {
+			color: $dark-brown;
+		}
+	}
+	
+	> span {
+		background: url("../img/plus-close-cafes.png") no-repeat 0 0;
+		cursor: pointer;
+		display: block;
+		height: 22px;
+		margin-top: -11px;
+		position: absolute;
+		right: 20px;
+		top: 50%;
+		width: 22px;
+		@include transform(rotate(45deg));
+	}
 }
 
 
@@ -687,6 +755,10 @@ body {
     width: 100%;
     max-width: 960px;
     margin: 3em 0 3em 8%;
+    
+    .col > .tight {
+	    padding-right: 20px;
+    }
 }
 
 .phone-number {

@@ -28,7 +28,7 @@ window.pdx.tracking = {
 		    m.parentNode.insertBefore( a, m );
 		})( window, document, "script", "//www.google-analytics.com/analytics.js", "ga" );
 		
-		ga( "create", "UA-39536201-1", "pdxroasters.com" );
+		ga( "create", this.UAID, "pdxroasters.com" );
 		ga( "send", "pageview" );
 	}
 };
