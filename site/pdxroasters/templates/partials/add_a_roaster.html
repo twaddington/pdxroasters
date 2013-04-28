@@ -8,9 +8,15 @@
         </div>
         <div class="col col1of2">
             <form class="ci ajax-form" data-form="roaster" method="post" action="/add-roaster/">
-                <input name="name" type="text" placeholder="Full Name" />             
-                <input name="email" type="email" placeholder="E-mail" />
-                <input name="roaster" type="text" placeholder="Name of Roaster" />
+                <input name="name" type="text" placeholder="Roaster Name" />
+                <input name="address" type="text" placeholder="Roaster Address" />
+                <input name="phone" type="tel" placeholder="Roaster Phone" />
+                <input name="url" type="url" placeholder="Roaster Website" />
+                <textarea name="description"></textarea>
+                <label><input name="online_only" type="checkbox" /> Online Only</label><br />
+                <label><input name="order_online" type="checkbox" /> Order Online</label><br />
+                <label><input name="cafe_on_site" type="checkbox" /> Cafe on Site</label><br />
+                <label><input name="open_to_public" type="checkbox" /> Open to Public</label><br />
                 <p class="caption">* All fields are required.</p>
                 <button type="submit">Submit</button>
             </form>
