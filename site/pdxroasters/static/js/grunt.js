@@ -17,7 +17,7 @@ module.exports = function ( grunt ) {
 				site: [
 					"ender/ender.js",
 					"pdx.js",
-					"mobile.js",
+					"support.js",
 					"lib/*",
 					"controllers/*",
 					"app.js"

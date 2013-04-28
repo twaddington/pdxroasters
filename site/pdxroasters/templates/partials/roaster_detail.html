@@ -3,13 +3,13 @@
         <a class="back-to-list" href="#"> </a>
         <div class="banner-title">
             <h1 class="roaster-title"> {{ roaster.name }} </h1>
-            <p class="banner-address"> <a class="banner-link" href="#"> {{ roaster.address|linebreaksbr }} </a> </p>
+            <p class="banner-address"> <a class="banner-link" href="http://maps.google.com/maps?daddr={{ roaster.lat }},{{ roaster.lng }}" target="_blank"> {{ roaster.address|linebreaksbr }} </a> </p>
         </div>
     </div>
     <div class="group roaster-description" id="roaster-description">
         <div class="col col1of4">
             <h5>Hours</h5>
-            <p class="hours">
+            <p id="roaster-{{ roaster.id }}-hours" class="hours">
                 {% if roaster.hours.all %}
                 {% for h in roaster.hours.all %}
                     {{ h.get_weekday_display }} <span class="right"> {{ h.open }} - {{ h.close }} </span> <br />
@@ -23,7 +23,7 @@
             <p class="hours"> {% if roaster.phone %}{{ roaster.phone }}{% else %} N/A {% endif %} </p>
 
             <h5>Website</h5>
-            <p class="hours"> {% if roaster.url %} <a href="{{roaster.url}}" title="{{roaster.name}}" > {{ roaster.name }} </a> {% else %} Not available {% endif %}</p>
+            <p class="hours"> {% if roaster.url %} <a href="{{ roaster.url }}" title="{{roaster.name}}" > {{ roaster.name }} </a> {% else %} Not available {% endif %}</p>
 
         </div>
         <div class="col col3of4 roaster-about {% if roaster.hours.count or roaster.phone.count %} second-column {% endif %}">
@@ -59,13 +59,11 @@
                 <p{% if not roaster.open_to_public %} class="false"{% endif %}>{% if not roaster.open_to_public %}Closed {% else %}Open {% endif %}to the Public </p>
             </div>
 
-            {# <a href="{{ roaster.get_absolute_url }}" data-api="{{ roaster.resource_uri }}" class="btn"> Find this Roast</a> #}
-
             <h4 class="about-title">Cafes Serving this Roast</h4>
 
                 {% for cafe in roaster.cafes.all %}
-                <div class="col col1of3">
-                    <p class="tight"><a href="{{ cafe.get_absolute_url }}">{{ cafe.name }}</a><br/><span class="phone-number">{% if cafe.phone %}{{ cafe.phone }}{% else %} N/A {% endif %}</span></p>
+                <div class="col col1of3 cafe" data-id="{{ cafe.id }}" data-latlng="[{{ cafe.lat }},{{ cafe.lng }}]" data-name="{{ cafe.name }}">
+                    <p class="tight"><a href="{{ cafe.url }}">{{ cafe.name }}</a><br/><span class="phone-number">{{ cafe.address }}<br />{% if cafe.phone %}{{ cafe.phone }}{% else %} N/A {% endif %}</span></p>
                 </div>
                 {% empty %}
                     No cafes yet.
