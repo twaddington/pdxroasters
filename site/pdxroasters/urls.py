@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.simple import direct_to_template
 
-from pdxroasters.api import RoasterResource, RoastResource, CafeResource
+from pdxroasters.api import HoursResource, RoasterResource, RoastResource, CafeResource
 
 # Enable the admin
 admin.autodiscover()
