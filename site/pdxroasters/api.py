@@ -1,4 +1,5 @@
 from tastypie import fields
+from tastypie.constants import ALL, ALL_WITH_RELATIONS
 from tastypie.resources import ModelResource
 
 from roaster.models import Roaster, Roast, Cafe, BusinessHours
@@ -6,6 +7,11 @@ from roaster.models import Roaster, Roast, Cafe, BusinessHours
 class HoursResource(ModelResource):
     class Meta:
         queryset = BusinessHours.objects.all()
+        filtering = {
+            'slug': ('exact', 'startswith',),
+            'name': ALL,
+            'active': ('exact',)
+        }
         resource_name = 'hours'
         list_allowed_methods = None
         detail_allowed_methods = None
@@ -27,6 +33,11 @@ class RoasterResource(ModelResource):
 
     class Meta:
         queryset = Roaster.objects.all()
+        filtering = {
+            'slug': ('exact', 'startswith',),
+            'name': ALL,
+            'active': ('exact',)
+        }
         resource_name = 'roaster'
         list_allowed_methods = ['get',]
         detail_allowed_methods = ['get',]
@@ -36,6 +47,10 @@ class RoastResource(ModelResource):
 
     class Meta:
         queryset = Roast.objects.all()
+        filtering = {
+            'name': ALL,
+            'active': ('exact',)
+        }
         resource_name = 'roast'
         list_allowed_methods = ['get',]
         detail_allowed_methods = ['get',]
