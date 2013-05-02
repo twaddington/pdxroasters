@@ -108,3 +108,7 @@ Finally check-in the updated files and push to heroku:
     $ git push heroku release:master
 
 > Note: heroku pg:reset DATABASE
+
+### License
+
+Source released under the BSD 2-Clause License. See LICENSE.
