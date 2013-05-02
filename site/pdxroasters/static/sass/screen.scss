@@ -264,20 +264,24 @@ body {
     &.active {
 	    top: 0;
     }
+    
+    .push-pages {
+	    overflow: hidden;
+	    width: 100%;
+    }
 
     .page {
-    	bottom: 0;
-    	left: -100%;
-        position: absolute;
-        right: 100%;
-        top: 0;
+    	float: left;
+        margin-left: -100%;
+        position: relative;
+        width: 100%;
         @include opacity(0);
-        @include transition(opacity 200ms linear, left 300ms ease-in-out, right 300ms ease-in-out);
+        @include transition(opacity 200ms linear, margin-left 300ms ease-in-out);
         -webkit-backface-visibility: hidden;
 
         &.active {
-        	left: 0;
-        	right: 0;
+        	margin-left: 0;
+        	z-index: 1;
             @include opacity(1);
         }
     }
