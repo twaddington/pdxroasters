@@ -1,29 +1,47 @@
 /* -- forms -- */
 input[type="text"],
 input[type="email"],
+input[type="url"],
+input[type="tel"],
 textarea {
     width: 100%;
     height: 3em;
-    padding-left: 32px;
+    padding-left: 16px;
+    padding-right:4px;
     line-height: 1em;
     font-family: $din;
     font-size: 1em;
-    border: 1px solid #e5e5e5;
-    background-color: #fbfbfb;
+    border: 1px solid #dedede;
+    background-color: #f8f8f8;
     margin: 8px 0px;
-    
+
     @include box-sizing(border-box);
     @include transition(all 200ms ease-in-out);
-    
+
     &:focus {
         border-color: #0099ff;
         background-color: #fff;
+        outline:none;
     }
-    
+
     &.f-error {
 	    border-color: #ff0000;
         background-color: #fff;
     }
+}
+input[type="tel"] {
+    width: 30%;
+}
+input[type="url"] {
+    width: 64%;
+    float: right;
+}
+input[type="checkbox"] {
+    vertical-align: 0.15em;
+    margin-right: 0.25em;
+}
+label {
+    line-height: 2em;
 }
 .error-message {
 	color: #ff0000;
@@ -31,7 +49,7 @@ textarea {
 textarea {
     min-height: 150px;
     resize: none;
-    padding: 20px 35px 0;
+    padding: 20px 16px 0;
 }
 button[type="submit"] {
     background-color: #0099ff;
@@ -45,9 +63,13 @@ button[type="submit"] {
     text-align: left;
     text-indent: 0px;
     @include transition(background-color 200ms linear);
-    
+
     &:hover {
         background-color: #000;
     }
 }
-
+.ajax-form {
+    @include respond-to(300px, 720px){
+        margin-top:3em;
+    }
+}
