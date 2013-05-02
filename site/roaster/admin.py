@@ -25,6 +25,7 @@ class CafeAdmin(admin.ModelAdmin):
 
 class RoasterAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
+    filter_horizontal = ('cafes',)
     list_display = ('name', 'address', 'phone', 'show_url', 'created_at',
             'modified_at', 'active',)
     list_filter = ('active',)

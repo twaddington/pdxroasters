@@ -12,13 +12,15 @@
 (function ( window, undefined ) {
 
 // Don't do it for mobile
-if ( window.pdx.mobile.isMobile ) {
+if ( window.pdx.support.mobile.isMobile ) {
 	//return false;
 }
 
 // Map namespace
 window.pdx.maps = {
     lib: "http://maps.google.com/maps/api/js",
+    
+    url: "http://maps.google.com/maps",
     
     query: {
         sensor: false,
@@ -146,6 +148,58 @@ Overlay.extend = function ( prop ) {
 	return Overlay;
 };
 
+// Base overlay methods
+Overlay.prototype.draw = function () {
+    var pixelPosition = this.getProjection().fromLatLngToDivPixel( this.latLng );
+    
+    if ( !pixelPosition ) {
+    	console.log( "[Overlay failed]" );
+    	
+    	return false;
+    }
+    
+    this.element.style.left = (pixelPosition.x-(this.element.clientWidth/2))+"px";
+    this.element.style.top = (pixelPosition.y-(this.element.clientHeight))+"px";
+};
+
+Overlay.prototype.setPosition = function ( position ) {
+    if ( !this.element ) {
+		return false;
+	}
+	
+	this.latLng = position;
+	this.draw();
+	
+	return true;
+};
+
+Overlay.prototype.getPosition = function () {
+    if ( !this.element ) {
+		return null;
+	}
+	
+	return this.latLng;
+};
+
+Overlay.prototype.onRemove = function () {
+    if ( !this.element ) {
+		return false;
+	}
+	
+	this.element.parentNode.removeChild( this.element );
+	
+	return true;
+};
+
+Overlay.prototype.remove = function () {
+    if ( !this.element ) {
+		return;
+	}
+	
+	this.element.parentNode.removeChild( this.element );
+	this.element = null;
+};
+
 // Expose Overlay
 window.pdx.maps.Overlay = Overlay;
 })();
@@ -153,16 +207,14 @@ window.pdx.maps.Overlay = Overlay;
 // Adhere to strict after Overlays arguments.callee
 "use strict";
 
-// Marker Class
-window.pdx.maps.Marker = window.pdx.maps.Overlay.extend({
-    init: function ( options ) {
-        if ( !options || !options.latLng || !options.map ) {
-        	console.log( "[Marker requires latLng and map]" );
+// Simple Location Marker Class
+window.pdx.maps.Location = window.pdx.maps.Overlay.extend({
+	init: function ( options ) {
+		if ( !options || !options.latLng ) {
+        	console.log( "[Location requires latLng]" );
         	
         	return false;
         }
-        
-        var self = this;
         
         this.element = document.createElement( "div" );
         this.loaded = false;
@@ -171,23 +223,52 @@ window.pdx.maps.Marker = window.pdx.maps.Overlay.extend({
         	this[ prop ] = options[ prop ];
         }
         
-        this.setMap( this.map );
+        if ( this.map ) {
+        	this.setMap( this.map );
+        }
+	},
+	
+	onAdd: function () {
+        // Build marker html
+        this.element.style.position = "absolute";
+        this.element.className = "marker-location "+this.markerClass;
+        this.element.innerHTML = "<div><div></div></div>";
+        this.getPanes().floatPane.appendChild( this.element );
         
-        this.beChange = google.maps.event.addListener(
-            this.map,
-            "bounds_changed",
-            function () {
-                return self.panMap.apply( self );
-			}
-		);
+        // Open to custom marker actions
+        if ( this.onAddCallback && typeof this.onAddCallback === "function" ) {
+        	this.onAddCallback( this );
+        }
+    },
+});
+
+// Marker Class
+window.pdx.maps.Marker = window.pdx.maps.Overlay.extend({
+    init: function ( options ) {
+        if ( !options || !options.latLng ) {
+        	console.log( "[Marker requires latLng]" );
+        	
+        	return false;
+        }
+        
+        this.element = document.createElement( "div" );
+        this.loaded = false;
+        
+        for ( var prop in options ) {
+        	this[ prop ] = options[ prop ];
+        }
+        
+        if ( this.map ) {
+        	this.setMap( this.map );
+        	
+        	this._createBoundsChanger();
+        }
     },
     
     onAdd: function () {
-        var self = this;
-        
         // Build marker html
         this.element.style.position = "absolute";
-        this.element.className = "marker-custom";
+        this.element.className = "marker-custom "+this.markerClass;
         this.element.innerHTML = "<div><div></div></div>";
         this.tooltip = document.createElement( "span" );
         this.tooltip.className = "tooltip";
@@ -219,44 +300,6 @@ window.pdx.maps.Marker = window.pdx.maps.Overlay.extend({
         this.loader.style.top = -(this.loader.clientHeight+3)+"px";
         this.element.style.left = (pixelPosition.x-(this.element.clientWidth/2))+"px";
         this.element.style.top = (pixelPosition.y-(this.element.clientHeight))+"px";
-    },
-    
-    setPosition: function ( position ) {
-        if ( !this.element ) {
-			return false;
-		}
-		
-		this.latLng = position;
-		this.draw();
-		
-		return true;
-    },
-    
-    getPosition: function () {
-        if ( !this.element ) {
-			return null;
-		}
-		
-		return this.latLng;
-    },
-    
-    onRemove: function () {
-        if ( !this.element ) {
-			return false;
-		}
-		
-		this.element.parentNode.removeChild( this.element );
-		
-		return true;
-    },
-    
-    remove: function () {
-        if ( !this.element ) {
-			return;
-		}
-		
-		this.element.parentNode.removeChild( this.element );
-		this.element = null;
     },
     
     panMap: function () {
@@ -328,6 +371,18 @@ window.pdx.maps.Marker = window.pdx.maps.Overlay.extend({
 		//}
 		
 		google.maps.event.removeListener( this.beChange );
+    },
+    
+    _createBoundsChanger: function () {
+	    var self = this;
+	    
+	    this.beChange = google.maps.event.addListener(
+            this.map,
+            "bounds_changed",
+            function () {
+                return self.panMap.apply( self );
+			}
+		);
     }
 });
 
@@ -347,9 +402,9 @@ window.pdx.maps.geocode = function ( data, callback ) {
 
 // Location
 window.pdx.maps.location = {
-	lat: 45.5239,
-    lng: -122.67,
-    latLng: new google.maps.LatLng( 45.5239, -122.67 )
+	lat: null,
+    lng: null,
+    isset: false
 };
 
 // Map settings

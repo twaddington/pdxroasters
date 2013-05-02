@@ -24,9 +24,17 @@ var $_document = $( document ),
     $_pushRoaster = $_pushPage.find( ".roaster" ),
     $_roasters = $( "#roasters" ),
     $_logo = $( "#logo" ),
+    $_directionLinks = $( ".banner-link" ),
+    $_cafeShowing = $( "#close-cafes" ),
+    $_cafeClose = $_cafeShowing.find( "span" ),
+    $_cafeRoaster = $_cafeShowing.find( "a" ),
     $_roasterItems = $_roasters.find( ".push-link" ),
     $_roasterTogs = $_roasters.find( ".toggle" ),
     $_roasterHandles = $_roasters.find( ".handle" ),
+    $_roasterMarkers,
+    _currentRoasterId,
+    _locationMarker,
+    _roasterCafes = {},
     _pagePosition = 0,
     _pushState = new window.pdx.PushState( {async: false} ),
     _pushDuration = 300,
@@ -42,9 +50,60 @@ window.pdx.app.home = {
         this.handlePreMap();
         this.handleRoasters();
         this.handleFilter();
+        this.handleGeolocation();
         
         // Global nav module
         window.pdx.nav.init();
+    },
+    
+    handleGeolocation: function () {
+	    var self = this;
+	    
+	    if ( pdx.support.geolocation ) {
+	    	navigator.geolocation.watchPosition(
+	    		// Success
+	    		function ( position ) {
+		    		var latLng = new google.maps.LatLng( position.coords.latitude, position.coords.longitude );
+		    		
+		    		window.pdx.maps.location.lat = position.coords.latitude;
+		    		window.pdx.maps.location.lng = position.coords.longitude;
+		    		window.pdx.maps.location.isset = true;
+		    		
+		    		if ( _locationMarker ) {
+		    			_locationMarker.setPosition( latLng );
+		    			
+		    		} else {
+			    		_locationMarker = new window.pdx.maps.Location({
+		                    latLng: latLng,
+		                    map: self.map
+		                });
+		                
+		                self.map.setZoom( self.map.getZoom()+2 );
+		                self.map.setCenter( latLng );
+		    		}
+		    		
+		    		$_directionLinks.each(function () {
+			    		var saddr = this.href.match( /saddr=.*/ );
+			    		
+			    		if ( saddr ) {
+			    			this.href = this.href.replace( saddr[ 0 ], "saddr="+position.coords.latitude+","+position.coords.longitude );
+			    			
+			    		} else {
+				    		this.href = this.href+"&saddr="+position.coords.latitude+","+position.coords.longitude;
+			    		}
+		    		});
+	    		},
+	    		
+	    		// Failure
+	    		function () {},
+	    		
+	    		{
+		    		enableHighAccuracy: true,
+		    		timeout: 10000,
+		    		maximumAge: 30000
+	    		}
+	    	);
+	    }
     },
     
     handleFilter: function () {
@@ -77,7 +136,7 @@ window.pdx.app.home = {
 		    	$( ".marker-custom" ).removeClass( "s-hidden" );
 		    	$( ".s-focused" ).removeClass( "s-focused" );
 		    	
-		    	self.map.fitBounds( self.mapBounds );
+		    	self.map.fitBounds( self.mapBounds.roasters );
 		    
 		    // We can filter the list
 		    } else {
@@ -114,6 +173,7 @@ window.pdx.app.home = {
 			    }
 		    }
 		    
+		    /*
 		    // Update scrollable as page height changes
 		    _scrollAble = document.body.clientHeight-window.innerHeight;
 		    
@@ -159,6 +219,7 @@ window.pdx.app.home = {
 		    		$focused.click();
 		    	}
 		    }
+		    */
 		});
     },
     
@@ -178,12 +239,36 @@ window.pdx.app.home = {
         window.pdx.maps.onmapsready(function () {
             self.handleMap();
         });
+        
+        // Close cafes event
+        $_cafeClose.on( "click", function ( e ) {
+	        $_cafeShowing.removeClass( "active" );
+	        
+	        for ( var i = 0, len = _roasterCafes[ _currentRoasterId ].length; i < len; i++ ) {
+	        	_roasterCafes[ _currentRoasterId ][ i ].setMap( null );
+	        }
+	        
+	        self.map.fitBounds( self.mapBounds.roasters );
+                    
+            $_roasterMarkers.show();
+            
+            $_mapWrap.height( $_mapWrap.height()-$_filter.height() );
+        });
+        
+        $_cafeRoaster.on( "click", function ( e ) {
+	        e.preventDefault();
+	        
+	        $( "#"+_currentRoasterId ).click();
+        });
     },
     
     handleMap: function () {
         var self = this;
         
-        this.mapBounds = new google.maps.LatLngBounds();
+        this.mapBounds = {
+        	cafes: new google.maps.LatLngBounds(),
+	        roasters: new google.maps.LatLngBounds()
+        };
         this.map = new google.maps.Map(
         	this.mapElement,
         	window.pdx.maps.settings
@@ -194,67 +279,200 @@ window.pdx.app.home = {
         }
         
         $_roasterItems.each(function ( i ) {
-            var $elem = $( this ),
-                data = $elem.data(),
-                points = data.latlng,
-                name = data.name,
-                api = data.api = "/api/roaster/"+this.id+"/",
-                address = data.address,
-                id = this.id,
-                latLng,
-                marker;
+            var roasterData = $( this ).data(),
+                roasterPoints = roasterData.latlng,
+                roasterId = this.id,
+                roasterLatLng,
+                roasterMarker,
+                $cafes;
             
-            if ( !points ) {
-                window.pdx.maps.geocode(
-                    { address: address+" Portland, Oregon" },
-                    function ( location ) {
-                        latLng = location;
-                        marker = new window.pdx.maps.Marker({
-                            latLng: latLng,
-                            map: self.map,
-                            onAddCallback: function ( inst ) {
-                                self.handleOnAddMarker( inst, data );
-                            }
-                        });
-                        self.mapMarkers.push( marker );
-                        self.mapBounds.extend( latLng );
-                        
-                        if ( self.mapMarkers.length === $_roasterItems.length ) {
-                            self.map.fitBounds( self.mapBounds );
-                        }
-                    }
-                );
+            try {
+                roasterPoints = JSON.parse( roasterPoints );
                 
-            } else {
-                try {
-                    points = JSON.parse( points );
-                    
-                } catch ( error ) {}
+            } catch ( error ) {}
+            
+            if ( typeof roasterPoints === "object" ) {
+                roasterData.api = "/api/roaster/"+roasterId+"/";
                 
-                if ( typeof points === "object" ) {
-                    latLng = new google.maps.LatLng( points[ 0 ], points[ 1 ] );
-                    marker = new window.pdx.maps.Marker({
-                        latLng: latLng,
-                        map: self.map,
-                        onAddCallback: function ( inst ) {
-                            self.handleOnAddMarker( inst, data );
-                        }
-                    });
-                    
-                    self.mapMarkers.push( marker );
-                    self.mapBounds.extend( latLng );
-                }
+                roasterLatLng = new google.maps.LatLng( roasterPoints[ 0 ], roasterPoints[ 1 ] );
+                roasterMarker = new window.pdx.maps.Marker({
+                    latLng: roasterLatLng,
+                    map: self.map,
+                    markerClass: "marker-roaster",
+                    onAddCallback: function ( inst ) {
+                        self.handleOnAddRoaster( inst, roasterData );
+                    },
+                    roasterId: roasterId
+                });
+                
+                self.mapMarkers.push( roasterMarker );
+                self.mapBounds.roasters.extend( roasterLatLng );
+                
+                // Build associative cafes
+                $cafes = $( "#roaster-"+roasterId+" .cafe" );
+                _roasterCafes[ roasterId ] = [];
+                
+                $cafes.each(function () {
+	                var cafeData = $( this ).data(),
+	                	cafePoints = cafeData.latlng,
+	                	cafeId = cafeData.id,
+	                	cafeLatLng,
+	                	cafeMarker;
+	                
+	                try {
+		                cafePoints = JSON.parse( cafePoints );
+		                
+	                } catch ( error ) {}
+	                
+	                if ( typeof cafePoints === "object" ) {
+	                	cafeData.api = "/api/cafe/"+cafeId+"/";
+	                	
+	                	cafeLatLng = new google.maps.LatLng( cafePoints[ 0 ], cafePoints[ 1 ] );
+		                cafeMarker = new window.pdx.maps.Marker({
+		                    cafeId: cafeId,
+		                    latLng: cafeLatLng,
+		                    markerClass: "marker-cafe",
+		                    onAddCallback: function ( inst ) {
+		                        self.handleOnAddCafe( inst, cafeData );
+		                    }
+		                });
+		                
+		                _roasterCafes[ roasterId ].push( cafeMarker );
+	                }
+                });
             }
         });
         
-        this.map.fitBounds( this.mapBounds );
+        this.map.fitBounds( this.mapBounds.roasters );
+        
+        // Store DOMCollection of roaster markers
+        setTimeout(function () {
+        	$_roasterMarkers = $( ".marker-roaster" );
+        	
+        }, 500  );
     },
     
-    handleOnAddMarker: function ( instance, data ) {
+    handleOnAddCafe: function ( instance, data ) {
+	    var self = this,
+            $instance = $( instance.element ),
+            $tip = $instance.find( ".tooltip" ),
+            $infowindow,
+            timeout;
+        
+        $instance.find( ".tooltip" ).text( data.name );
+        
+        // Reveal Roaster name rollover
+        $instance.on( "mouseenter", "> div", function () {
+            var $elem = $( this );
+            
+            // If modal is active...
+            if ( $infowindow && !$infowindow.is( ".inactive" ) ) {
+                $tip.addClass( "loading" );
+                return false;
+            }
+            
+            // When modal is not active...
+            $instance.addClass( "active" );
+            $tip.removeClass( "loading" );
+        
+        // Hide Roaster Name rollover
+        }).on( "mouseleave", "> div", function ( e ) {
+            var $elem = $( this );
+            
+            // When infowindow is active...
+            if ( $infowindow && !$infowindow.is( ".inactive" ) ) {
+                $tip.addClass( "loading" );
+                return false;
+            }
+            
+            // When it's not active...
+            $instance.removeClass( "active" );
+            $tip.removeClass( "loading" );
+        });
+        
+        $instance.on( "click", "> div", function ( e ) {
+            var $elem = $( this );
+            
+            $( ".marker-cafe" ).removeClass( "active" );
+            $( ".marker-cafe > .infowindow" ).addClass( "inactive" );
+            
+            if ( instance.loaded ) {
+                $instance.addClass( "active" );
+                $infowindow.toggleClass( "inactive" );
+                $tip.addClass( "loading" )
+                   .css( "top", "50%" );
+                
+                if ( $infowindow.is( ".inactive" ) ) {
+                    $infowindow.css( "top", "80%" );
+                    
+                } else {
+                    $infowindow.css( "top", -($infowindow.height()+3) );
+                }
+                
+                return false;
+            }
+            
+            $tip.addClass( "loading" );
+            
+            $.ajax({
+                url: data.api,
+                type: "json",
+                data: {
+                    format: "json"
+                }
+            })
+            .then(function ( response ) {
+	            var html = window.pdx.templates.cafeInfo( response );
+                
+                clearTimeout( timeout );
+                
+                instance.loaded = true;
+                
+                $infowindow = $( "<span>" ).addClass( "infowindow" ).hide();
+                
+                instance.infowindow = $infowindow[ 0 ];
+                
+                $infowindow.html( html )
+                    .insertAfter( $tip )
+                    .css( "top", -($infowindow.height() + 20) )
+                    .css( "left", -(($infowindow.width()/2)-($elem.width()/2)) );
+                
+                $infowindow.find( ".plus-close" ).on( "click", function ( e ) {
+                    e.preventDefault();
+                    
+                    $infowindow.toggleClass( "inactive" );
+                    
+                    if ( $infowindow.is( "inactive" ) ) {
+                        $infowindow.css( "top", "50%" );
+                        
+                    } else {
+                        $infowindow.css( "top", -($infowindow.height()+3) );
+                    }
+                });
+                
+                // Slight delay for loadout
+                setTimeout(function () {
+                    $infowindow.show().removeClass( "loading" );
+                    
+                    $instance.addClass( "loaded" )
+                        .addClass( "active" );
+                    
+                    instance.panMap();
+                    
+                }, _pushDuration );
+            })
+            .fail(function ( error, message ) {
+	            clearTimeout( timeout );
+                    
+                console.log( "Infowindow load error" );
+            });
+        });
+    },
+    
+    handleOnAddRoaster: function ( instance, data ) {
         var self = this,
             $instance = $( instance.element ),
             $tip = $instance.find( ".tooltip" ),
-            $spin = $instance.find( ".plus-spinner > div" ),
             $infowindow,
             timeout;
         
@@ -291,18 +509,10 @@ window.pdx.app.home = {
         
         // Request the detailed content
         $instance.on( "click", "> div", function ( e ) {
-            var $elem = $( this ),
-            	__loading = function () {
-	                timeout = setTimeout(function () {
-	                    $spin.toggleClass( "loading" );
-	                    
-	                    __loading();
-	                    
-	                }, _pushDuration );
-	            };
+            var $elem = $( this );
             
-            $( ".marker-custom" ).removeClass( "active" );
-            $( ".infowindow" ).addClass( "inactive" );
+            $( ".marker-roaster" ).removeClass( "active" );
+            $( ".marker-roaster > .infowindow" ).addClass( "inactive" );
             
             if ( instance.loaded ) {
                 $instance.addClass( "active" );
@@ -322,11 +532,6 @@ window.pdx.app.home = {
             
             $tip.addClass( "loading" );
             
-            $spin.parent().addClass( "active" );
-            $spin.addClass( "loading" );
-            
-            __loading();
-            
             $.ajax({
                 url: data.api,
                 type: "json",
@@ -335,7 +540,7 @@ window.pdx.app.home = {
                 }
             })
             .then(function ( response ) {
-	            var html = window.pdx.templates.infowindow( response );
+	            var html = window.pdx.templates.roasterInfo( response );
                 
                 clearTimeout( timeout );
                 
@@ -363,11 +568,38 @@ window.pdx.app.home = {
                     }
                 });
                 
-                $infowindow.find( ".find" ).on( "click", function ( e ) {
-                    e.preventDefault();
-                    
-                    alert( "Need to hook up to cafes!" );
-                });
+                if ( !_roasterCafes[ instance.roasterId ].length ) {
+                	$infowindow.find( ".find" ).closest( ".col" ).remove();
+                	
+                } else {
+	                $infowindow.find( ".find" ).on( "click", function ( e ) {
+	                    e.preventDefault();
+	                    
+	                    _currentRoasterId = instance.roasterId;
+	                    
+	                    self.mapBounds.cafes = new google.maps.LatLngBounds();
+	                    
+	                    for ( var i = 0, len = _roasterCafes[ instance.roasterId ].length; i < len; i++ ) {
+	                    	_roasterCafes[ instance.roasterId ][ i ].setMap( self.map );
+	                    	
+	                    	self.mapBounds.cafes.extend( _roasterCafes[ instance.roasterId ][ i ].getPosition() );
+	                    }
+	                    
+	                    self.map.fitBounds( self.mapBounds.cafes );
+	                    
+	                    $_roasterMarkers.hide();
+	                    
+	                    $_cafeRoaster.text( data.name );
+	                    
+	                    $_cafeShowing
+	                    	.css( "margin-left", -($_cafeShowing.width()/2) )
+	                    	.addClass( "active" );
+	                    	
+	                    $infowindow.find( ".plus-close" ).click();
+	                    
+	                    $_mapWrap.height( $_mapWrap.height()+$_filter.height() );
+	                });
+                }
                 
                 $infowindow.find( ".more" ).on( "click", function ( e ) {
                     e.preventDefault();
@@ -378,9 +610,6 @@ window.pdx.app.home = {
                 // Slight delay for loadout
                 setTimeout(function () {
                     $infowindow.show().removeClass( "loading" );
-                    
-                    $spin.parent().removeClass( "active" );
-                    $spin.removeClass( "loading" );
                     
                     $instance.addClass( "loaded" )
                         .addClass( "active" );
@@ -433,7 +662,8 @@ window.pdx.app.home = {
             
             var $elem = $( this ),
                 $toggle = $elem.find( ".toggle" ),
-                $roaster = $( "#roaster-"+this.id );
+                $roaster = $( "#roaster-"+this.id ),
+                pageTitle = $roaster.find( ".roaster-title" ).text();
             
             $_pushPage.find( ".content" ).removeClass( "active" );
             
@@ -448,6 +678,20 @@ window.pdx.app.home = {
             $_pushPage.addClass( "active" );
             
             _pushState.push( this.href );
+            
+            // Update document data
+            document.title = window.pdx.documentTitle( pageTitle );
+            
+            // Track pushstate page views
+            if ( typeof ga === "function" ) {
+            	ga( "send", "pageview", {
+	            	page: this.href,
+	            	title: pageTitle,
+	            	hitCallback: function () {
+		            	console.log( "ga hitCallback: ", arguments );
+	            	}
+            	});
+            }
             
             _pagePosition = $_window.scrollTop();
             
@@ -471,6 +715,7 @@ _pushState.onpop(function () {
     $_pushPage.removeClass( "active" )
     	.removeClass( "active-page" );
     $_content.removeClass( "inactive" );
+    document.title = window.pdx.documentTitle( "Home" );
 });
 
 window.onresize = function () {
