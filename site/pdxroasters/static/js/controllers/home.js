@@ -40,7 +40,7 @@ var $_document = $( document ),
     _pushDuration = 300,
     _scrollAble = document.body.clientHeight-window.innerHeight,
     _atScrollEnd = false,
-    _timeout;
+    _homePageTitle;
 
 // Home Controller
 window.pdx.app.home = {
@@ -51,9 +51,21 @@ window.pdx.app.home = {
         this.handleRoasters();
         this.handleFilter();
         this.handleGeolocation();
+        this.getHomepageTitle();
         
         // Global nav module
         window.pdx.nav.init();
+    },
+    
+    getHomepageTitle: function () {
+	    var match = document.title.match( /^.*\| / );
+	    
+	    if ( match ) {
+	    	_homePageTitle = document.title.replace( match, "" );
+	    	
+	    } else {
+		    _homePageTitle = "Portland Coffee Map";
+	    }
     },
     
     handleGeolocation: function () {
@@ -107,21 +119,9 @@ window.pdx.app.home = {
     },
     
     handleFilter: function () {
-	    var self = this,
-	    	current = -1,
-	    	lastKey;
+	    var self = this;
 	    
-	    $_filter.on( "focus", function () {
-	    	current = -1;
-	    	
-		    $.scrollTo( $_filter.offset().top-$_header.height()-(window.innerHeight/2) );
-		    
-		    $_roasters.css( "min-height", window.innerHeight-$_header.height() );
-	    })
-	    .on( "blur", function () {
-	    	current = -1;
-	    })
-	    .on( "keyup", function ( e ) {
+	    $_filter.on( "keyup", function ( e ) {
 		    var value = this.value,
 		    	regex = new RegExp( "^"+value, "i" ),
 		    	tempBounds = new google.maps.LatLngBounds(),
@@ -130,8 +130,6 @@ window.pdx.app.home = {
 		    
 		    // Show all items in the list
 		    if ( !value.length ) {
-		    	current = -1;
-		    	
 		    	$_roasterItems.removeClass( "s-hidden" );
 		    	$( ".marker-custom" ).removeClass( "s-hidden" );
 		    	$( ".s-focused" ).removeClass( "s-focused" );
@@ -140,21 +138,7 @@ window.pdx.app.home = {
 		    
 		    // We can filter the list
 		    } else {
-				$_roasterItems.each(function ( item, i ) {
-			        var $this = $( this ),
-			            name = $this.data( "name" );
-			        
-			        if ( value !== "" && !regex.exec( name ) ) {
-			        	$this.addClass( "s-hidden" );
-			        	
-			        } else {
-				        $this.removeClass( "s-hidden" );
-				        
-				        filtered.push( this );
-			        }
-			    });
-			    
-			    for ( var i = 0, len = self.mapMarkers.length; i < len; i++ ) {
+		    	for ( var i = 0, len = self.mapMarkers.length; i < len; i++ ) {
 			    	var marker = self.mapMarkers[ i ],
 			    		$elem = $( marker.element );
 			    	
@@ -168,58 +152,14 @@ window.pdx.app.home = {
 			        }
 			    }
 			    
+			    if ( _locationMarker ) {
+			    	tempBounds.extend( _locationMarker.getPosition() );
+			    }
+			    
 			    if ( !tempBounds.isEmpty() ) {
 			    	self.map.fitBounds( tempBounds );
 			    }
 		    }
-		    
-		    /*
-		    // Update scrollable as page height changes
-		    _scrollAble = document.body.clientHeight-window.innerHeight;
-		    
-		    if ( e.keyCode === 38 || e.keyCode === 40 ) {
-		    	// Down
-		    	if ( e.keyCode === 40 ) {
-		    		if ( current !== filtered.length-1 ) {
-		    			current++;
-		    		}
-		    	
-		    	// Up	
-		    	} else {
-			    	if ( current !== 0 ) {
-			    		current--;
-			    	}
-		    	}
-		    	
-		    	var $current = $( filtered[ current ] );
-		    	
-		    	$( ".s-focused" ).removeClass( "s-focused" );
-		    	$current.find( ".handle" ).addClass( "s-focused" );
-		    	
-		    	if ( current === filtered.length-1 && !_atScrollEnd ) {
-		    		$.scrollTo( _scrollAble );
-		    		
-		    		_atScrollEnd = true;
-		    		
-		    	} else if ( current === 0 && e.keyCode === 38 ) {
-		    		$.scrollTo( $_filter.offset().top-$_header.height()-(window.innerHeight/2) );
-		    		
-		    		_atScrollEnd = false;
-		    		
-		    	} else if ( ($current.offset().top+$current.height()) > (window.innerHeight+$_window.scrollTop()) && e.keyCode === 40 && $_window.scrollTop() < _scrollAble ) {
-		    		$.scrollTo( $_window.scrollTop()+($current.height()*2) );
-		    	}
-		    }
-		    
-		    // Enter
-		    if ( e.keyCode === 13 ) {
-		    	$focused = $( ".s-focused" );
-		    	
-		    	if ( $focused.length ) {
-		    		$focused.click();
-		    	}
-		    }
-		    */
 		});
     },
     
@@ -255,6 +195,7 @@ window.pdx.app.home = {
             $_mapWrap.height( $_mapWrap.height()-$_filter.height() );
         });
         
+        // Click the roaster you are viewing cafes for
         $_cafeRoaster.on( "click", function ( e ) {
 	        e.preventDefault();
 	        
@@ -585,7 +526,17 @@ window.pdx.app.home = {
 	                    	self.mapBounds.cafes.extend( _roasterCafes[ instance.roasterId ][ i ].getPosition() );
 	                    }
 	                    
-	                    self.map.fitBounds( self.mapBounds.cafes );
+	                    if ( _locationMarker ) {
+	                    	self.mapBounds.cafes.extend( _locationMarker.getPosition() );
+	                    	self.map.fitBounds( self.mapBounds.cafes );
+	                    	
+	                    } else if ( _roasterCafes[ instance.roasterId ].length === 1 ) {
+		                    self.map.setCenter( _roasterCafes[ instance.roasterId ][ 0 ].getPosition() );
+		                    self.map.setZoom( 15 );
+		                    
+	                    } else {
+		                    self.map.fitBounds( self.mapBounds.cafes );
+	                    }
 	                    
 	                    $_roasterMarkers.hide();
 	                    
@@ -715,11 +666,11 @@ _pushState.onpop(function () {
     $_pushPage.removeClass( "active" )
     	.removeClass( "active-page" );
     $_content.removeClass( "inactive" );
-    document.title = window.pdx.documentTitle( "Home" );
+    document.title = window.pdx.documentTitle( _homePageTitle );
 });
 
-window.onresize = function () {
+$_window.on( "resize", function () {
 	$_mapWrap.height( window.innerHeight-$_filter.height()-$_header.height() );
-};
+});
 
 })( ender, window );
