@@ -56,37 +56,36 @@ def add_roaster(request):
             cafe_on_site = request.POST.get('cafe_on_site') is not None
             open_to_public = request.POST.get('open_to_public') is not None
 
+            # Return a list of errors
+            errors = []
+
             # TODO: Create an actual form class to handle this validation
             if len(name) == 0:
-                return HttpResponse(json.dumps({'error':
-                    'The roaster name cannot be blank','field':'name'}), mimetype=CONTENT_TYPE_JSON)
+                errors.append({'error': 'The roaster name cannot be blank','field':'name'})
 
             if len(address) == 0:
-                return HttpResponse(json.dumps({'error':
-                    'The roaster address cannot be blank','field':'address'}), mimetype=CONTENT_TYPE_JSON)
+                errors.append({'error': 'The roaster address cannot be blank','field':'address'})
 
             if len(phone) == 0:
-                return HttpResponse(json.dumps({'error':
-                    'The roaster phone cannot be blank','field':'phone'}), mimetype=CONTENT_TYPE_JSON)
+                errors.append({'error': 'The roaster phone cannot be blank','field':'phone'})
 
             if len(url) == 0:
-                return HttpResponse(json.dumps({'error':
-                    'The roaster url cannot be blank','field':'url'}), mimetype=CONTENT_TYPE_JSON)
+                errors.append({'error': 'The roaster url cannot be blank','field':'url'})
 
             if len(description) == 0:
-                return HttpResponse(json.dumps({'error':
-                    'The roaster description cannot be blank','field':'description'}), mimetype=CONTENT_TYPE_JSON)
+                errors.append({'error': 'The roaster description cannot be blank','field':'description'})
 
             try:
-                roaster = Roaster.objects.get(name=name)
+                roaster = Roaster.objects.get(name__iexact=name)
 
                 # Roaster already exists!
-                return HttpResponse(json.dumps({'error':
-                    'The given roaster already exists','field':'name'}), mimetype=CONTENT_TYPE_JSON)
+                errors.append({'error': 'The given roaster already exists','field':'name'})
             except Roaster.MultipleObjectsReturned:
-                return HttpResponse(json.dumps({'error':
-                    'The given roaster already exists','field':'name'}), mimetype=CONTENT_TYPE_JSON)
+                errors.append({'error': 'The given roaster already exists','field':'name'})
             except Roaster.DoesNotExist:
+                pass
+
+            if len(errors) == 0:
                 roaster = Roaster()
                 roaster.name = name
                 roaster.address = address
@@ -117,6 +116,8 @@ def add_roaster(request):
                         [settings.DEFAULT_CONTACT_EMAIL]).send()
 
                 return HttpResponse(status=204)
+            else:
+                return HttpResponse(json.dumps(errors), mimetype=CONTENT_TYPE_JSON)
 
     raise Http404()
 
