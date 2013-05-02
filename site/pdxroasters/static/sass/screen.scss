@@ -38,6 +38,14 @@ $skolar: 'Skolar', Helvetica, Arial, Sans-serif;
 $din: 'DIN', Helvetica, Arial, Sans-serif;
 $cabin: 'Cabin', Helvetica, Arial, Sans-serif;
 
+/* -- breakpoints -- */
+$phone: 300px;
+$phone-wide: 480px;
+$tablet: 720px;
+$tablet-wide: 1080px;
+$desktop: 1280px;
+$desktop-wide: 1920px;
+
 @import 'reset';
 @import 'fonts';
 @import 'typography';
