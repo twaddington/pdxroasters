@@ -40,7 +40,8 @@ var $_document = $( document ),
     _pushDuration = 300,
     _scrollAble = document.body.clientHeight-window.innerHeight,
     _atScrollEnd = false,
-    _timeout;
+    _timeout,
+    _homePageTitle;
 
 // Home Controller
 window.pdx.app.home = {
@@ -51,9 +52,21 @@ window.pdx.app.home = {
         this.handleRoasters();
         this.handleFilter();
         this.handleGeolocation();
+        this.getHomepageTitle();
         
         // Global nav module
         window.pdx.nav.init();
+    },
+    
+    getHomepageTitle: function () {
+	    var match = document.title.match( /^.*\| / );
+	    
+	    if ( match ) {
+	    	_homePageTitle = document.title.replace( match, "" );
+	    	
+	    } else {
+		    _homePageTitle = "Portland Coffee Map";
+	    }
     },
     
     handleGeolocation: function () {
@@ -255,6 +268,7 @@ window.pdx.app.home = {
             $_mapWrap.height( $_mapWrap.height()-$_filter.height() );
         });
         
+        // Click the roaster you are viewing cafes for
         $_cafeRoaster.on( "click", function ( e ) {
 	        e.preventDefault();
 	        
@@ -715,7 +729,7 @@ _pushState.onpop(function () {
     $_pushPage.removeClass( "active" )
     	.removeClass( "active-page" );
     $_content.removeClass( "inactive" );
-    document.title = window.pdx.documentTitle( "Home" );
+    document.title = window.pdx.documentTitle( _homePageTitle );
 });
 
 window.onresize = function () {

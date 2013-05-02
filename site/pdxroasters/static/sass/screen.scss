@@ -319,10 +319,9 @@ body {
 /* -- maps -- */
 #map-wrap {
     position: relative;
-    height: 100%;
+    //height: 100%;
     width: 100%;
     z-index: 7;
-    @include transition(height 300ms ease-in-out);
 }
 #map {
     position: relative;
@@ -351,10 +350,10 @@ body {
 		    @include border-radius(16px);
 		    @include opacity(.25);
 		    
-		    -moz-animation: pulse 6000ms infinite ease-in-out;
-		    -o-animation: pulse 6000ms infinite ease-in-out;
-		    -webkit-animation: pulse 6000ms infinite ease-in-out;
-		    animation: pulse 6000ms infinite ease-in-out;
+		    -moz-animation: pulse 3000ms infinite ease-in-out;
+		    -o-animation: pulse 3000ms infinite ease-in-out;
+		    -webkit-animation: pulse 3000ms infinite ease-in-out;
+		    animation: pulse 3000ms infinite ease-in-out;
 	    }
     }
 

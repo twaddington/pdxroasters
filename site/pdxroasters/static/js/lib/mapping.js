@@ -401,6 +401,8 @@ window.pdx.maps.geocode = function ( data, callback ) {
 };
 
 // Location
+window.pdx.maps.portland = new google.maps.LatLng( 45.5236, -122.6750 );
+
 window.pdx.maps.location = {
 	lat: null,
     lng: null,
@@ -409,7 +411,7 @@ window.pdx.maps.location = {
 
 // Map settings
 window.pdx.maps.settings = {
-    center: window.pdx.maps.location.latLng,
+    center: window.pdx.maps.portland,
 	disableDoubleClickZoom: false,
 	draggingCursor: "move",
 	draggableCursor: "default",
@@ -421,7 +423,7 @@ window.pdx.maps.settings = {
 	},
 	scrollwheel: false,
 	styles: window.pdx.mapstyles || [],
-	zoom: 15,
+	zoom: 7,
 	zoomControlOptions: {
 		position: google.maps.ControlPosition.LEFT_CENTER,
 		style: google.maps.ZoomControlStyle.LARGE
