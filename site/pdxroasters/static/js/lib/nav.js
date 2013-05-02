@@ -10,20 +10,22 @@
 "use strict";
 
 // Closure globals
-var $_document = $( document ),
-    $_body = $( document.body ),
-    $_window = $( window ),
-    $_pushPage = $( "#nav-push-page" ),
-    $_nav = $( "#nav" ),
+var $_window = $( window ),
+	$_header = $( "#header" ),
+	$_content = $( "#content" ),
+	$_nav = $( "#nav" ),
     $_navTog = $_nav.find( ".plus" ),
     $_navLinks = $_nav.find( "a:not(.plus)" ),
-    _lastOpenPage = null,
-    _pagePosition = 0,
-    _isPushPageOpen = false;
+    $_navPushPage = $( "#nav-push-page" ),
+    _isPushPageOpen = false,
+    _pushDuration = 300;
 
 window.pdx.nav = {
 	init: function () {
-		var self = this;
+		var self = this,
+			timeout;
+		
+		$_navPushPage.css( "min-height", window.innerHeight );
 		
 		$_navTog.on( "click", function ( e ) {
             e.preventDefault();
@@ -33,9 +35,14 @@ window.pdx.nav = {
             
             // Closing
             if ( !$_navTog.is( ".active" ) ) {
-            	$_pushPage.removeClass( "active" );
+            	$_content.show();
+            	$_navPushPage.removeClass( "active" )
+            		.removeClass( "active-page" );
             	$_navLinks.removeClass( "on" );
             	_isPushPageOpen = false;
+            	
+            } else {
+	            
             }
         });
         
@@ -43,8 +50,18 @@ window.pdx.nav = {
             e.preventDefault();
             
             if ( !_isPushPageOpen ) {
-            	$_pushPage.addClass( "active" );
+            	$_navPushPage.addClass( "active" );
             	_isPushPageOpen = true;
+            	
+            	timeout = setTimeout(function () {
+	            	clearTimeout( timeout );
+	            	
+	            	$_content.hide();
+	            	$_navPushPage.addClass( "active-page" );
+	            	
+	            	window.scrollTo( 0, 0 );
+	            				
+	            }, _pushDuration );
             }
             
             var $this = $( this ),
@@ -57,10 +74,15 @@ window.pdx.nav = {
             $_navLinks.removeClass( "on" );
             $this.addClass( "on" );
             
-            $_pushPage.find( ".page" ).removeClass( "active" );
+            $_navPushPage.find( ".page" ).removeClass( "active" );
             $page.addClass( "active" );
         });
 	}
-}
+};
+
+// Global handlers
+$_window.on( "resize", function () {
+	$_navPushPage.css( "min-height", window.innerHeight );
+});
 
 })( ender, window );
