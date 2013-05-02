@@ -10,7 +10,7 @@ only screen and (min-device-width : 320px) and (max-device-width : 480px) {
 	#roasters {
 		.roaster {
 			.handle {
-				font-size: 18px;
+				font-size: 1em;
 
 				span {
 					display: inline-block;
@@ -19,14 +19,14 @@ only screen and (min-device-width : 320px) and (max-device-width : 480px) {
 			}
 		}
 	}
-	
+
 	.roaster-banner {
 		min-height: 100px;
 	}
-	
+
 	.banner-title {
 		top: auto;
-		padding: 5% 8% 5% 8%;
-		width: 84%;
+    padding: 3em 4% 3em 12%;
+    width: 84%;
 	}
 }

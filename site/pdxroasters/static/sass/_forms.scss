@@ -11,8 +11,8 @@ textarea {
     line-height: 1em;
     font-family: $din;
     font-size: 1em;
-    border: 1px solid #e5e5e5;
-    background-color: #fbfbfb;
+    border: 1px solid #dedede;
+    background-color: #f8f8f8;
     margin: 8px 0px;
 
     @include box-sizing(border-box);
@@ -34,7 +34,7 @@ input[type="tel"] {
 }
 input[type="url"] {
     width: 64%;
-    margin-left: 5%;
+    float: right;
 }
 input[type="checkbox"] {
     vertical-align: 0.15em;
@@ -68,4 +68,8 @@ button[type="submit"] {
         background-color: #000;
     }
 }
-
+.ajax-form {
+    @include respond-to(300px, 720px){
+        margin-top:3em;
+    }
+}

@@ -46,10 +46,10 @@
         {% block pre_footer %}{% endblock %}
         {% block footer %}
         <footer id="footer">
-            <a href="https://github.com/twaddington/pdxroasters">
-                <img style="float: right;" alt="GitHub" src="{% static 'img/GitHub-Mark-32px.png' %}" />
-            </a>
             <p>&copy; {% now "Y" %} PDX Roasters | <a href="/api/roaster/?format=json">We love APIs</a></p>
+            <a href="https://github.com/twaddington/pdxroasters">
+                <img class="github-logo" alt="GitHub" src="{% static 'img/GitHub-Mark-32px.png' %}" />
+            </a>
         </footer>
         {% endblock %}
     </div>

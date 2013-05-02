@@ -26,6 +26,11 @@
 .col2of5 { width: 40%; }
 .col3of5 { width: 60%; }
 .col4of5 { width: 80%; }
+.col1of1, .col1of2, .col1of3, .col2of3, .col1of4, .col3of4, .col1of5, .col2of5, .col3of5, .col4of5 {
+    @include respond-to(300px, 480px){
+        width:100%;
+    }
+}
 .group {
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
