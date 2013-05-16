@@ -43,3 +43,27 @@
     height: 0;
     visibility: hidden;
 }
+
+// Inline-block reset
+$inline_block_reset: 'Courier New', Monospace;
+$inline_block_reset_spacing: -.65em;
+
+.col-group {
+	font-family: $inline_block_reset;
+	letter-spacing: $inline_block_reset_spacing;
+	margin-left: -15px;
+	margin-right: -15px;
+	text-align: left;
+	
+	.col {
+		display: inline-block;
+		float: none;
+		font-family: $cabin;
+		letter-spacing: normal;
+		padding-left: 15px;
+		padding-right: 15px;
+		position: relative;
+		text-align: left;
+		vertical-align: top;
+	}
+}

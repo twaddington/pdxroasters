@@ -60,15 +60,17 @@
             </div>
 
             <h4 class="about-title">Cafes Serving this Roast</h4>
-
+            	<div class="col-group">
                 {% for cafe in roaster.cafes.all %}
                 <div class="col col1of3 cafe" data-id="{{ cafe.id }}" data-latlng="[{{ cafe.lat }},{{ cafe.lng }}]" data-name="{{ cafe.name }}">
                     <p class="tight"><a href="{{ cafe.url }}">{{ cafe.name }}</a><br/><span class="phone-number">{{ cafe.address }}<br />{% if cafe.phone %}{{ cafe.phone }}{% else %} N/A {% endif %}</span></p>
                 </div>
                 {% empty %}
-                    No cafes yet.
+                    <div class="col">
+                    	No cafes yet.
+                    </div>
                 {% endfor %}
-
+            	</div>
         </div>
     </div>
 </div>
