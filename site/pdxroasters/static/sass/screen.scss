@@ -330,6 +330,10 @@ body {
 
     &.active {
 	    top: 0;
+	    
+	    .page {
+		    display: block;
+	    }
     }
 
     .push-pages {
@@ -338,6 +342,7 @@ body {
     }
 
     .page {
+    	display: none;
     	float: left;
         margin-left: -100%;
         position: relative;

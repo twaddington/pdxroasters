@@ -36,24 +36,22 @@ window.pdx.forms = {
 	
 	fail: function ( $elem, response ) {
 		$elem.find( ".error-message" ).remove();
-                $elem.find( ".f-error" ).removeClass( "f-error" );
+        $elem.find( ".f-error" ).removeClass( "f-error" );
 
-                if (Array.isArray(response)) {
-                    for ( var i = 0; i < response.length; i++ ) {
-                        this.show_error( $elem, response[i] );
-                    }
-                } else {
-                    this.show_error( $elem, response );
-                }
-        },
-
-        show_error: function ( $elem, data ) {
-		var $field = $elem.find( "[name='"+data.field+"']" );
-		
-		$field.addClass( "f-error" ).focus();
-		
-		$( '<span class="error-message">'+data.error+'</span>' ).insertBefore( $field );
+        if ( response.length ) {
+        	for ( var i = 0, len = response.length; i < len; i++ ) {
+        		this.error( $elem, response[ i ] );
+        	}
         }
+    },
+
+    error: function ( $elem, data ) {
+		var $field = $elem.find( "[name='"+data.field+"']" );
+	
+		$field.addClass( "f-error" ).focus();
+	
+		$( '<span class="error-message">'+data.error+'</span>' ).insertBefore( $field );
+    }
 };
 
 // Async form handling
