@@ -35,3 +35,7 @@ site/pdxroasters/static/js/dist/*
 # Ignore Compass build files
 site/pdxroasters/static/css/
 site/pdxroasters/static/css/*
+
+# Ignore grunt node_modules
+site/pdxroasters/static/js/node_modules
+site/pdxroasters/static/js/node_modules/*
