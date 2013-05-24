@@ -35,11 +35,7 @@ window.pdx.nav = {
             
             // Closing
             if ( !$_navTog.is( ".active" ) ) {
-            	$_content.show();
-            	$_navPushPage.removeClass( "active" )
-            		.removeClass( "active-page" );
-            	$_navLinks.removeClass( "on" );
-            	_isPushPageOpen = false;
+            	self.close();
             	
             } else {
 	            
@@ -77,6 +73,17 @@ window.pdx.nav = {
             $_navPushPage.find( ".page" ).removeClass( "active" );
             $page.addClass( "active" );
         });
+	},
+	
+	close: function () {
+		if ( window.location.pathname === "/" ) {
+			$_content.show();
+		}
+		
+    	$_navPushPage.removeClass( "active" )
+    		.removeClass( "active-page" );
+    	$_navLinks.removeClass( "on" );
+    	_isPushPageOpen = false;
 	}
 };
 
