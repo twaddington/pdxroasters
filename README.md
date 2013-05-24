@@ -56,7 +56,7 @@ When anybody modifies the data models, you'll need to delete the `pdxroasters.db
 
 ### UI Getting Started:
 	
-	$ cd site/static/js
+	$ cd site/pdxroasters/static/js
 	$ npm install grunt@0.3.17 (only if using grunt -v 4 and grunt-cli)
 	$ npm install grunt-compass
 	
