@@ -19,6 +19,7 @@ window.pdx.templates = {
         }
         html += '<h3>'+view.name+'</h3>';
         html += '<a href="#'+view.id+'" class="more"></a>';
+        html += '<p>'+view.address+'</p>';
 
         return html;
     },
