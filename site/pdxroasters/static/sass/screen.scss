@@ -185,6 +185,7 @@ body {
         width: 2.5em;
         height: 2.5em;
         background: $tan url("../img/logo.png") no-repeat center center;
+        background-size: 2.5em 2.5em;
         @include retina-display(){
             background: $tan url("../img/logo@2x.png") no-repeat center center;
             background-size: 2.5em 2.5em;
@@ -494,8 +495,14 @@ body {
         }
         // Cafe Markers
         &.marker-cafe > div {
-            background-image: url("../img/cafe-marker.png");
+            background: url("../img/cafe-marker.png") no-repeat top left transparent;
+            background-size:  20px 32px;
+            @include retina-display(){
+                background: url("../img/cafe-marker@2x.png") no-repeat top left transparent;
+                background-size: 20px 32px;
+            }
         }
+
         // Mouse over Title of Roaster
         > span {
             background-color:$white;
@@ -586,13 +593,13 @@ body {
                 display: inline-block;
                 width: 30px;
                 height: 30px;
-                background: url('../img/right-arrow.png') center center no-repeat transparent;
+                background: url('../img/information.png') center center no-repeat transparent;
                 background-size: 30px;
                 position: absolute;
                 right: 6px;
                 top: 5px;
                 @include retina-display(){
-                    background: transparent url("../img/right-arrow@2x.png") no-repeat center center;
+                    background: transparent url("../img/information@2x.png") no-repeat center center;
                     background-size: 30px;
                 }
 
@@ -602,7 +609,12 @@ body {
             }
 
             p {
-                margin: 0;
+                margin:0;
+                line-height: 13px;
+                font-size: 12px;
+                text-align: left;
+                text-indent: 30px;
+                color: #aaa;
             }
 
             .btn {
@@ -869,12 +881,29 @@ body {
 
 .banner-address {
     line-height: 1.5em;
+    margin-left:24px;
 }
 
 .banner-link {
     color: $white;
+    position:relative;
     &:hover {
         color: $lighter-gray;
+    }
+    &:after {
+        width: 20px;
+        height: 26px;
+        content: "";
+        display: block;
+        position: absolute;
+        top:0;
+        left: -24px;
+        background: url('/static/img/turn-by-turn.png') no-repeat top center transparent;
+        background-size: 20px;
+        @include retina-display(){
+            background: transparent url("/static/img/turn-by-turn@2x.png") no-repeat center;
+            background-size: 20px;
+        }
     }
 }
 

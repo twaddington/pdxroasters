@@ -13,10 +13,12 @@
 window.pdx.templates = {
     roasterInfo: function ( view ) {
         var html = "";
-
-        html += '<a href="#'+view.id+'" class="find"></a>';
+        if (view.cafes.length) {
+            html += '<a href="#'+view.id+'" class="find"></a>';
+        }
         html += '<h3>'+view.name+'</h3>';
         html += '<a href="#'+view.id+'" class="more"></a>';
+        html += '<p>'+view.address+'</p>';
 
         return html;
     },
