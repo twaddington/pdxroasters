@@ -494,8 +494,14 @@ body {
         }
         // Cafe Markers
         &.marker-cafe > div {
-            background-image: url("../img/cafe-marker.png");
+            background: url("../img/cafe-marker.png") no-repeat top left transparent;
+            background-size:  20px 32px;
+            @include retina-display(){
+                background: url("../img/cafe-marker@2x.png") no-repeat top left transparent;
+                background-size: 20px 32px;
+            }
         }
+
         // Mouse over Title of Roaster
         > span {
             background-color:$white;
