@@ -13,7 +13,6 @@
 window.pdx.templates = {
     roasterInfo: function ( view ) {
         var html = "";
-        console.log(view);
         if (view.cafes.length) {
             html += '<a href="#'+view.id+'" class="find"></a>';
         }

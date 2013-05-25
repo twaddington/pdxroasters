@@ -592,13 +592,13 @@ body {
                 display: inline-block;
                 width: 30px;
                 height: 30px;
-                background: url('../img/right-arrow.png') center center no-repeat transparent;
+                background: url('../img/information.png') center center no-repeat transparent;
                 background-size: 30px;
                 position: absolute;
                 right: 6px;
                 top: 5px;
                 @include retina-display(){
-                    background: transparent url("../img/right-arrow@2x.png") no-repeat center center;
+                    background: transparent url("../img/information@2x.png") no-repeat center center;
                     background-size: 30px;
                 }
 
@@ -880,12 +880,29 @@ body {
 
 .banner-address {
     line-height: 1.5em;
+    margin-left:24px;
 }
 
 .banner-link {
     color: $white;
+    position:relative;
     &:hover {
         color: $lighter-gray;
+    }
+    &:after {
+        width: 20px;
+        height: 26px;
+        content: "";
+        display: block;
+        position: absolute;
+        top:0;
+        left: -24px;
+        background: url('/static/img/turn-by-turn.png') no-repeat top center transparent;
+        background-size: 20px;
+        @include retina-display(){
+            background: transparent url("/static/img/turn-by-turn@2x.png") no-repeat center;
+            background-size: 20px;
+        }
     }
 }
 
