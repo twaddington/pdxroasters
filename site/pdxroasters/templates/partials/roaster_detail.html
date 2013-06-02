@@ -3,7 +3,9 @@
         <a class="back-to-list" href="#"> </a>
         <div class="banner-title">
             <h1 class="roaster-title"> {{ roaster.name }} </h1>
+            {% if roaster.address %}
             <p class="banner-address"> <a class="banner-link" href="http://maps.google.com/maps?daddr={{ roaster.lat }},{{ roaster.lng }}" target="_blank"> {{ roaster.address|linebreaksbr }} </a> </p>
+            {% endif %}
         </div>
     </div>
     <div class="group roaster-description" id="roaster-description">
