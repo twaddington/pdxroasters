@@ -1,9 +1,6 @@
 /**
  * PDX Roaster Templates
  *
- * @dependencies:
- * /static/js/pdx.js
- *
  */
 (function ( $, window, undefined ) {
 
@@ -11,30 +8,50 @@
 
 // Templates namespace
 window.pdx.templates = {
-    roasterInfo: function ( view ) {
+    _trim: function ( html ) {
+		return html.replace( /\{\{\s/g, "{{" ).replace( /\s\}\}/g, "}}" );
+	},
+	
+	// Handles top-level object properties only
+	render: function ( html, data ) {
+		var ret = this._trim( html );
+		
+		for ( var i in data ) {
+			var regex = new RegExp( "\{\{"+i+"\}\}", "g" );
+			
+			ret = ret.replace( regex, data[ i ] );
+		}
+		
+		return ret;
+	},
+    
+    roasterInfo: function ( data ) {
         var html = "";
-        if (view.cafes.length) {
-            html += '<a href="#'+view.id+'" class="find"></a>';
+        
+        if ( view.cafes.length ) {
+            html += '<a href="#{{ id }}" class="find"></a>';
         }
-        html += '<h3>'+view.name+'</h3>';
-        html += '<a href="#'+view.id+'" class="more"></a>';
-        html += '<p>'+view.address+'</p>';
+        
+        html += '<h3>{{ name }}</h3>';
+        html += '<a href="#{{ id }}" class="more"></a>';
+        html += '<p>{{ address }}</p>';
 
-        return html;
+        return this.render( html, data );
     },
 
-    cafeInfo: function ( view ) {
+    cafeInfo: function ( data ) {
         var html = "";
 
-        html = '<h3>'+view.name+'</h3>';
+        html = '<h3>{{ name }}</h3>';
+        
         if ( window.pdx.maps.location.isset ) {
-        	html += '<a href="'+window.pdx.maps.url+'?daddr='+view.lat+','+view.lng+'&saddr='+window.pdx.maps.location.lat+','+window.pdx.maps.location.lng+'" class="btn more" target="_blank">Get Directions</a>';
+        	html += '<a href="'+window.pdx.maps.url+'?daddr={{ lat }},{{ lng }}&saddr={{ lat }},{{ lng }}" class="btn more" target="_blank">Get Directions</a>';
 
         } else {
-            html += '<a href="'+window.pdx.maps.url+'?daddr='+view.lat+','+view.lng+'" class="btn more" target="_blank">Get Directions</a>';
+            html += '<a href="'+window.pdx.maps.url+'?daddr={{ lat }},{{ lng }}" class="btn more" target="_blank">Get Directions</a>';
         }
 
-        return html;
+        return this.render( html, data );
     }
 }
 

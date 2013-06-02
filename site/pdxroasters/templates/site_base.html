@@ -26,32 +26,9 @@
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 </head>
-<body class="{% block pageclass %}{% endblock %}" data-controller="{% block controller %}{% endblock %}" data-environment="{% if debug %}development{% else %}production{% endif %}" data-csrftoken="{{ csrf_token }}">
+<body data-environment="{% if debug %}development{% else %}production{% endif %}" data-csrftoken="{{ csrf_token }}">
     <div id="page">
-        {% block header %}
-        <header id="header">
-            <h1 id="logo"><a href="/">PDX Roasters</a></h1>
-            <nav id="nav">
-                <ul>
-                    <li><a href="#more" class="plus"> <span> &#43; </span> </a> </li>
-                    <li><a href="/about/">About</a></li>
-                    <li><a href="/add-a-roaster/">Add Roaster</a></li>
-                </ul>
-            </nav>
-        </header>
-        {% endblock %}
-        <section id="content">
-            {% block content %}{% endblock %}
-        </section>
-        {% block pre_footer %}{% endblock %}
-        {% block footer %}
-        <footer id="footer">
-            <a href="https://github.com/twaddington/pdxroasters">
-                <img class="github-logo" alt="GitHub" src="{% static 'img/GitHub-Mark-32px.png' %}" />
-            </a>
-            <p>&copy; {% now "Y" %} PDX Roasters | <a href="/api/roaster/?format=json">We love APIs</a></p>
-        </footer>
-        {% endblock %}
+        
     </div>
     {% if debug %}
     <script src="{% static 'js/dist/scripts.js' %}"></script>

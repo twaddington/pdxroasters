@@ -1,17 +1,19 @@
 /**
- * PDX Roaster Pushstate Javascript
- *
- * @dependencies:
- * /static/js/pdx.js
+ * PDX Roaster pushstate Javascript
  *
  */
 (function ( $, window, undefined ) {
 
 "use strict";
 
-// PushState Class
-window.pdx.PushState = require( "Class" ).extend({
+window.pdx.pushstate = {
     init: function ( options ) {
+        if ( this.__initialized ) {
+        	return this;
+        }
+        
+        this.__initialized = true;
+        
         this.cache = {};
         this.poppable = false;
         this.pushable = ("history" in window && "pushState" in window.history);
@@ -189,6 +191,6 @@ window.pdx.PushState = require( "Class" ).extend({
             this.callbacks[ event ][ i ].apply( null, [this.state] );
         }
     }
-});
+};
 
 })( ender, window );

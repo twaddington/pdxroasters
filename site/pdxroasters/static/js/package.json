@@ -1,31 +1,20 @@
 {
-	"name": "PDXRoasters",
-	"description": "Find coffee roasters in Portland, Oregon",
-	"version": "1.0.0",
-	"authors": [
-		{
-			"name": "Brandon Kitajchuk",
-			"email": "@kitajchuk",
-			"url": "http://blkcreative.com"
-		},
-		{
-			"name": "Tristan Waddington",
-			"email": "@twaddington",
-			"url": "http://tristanwaddington.com"
-		},
-		{
-			"name": "Paul Pederson",
-			"email": "@paulcpederson",
-			"url": "http://paulcpederson.com"
-		},
-		{
-			"name": "Isaac Viel",
-			"email": "isaacviel@gmail.com",
-			"url": "http://isaacviel.name"
-		}
-	],
-	"devDependencies": {
-	"grunt": "~0.4.0",
-	"grunt-contrib-compass": "~0.1.2"
-	}
+  "name": "pdxroasters",
+  "description": "ERROR: No README.md file found!",
+  "version": "0.0.1",
+  "author": "PDX Roasters",
+  "main": "app.js",
+  "dependencies": {
+    "grunt": "~0.3.17",
+    "grunt-compass": "~0.3.9"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/twaddington/pdxroasters"
+  },
+  "license": "MIT"
 }
