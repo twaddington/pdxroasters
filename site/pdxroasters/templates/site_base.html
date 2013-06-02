@@ -1,13 +1,25 @@
 {% load staticfiles %}
 <!DOCTYPE html>
-<!--[if IE 7]><html lang="en" class="ie ie-legacy ie7"><![endif]-->
-<!--[if IE 8]><html lang="en" class="ie ie-legacy ie8"><![endif]-->
-<!--[if IE 9]><html lang="en" class="ie ie9"><![endif]-->
-<!--[if gt IE 8]><html lang="en"><![endif]-->
-<!--[if !IE]><!--><html lang="en"><!--<![endif]-->
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="apple-mobile-web-app-title" content="Affinity" />
+	<link rel="apple-touch-icon-precomposed" href="/static/img/touch/icon-54.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/img/touch/icon-72.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/img/touch/icon-114.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/img/touch/icon-144.png" />
+	<link rel="apple-touch-startup-image" href="/static/img/touch/startup-ipad-landscape-retina.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) and (min-device-pixel-ratio: 2)" />
+	<link rel="apple-touch-startup-image" href="/static/img/touch/startup-ipad-portrait-retina.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) and (min-device-pixel-ratio: 2)" />
+	<link rel="apple-touch-startup-image" href="/static/img/touch/startup-ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)" />
+	<link rel="apple-touch-startup-image" href="/static/img/touch/startup-ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)" />
+	<link rel="apple-touch-startup-image" href="/static/img/touch/startup-568h-retina.png" media="screen and (device-height: 568px)" />
+	<link rel="apple-touch-startup-image" href="/static/img/touch/startup-retina.png" media="screen and (device-height: 480px) and (min-device-pixel-ratio: 2)" />
+	<link rel="apple-touch-startup-image" href="/static/img/touch/startup.png" media="screen and (device-height: 480px)" />
+	
     <meta name="keywords" content="{% block meta_keywords %}Portland&rsquo;s coffee scene is pioneering, unique and fiercely dedicated to craft and quality. Use PDX Roasters to find a local coffee roaster in Portland, Ore.{% endblock %}" />
     <meta name="description" content="{% block meta_description %}{% endblock %}" />
     <meta name="author" content="Isaac Viel" />
@@ -15,21 +27,46 @@
     <meta name="author" content="Paul C. Pederson" />
     <meta name="author" content="Brandon Lee Kitajchuk" />
     <link rel="author" href="humans.txt" />
+    
+    <link href="{% static 'css/screen.css' %}" rel="stylesheet" media="screen" />
+    <link href="/static/img/favicon.png" rel="shortcut icon" />
+	
     <title>PDX Roasters | {% block title %}{% endblock %}</title>
-    <!--[if gte IE 7]><!-->
-        <link href="{% static 'css/screen.css' %}" rel="stylesheet" media="screen" />
-    <!--<![endif]-->
-    <!--[if(IE 7)|(IE 8)|(IE 9)]>
-		<link href="{% static 'css/ie.css' %}" rel="stylesheet" media="screen" />
-	<![endif]-->
-    <!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
 </head>
 <body data-environment="{% if debug %}development{% else %}production{% endif %}" data-csrftoken="{{ csrf_token }}">
-    <div id="page">
-        
-    </div>
+    <nav>
+    	<ul>
+    		<li><a href="#" class="logo"></a></li>
+    		<li><a href="#" class="map"></a></li>
+    		<li><a href="#" class="list"></a></li>
+    		<li><a href="#" class="info"></a></li>
+    	</ul>
+    </nav>
+    <section id="content">
+    	<section id="view view-map">
+    		<div id="map"></div>
+    	</section>
+    	<section id="view view-list">
+    		<div class="scroll-pane">
+    			<ul class="sort-list">
+    				<li><a href="#"></a></li>
+    				<li><a href="#"></a></li>
+    			</ul>
+    			<ul class="list-content">
+    			</ul>
+    		</div>
+    	</section>
+    	<section id="view view-info">
+    		<div class="scroll-pane">
+    			<section class="about">
+    			</section>
+    			<section class="contact">
+    			</section>
+    			<section class="add-a-roaster">
+    			</section>
+    		</div>
+    	</section>
+    </section>
     {% if debug %}
     <script src="{% static 'js/dist/scripts.js' %}"></script>
     {% else %}
