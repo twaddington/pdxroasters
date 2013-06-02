@@ -6,20 +6,19 @@ module.exports = function ( grunt ) {
 		pkg: "<json:package.json>",
 		meta: {
 			version: "0.1.0",
-			banner: "/*! Github - v<%= meta.version %> - " +
-				"<%= grunt.template.today('yyyy-mm-dd') %>\n" +
-				"* http://gggus.cpm/\n" +
-				"* Copyright (c) <%= grunt.template.today('yyyy') %> " +
-				"Brandon Lee Kitajchuk; Licensed MIT */"
+			banner:
+				"/*! PDX Roasters - v<%= meta.version %> - <%= grunt.template.today('yyyy-mm-dd') %>\n" +
+				" * @author: PDX Roasters\n" +
+				" * @url: http://pdxroasters.com\n" +
+				" * \n" +
+				" */"
 		},
 		lint: {
 			files: {
 				site: [
 					"ender/ender.js",
 					"pdx.js",
-					"support.js",
 					"lib/*",
-					"controllers/*",
 					"app.js"
 				]
 			}
@@ -89,17 +88,12 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( "grunt-compass" );
 	
 	// Prod deploy task. Use before commit.
-	grunt.registerTask( "deploy", "concat:site min:site compass:production" );
+	grunt.registerTask( "deploy", "concat min compass:production" );
 	
-	// Default task.
-	grunt.registerTask( "default", "lint qunit concat:site min:site" );
-	grunt.registerTask( "build", "concat:site min:site" );
+	// Build task.
+	grunt.registerTask( "build", "concat min compass:development" );
 	
-	// Site task. Javascript only.
-	grunt.registerTask( "build_site", "concat:site min:site" );
-	grunt.registerTask( "watch_site", "watch:site" );
-	
-	// All task. Watches Compass also.
-	grunt.registerTask( "watch_all", "watch:all" );
+	// Test task.
+	grunt.registerTask( "test", "lint" );
 
 };

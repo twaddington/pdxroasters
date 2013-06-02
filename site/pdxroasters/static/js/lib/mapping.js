@@ -11,11 +11,6 @@
  */
 (function ( window, undefined ) {
 
-// Don't do it for mobile
-if ( window.pdx.support.mobile.isMobile ) {
-	//return false;
-}
-
 // Map namespace
 window.pdx.maps = {
     lib: "http://maps.google.com/maps/api/js",

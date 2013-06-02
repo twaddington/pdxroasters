@@ -1,9 +1,6 @@
 /**
  * PDX Roaster Google Analytics
  *
- * @dependencies:
- * /static/js/pdx.js
- *
  */
 (function ( $, window, undefined ) {
 
