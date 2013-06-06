@@ -504,6 +504,16 @@ body {
         display:table-cell;
         vertical-align:middle;
         text-align:center;
+        a {
+            color: white;
+            width:2em;
+            background-color: $darker-gray;
+            box-sizing:border-box;
+            border: 1px solid $darkest-gray;
+        }
+        &:first-child {
+            border-right: 1px solid $gray;
+        }
     }
 }
 .list-content {
