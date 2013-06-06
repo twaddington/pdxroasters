@@ -91,61 +91,34 @@ body {
         color: $white;
     }
 }
-
-.plus-close {
-    background: url(../img/plusthin.png) no-repeat 0 0;
-    display: block;
-    height: 22px;
-    position: absolute;
-    right: 20px;
-    text-indent: -9999px;
-    top: 20px;
-    width: 22px;
-
-    @include transform(rotate(-45deg));
-}
-
-.s-hidden {
-	display: none !important;
-}
-
-
-/* -- structure -- */
-#page,
-#content {
-    overflow: hidden;
-    position: relative;
-}
-#content {
-    left: 0;
-    width: 100%;
-    @include transition(left 300ms ease-in);
-    @include transform(translate3d(0,0,0));
-    &.inactive {
-        left: -100%;
+.top-nav {
+    background-color: transparent;
+    padding:0 2em;
+    width:100%;
+    position:fixed;
+    box-sizing: border-box;
+    ul {
+        width:100%;
+        li{
+            float:left;
+            display:inline-block;
+            &.nav-right {
+                float:right;
+            }
+            a{
+                padding:1em;
+                background-color: #fff;
+                color: $darkest-gray;
+                &.active {
+                    background-color: $red;
+                    color: $white;
+                }
+                float:left;
+            }
+        }
     }
 }
-#header {
-    background: $white;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 10;
-    position: relative;
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-    height: 5em;
-    padding: 0 2em;
-    @include box-shadow(0 0 12px rgba(0,0,0,.2));
-    @include respond-to($phone, $phone-wide) {
-        height: 3em;
-        padding: 0 0.5em;
-    }
-}
-.home #header {
-    position: fixed;
-}
+
 #footer {
     background-color: #333;
     color: #fff;

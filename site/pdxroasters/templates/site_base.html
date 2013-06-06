@@ -34,12 +34,12 @@
     <title>PDX Roasters | {% block title %}{% endblock %}</title>
 </head>
 <body data-environment="{% if debug %}development{% else %}production{% endif %}" data-csrftoken="{{ csrf_token }}">
-    <nav>
+    <nav class="top-nav">
     	<ul>
     		<li><a href="#" class="logo">PDX Roasters</a></li>
-    		<li><a href="#view-map" class="map">Map</a></li>
-    		<li><a href="#view-list" class="list">List</a></li>
-    		<li><a href="#view-info" class="info">Info</a></li>
+    		<li class="nav-right"><a href="#view-map" class="map active">Map</a></li>
+    		<li class="nav-right"><a href="#view-list" class="list ">List</a></li>
+    		<li class="nav-right"><a href="#view-info" class="info ">Info</a></li>
     	</ul>
     </nav>
     <section id="content">
