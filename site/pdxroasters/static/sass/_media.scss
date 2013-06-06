@@ -7,17 +7,6 @@ only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 1
 only screen and (max-device-width : 640px) and (-webkit-min-device-pixel-ratio : 1.5),
 only screen and (max-device-width : 640px) and (min-device-pixel-ratio : 1.5),
 only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-	#roasters {
-		.roaster {
-			.handle {
-				font-size: 1em;
-
-				span {
-					display: inline-block;
-				}
-			}
-		}
-	}
 
 	.roaster-banner {
 		min-height: 100px;
