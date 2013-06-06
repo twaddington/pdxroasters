@@ -27,8 +27,8 @@
     <meta name="author" content="Paul C. Pederson" />
     <meta name="author" content="Brandon Lee Kitajchuk" />
     <link rel="author" href="humans.txt" />
-    
     <link href="{% static 'css/screen.css' %}" rel="stylesheet" media="screen" />
+    <link href="{% static 'css/function.css' %}" rel="stylesheet" media="screen" />
     <link href="/static/img/favicon.png" rel="shortcut icon" />
 	
     <title>PDX Roasters | {% block title %}{% endblock %}</title>
@@ -36,27 +36,34 @@
 <body data-environment="{% if debug %}development{% else %}production{% endif %}" data-csrftoken="{{ csrf_token }}">
     <nav>
     	<ul>
-    		<li><a href="#" class="logo"></a></li>
-    		<li><a href="#" class="map"></a></li>
-    		<li><a href="#" class="list"></a></li>
-    		<li><a href="#" class="info"></a></li>
+    		<li><a href="#" class="logo">PDX Roasters</a></li>
+    		<li><a href="#view-map" class="map">Map</a></li>
+    		<li><a href="#view-list" class="list">List</a></li>
+    		<li><a href="#view-info" class="info">Info</a></li>
     	</ul>
     </nav>
     <section id="content">
-    	<section id="view view-map">
+    	<section class="view view-map view-static" id="view-map">
     		<div id="map"></div>
     	</section>
-    	<section id="view view-list">
+    	<section class="view view-list" id="view-list">
     		<div class="scroll-pane">
     			<ul class="sort-list">
     				<li><a href="#"></a></li>
     				<li><a href="#"></a></li>
     			</ul>
-    			<ul class="list-content">
+    			<ul class="list-content" id="roasters">
+				{% for roaster in roasters %}
+					<li class="roaster">
+						<a href="/roaster/{{ roaster.slug }}/" class="push-link" id="item-{{ roaster.id }}" data-latlng="[{{ roaster.lat }},{{ roaster.lng }}]" data-name="{{ roaster.name }}">
+							<h3 class="handle"><span>{{ roaster.name }}</span></h3>
+						</a>
+					</li>
+				{% endfor %}
     			</ul>
     		</div>
     	</section>
-    	<section id="view view-info">
+    	<section class="view view-info" id="view-info">
     		<div class="scroll-pane">
     			<section class="about">
     			</section>
