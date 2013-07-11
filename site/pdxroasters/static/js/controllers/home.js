@@ -32,6 +32,7 @@ var $_document = $( document ),
     $_roasterTogs = $_roasters.find( ".toggle" ),
     $_roasterHandles = $_roasters.find( ".handle" ),
     $_roasterMarkers,
+    $_currentInfowindow,
     _currentRoasterId,
     _locationMarker,
     _roasterCafes = {},
@@ -50,7 +51,6 @@ window.pdx.app.home = {
         this.handlePreMap();
         this.handleRoasters();
         this.handleFilter();
-        this.handleGeolocation();
         this.getHomepageTitle();
         
         // Global nav module
@@ -178,6 +178,7 @@ window.pdx.app.home = {
         // Listen for maps to be loaded and ready
         window.pdx.maps.onmapsready(function () {
             self.handleMap();
+            self.handleGeolocation();
         });
         
         // Close cafes event
@@ -291,6 +292,17 @@ window.pdx.app.home = {
         	$_roasterMarkers = $( ".marker-roaster" );
         	
         }, 500  );
+        
+        $_mapWrap.on( "click", function ( e ) {
+	        var $target = $( e.target );
+	        
+	        console.log( $target.closest( ".marker-custom" ).length );
+	        
+	        if ( !$target.closest( ".marker-custom" ).length && $_currentInfowindow ) {
+	        	$_currentInfowindow.addClass( "inactive" );
+	        	$_currentInfowindow = null;
+	        }
+        });
     },
     
     handleOnAddCafe: function ( instance, data ) {
@@ -378,19 +390,6 @@ window.pdx.app.home = {
                     .css( "top", -($infowindow.height() + 20) )
                     .css( "left", -(($infowindow.width()/2)-($elem.width()/2)) );
                 
-                $infowindow.find( ".plus-close" ).on( "click", function ( e ) {
-                    e.preventDefault();
-                    
-                    $infowindow.toggleClass( "inactive" );
-                    
-                    if ( $infowindow.is( "inactive" ) ) {
-                        $infowindow.css( "top", "50%" );
-                        
-                    } else {
-                        $infowindow.css( "top", -($infowindow.height()+3) );
-                    }
-                });
-                
                 // Slight delay for loadout
                 setTimeout(function () {
                     $infowindow.show().removeClass( "loading" );
@@ -468,6 +467,8 @@ window.pdx.app.home = {
                     $infowindow.css( "top", -($infowindow.height()+3) );
                 }
                 
+                $_currentInfowindow = $infowindow;
+                
                 return false;
             }
             
@@ -489,25 +490,14 @@ window.pdx.app.home = {
                 
                 $infowindow = $( "<span>" ).addClass( "infowindow" ).hide();
                 
+                $_currentInfowindow = $infowindow;
+                
                 instance.infowindow = $infowindow[ 0 ];
                 
                 $infowindow.html( html )
                     .insertAfter( $tip )
                     .css( "top", -($infowindow.height() + 20) )
                     .css( "left", -(($infowindow.width()/2)-($elem.width()/2)) );
-                
-                $infowindow.find( ".plus-close" ).on( "click", function ( e ) {
-                    e.preventDefault();
-                    
-                    $infowindow.toggleClass( "inactive" );
-                    
-                    if ( $infowindow.is( "inactive" ) ) {
-                        $infowindow.css( "top", "50%" );
-                        
-                    } else {
-                        $infowindow.css( "top", -($infowindow.height()+3) );
-                    }
-                });
                 
                 if ( !_roasterCafes[ instance.roasterId ].length ) {
                 	$infowindow.find( ".find" ).closest( ".col" ).remove();
@@ -546,7 +536,7 @@ window.pdx.app.home = {
 	                    	.css( "margin-left", -($_cafeShowing.width()/2) )
 	                    	.addClass( "active" );
 	                    	
-	                    $infowindow.find( ".plus-close" ).click();
+	                    //$_mapWrap.trigger( "click" );
 	                    
 	                    $_mapWrap.height( $_mapWrap.height()+$_filter.height() );
 	                });

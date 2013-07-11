@@ -45,41 +45,27 @@ You should now be able to access the site in your browser by visiting
 
 When anybody modifies the data models, you'll need to delete the `pdxroasters.db` and run `python manage.py syncdb`. 
 
-### Compass
+### UI Requirements and versions:
+	
+	Compass v0.12.2
+	Grunt v0.3.17
+	Ender v1.0.2
+	Node v0.10.6
+	npm v1.2.18
+	
 
-Reference: `http://compass-style.org/install`
-CSS files compiled by Compass will be ignored by git
-
-    # Navigate to static directory from src
-    $ cd site/pdxroasters/static
-    
-    # Tell Compass to poll for changes
-    $ compass watch
-    
-### Ender
-
-Reference: `http://ender.jit.su`
-All Ender files will be ignored by git other than custom packages
-
-    # Navigate to ender directory from src
-    $ cd site/pdxroasters/static/js/ender
-    
-    # View Ender status
-    $ ender info
-    
-    # This projects current Ender Build
-    $ ender build bean qwery clah jqwendery bonzo reqwest ender-tween domready
-    
-### Grunt
-
-Reference: `http://gruntjs.com`
-Grunt's dist files will be ingored by git
-    
-    # Navigate to js directory
-    $ cd site/pdxroasters/static/js
-    
-    # Tell Grunt to poll for changes
-    $ grunt watch
+### UI Getting Started:
+	
+	$ cd site/pdxroasters/static/js
+	$ npm install grunt@0.3.17 (only if using grunt -v 4 and grunt-cli)
+	$ npm install grunt-compass
+	
+	$ cd site/static/js/ender
+	$ ender build clah bonzo ender-tween bean domready reqwest qwery jqwendery
+	
+	$ cd site/static/js
+	$ grunt build
+	$ grunt watch_all
 
 ### Pushing UI Files
 
