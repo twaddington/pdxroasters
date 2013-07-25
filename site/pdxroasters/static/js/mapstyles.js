@@ -1,9 +1,6 @@
 /**
  * PDX Roaster Map Styles Object
  *
- * @dependencies:
- * /static/js/pdx.js
- *
  */
 (function () {
 
