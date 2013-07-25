@@ -1,6 +1,6 @@
 /*global module:false*/
 module.exports = function ( grunt ) {
-	
+
 	// Project configuration.
 	grunt.initConfig({
 		pkg: "<json:package.json>",
@@ -57,7 +57,7 @@ module.exports = function ( grunt ) {
 				files: ["<config:lint.files.site>"],
 				tasks: ["concat:site", "min:site"]
 			},
-			
+
 			all: {
 				files: ["<config:lint.files.site>", "../sass/*.scss"],
 				tasks: ["concat:site", "min:site", "compass:development"]
@@ -84,21 +84,21 @@ module.exports = function ( grunt ) {
 		},
 		uglify: {}
 	});
-	
+
 	// Load plugins.
 	grunt.loadNpmTasks( "grunt-compass" );
-	
+
 	// Prod deploy task. Use before commit.
 	grunt.registerTask( "deploy", "concat:site min:site compass:production" );
-	
+
 	// Default task.
 	grunt.registerTask( "default", "lint qunit concat:site min:site" );
 	grunt.registerTask( "build", "concat:site min:site" );
-	
+
 	// Site task. Javascript only.
 	grunt.registerTask( "build_site", "concat:site min:site" );
 	grunt.registerTask( "watch_site", "watch:site" );
-	
+
 	// All task. Watches Compass also.
 	grunt.registerTask( "watch_all", "watch:all" );
 
