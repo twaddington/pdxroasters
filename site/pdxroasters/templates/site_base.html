@@ -30,6 +30,7 @@
     <link href="{% static 'css/screen.css' %}" rel="stylesheet" media="screen" />
     <link href="{% static 'css/function.css' %}" rel="stylesheet" media="screen" />
     <link href="/static/img/favicon.png" rel="shortcut icon" />
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
 
     <title>PDX Roasters | {% block title %}{% endblock %}</title>
 </head>
@@ -78,9 +79,11 @@
     	</section>
     </section>
     {% if debug %}
-    <script src="{% static 'js/dist/scripts.js' %}"></script>
+    <script data-main="static/js/main.js" src="{% static 'js/lib/require.min.js' %}"></script>
     {% else %}
-    <script src="{% static 'js/dist/scripts.min.js' %}"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+    <script src="{% static 'js/lib/leaflet-providers.js' %}"></script>
+    <script src="{% static 'js/map.js' %}"></script>
     {% endif %}
 </body>
 </html>
