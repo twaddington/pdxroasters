@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    
+
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
@@ -19,8 +19,8 @@
 	<link rel="apple-touch-startup-image" href="/static/img/touch/startup-568h-retina.png" media="screen and (device-height: 568px)" />
 	<link rel="apple-touch-startup-image" href="/static/img/touch/startup-retina.png" media="screen and (device-height: 480px) and (min-device-pixel-ratio: 2)" />
 	<link rel="apple-touch-startup-image" href="/static/img/touch/startup.png" media="screen and (device-height: 480px)" />
-	
-    <meta name="keywords" content="{% block meta_keywords %}Portland&rsquo;s coffee scene is pioneering, unique and fiercely dedicated to craft and quality. Use PDX Roasters to find a local coffee roaster in Portland, Ore.{% endblock %}" />
+
+    <meta name="keywords" content="{% block meta_keywords %}Portland&rsquo;s coffee scene is pioneering, unique, and fiercely dedicated to craft and quality. Use PDX Roasters to find a local coffee roaster in Portland, Ore.{% endblock %}" />
     <meta name="description" content="{% block meta_description %}{% endblock %}" />
     <meta name="author" content="Isaac Viel" />
     <meta name="author" content="Tristan Waddington" />
@@ -30,16 +30,16 @@
     <link href="{% static 'css/screen.css' %}" rel="stylesheet" media="screen" />
     <link href="{% static 'css/function.css' %}" rel="stylesheet" media="screen" />
     <link href="/static/img/favicon.png" rel="shortcut icon" />
-	
+
     <title>PDX Roasters | {% block title %}{% endblock %}</title>
 </head>
 <body data-environment="{% if debug %}development{% else %}production{% endif %}" data-csrftoken="{{ csrf_token }}">
-    <nav>
+    <nav class="top-nav">
     	<ul>
     		<li><a href="#" class="logo">PDX Roasters</a></li>
-    		<li><a href="#view-map" class="map">Map</a></li>
-    		<li><a href="#view-list" class="list">List</a></li>
-    		<li><a href="#view-info" class="info">Info</a></li>
+    		<li class="nav-right"><a href="#view-map" class="map active">Map</a></li>
+    		<li class="nav-right"><a href="#view-list" class="list ">List</a></li>
+    		<li class="nav-right"><a href="#view-info" class="info ">Info</a></li>
     	</ul>
     </nav>
     <section id="content">
@@ -49,12 +49,13 @@
     	<section class="view view-list" id="view-list">
     		<div class="scroll-pane">
     			<ul class="sort-list">
-    				<li><a href="#"></a></li>
-    				<li><a href="#"></a></li>
+    				<li><a href="#">Name</a></li>
+    				<li><a href="#">Distance</a></li>
     			</ul>
     			<ul class="list-content" id="roasters">
 				{% for roaster in roasters %}
 					<li class="roaster">
+                        <div class="distance"><span>123.2<br/>miles</span></div>
 						<a href="/roaster/{{ roaster.slug }}/" class="push-link" id="item-{{ roaster.id }}" data-latlng="[{{ roaster.lat }},{{ roaster.lng }}]" data-name="{{ roaster.name }}">
 							<h3 class="handle"><span>{{ roaster.name }}</span></h3>
 						</a>
@@ -64,8 +65,10 @@
     		</div>
     	</section>
     	<section class="view view-info" id="view-info">
-    		<div class="scroll-pane">
+    		<div class="scroll-pane about-wrap">
     			<section class="about">
+                    {% include 'partials/about.html' %}
+                    {% include 'partials/add_a_roaster.html' %}
     			</section>
     			<section class="contact">
     			</section>
