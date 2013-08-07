@@ -79,11 +79,9 @@
     	</section>
     </section>
     {% if debug %}
-    <script data-main="static/js/main.js" src="{% static 'js/lib/require.min.js' %}"></script>
+    <script data-main="/static/js/main.js" src="{% static 'js/lib/require.min.js' %}"></script>
     {% else %}
-    <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
-    <script src="{% static 'js/lib/leaflet-providers.js' %}"></script>
-    <script src="{% static 'js/map.js' %}"></script>
+    <script data-main="/static/js/main.js" src="{% static 'js/lib/require.min.js' %}"></script>
     {% endif %}
 </body>
 </html>

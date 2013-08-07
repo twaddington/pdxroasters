@@ -15,7 +15,6 @@ require.config({
 
 // Load modules and use them
 require(['map', 'Leaflet', 'jquery'], function(Map, L, $){
-    var map = L.map('map').setView([45.52, -122.67], 13);
-    Map.init(map);
-    Map.addMarkers(map);
+    Map.init();
+    Map.getRoasters();
 });
