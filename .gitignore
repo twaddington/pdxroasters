@@ -22,5 +22,5 @@ staticfiles
 # Ignore Compass files
 .sass-cache
 
-# Ignore grunt node_modules
-**/node_modules/
+# Ignore node_modules
+site/pdxroasters/static/node_modules/
