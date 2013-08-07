@@ -14,23 +14,23 @@ window.pdx.forms = {
 	done: function ( $elem ) {
 		var $thanks = $( "<p>"+_addRoasterSuccess+"</p>" ),
 			timeout;
-		
+
 		$elem.hide();
-		
+
 		$thanks.insertBefore( $elem );
-		
+
 		$elem.find( "[name]" ).val( "" );
-		
+
 		timeout = setTimeout(function () {
 			clearTimeout( timeout );
-			
+
 			$thanks.remove();
-			
+
 			$elem.show();
-			
+
 		}, 5000 );
 	},
-	
+
 	fail: function ( $elem, response ) {
 		$elem.find( ".error-message" ).remove();
         $elem.find( ".f-error" ).removeClass( "f-error" );
@@ -44,9 +44,9 @@ window.pdx.forms = {
 
     error: function ( $elem, data ) {
 		var $field = $elem.find( "[name='"+data.field+"']" );
-	
+
 		$field.addClass( "f-error" ).focus();
-	
+
 		$( '<span class="error-message">'+data.error+'</span>' ).insertBefore( $field );
     }
 };
@@ -54,10 +54,10 @@ window.pdx.forms = {
 // Async form handling
 $( ".ajax-form" ).on( "submit", function ( e ) {
     e.preventDefault();
-    
+
     var	$this = $( this ),
     	form = $this.data( "form" );
-    
+
     $.ajax({
     	data: $this.serialize(),
     	headers: {
@@ -70,7 +70,7 @@ $( ".ajax-form" ).on( "submit", function ( e ) {
     .then(function ( response ) {
 	    if ( response.status === 204 ) {
         	window.pdx.forms.done( $this );
-        	
+
         } else {
 	        window.pdx.forms.fail( $this, response );
         }

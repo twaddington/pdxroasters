@@ -37,7 +37,7 @@ define([], function () {
 
     //map.on('click', onMapClick);
 
-  }
+  };
 
   return Map;
 
