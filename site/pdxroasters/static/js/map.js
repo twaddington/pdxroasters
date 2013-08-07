@@ -46,18 +46,6 @@ define(["Leaflet"], function (L) {
         console.log("Error fetching roaster json");
       });
     }
-
-    //
-
-    // function onMapClick(e) {
-    //   popup
-    //     .setLatLng(e.latlng)
-    //     .setContent("You clicked the map at " + e.latlng.toString())
-    //     .openOn(map);
-    // }
-
-    //map.on('click', onMapClick);
-
   };
 
   return Map;
