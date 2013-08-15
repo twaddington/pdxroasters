@@ -1,6 +1,11 @@
 define(["Leaflet"], function (L) {
 
-  var map = L.map('map').setView([45.52, -122.67], 13);
+  var map = L.map('map', {
+      center: [45.52, -122.67],
+      zoom: 13,
+      scrollWheelZoom: false,
+      attributionControl: false
+  });
 
   var roasterMarker = L.icon({
     iconUrl: '/static/img/roaster-marker-sans.png',
@@ -20,6 +25,7 @@ define(["Leaflet"], function (L) {
         maxZoom: 18,
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
       }).addTo(map);
+      console.log("yeah");
     },
     addMarker: function(lat, lng, popup) {
       L.marker([lat, lng], {icon: roasterMarker}).addTo(map).bindPopup(popup);
