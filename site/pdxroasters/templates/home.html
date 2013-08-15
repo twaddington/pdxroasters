@@ -1,28 +1,22 @@
 {% extends 'site_base.html' %}
-
 {% load i18n %}
-
 {% block title %}Portland Coffee Roasters Map{% endblock %}
-
-{% block meta_description %}Portland’s coffee scene is pioneering, unique and fiercely dedicated to craft and quality. Use PDX Roasters to find a local Portland coffee roaster.{% endblock %}
-
-{# block controller %}home{% endblock #}
-
-{% block pageclass %}home{% endblock %}
-
-{% block content %}
-	{% include 'partials/map.html' %}
-	{# include 'partials/roasters.html' #}
+{% block meta_description %}
+  Portland’s coffee scene is pioneering, unique and fiercely dedicated to craft and quality. Use PDX Roasters to find a local Portland coffee roaster.
 {% endblock %}
 
-{% block pre_footer %}
-{#
-<div class="push-container" id="nav-push-page">
-	<div class="push-pages">
-		{% include 'partials/about.html' %}
-		{% include 'partials/add_a_roaster.html' %}
-	</div>
-</div>
-#}
+{% block content %}
+<!-- Map -->
+<section id="map">
+</section>
 
+<!-- About -->
+<section id="about">
+  <div class="about-wrap">
+    <section class="about">
+      {% include 'partials/about.html' %}
+      {% include 'partials/add_a_roaster.html' %}
+    </section>
+  </div>
+</section>
 {% endblock %}

@@ -1,16 +1,3 @@
-/**
- * PDX Roaster Stylesheet
- *
- * @notes:
- *
- * Navigate to where you watch files:
- * $ cd src/site/pdxroasters/static/js
- *
- * Grunt will now watch compass:
- * $ grunt watch
- *
- */
-
 @import 'compass/css3';
 @import 'compass/utilities';
 
@@ -48,16 +35,9 @@ $desktop-wide: 1920px;
 
 @import 'helpers';
 @import 'reset';
-@import 'fonts';
 @import 'typography';
 @import 'grid';
 @import 'forms';
-@import 'anim';
-
-/* -- elements -- */
-html{
-/*     background-color:$light-gray; */
-}
 
 body {
     margin: 0;
@@ -71,7 +51,7 @@ body {
     }
 }
 
-/* -- classes -- */
+/* -- buttons -- */
 .btn {
     background: $light-red;
     @include border-radius(4px);
@@ -91,12 +71,16 @@ body {
         color: $white;
     }
 }
+
+/* -- nav -- */
 .top-nav {
     background-color: transparent;
     padding:0 2em;
     width:100%;
     position:fixed;
     box-sizing: border-box;
+    display:block;
+    z-index:3;
     ul {
         width:100%;
         li{
@@ -119,6 +103,7 @@ body {
     }
 }
 
+/* -- footer -- */
 #footer {
     background-color: #333;
     color: #fff;
@@ -137,7 +122,7 @@ body {
     }
 }
 
-/* -- nav -- */
+/* -- logo -- */
 #logo {
     color: $brown;
     font-size: 1.25em;
@@ -183,55 +168,6 @@ body {
 
 }
 
-/* -- push pages -- */
-.push-pages {
-	> .page {
-        > .page-inner {
-            margin: 0;
-            padding: 160px 40px 40px;
-            @include respond-to($phone, $tablet){
-                padding: 80px 20px 20px;
-            }
-
-            .ci {
-                padding: 0;
-            }
-
-            .col:first-child .ci {
-                padding-right: 20px;
-            }
-
-            .col:last-child .ci {
-                padding-left: 20px;
-                @include respond-to(320px, 720px){
-                    padding-left:0;
-                }
-            }
-        }
-    }
-}
-
-/* -- filter field -- */
-#filter {
-	input {
-        background-color: $red;
-        border: 0;
-        color: $white;
-        font-family: $cabin;
-        font-size: 26px;
-        font-weight: bold;
-        letter-spacing: 1px;
-        margin: 0;
-        padding: 1em 40px;
-        &:focus{
-            outline: none;
-        }
-       @include respond-to($phone, $phone-wide) {
-            padding: 0 32px;
-            font-size: 18px;
-       }
-    }
-}
 ::-webkit-input-placeholder {
    color: $light-gray;
 }
@@ -248,382 +184,24 @@ body {
    color: $light-gray;
 }
 
-/* -- maps -- */
-#map-wrap {
-    position: relative;
-    //height: 100%;
-    width: 100%;
-    z-index: 7;
-}
-
 #map {
-    position: relative;
-    height: 100%;
-    width: 100%;
-
-    img {
-        max-width: none;
-    }
-
-    .marker-location {
-    	background-color: $dark-blue;
-	    height: 8px;
-	    width: 8px;
-	    @include border-radius(5px);
-
-	    &:before {
-		    background-color: $blue;
-		    border: 1px solid $dark-blue;
-		    content: '';
-		    height: 32px;
-		    left: -13px;
-		    position: absolute;
-		    top: -13px;
-		    width: 32px;
-		    @include border-radius(16px);
-		    @include opacity(.25);
-
-		    -moz-animation: pulse 3000ms infinite ease-in-out;
-		    -o-animation: pulse 3000ms infinite ease-in-out;
-		    -webkit-animation: pulse 3000ms infinite ease-in-out;
-		    animation: pulse 3000ms infinite ease-in-out;
-
-	    }
-    }
-
-    .marker-custom {
-        z-index: 888;
-        -webkit-backface-visibility: hidden;
-
-        &.active {
-            z-index: 999;
-
-            > .tooltip {
-                visibility: visible;
-                @include opacity(1);
-                &.loading {
-                    @include opacity(0);
-                }
-            }
-        }
-        // Map Markers
-        > div {
-            cursor: pointer;
-            height: 40px;
-            position: relative;
-            width: 20px;
-            background: transparent url("../img/roaster-marker-sans.png") no-repeat top left;
-            @include transition(margin-top 100ms ease-in-out);
-            @include retina-display(){
-                background: transparent url("../img/roaster-marker-sans@2x.png") no-repeat top left;
-                background-size: 20px 32px;
-            }
-            // Map Marker Hover State
-            &:before{
-                content:"";
-                display:inline-block;
-                width:16px;
-                height:8px;
-                background-color:rgba(0,0,0,.2);
-                position:absolute;
-                top:100%;
-                left:50%;
-                margin-top:-14px;
-                margin-left:-8px;
-                z-index:-1;
-                @include transition(width 100ms ease-in-out);
-                @include radius-multiple(8px, 4px);
-            }
-            &:hover {
-                margin-top:-5px;
-                &:before{
-                    width:20px;
-                    height:10px;
-                    margin-top:-11px;
-                    margin-left:-10px;
-                    @include radius-multiple(10px, 5px);
-                }
-            }
-        }
-        // Cafe Markers
-        &.marker-cafe > div {
-            background: url("../img/cafe-marker.png") no-repeat top left transparent;
-            background-size:  20px 32px;
-            @include retina-display(){
-                background: url("../img/cafe-marker@2x.png") no-repeat top left transparent;
-                background-size: 20px 32px;
-            }
-        }
-
-        // Mouse over Title of Roaster
-        > span {
-            background-color:$white;
-            padding: .5em;
-            position: absolute;
-            text-align: center;
-            top: -50px;
-            visibility: hidden;
-            white-space: nowrap;
-            z-index: -1;
-            font-size:18px;
-            color:$darkest-gray;
-            @include opacity(0);
-            @include transition(opacity 100ms linear);
-            @include box-shadow(0 0 12px rgba(0,0,0,.1));
-        }
-        // Full Info Modal
-        > .infowindow {
-            line-height: 22px;
-            border: 1px solid #dfdfdf;
-            border-radius: 4px;
-            text-align: left;
-            z-index: 11;
-            position: absolute;
-            padding: 0.5em 2.5em 0.5em 0.5em;
-            white-space: normal;
-            visibility: visible;
-            width: 200px;
-            background: $white;
-            @include opacity(1);
-            margin-bottom: 20px;
-            display: inline;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            text-align:center;
-            &:before{
-                content:" ";
-                background:$white;
-                width:16px;
-                height:16px;
-                border-bottom:1px solid #dfdfdf;
-                border-right:1px solid #dfdfdf;
-                left:50%;
-                margin-left:-8px;
-                position:absolute;
-                display:block;
-                bottom:-10px;
-                z-index:1;
-                @include rotate(45deg);
-                zoom: 1;
-            }
-            &.inactive {
-                visibility: hidden;
-                @include opacity(0);
-            }
-
-            h3 {
-                font-size: 15px;
-                margin-bottom: 0;
-                color: $darker-gray;
-                letter-spacing: 1px;
-                display: inline;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                vertical-align: 0;
-                line-height: 1.5em;
-                margin-left: 1.2em;
-                margin-right:1.5em;
-
-            }
-            .find {
-                display: inline-block;
-                width: 30px;
-                height: 30px;
-                background: url('../img/find-cafe.png') center center no-repeat transparent;
-                background-size: 30px;
-                position: absolute;
-                left: 6px;
-                top: 5px;
-                @include retina-display(){
-                    background: transparent url("../img/find-cafe@2x.png") no-repeat center center;
-                    background-size: 30px;
-                }
-            }
-            .more {
-                display: inline-block;
-                width: 30px;
-                height: 30px;
-                background: url('../img/information.png') center center no-repeat transparent;
-                background-size: 30px;
-                position: absolute;
-                right: 6px;
-                top: 5px;
-                @include retina-display(){
-                    background: transparent url("../img/information@2x.png") no-repeat center center;
-                    background-size: 30px;
-                }
-
-            }
-            .hours {
-                line-height:22px;
-            }
-
-            p {
-                margin:0;
-                line-height: 13px;
-                font-size: 12px;
-                text-align: left;
-                text-indent: 30px;
-                color: #aaa;
-            }
-
-            .btn {
-                margin: 0;
-                padding: 6px 12px;
-            }
-
-            .btns {
-                margin-top: 20px;
-            }
-
-            .col {
-                font-size: 14px;
-            }
-
-            .ci {
-                padding-right: 0;
-            }
-
-            .col:first-child .ci {
-                padding-right: 20px;
-                padding-left: 0;
-            }
-        }
-    }
-}
-.sort-list {
-    background-color: $dark-gray;
-    width:100%;
-    box-sizing: border-box;
-    padding: 5em 2em 2em 2em;
-    display:table;
-    li {
-        width: 50%;
-        display:table-cell;
-        vertical-align:middle;
-        text-align:center;
-        a {
-            color: white;
-            width:2em;
-            background-color: $darker-gray;
-            box-sizing:border-box;
-            border: 1px solid $darkest-gray;
-        }
-        &:first-child {
-            border-right: 1px solid $gray;
-        }
-    }
-}
-.list-content {
-    background-color: $lighter-gray;
-    width:100%;
-    box-sizing: border-box;
-    padding: 2em 2em 0 2em;
-    font-size:16px;
-    @include respond-to($phone, $phone-wide){
-        padding: 2em 1em 0 1em;
-    }
-    .roaster {
-        background-color: white;
-        margin: 0.5em 0;
-        height: 4em;
-        border: 1px solid $lighter-gray;
-        position: relative;
-        clear:both;
-    }
-    .distance {
-        background-color: $red;
-        width:4em;
-        height:4em;
-        display: table;
-        color: white;
-        text-align: center;
-        float:left;
-        span {
-            display:table-cell;
-            vertical-align:middle;
-        }
-    }
-    .handle {
-        cursor: pointer;
-        position: relative;
-        overflow:hidden;
-        text-overflow: ellipsis;
-        white-space:nowrap;
-        background-color: white;
-    }
-    .push-link {
-        width:100%;
-        box-sizing:border-box;
-        padding:1.5em 1em 1.5em 5em;
-        display:block;
-
-    }
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    display:block;
+    z-index: 1;
 }
 
-
-#close-cafes {
-	background-color: $red;
-	color: $white;
-	display: inline-block;
-	left: 50%;
-	padding: 20px 60px 20px 20px;
-	position: absolute;
-	top: -100%;
-	z-index: 1;
-	@include transition(top 300ms ease-in-out);
-
-	&.active {
-		top: 0;
-	}
-
-	> a {
-		color: $white;
-		font-weight: bold;
-
-		&:hover {
-			color: $dark-brown;
-		}
-	}
-
-	> span {
-		background: url("../img/plus-close-cafes.png") no-repeat 0 0;
-		cursor: pointer;
-		display: block;
-		height: 22px;
-		margin-top: -11px;
-		position: absolute;
-		right: 20px;
-		top: 50%;
-		width: 22px;
-		@include transform(rotate(45deg));
-	}
+#about {
+    position: absolute;
+    top:100%;
+    left:0;
+    right:0;
+    display:block;
+    z-index: 1;
 }
-
-
-/* -- pushstate container -- */
-.push-container {
-    background-color: $white;
-    height: 100%;
-    left: 100%;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 7;
-    @include transform(translate3d(0,0,0));
-    @include transition(left 300ms ease-in-out);
-
-    &.active {
-        left: 0;
-    }
-
-    &.active-page {
-	    position: relative;
-    }
-}
-
 
 /* -- listings -- */
 .hours {
@@ -641,6 +219,8 @@ body {
     @extend .hours;
 }
 
+
+/* - - - - Roaster Detail Pages - - - - - */
 #roaster-push-page {
 
     h3 {
@@ -955,23 +535,27 @@ body {
 	}
 }
 
-/* -- error pages -- */
-#page-error {
-    padding: 100px;
-}
+@media
+only screen and (max-width : 640px),
+only screen and (max-device-width: 1136px) and (min-device-width: 960px) and (device-height: 640px),
+only screen and (max-device-height: 1136px) and (min-device-height: 960px) and (device-width: 640px),
+only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (max-device-width : 640px) and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (max-device-width : 640px) and (min-device-pixel-ratio : 1.5),
+only screen and (min-device-width : 320px) and (max-device-width : 480px) {
 
-body[data-controller=error] {
-    background-color: #f0f0f0;
+    .roaster-banner {
+        min-height: 100px;
+    }
 
-    #footer {
-        bottom: 0;
-        left: 0;
-        position: fixed;
-        right: 0;
+    .banner-title {
+        top: auto;
+    padding: 3em 4% 3em 12%;
+    width: 84%;
     }
 }
-/* -- about page -- */
 
+/* -- about page -- */
 .about-wrap {
     padding: 5em 2em 2em 2em;
     box-sizing: border-box;
@@ -1036,6 +620,3 @@ body[data-controller=error] {
     padding-left: 5em;
     margin-top: 2em;
 }
-
-/* -- @media -- */
-@import 'media';

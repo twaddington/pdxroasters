@@ -1,0 +1,17 @@
+{
+  "name": "PDX-Roasters",
+  "version": "0.1.0",
+  "description": "Mapping all the coffee roasters in Portland",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-watch": "~0.5.1",
+    "grunt-contrib-compass": "~0.4.1"
+  }
+}

@@ -1,17 +1,84 @@
 {% extends 'site_base.html' %}
-
 {% load i18n %}
-
 {% block title %}{{ roaster.name }}{% endblock %}
 
-{# block controller %}roaster{% endblock #}
-
-{% block pageclass %}roaster{% endblock %}
-
 {% block content %}
-	<div id="roasters" class="roasters">
-		<div class="roaster active">
-			{% include 'partials/roaster_detail.html' %}
-		</div>
-	</div>
+<div class="content">
+    <div class="roaster-banner" style="background-image: url('http://maps.googleapis.com/maps/api/streetview?size=1920x1080&location={{ roaster.lat }},{{ roaster.lng }}&fov=180&sensor=false');">
+        <a class="back-to-list" href="#"> </a>
+        <div class="banner-title">
+            <h1 class="roaster-title"> {{ roaster.name }} </h1>
+            {% if roaster.address %}
+            <p class="banner-address"> <a class="banner-link" href="http://maps.google.com/maps?daddr={{ roaster.lat }},{{ roaster.lng }}" target="_blank"> {{ roaster.address|linebreaksbr }} </a> </p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="group roaster-description">
+        <div class="col col1of4 contact-info">
+            <h5>Hours</h5>
+            <p class="hours">
+                {% if roaster.hours.all %}
+                {% for h in roaster.hours.all %}
+                    {{ h.get_weekday_display }} <span class="right"> {{ h.open }} - {{ h.close }} </span> <br />
+                {% endfor %}
+                {% else %}
+                    Hours not available
+                {% endif%}
+            </p>
+
+            <h5>Phone</h5>
+            <p class="hours"> {% if roaster.phone %}{{ roaster.phone }}{% else %} N/A {% endif %} </p>
+
+            <h5>Website</h5>
+            <p class="hours"> {% if roaster.url %} <a href="{{ roaster.url }}" title="{{roaster.name}}" > {{ roaster.name }} </a> {% else %} Not available {% endif %}</p>
+
+        </div>
+        <div class="col col3of4 roaster-about {% if roaster.hours.count or roaster.phone.count %} second-column {% endif %}">
+
+            {% if roaster.description %}
+            <h4 class="about-title">About {{ roaster.name }}</h4>
+              {{ roaster.description|linebreaks }}
+            {% endif %}
+
+            <h4 class="about-title"> At a Glance </h4>
+
+            <div class="roaster-fact col col1of3">
+                <div class="roaster-fact-icon online-orders{% if roaster.online_only %}{% elif roaster.order_online %}{% else %} false{% endif %}">
+                </div>
+                <p{% if roaster.online_only %}{% elif roaster.order_online %}{% else %} class="false"{% endif %}>
+                    {% if roaster.online_only %}
+                        Online Only
+                    {% elif roaster.order_online %}
+                        Order Online
+                    {% else %}
+                        No Online Orders
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="roaster-fact col col1of3">
+                <div class="roaster-fact-icon onsite-cafe {% if not roaster.cafe_on_site %} false{% endif %}"></div>
+                <p{% if not roaster.cafe_on_site %} class="false"{% endif %}>{% if not roaster.cafe_on_site %} No{% endif %} Onsite Cafe </p>
+            </div>
+
+            <div class="roaster-fact col col1of3">
+                <div class="roaster-fact-icon open-to-public{% if not roaster.open_to_public %} false{% endif %}"></div>
+                <p{% if not roaster.open_to_public %} class="false"{% endif %}>{% if not roaster.open_to_public %}Closed {% else %}Open {% endif %}to the Public </p>
+            </div>
+
+            <h4 class="about-title">Cafes Serving this Roast</h4>
+              <div class="col-group">
+                {% for cafe in roaster.cafes.all %}
+                <div class="col col1of3 cafe" data-id="{{ cafe.id }}" data-latlng="[{{ cafe.lat }},{{ cafe.lng }}]" data-name="{{ cafe.name }}">
+                    <p class="tight"><a href="{{ cafe.url }}">{{ cafe.name }}</a><br/><span class="phone-number">{{ cafe.address }}<br />{% if cafe.phone %}{{ cafe.phone }}{% else %} N/A {% endif %}</span></p>
+                </div>
+                {% empty %}
+                    <div class="col">
+                      No cafes yet.
+                    </div>
+                {% endfor %}
+              </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
