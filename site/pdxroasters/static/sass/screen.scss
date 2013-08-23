@@ -22,7 +22,6 @@ $dark-brown: #44372c;
 $brown: #563f29;
 $light-brown:#6d543d;
 $skolar: 'Skolar', Helvetica, Arial, Sans-serif;
-$din: 'DIN', Helvetica, Arial, Sans-serif;
 $cabin: 'Cabin', Helvetica, Arial, Sans-serif;
 
 /* -- breakpoints -- */
@@ -103,6 +102,9 @@ body {
         &.active {
           color: #CC4B1F;
           border-bottom: 2px solid $red;
+        }
+        &.logo {
+          margin-left:0;
         }
         float:left;
       }
@@ -251,6 +253,7 @@ body {
   }
 
   .roaster {
+    background-color: $tan;
     &.active {
       background-color: rgba(0,0,0,.02);
       border-bottom: 1px solid #ebebeb;
@@ -296,6 +299,9 @@ body {
   }
 }
 
+.content {
+  background-color: $lighter-gray;
+}
 .roaster-banner {
   width: 100%;
   min-height: 300px;
@@ -325,21 +331,21 @@ body {
     right: 0;
     bottom: 0;
   }
-
 }
 
 .banner-title{
   position: relative;
-  top: 22px;
-  width: 50%;
-  padding: 10% 0 10% 8%;
+  width: 100%;
+  padding: 10% 0 10% 0;
   display: block;
   z-index: 3;
+  margin-top:3em;
 }
 
 .roaster-title {
   color: $white;
-  font-size: 36px;
+  font-size: 72px;
+  text-align:center;
   @include respond-to($phone, $phone-wide){
     font-size:24px;
   }
@@ -350,7 +356,8 @@ body {
 
 .banner-address {
   line-height: 1.5em;
-  margin-left:24px;
+  text-align:center;
+  font-size:20px;
 }
 
 .banner-link {
@@ -379,7 +386,8 @@ body {
 .roaster-description {
   width: 100%;
   max-width: 960px;
-  margin: 3em 0 3em 8%;
+  margin: 3em auto 0 auto;
+  padding-bottom: 3em;
   @include respond-to($phone, $phone-wide){
     width: 90%;
     margin: 0.5em 5% 0.5em 5%;
@@ -475,7 +483,6 @@ body {
   }
 }
 
-
 .roaster-about {
   padding:0 6.5em 0 0;
   -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
@@ -494,54 +501,6 @@ body {
   }
 }
 
-.back-to-list {
-  background: $red url('../img/list.png') 70% 14px no-repeat;
-  background-size: 20px 20px;
-  display: block;
-  height: 50px;
-  left: 0%;
-  margin-left: -20px;
-  position: absolute;
-  text-align: center;
-  top: 50%;
-  margin-top: -25px;
-  width: 50px;
-  z-index: 7;
-  @include transition(margin-left 100ms linear);
-  @include box-shadow(0 0 3px rgba(0,0,0,.8));
-  @include border-bottom-right-radius(25px);
-  @include border-top-right-radius(25px);
-  &:hover {
-    margin-left: -15px;
-    @include respond-to($phone, $phone-wide){
-      margin-left:-8px;
-    }
-  }
-  @include respond-to($phone, $phone-wide){
-    background: #dd6a5a url("../img/list.png") 70% 8px no-repeat;
-    background-size: 20px 20px;
-    height: 36px;
-    margin-left: -10px;
-    position: absolute;
-    text-align: center;
-    top: 50%;
-    margin-top: -18px;
-    width: 36px;
-  }
-}
-
-#roaster-push-page {
-  .roaster {
-    padding: 80px 0px 0px;
-    @include respond-to($phone, $phone-wide){
-      padding-top:48px;
-    }
-    .col1of2 {
-      width: 48%;
-    }
-  }
-}
-
 @media
 only screen and (max-width : 640px),
 only screen and (max-device-width: 1136px) and (min-device-width: 960px) and (device-height: 640px),
@@ -550,15 +509,8 @@ only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 1
 only screen and (max-device-width : 640px) and (-webkit-min-device-pixel-ratio : 1.5),
 only screen and (max-device-width : 640px) and (min-device-pixel-ratio : 1.5),
 only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-
   .roaster-banner {
     min-height: 100px;
-  }
-
-  .banner-title {
-    top: auto;
-  padding: 3em 4% 3em 12%;
-  width: 84%;
   }
 }
 

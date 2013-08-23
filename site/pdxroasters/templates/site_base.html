@@ -2,49 +2,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-	<meta name="apple-mobile-web-app-title" content="Affinity" />
-	<link rel="apple-touch-icon-precomposed" href="/static/img/touch/icon-54.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/img/touch/icon-72.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/img/touch/icon-114.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/img/touch/icon-144.png" />
-	<link rel="apple-touch-startup-image" href="/static/img/touch/startup-ipad-landscape-retina.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) and (min-device-pixel-ratio: 2)" />
-	<link rel="apple-touch-startup-image" href="/static/img/touch/startup-ipad-portrait-retina.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) and (min-device-pixel-ratio: 2)" />
-	<link rel="apple-touch-startup-image" href="/static/img/touch/startup-ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)" />
-	<link rel="apple-touch-startup-image" href="/static/img/touch/startup-ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)" />
-	<link rel="apple-touch-startup-image" href="/static/img/touch/startup-568h-retina.png" media="screen and (device-height: 568px)" />
-	<link rel="apple-touch-startup-image" href="/static/img/touch/startup-retina.png" media="screen and (device-height: 480px) and (min-device-pixel-ratio: 2)" />
-	<link rel="apple-touch-startup-image" href="/static/img/touch/startup.png" media="screen and (device-height: 480px)" />
-    <meta name="keywords" content="{% block meta_keywords %}Portland&rsquo;s coffee scene is pioneering, unique, and fiercely dedicated to craft and quality. Use PDX Roasters to find a local coffee roaster in Portland, Ore.{% endblock %}" />
-    <meta name="description" content="{% block meta_description %}{% endblock %}" />
-    <meta name="author" content="Isaac Viel" />
-    <meta name="author" content="Tristan Waddington" />
-    <meta name="author" content="Paul C. Pederson" />
-    <meta name="author" content="Brandon Lee Kitajchuk" />
-    <link rel="author" href="humans.txt" />
-    <link href="{% static 'css/screen.css' %}" rel="stylesheet" media="screen" />
-    <link href="/static/img/favicon.png" rel="shortcut icon" />
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
-    <title>PDX Roasters | {% block title %}{% endblock %}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="Affinity" />
+  <link rel="apple-touch-icon-precomposed" href="/static/img/touch/icon-54.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/img/touch/icon-72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/img/touch/icon-114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/img/touch/icon-144.png" />
+  <link rel="apple-touch-startup-image" href="/static/img/touch/startup-ipad-landscape-retina.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) and (min-device-pixel-ratio: 2)" />
+  <link rel="apple-touch-startup-image" href="/static/img/touch/startup-ipad-portrait-retina.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) and (min-device-pixel-ratio: 2)" />
+  <link rel="apple-touch-startup-image" href="/static/img/touch/startup-ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)" />
+  <link rel="apple-touch-startup-image" href="/static/img/touch/startup-ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)" />
+  <link rel="apple-touch-startup-image" href="/static/img/touch/startup-568h-retina.png" media="screen and (device-height: 568px)" />
+  <link rel="apple-touch-startup-image" href="/static/img/touch/startup-retina.png" media="screen and (device-height: 480px) and (min-device-pixel-ratio: 2)" />
+  <link rel="apple-touch-startup-image" href="/static/img/touch/startup.png" media="screen and (device-height: 480px)" />
+  <meta name="keywords" content="{% block meta_keywords %}Portland&rsquo;s coffee scene is pioneering, unique, and fiercely dedicated to craft and quality. Use PDX Roasters to find a local coffee roaster in Portland, Ore.{% endblock %}" />
+  <meta name="description" content="{% block meta_description %}{% endblock %}" />
+  <meta name="author" content="Isaac Viel" />
+  <meta name="author" content="Tristan Waddington" />
+  <meta name="author" content="Paul C. Pederson" />
+  <meta name="author" content="Brandon Lee Kitajchuk" />
+  <link rel="author" href="humans.txt" />
+  <link href="{% static 'css/screen.css' %}" rel="stylesheet" media="screen" />
+  <link href="/static/img/favicon.png" rel="shortcut icon" />
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+  <title>PDX Roasters | {% block title %}{% endblock %}</title>
 </head>
 <body data-environment="{% if debug %}development{% else %}production{% endif %}" data-csrftoken="{{ csrf_token }}">
-    <nav class="top-nav">
-    	<ul>
-    		<li><a href="/" class="logo">PDX Roasters</a></li>
-    		<li class="nav-right"><a href="/#map" class="map active">Map</a></li>
-    		<li class="nav-right"><a href="/#about" class="info ">About</a></li>
-    	</ul>
-    </nav>
-    <section>
-    	{% block content %}{% endblock %}
-    </section>
-    {% if debug %}
-    <script data-main="/static/js/main.js" src="{% static 'js/lib/require.min.js' %}"></script>
-    {% else %}
-    <script data-main="/static/js/main.js" src="{% static 'js/lib/require.min.js' %}"></script>
-    {% endif %}
+  <nav class="top-nav">
+    <ul>
+      <li><a href="/" class="logo">PDX Roasters</a></li>
+      <li class="nav-right"><a href="/#map" class="map active">Map</a></li>
+      <li class="nav-right"><a href="/#about" class="info ">About</a></li>
+      <li class="nav-right"><a href="/list" class="info ">List</a></li>
+    </ul>
+  </nav>
+  <section>
+    {% block content %}{% endblock %}
+  </section>
+  {% if debug %}
+  <script data-main="/static/js/main.js" src="{% static 'js/lib/require.min.js' %}"></script>
+  {% else %}
+  <script data-main="/static/js/main.js" src="{% static 'js/lib/require.min.js' %}"></script>
+  {% endif %}
 </body>
 </html>
