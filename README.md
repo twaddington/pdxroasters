@@ -2,7 +2,7 @@
 
 ...
 
-## Getting Started
+### Getting Started
 
 Django is a great framework, but requires several steps to get a development
 site running on your computer. If you're running OS X these instructions should
@@ -45,7 +45,7 @@ You should now be able to access the site in your browser by visiting
 
 When anybody modifies the data models, you'll need to delete the `pdxroasters.db` and run `python manage.py syncdb`. 
 
-## Updating CSS
+### Updating CSS
 
 After making changes to the site styles you'll need to regenerate the CSS from
 the SASS files. The preferred way to do this is using grunt:
