@@ -1,8 +1,10 @@
 define(["Leaflet"], function (L) {
 
+  var zoom = 13;
+
   var map = L.map('map', {
       center: [45.52, -122.67],
-      zoom: 13,
+      zoom: zoom,
       scrollWheelZoom: false,
       attributionControl: false
   });
@@ -55,10 +57,12 @@ define(["Leaflet"], function (L) {
       map.locate({
         setView: false,
         maxZoom: 12,
-        watch: true
+        watch: false
       });
-      console.log("found it");
+      var counter = 0;
+
       map.on('locationfound', Map.locationFound);
+
     },
     locationFound: function(e){
 
@@ -70,7 +74,6 @@ define(["Leaflet"], function (L) {
           iconSize: [10, 10],
           iconAnchor: [5, 5]
         });
-
         var device = {
           "color": "#4DAEFF",
           "stroke": true,
@@ -78,11 +81,12 @@ define(["Leaflet"], function (L) {
           "weight": 1,
           "opacity": 1
         };
-
         L.circle(e.latlng, 120, device).addTo(map);
         L.marker(e.latlng, {icon: deviceMarker}).addTo(map);
-        map.panTo(e.latlng).setZoom(14);
+        map.setView(e.latlng, zoom + 1);
       }
+
+      return;
 
     }
   };
