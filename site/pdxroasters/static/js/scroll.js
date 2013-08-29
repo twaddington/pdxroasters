@@ -7,6 +7,7 @@ define(["jquery"], function ($) {
   var win = document.body.scrollTop;
   var height = window.innerHeight;
   var aboutActive = false;
+  var timeout;
 
   var Scroll = {
     init: function() {
@@ -14,10 +15,10 @@ define(["jquery"], function ($) {
         window.onscroll = function () {
           win = document.body.scrollTop;
           if (win > aboutOffset - height / 2 && aboutActive === false){
-            Scroll.aboutActivate();
+            Scroll.activate(aboutLink, mapLink, true);
           }
           if (win < aboutOffset - height / 2 && aboutActive === true){
-            Scroll.mapActivate();
+            Scroll.activate(mapLink, aboutLink, false);
           }
         };
         window.onresize = function(event) {
@@ -25,15 +26,18 @@ define(["jquery"], function ($) {
         };
       }
     },
-    aboutActivate: function(){
-      aboutLink.className += " active";
-      mapLink.className = "nav-right";
-      aboutActive = true;
+    activate: function(active, inactive, status){
+      active.className += " active";
+      inactive.className = "nav-right";
+      aboutActive = status;
     },
-    mapActivate: function(){
-      mapLink.className += " active";
-      aboutLink.className = "nav-right";
-      aboutActive = false;
+    scrollTo: function(y){
+      if (document.body.scrollTop !== 0 || document.documentElement.scrollTop !== 0){
+        window.scrollBy(0,-50);
+        timeOut=setTimeout('scrollToTop()',10);
+      } else {
+        clearTimeout(timeOut);
+      }
     }
   };
 
