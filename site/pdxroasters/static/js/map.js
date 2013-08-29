@@ -62,8 +62,24 @@ define(["Leaflet"], function (L) {
     },
     locationFound: function(e){
 
-      var radius = e.accuracy / 2;
-      L.circle(e.latlng, radius).addTo(map);
+      var deviceMarker = L.icon({
+        iconUrl: '/static/img/device.png',
+        iconRetinaUrl: '/static/img/device@2x.png',
+        iconSize: [10, 10],
+        iconAnchor: [5, 5]
+      });
+
+      var device = {
+        "color": "#4DAEFF",
+        "stroke": true,
+        "fill": "#ffffff",
+        "weight": 1,
+        "opacity": 1
+      };
+
+      L.circle(e.latlng, 120, device).addTo(map);
+
+      L.marker(e.latlng, {icon: deviceMarker}).addTo(map);
 
       map.panTo(e.latlng).setZoom(14);
 
