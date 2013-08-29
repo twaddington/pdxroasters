@@ -1,0 +1,14 @@
+
+.leaflet-popup-content-wrapper {
+  @include border-radius(0);
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  display:none;
+}
+
+.leaflet-popup-content {
+  h5 {
+    margin-top: 1em;
+  }
+}

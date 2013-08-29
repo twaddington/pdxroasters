@@ -25,9 +25,9 @@
   <meta name="author" content="Paul C. Pederson" />
   <meta name="author" content="Brandon Lee Kitajchuk" />
   <link rel="author" href="humans.txt" />
-  <link href="{% static 'css/screen.css' %}" rel="stylesheet" media="screen" />
   <link href="/static/img/favicon.png" rel="shortcut icon" />
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+  <link href="{% static 'css/screen.css' %}" rel="stylesheet" media="screen" />
   <title>PDX Roasters | {% block title %}{% endblock %}</title>
 </head>
 <body data-environment="{% if debug %}development{% else %}production{% endif %}" data-csrftoken="{{ csrf_token }}">
