@@ -1,3 +1,7 @@
+.leaflet-top {
+  top: 50%;
+  margin-top: -32px;
+}
 
 .leaflet-popup-content-wrapper {
   @include border-radius(0);

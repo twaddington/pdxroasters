@@ -25,7 +25,6 @@ define(["Leaflet"], function (L) {
         maxZoom: 18,
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
       }).addTo(map);
-      console.log("yeah");
     },
     addMarker: function(lat, lng, popup) {
       L.marker([lat, lng], {icon: roasterMarker}).addTo(map).bindPopup(popup);
@@ -51,6 +50,26 @@ define(["Leaflet"], function (L) {
       }).error(function(jqXHR, textStatus, errorThrown){
         console.log("Error fetching roaster json");
       });
+    },
+    locate: function() {
+      map.locate({
+        setView: false,
+        maxZoom: 12,
+        watch: true
+      });
+      console.log("found it");
+      map.on('locationfound', Map.locationFound);
+    },
+    locationFound: function(e){
+
+      var radius = e.accuracy / 2;
+      L.circle(e.latlng, radius).addTo(map);
+
+      map.panTo(e.latlng).setZoom(14);
+
+
+
+
     }
   };
 

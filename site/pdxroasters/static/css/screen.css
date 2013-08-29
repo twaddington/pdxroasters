@@ -482,7 +482,13 @@ button[type="submit"]:hover {
   margin-top: 1em;
 }
 
-/* line 2, ../sass/_map.scss */
+/* line 1, ../sass/_map.scss */
+.leaflet-top {
+  top: 50%;
+  margin-top: -32px;
+}
+
+/* line 6, ../sass/_map.scss */
 .leaflet-popup-content-wrapper {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -491,12 +497,12 @@ button[type="submit"]:hover {
   border-radius: 0;
 }
 
-/* line 6, ../sass/_map.scss */
+/* line 10, ../sass/_map.scss */
 .leaflet-container a.leaflet-popup-close-button {
   display: none;
 }
 
-/* line 11, ../sass/_map.scss */
+/* line 15, ../sass/_map.scss */
 .leaflet-popup-content h5 {
   margin-top: 1em;
 }
@@ -859,8 +865,6 @@ body.no-scroll {
   color: white;
   font-size: 72px;
   text-align: center;
-  line-height:1em;
-  margin-bottom:0.5em;
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
   /* line 346, ../sass/screen.scss */
