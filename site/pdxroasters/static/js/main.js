@@ -14,11 +14,14 @@ require.config({
 });
 
 // Load modules and use them
-require(['map', 'forms', 'Leaflet', 'jquery'], function(Map, Forms, L, $){
+require(['map', 'forms', 'scroll', 'Leaflet', 'jquery'], function(Map, Forms, Scroll, L, $){
+
   Map.init();
   Map.getRoasters();
   Map.locate();
 
   Forms.validate();
+
+  Scroll.init();
 
 });
