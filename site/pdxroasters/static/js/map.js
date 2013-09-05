@@ -32,7 +32,7 @@ define(["Leaflet"], function (L) {
       L.marker([lat, lng], {icon: roasterMarker}).addTo(map).bindPopup(popup);
     },
     addPopUp: function(name, slug) {
-      var popup = '<h5><a href="/roaster/' + slug + '">' + name + '<span class="right-arrow"></span></a></h5>';
+      var popup = '<h5><a href="roaster/' + slug + '">' + name + '<span class="right-arrow"></span></a></h5>';
       return popup;
     },
     getRoasters: function() {

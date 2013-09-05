@@ -20,8 +20,10 @@ require(['map', 'forms', 'scroll', 'Leaflet', 'jquery'], function(Map, Forms, Sc
   Map.getRoasters();
   Map.locate();
 
-  Forms.validate();
-
   Scroll.init();
+  Scroll.updateActive();
+  Scroll.smoothScroll();
+
+  Forms.validate();
 
 });
