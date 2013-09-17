@@ -38,6 +38,8 @@ $desktop-wide: 1920px;
 @import 'base/grid';
 @import 'base/forms';
 @import 'map';
+@import 'about';
+@import 'list';
 @import 'roaster';
 
 body {
@@ -46,7 +48,6 @@ body {
   font-size: 16px;
   font-family: $cabin;
   -webkit-font-smoothing: antialiased;
-
   &.no-scroll {
     overflow-y: hidden;
   }
@@ -165,21 +166,5 @@ body {
   bottom:0;
   display:block;
   z-index: 1;
-}
-
-/* -- listings -- */
-.hours {
-  font-size:14px;
-  font-weight:400;
-  color:$darkest-gray;
-  span {
-    float: right;
-    display: inline;
-    text-align: right;
-  }
-}
-
-.address {
-  @extend .hours;
 }
 
