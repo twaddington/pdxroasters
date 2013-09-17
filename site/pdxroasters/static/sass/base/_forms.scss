@@ -78,3 +78,29 @@ button[type="submit"] {
     margin-right: 20px;
     margin-top: 1em;
 }
+
+::-webkit-input-placeholder {color: $light-gray;}
+         ::-moz-placeholder {color: $light-gray;}
+          :-moz-placeholder {color: $light-gray;}
+     :-ms-input-placeholder {color: $light-gray;}
+
+/* -- buttons -- */
+.btn {
+  background: $light-red;
+  @include border-radius(4px);
+  padding:.5em 2em;
+  cursor: pointer;
+  //margin-right: 1em;
+  text-transform: none;
+  letter-spacing: 1px;
+  text-align: center;
+  text-indent: 0px;
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  @include transition(all 200ms linear);
+  &:hover {
+    background: rgb(211, 101, 85);
+    color: $white;
+  }
+}

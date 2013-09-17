@@ -6,10 +6,14 @@
 
 {% block meta_description %}Learn more about the PDX Roasters project and get in touch.{% endblock %}
 
-{% block controller %}home{% endblock %}
-
-{% block pageclass %}home{% endblock %}
-
 {% block content %}
-	{% include 'partials/about.html' %}
+  <!-- About -->
+  <section id="about">
+    <div class="about-wrap">
+      <section class="about">
+        {% include 'partials/about.html' %}
+        {% include 'partials/add_a_roaster.html' %}
+      </section>
+    </div>
+  </section>
 {% endblock %}
