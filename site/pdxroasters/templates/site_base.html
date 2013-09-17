@@ -30,13 +30,13 @@
   <link href="{% static 'css/screen.css' %}" rel="stylesheet" media="screen" />
   <title>PDX Roasters | {% block title %}{% endblock %}</title>
 </head>
-<body data-environment="{% if debug %}development{% else %}production{% endif %}" data-csrftoken="{{ csrf_token }}">
+<body data-environment="{% if debug %}development{% else %}production{% endif %}" data-csrftoken="{{ csrf_token }}" class="{% block page %}{% endblock %}">
   <nav class="top-nav">
     <ul>
       <li><a href="/" class="logo">PDX Roasters</a></li>
-      <li class="nav-right"><a href="/#map" id="map_link" class="map">Map</a></li>
-      <li class="nav-right"><a href="/#about" id="about_link" class="info ">About</a></li>
-      <li class="nav-right"><a href="/list" class="info ">List</a></li>
+      <li class="nav-right"><a href="/#map" id="map_link" class="map {% block homeActive %}{% endblock %}">Map</a></li>
+      <li class="nav-right"><a href="/#list" class="info ">List</a></li>
+      <li class="nav-right"><a href="/about" id="about_link" class="info {% block aboutActive %}{% endblock %}">About</a></li>
     </ul>
   </nav>
   <section>
