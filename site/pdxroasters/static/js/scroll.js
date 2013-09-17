@@ -1,12 +1,16 @@
 define(["jquery"], function ($) {
 
-  var about       = document.getElementById('about'),
-      aboutLink   = document.getElementById('about_link'),
-      mapLink     = document.getElementById('map_link'),
-      aboutOffset = about.offsetTop,
-      win         = document.body.scrollTop,
-      height      = window.innerHeight,
-      aboutActive = false;
+  if ($('body').hasClass('aboutPage')){
+    var about       = document.getElementById('about'),
+        aboutLink   = document.getElementById('about_link'),
+        mapLink     = document.getElementById('map_link'),
+        aboutOffset = about.offsetTop,
+        win         = document.body.scrollTop,
+        height      = window.innerHeight,
+        aboutActive = false;
+  } else {
+    return;
+  }
 
   var Scroll = {
     init: function() {
