@@ -1,32 +1,30 @@
 define(["jquery"], function ($) {
 
-  if ($('body').hasClass('aboutPage')){
-    var about       = document.getElementById('about'),
-        aboutLink   = document.getElementById('about_link'),
+  if ($('body').hasClass('home')){
+    var list       = document.getElementById('list'),
+        listLink   = document.getElementById('list_link'),
         mapLink     = document.getElementById('map_link'),
-        aboutOffset = about.offsetTop,
+        listOffset = list.offsetTop,
         win         = document.body.scrollTop,
         height      = window.innerHeight,
-        aboutActive = false;
-  } else {
-    return;
+        listActive = false;
   }
 
   var Scroll = {
     init: function() {
-      if (about){
-        if(window.location.href.indexOf("#about") == -1){
-          Scroll.activate(mapLink, aboutLink, false);
+      if (list){
+        if(window.location.href.indexOf("#list") == -1){
+          Scroll.activate(mapLink, listLink, false);
         }
-        if(window.location.href.indexOf("#about") != -1){
-          Scroll.activate(aboutLink, mapLink, true);
+        if(window.location.href.indexOf("#list") != -1){
+          Scroll.activate(listLink, mapLink, true);
         }
       }
     },
     smoothScroll: function(){
-      $(aboutLink).click(function(e){
+      $(listLink).click(function(e){
         $('body').stop().animate({
-            scrollTop: aboutOffset
+            scrollTop: listOffset
         }, 400);
         e.preventDefault();
 
@@ -41,17 +39,17 @@ define(["jquery"], function ($) {
     updateActive: function(){
       window.onscroll = function () {
         win = document.body.scrollTop;
-        if (win > aboutOffset - height / 2 && aboutActive === false){
-          Scroll.activate(aboutLink, mapLink, true);
-          Scroll.updateUrl({page: "about"}, "About", "/#about");
+        if (win > listOffset - height / 2 && listActive === false){
+          Scroll.activate(listLink, mapLink, true);
+          Scroll.updateUrl({page: "list"}, "About", "/#list");
         }
-        if (win < aboutOffset - height / 2 && aboutActive === true){
-          Scroll.activate(mapLink, aboutLink, false);
+        if (win < listOffset - height / 2 && listActive === true){
+          Scroll.activate(mapLink, listLink, false);
           Scroll.updateUrl({page: "home"}, "Home", "/");
         }
       };
       window.onresize = function(e) {
-        aboutOffset = about.offsetTop;
+        listOffset = list.offsetTop;
         win = document.body.scrollTop;
         height = window.innerHeight;
       };
@@ -62,7 +60,7 @@ define(["jquery"], function ($) {
     activate: function(active, inactive, status, url){
       active.className += " active";
       inactive.className = "nav-right";
-      aboutActive = status;
+      listActive = status;
     }
   };
 

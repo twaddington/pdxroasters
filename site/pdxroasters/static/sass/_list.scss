@@ -1,24 +1,35 @@
 /* - - - - - List Styles - - - - - - - */
+#list {
+  background-color: $dark-gray;
+  position: absolute;
+  left:0;
+  right:0;
+  top:100%;
+  display:block;
+  z-index: 1;
+  padding: 1em 0 0 0;
+}
+
 .sort-list {
   background-color: $dark-gray;
   width:100%;
   box-sizing: border-box;
-  padding: 5em 2em 2em 2em;
-  display:table;
+  padding: 3em 2em 0 2em;
+  h3 {
+    color: white;
+    margin: 1em 0;
+  }
   li {
-    width: 50%;
-    display:table-cell;
-    vertical-align:middle;
-    text-align:center;
+    display: inline-block;
     a {
       color: white;
-      width:2em;
-      background-color: $darker-gray;
-      box-sizing:border-box;
-      border: 1px solid $darkest-gray;
-    }
-    &:first-child {
-      border-right: 1px solid $gray;
+      padding: 1em 2em;
+      display: inline-block;
+      font-size: 18px;
+      &.active {
+        color: $darkest-gray;
+        background-color: $lighter-gray;
+      }
     }
   }
 }
@@ -27,7 +38,7 @@
   background-color: $lighter-gray;
   width:100%;
   box-sizing: border-box;
-  padding: 2em 2em 0 2em;
+  padding: 2em;
   font-size:16px;
   @include respond-to($phone, $phone-wide){
     padding: 2em 1em 0 1em;
@@ -60,6 +71,7 @@
     text-overflow: ellipsis;
     white-space:nowrap;
     background-color: white;
+    padding: 0.6em;
   }
   .push-link {
     width:100%;
