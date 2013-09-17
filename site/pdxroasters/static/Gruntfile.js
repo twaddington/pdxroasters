@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     watch: {
       scripts: {
-        files: ['./js/*.js','./sass/*.scss'],
+        files: ['./js/*.js','./sass/**/*.scss'],
         tasks: ['compass','jshint'],
         options: {
           nospawn: true
