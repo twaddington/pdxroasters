@@ -660,7 +660,7 @@ button[type="submit"]:hover {
   top: 100%;
   display: block;
   z-index: 1;
-  padding: 1em 0 0 0;
+  padding: 1em 0 4em 0;
 }
 
 /* line 13, ../sass/_list.scss */
@@ -668,45 +668,49 @@ button[type="submit"]:hover {
   background-color: #d2d0cb;
   width: 100%;
   box-sizing: border-box;
-  padding: 3em 2em 0 2em;
+  padding: 3em 0 0 0;
+  margin: 0 auto;
+  max-width: 960px;
 }
-/* line 18, ../sass/_list.scss */
+/* line 20, ../sass/_list.scss */
 .sort-list h3 {
   color: white;
   margin: 1em 0;
 }
-/* line 22, ../sass/_list.scss */
+/* line 24, ../sass/_list.scss */
 .sort-list li {
   display: inline-block;
 }
-/* line 24, ../sass/_list.scss */
+/* line 26, ../sass/_list.scss */
 .sort-list li a {
   color: white;
   padding: 1em 2em;
   display: inline-block;
   font-size: 18px;
 }
-/* line 29, ../sass/_list.scss */
+/* line 31, ../sass/_list.scss */
 .sort-list li a.active {
   color: #323232;
   background-color: #f8f6f4;
 }
 
-/* line 37, ../sass/_list.scss */
+/* line 39, ../sass/_list.scss */
 .list-content {
   background-color: #f8f6f4;
   width: 100%;
   box-sizing: border-box;
   padding: 2em;
   font-size: 16px;
+  margin: 0 auto;
+  max-width: 960px;
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 37, ../sass/_list.scss */
+  /* line 39, ../sass/_list.scss */
   .list-content {
     padding: 2em 1em 0 1em;
   }
 }
-/* line 46, ../sass/_list.scss */
+/* line 50, ../sass/_list.scss */
 .list-content .roaster {
   background-color: white;
   margin: 0.5em 0;
@@ -715,7 +719,7 @@ button[type="submit"]:hover {
   position: relative;
   clear: both;
 }
-/* line 54, ../sass/_list.scss */
+/* line 58, ../sass/_list.scss */
 .list-content .distance {
   background-color: #dd6a5a;
   width: 4em;
@@ -725,12 +729,12 @@ button[type="submit"]:hover {
   text-align: center;
   float: left;
 }
-/* line 62, ../sass/_list.scss */
+/* line 66, ../sass/_list.scss */
 .list-content .distance span {
   display: table-cell;
   vertical-align: middle;
 }
-/* line 67, ../sass/_list.scss */
+/* line 71, ../sass/_list.scss */
 .list-content .handle {
   cursor: pointer;
   position: relative;
@@ -740,7 +744,7 @@ button[type="submit"]:hover {
   background-color: white;
   padding: 0.6em;
 }
-/* line 76, ../sass/_list.scss */
+/* line 80, ../sass/_list.scss */
 .list-content .push-link {
   width: 100%;
   box-sizing: border-box;
@@ -1194,13 +1198,17 @@ body.no-scroll {
   color: #fff;
   padding: 2em 2em;
   z-index: 10;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
-/* line 106, ../sass/screen.scss */
+/* line 110, ../sass/screen.scss */
 #footer .github-logo {
   float: right;
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 106, ../sass/screen.scss */
+  /* line 110, ../sass/screen.scss */
   #footer .github-logo {
     float: none;
     display: block;
@@ -1209,27 +1217,27 @@ body.no-scroll {
 }
 
 /* -- logo -- */
-/* line 117, ../sass/screen.scss */
+/* line 121, ../sass/screen.scss */
 #logo {
   color: #563f29;
   font-size: 1.25em;
   letter-spacing: 1px;
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 117, ../sass/screen.scss */
+  /* line 121, ../sass/screen.scss */
   #logo {
     font-size: 1em;
   }
 }
-/* line 124, ../sass/screen.scss */
+/* line 128, ../sass/screen.scss */
 #logo a {
   color: #563f29;
 }
-/* line 128, ../sass/screen.scss */
+/* line 132, ../sass/screen.scss */
 #logo.page-back {
   cursor: pointer;
 }
-/* line 132, ../sass/screen.scss */
+/* line 136, ../sass/screen.scss */
 #logo:before {
   content: "";
   width: 2.5em;
@@ -1248,14 +1256,14 @@ body.no-scroll {
   border-radius: 2.5em;
 }
 @media screen and (-webkit-min-device-pixel-ratio: 1.5), screen and (min-device-pixel-ratio: 1.5) {
-  /* line 132, ../sass/screen.scss */
+  /* line 136, ../sass/screen.scss */
   #logo:before {
     background: #e9e1bd url("../img/logo@2x.png") no-repeat center center;
     background-size: 2.5em 2.5em;
   }
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 132, ../sass/screen.scss */
+  /* line 136, ../sass/screen.scss */
   #logo:before {
     margin-top: 0.45em;
     background-size: 2em 2em;
@@ -1264,12 +1272,12 @@ body.no-scroll {
     vertical-align: -0.6em;
   }
 }
-/* line 155, ../sass/screen.scss */
+/* line 159, ../sass/screen.scss */
 #logo:before:hover {
   border: 10px solid #e9e1bd;
 }
 
-/* line 161, ../sass/screen.scss */
+/* line 165, ../sass/screen.scss */
 #map {
   position: absolute;
   top: 0;
