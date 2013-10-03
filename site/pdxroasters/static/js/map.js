@@ -1,4 +1,4 @@
-define(["Leaflet"], function (L) {
+define(['Leaflet', 'jquery' ], function (L, $) {
 
   var zoom = 13;
 
@@ -21,6 +21,14 @@ define(["Leaflet"], function (L) {
     shadowAnchor: [9, 5]
   });
 
+  var $body = $('body');
+  var isHome = $body.hasClass('home');
+
+  if (isHome){
+    var $list      = $('#list');
+    var $distance  = $('#distance');
+  }
+
   var Map = {
     init: function() {
       L.tileLayer('http://{s}.tiles.mapbox.com/v3/financialtimes.map-w7l4lfi8/{z}/{x}/{y}.png', {
@@ -35,9 +43,14 @@ define(["Leaflet"], function (L) {
       var popup = '<h5><a href="roaster/' + slug + '">' + name + '<span class="right-arrow"></span></a></h5>';
       return popup;
     },
+    roasters: null,
     getRoasters: function() {
-      $.getJSON("/api/roaster/?format=json", function(data){
+      $.getJSON("http://www.pdxroasters.com/api/roaster/?format=jsonp&callback=?", {limit: 200}, function(data){
         //console.log(data.objects);
+
+        Map.roasters = data.objects;
+        Map.parseList();
+
         for (var i = 0; i < data.objects.length; i++){
 
           var d = data.objects[i];
@@ -50,7 +63,10 @@ define(["Leaflet"], function (L) {
           }
         }
       }).error(function(jqXHR, textStatus, errorThrown){
-        console.log("Error fetching roaster json");
+        console.log(jqXHR);
+        console.log(textStatus);
+        console.log(errorThrown);
+
       });
     },
     locate: function() {
@@ -64,8 +80,10 @@ define(["Leaflet"], function (L) {
       map.on('locationfound', Map.locationFound);
 
     },
+    location: null,
     locationFound: function(e){
-
+      Map.location = e;
+      Map.parseList();
       // if the device is in portland, center and show device location
       if (e.latitude > 45.49 && e.latitude < 45.53 && e.longitude > -122.8 && e.longitude < -122.4){
         var deviceMarker = L.icon({
@@ -85,9 +103,20 @@ define(["Leaflet"], function (L) {
         L.marker(e.latlng, {icon: deviceMarker}).addTo(map);
         map.setView(e.latlng, zoom + 1);
       }
+    },
+    setupList: function() {
+      if (isHome){
+        $list.find('.roaster').each(function(){
+          var $this = $(this);
+          var letter = $this.data('name').charAt(0);
+          $this.find('.letter').html(letter);
+        });
+      }
+    },
+    parseList: function(){
+      if (Map.roasters && Map.location){
 
-      return;
-
+      }
     }
   };
 

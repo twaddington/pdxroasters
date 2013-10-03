@@ -7,10 +7,11 @@
     <li><a href="#" class="active">By Name</a></li>
     <li><a href="#">By Distance</a></li>
   </ul>
+  <ul class="list-content hidden" id="distance"></ul>
   <ul class="list-content" id="roasters">
 {% for roaster in roasters %}
-  <li class="roaster">
-    <div class="distance"><span>123.2<br/>miles</span></div>
+  <li class="roaster" data-name="{{roaster.name}}">
+    <div class="distance"><span class="letter"></span></div>
     <a href="/roaster/{{roaster.slug}}/" id="item-{{roaster.id}}" data-latlng="[{{roaster.lat}},{{roaster.lng}}]" data-name="{{roaster.name}}">
       <h3 class="handle"><span>{{ roaster.name }}</span></h3>
     </a>

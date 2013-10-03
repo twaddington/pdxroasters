@@ -17,6 +17,7 @@ require.config({
 require(['map', 'forms', 'scroll', 'Leaflet', 'jquery'], function(Map, Forms, Scroll, L, $){
 
   Map.init();
+  Map.setupList();
   Map.getRoasters();
   Map.locate();
 
