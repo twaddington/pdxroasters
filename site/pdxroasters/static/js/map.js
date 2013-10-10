@@ -76,9 +76,7 @@ define(['Leaflet', 'jquery' ], function (L, $) {
         watch: false
       });
       var counter = 0;
-
       map.on('locationfound', Map.locationFound);
-
     },
     location: null,
     locationFound: function(e){
@@ -114,9 +112,54 @@ define(['Leaflet', 'jquery' ], function (L, $) {
       }
     },
     parseList: function(){
-      if (Map.roasters && Map.location){
 
+      function rank(a,b){
+        if (a.distance > b.distance){ return 1; }
+        if (a.distance < b.distance){ return -1; }
+        return 0;
       }
+
+      if (Map.roasters && Map.location){
+        var roasters = [];
+
+        for (var i = 0; i < Map.roasters.length; i++){
+          var roaster = Map.roasters[i];
+          if (roaster.lat && roaster.lng){
+            var latlng = new L.LatLng(roaster.lat, roaster.lng);
+            var distance = latlng.distanceTo(Map.location.latlng) * 0.000621371;
+            roaster.distance = parseFloat(distance.toFixed(2));
+            roasters.push(roaster);
+          }
+        }
+
+        roasters.sort(rank);
+        var $distance = $('#distance');
+        var text = '';
+
+        for (var j = 0; j < roasters.length; j++){
+          text += '<li class="roaster"><div class="distance"><span class="letter">' + roasters[j].distance + '<br>miles</span></div><a href="/roaster/' + roasters[j].slug + '/" class="handle"><span class="list-name">' + roasters[j].name + '</span><span class="address">' + roasters[j].address + '</span></a></li>';
+        }
+
+        $distance.html(text);
+      }
+
+    },
+    toggleList: function(){
+      var $nameLink     = $('#by-name');
+      var $distance     = $('#distance');
+      var $alpha        = $('#roasters');
+      var $distanceLink = $('#by-distance');
+
+
+      $distanceLink.click(function(e) {
+        e.preventDefault();
+        console.log('clicked distance');
+      });
+
+      $nameLink.click(function(e) {
+        e.preventDefault();
+        console.log('clicked alpha');
+      });
     }
   };
 

@@ -47,6 +47,9 @@
   @include respond-to($phone, $phone-wide){
     padding: 2em 1em 0 1em;
   }
+  &.hidden {
+    display: none;
+  }
   .roaster {
     background-color: white;
     margin: 0.5em 0;
@@ -70,17 +73,21 @@
   }
   .handle {
     cursor: pointer;
-    position: relative;
-    overflow:hidden;
-    text-overflow: ellipsis;
-    white-space:nowrap;
-    background-color: white;
-    padding: 0.6em;
+    display: block;
+    padding: 1em 1em 1em 5em;
   }
-  .push-link {
-    width:100%;
-    box-sizing:border-box;
-    padding:1.5em 1em 1.5em 5em;
-    display:block;
+  .list-name {
+    display: block;
+    font-family: $cabin;
+    font-weight: 500;
+    color: $darkest-gray;
+    font-size: 18px;
+    margin-top: -0.3em;
+    &.no-address {
+      margin-top: 0.35em;
+    }
+  }
+  .address {
+    color: $darker-gray;
   }
 }

@@ -20,6 +20,7 @@ require(['map', 'forms', 'scroll', 'Leaflet', 'jquery'], function(Map, Forms, Sc
   Map.setupList();
   Map.getRoasters();
   Map.locate();
+  Map.toggleList();
 
   Scroll.init();
   Scroll.updateActive();

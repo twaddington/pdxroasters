@@ -711,6 +711,10 @@ button[type="submit"]:hover {
   }
 }
 /* line 50, ../sass/_list.scss */
+.list-content.hidden {
+  display: none;
+}
+/* line 53, ../sass/_list.scss */
 .list-content .roaster {
   background-color: white;
   margin: 0.5em 0;
@@ -719,7 +723,7 @@ button[type="submit"]:hover {
   position: relative;
   clear: both;
 }
-/* line 58, ../sass/_list.scss */
+/* line 61, ../sass/_list.scss */
 .list-content .distance {
   background-color: #dd6a5a;
   width: 4em;
@@ -729,27 +733,33 @@ button[type="submit"]:hover {
   text-align: center;
   float: left;
 }
-/* line 66, ../sass/_list.scss */
+/* line 69, ../sass/_list.scss */
 .list-content .distance span {
   display: table-cell;
   vertical-align: middle;
 }
-/* line 71, ../sass/_list.scss */
+/* line 74, ../sass/_list.scss */
 .list-content .handle {
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  background-color: white;
-  padding: 0.6em;
-}
-/* line 80, ../sass/_list.scss */
-.list-content .push-link {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 1.5em 1em 1.5em 5em;
   display: block;
+  padding: 1em 1em 1em 5em;
+}
+/* line 79, ../sass/_list.scss */
+.list-content .list-name {
+  display: block;
+  font-family: "Cabin", Helvetica, Arial, Sans-serif;
+  font-weight: 500;
+  color: #323232;
+  font-size: 18px;
+  margin-top: -0.3em;
+}
+/* line 86, ../sass/_list.scss */
+.list-content .list-name.no-address {
+  margin-top: 0.35em;
+}
+/* line 90, ../sass/_list.scss */
+.list-content .address {
+  color: #7b7676;
 }
 
 /* - - - - Roaster Detail Pages - - - - - */
