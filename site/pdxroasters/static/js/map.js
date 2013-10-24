@@ -153,12 +153,23 @@ define(['Leaflet', 'jquery' ], function (L, $) {
 
       $distanceLink.click(function(e) {
         e.preventDefault();
-        console.log('clicked distance');
+
+        if (!Map.location ){
+          Map.locate();
+        }
+
+        $distanceLink.addClass('active');
+        $nameLink.removeClass('active');
+        $alpha.addClass('hidden');
+        $distance.removeClass('hidden');
       });
 
       $nameLink.click(function(e) {
         e.preventDefault();
-        console.log('clicked alpha');
+        $nameLink.addClass('active');
+        $distanceLink.removeClass('active');
+        $distance.addClass('hidden');
+        $alpha.removeClass('hidden');
       });
     }
   };

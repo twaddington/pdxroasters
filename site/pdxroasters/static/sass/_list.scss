@@ -22,20 +22,37 @@
     margin: 1em 0;
   }
   li {
-    display: inline-block;
+    display: inline;
     a {
-      color: white;
+      background-color: $light-gray;
+      margin-right: -4px;
       padding: 1em 2em;
       display: inline-block;
       font-size: 18px;
+      color: $darkest-gray;
+      @include transition(150ms all linear);
+      &:hover {
+        background-color: lighten($light-gray, 3%);
+      }
       &.active {
-        color: $darkest-gray;
         background-color: $lighter-gray;
       }
     }
   }
 }
-
+#distance {
+  position: relative;
+}
+.no-distance {
+  width: 50%;
+  margin: 3em 0 3em 25%;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  font-size: 2em;
+  text-transform: none;
+  line-height: 1.4em;
+}
 .list-content {
   background-color: $lighter-gray;
   width:100%;
@@ -57,6 +74,9 @@
     border: 1px solid $lighter-gray;
     position: relative;
     clear:both;
+    &.greyed-out {
+      @include opacity(0.1);
+    }
   }
   .distance {
     background-color: $red;

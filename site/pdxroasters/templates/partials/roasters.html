@@ -7,7 +7,21 @@
     <li><a id="by-name" href="#" class="active">By Name</a></li>
     <li><a id="by-distance" href="#">By Distance</a></li>
   </ul>
-  <ul class="list-content" id="distance">
+  <ul class="list-content hidden" id="distance">
+    <h2 class="no-distance"> Update your browser's locations settings to see roasters sorted by distance. </h2>
+{% for roaster in roasters %}
+  <li class="roaster greyed-out" data-name="{{roaster.name}}">
+    <div class="distance"><span>?.?</span></div>
+    <a href="/roaster/{{roaster.slug}}/" id="item-{{roaster.id}}" data-latlng="[{{roaster.lat}},{{roaster.lng}}]" data-name="{{roaster.name}}" class="handle">
+      {% if roaster.address %}
+      <span class="list-name">{{ roaster.name }}</span>
+      <span class="address"> {{roaster.address}}</span>
+      {% else %}
+      <span class="list-name no-address">{{ roaster.name }}</span>
+      {% endif %}
+    </a>
+  </li>
+{% endfor %}
   </ul>
   <ul class="list-content" id="roasters">
 {% for roaster in roasters %}

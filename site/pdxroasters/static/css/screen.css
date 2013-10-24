@@ -679,22 +679,48 @@ button[type="submit"]:hover {
 }
 /* line 24, ../sass/_list.scss */
 .sort-list li {
-  display: inline-block;
+  display: inline;
 }
 /* line 26, ../sass/_list.scss */
 .sort-list li a {
-  color: white;
+  background-color: #e6e6e6;
+  margin-right: -4px;
   padding: 1em 2em;
   display: inline-block;
   font-size: 18px;
-}
-/* line 31, ../sass/_list.scss */
-.sort-list li a.active {
   color: #323232;
+  -webkit-transition: 150ms all linear;
+  -moz-transition: 150ms all linear;
+  -o-transition: 150ms all linear;
+  transition: 150ms all linear;
+}
+/* line 34, ../sass/_list.scss */
+.sort-list li a:hover {
+  background-color: #eeeeee;
+}
+/* line 37, ../sass/_list.scss */
+.sort-list li a.active {
   background-color: #f8f6f4;
 }
 
-/* line 39, ../sass/_list.scss */
+/* line 43, ../sass/_list.scss */
+#distance {
+  position: relative;
+}
+
+/* line 46, ../sass/_list.scss */
+.no-distance {
+  width: 50%;
+  margin: 3em 0 3em 25%;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  font-size: 2em;
+  text-transform: none;
+  line-height: 1.4em;
+}
+
+/* line 56, ../sass/_list.scss */
 .list-content {
   background-color: #f8f6f4;
   width: 100%;
@@ -705,16 +731,16 @@ button[type="submit"]:hover {
   max-width: 960px;
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 39, ../sass/_list.scss */
+  /* line 56, ../sass/_list.scss */
   .list-content {
     padding: 2em 1em 0 1em;
   }
 }
-/* line 50, ../sass/_list.scss */
+/* line 67, ../sass/_list.scss */
 .list-content.hidden {
   display: none;
 }
-/* line 53, ../sass/_list.scss */
+/* line 70, ../sass/_list.scss */
 .list-content .roaster {
   background-color: white;
   margin: 0.5em 0;
@@ -723,7 +749,12 @@ button[type="submit"]:hover {
   position: relative;
   clear: both;
 }
-/* line 61, ../sass/_list.scss */
+/* line 77, ../sass/_list.scss */
+.list-content .roaster.greyed-out {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=10);
+  opacity: 0.1;
+}
+/* line 81, ../sass/_list.scss */
 .list-content .distance {
   background-color: #dd6a5a;
   width: 4em;
@@ -733,18 +764,18 @@ button[type="submit"]:hover {
   text-align: center;
   float: left;
 }
-/* line 69, ../sass/_list.scss */
+/* line 89, ../sass/_list.scss */
 .list-content .distance span {
   display: table-cell;
   vertical-align: middle;
 }
-/* line 74, ../sass/_list.scss */
+/* line 94, ../sass/_list.scss */
 .list-content .handle {
   cursor: pointer;
   display: block;
   padding: 1em 1em 1em 5em;
 }
-/* line 79, ../sass/_list.scss */
+/* line 99, ../sass/_list.scss */
 .list-content .list-name {
   display: block;
   font-family: "Cabin", Helvetica, Arial, Sans-serif;
@@ -753,11 +784,11 @@ button[type="submit"]:hover {
   font-size: 18px;
   margin-top: -0.3em;
 }
-/* line 86, ../sass/_list.scss */
+/* line 106, ../sass/_list.scss */
 .list-content .list-name.no-address {
   margin-top: 0.35em;
 }
-/* line 90, ../sass/_list.scss */
+/* line 110, ../sass/_list.scss */
 .list-content .address {
   color: #7b7676;
 }
