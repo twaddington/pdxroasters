@@ -13,6 +13,9 @@ define(["jquery"], function ($) {
         var $this = $( this ),
           form = $this.data( "form" );
 
+        var csrf = $('body').attr('data-csrftoken');
+        console.log(csrf);
+
         $.ajax({
           data: $this.serialize(),
           headers: {
