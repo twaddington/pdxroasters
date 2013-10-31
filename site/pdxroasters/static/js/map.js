@@ -99,7 +99,7 @@ define(['Leaflet', 'jquery' ], function (L, $) {
         };
         L.circle(e.latlng, 120, device).addTo(map);
         L.marker(e.latlng, {icon: deviceMarker}).addTo(map);
-        map.setView(e.latlng, zoom + 1);
+        map.panTo(e.latlng);
       }
     },
     setupList: function() {
