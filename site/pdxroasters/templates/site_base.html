@@ -42,10 +42,6 @@
   <section class="content relative">
     {% block content %}{% endblock %}
   </section>
-  {% if debug %}
-  <script data-main="/static/js/main.js" src="{% static 'js/lib/require.min.js' %}"></script>
-  {% else %}
-  <script data-main="/static/js/main.js" src="{% static 'js/lib/require.min.js' %}"></script>
-  {% endif %}
+  <script data-main="/static/js/{% block scripts %}{% endblock %}.js" src="{% static 'js/lib/require.min.js' %}"></script>
 </body>
 </html>

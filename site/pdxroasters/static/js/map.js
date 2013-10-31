@@ -1,13 +1,18 @@
 define(['Leaflet', 'jquery' ], function (L, $) {
 
   var zoom = 13;
+  var $body = $('body');
+  var isHome = $body.hasClass('home');
+  var map;
 
-  var map = L.map('map', {
-      center: [45.52, -122.67],
-      zoom: zoom,
-      scrollWheelZoom: false,
-      attributionControl: false
-  });
+  if (isHome){
+    map = L.map('map', {
+        center: [45.52, -122.67],
+        zoom: zoom,
+        scrollWheelZoom: false,
+        attributionControl: false
+    });
+  }
 
   var roasterMarker = L.icon({
     iconUrl: '/static/img/roaster-marker-sans.png',
@@ -21,20 +26,21 @@ define(['Leaflet', 'jquery' ], function (L, $) {
     shadowAnchor: [9, 5]
   });
 
-  var $body = $('body');
-  var isHome = $body.hasClass('home');
-
   if (isHome){
     var $list      = $('#list');
     var $distance  = $('#distance');
   }
 
+  console.log(isHome);
+
   var Map = {
     init: function() {
-      L.tileLayer('http://{s}.tiles.mapbox.com/v3/financialtimes.map-w7l4lfi8/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
-      }).addTo(map);
+      if (isHome) {
+        L.tileLayer('http://{s}.tiles.mapbox.com/v3/financialtimes.map-w7l4lfi8/{z}/{x}/{y}.png', {
+          maxZoom: 18,
+          attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
+        }).addTo(map);
+      }
     },
     addMarker: function(lat, lng, popup) {
       L.marker([lat, lng], {icon: roasterMarker}).addTo(map).bindPopup(popup);
