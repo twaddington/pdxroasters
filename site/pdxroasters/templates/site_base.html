@@ -25,7 +25,7 @@
   <meta name="author" content="Paul C. Pederson" />
   <meta name="author" content="Brandon Lee Kitajchuk" />
   <link rel="author" href="humans.txt" />
-  <link href="/static/img/favicon.png" rel="shortcut icon" />
+  <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
   <link href="{% static 'css/screen.css' %}" rel="stylesheet" media="screen" />
   <title>PDX Roasters | {% block title %}{% endblock %}</title>
@@ -34,18 +34,14 @@
   <nav class="top-nav">
     <ul>
       <li><a href="/" class="logo">PDX Roasters</a></li>
-      <li class="nav-right"><a href="/#map" id="map_link" class="map">Map</a></li>
-      <li class="nav-right"><a href="/#list" id="list_link" class="info">List</a></li>
       <li class="nav-right"><a href="/about" class="info {% block aboutActive %}{% endblock %}">About</a></li>
+      <li class="nav-right"><a href="/#list" id="list_link" class="info">List</a></li>
+      <li class="nav-right"><a href="/#map" id="map_link" class="map">Map</a></li>
     </ul>
   </nav>
   <section class="content relative">
     {% block content %}{% endblock %}
   </section>
-  {% if debug %}
-  <script data-main="/static/js/main.js" src="{% static 'js/lib/require.min.js' %}"></script>
-  {% else %}
-  <script data-main="/static/js/main.js" src="{% static 'js/lib/require.min.js' %}"></script>
-  {% endif %}
+  <script data-main="/static/js/{% block scripts %}{% endblock %}.js" src="{% static 'js/lib/require.min.js' %}"></script>
 </body>
 </html>
