@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="add-a-roaster-form">
-        <form class="ajax-form" data-form="roaster" method="post" action="/add-roaster/">{% csrf_token %}
+        <form class="ajax-form" data-form="roaster" method="post" action="{% url add-roaster %}">{% csrf_token %}
             <input name="name" type="text" placeholder="Roaster Name" />
             <input name="address" type="text" placeholder="Roaster Address" />
             <input name="phone" type="tel" placeholder="Roaster Phone" />
