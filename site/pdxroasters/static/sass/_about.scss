@@ -1,0 +1,76 @@
+/* -- about page -- */
+#about {
+  position: absolute;
+  left:0;
+  right:0;
+  display:block;
+  z-index: 1;
+}
+
+.about-wrap {
+  padding: 5em 2em 2em 2em;
+  box-sizing: border-box;
+  margin:0;
+  background-color:$lighter-gray;
+  h2 {
+    margin: 1em 0;
+    font-size:22px;
+    text-transform: none;
+  }
+}
+
+.block {
+  padding: 4em 0;
+}
+
+.about {
+  max-width:1020px;
+  margin:0 auto;
+}
+
+.about-description {
+  width: 70%;
+  box-sizing:border-box;
+  max-width:620px;
+  padding: 0 0 0 4em;
+  display: inline-block;
+}
+
+.about-icon {
+  width: 30%;
+  box-sizing:border-box;
+  display:inline-block;
+  max-width: 400px;
+  height:auto;
+  margin-top:0;
+  vertical-align: top;
+  img {
+    width: 100%;
+    height: auto;
+    display: inline-block;
+    @include border-radius(50%);
+  }
+}
+
+/* -- add a roaster -- */
+
+.add-a-roaster-copy {
+  @extend .about-icon;
+  margin-top: 5em;
+}
+
+.add-a-roaster-form {
+  @extend .about-description;
+}
+
+/* -- contact -- */
+.contact-form {
+  @extend .about-description;
+  padding-left: 0;
+}
+
+.contact-copy {
+  @extend .about-icon;
+  padding-left: 5em;
+  margin-top: 2em;
+}

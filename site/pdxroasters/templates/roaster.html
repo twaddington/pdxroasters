@@ -1,11 +1,11 @@
 {% extends 'site_base.html' %}
 {% load i18n %}
 {% block title %}{{ roaster.name }}{% endblock %}
+{% block page %}roaster{% endblock %}
 
 {% block content %}
 <div class="content">
     <div class="roaster-banner" style="background-image: url('http://maps.googleapis.com/maps/api/streetview?size=1920x1080&location={{ roaster.lat }},{{ roaster.lng }}&fov=180&sensor=false');">
-        <a class="back-to-list" href="#"> </a>
         <div class="banner-title">
             <h1 class="roaster-title"> {{ roaster.name }} </h1>
             {% if roaster.address %}
@@ -51,19 +51,19 @@
                     {% elif roaster.order_online %}
                         Order Online
                     {% else %}
-                        No Online Orders
+                        Online Orders
                     {% endif %}
                 </p>
             </div>
 
             <div class="roaster-fact col col1of3">
                 <div class="roaster-fact-icon onsite-cafe {% if not roaster.cafe_on_site %} false{% endif %}"></div>
-                <p{% if not roaster.cafe_on_site %} class="false"{% endif %}>{% if not roaster.cafe_on_site %} No{% endif %} Onsite Cafe </p>
+                <p{% if not roaster.cafe_on_site %} class="false"{% endif %}>Onsite Cafe</p>
             </div>
 
             <div class="roaster-fact col col1of3">
                 <div class="roaster-fact-icon open-to-public{% if not roaster.open_to_public %} false{% endif %}"></div>
-                <p{% if not roaster.open_to_public %} class="false"{% endif %}>{% if not roaster.open_to_public %}Closed {% else %}Open {% endif %}to the Public </p>
+                <p{% if not roaster.open_to_public %} class="false"{% endif %}>Open to the Public</p>
             </div>
 
             <h4 class="about-title">Cafes Serving this Roast</h4>

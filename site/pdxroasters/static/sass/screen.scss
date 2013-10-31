@@ -22,7 +22,6 @@ $dark-brown: #44372c;
 $brown: #563f29;
 $light-brown:#6d543d;
 $skolar: 'Skolar', Helvetica, Arial, Sans-serif;
-$din: 'DIN', Helvetica, Arial, Sans-serif;
 $cabin: 'Cabin', Helvetica, Arial, Sans-serif;
 
 /* -- breakpoints -- */
@@ -33,590 +32,143 @@ $tablet-wide: 1080px;
 $desktop: 1280px;
 $desktop-wide: 1920px;
 
-@import 'helpers';
-@import 'reset';
-@import 'typography';
-@import 'grid';
-@import 'forms';
+@import 'base/helpers';
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/grid';
+@import 'base/forms';
+@import 'map';
+@import 'about';
+@import 'list';
+@import 'roaster';
 
 body {
-    margin: 0;
-    min-height: 100%;
-    font-size: 16px;
-    font-family: $cabin;
-    -webkit-font-smoothing: antialiased;
-
-    &.no-scroll {
-        overflow-y: hidden;
-    }
-}
-
-/* -- buttons -- */
-.btn {
-    background: $light-red;
-    @include border-radius(4px);
-    padding:.5em 2em;
-    cursor: pointer;
-    //margin-right: 1em;
-    text-transform: none;
-    letter-spacing: 1px;
-    text-align: center;
-    text-indent: 0px;
-    text-decoration: none;
-    color: #fff;
-    display: block;
-    @include transition(all 200ms linear);
-    &:hover {
-        background: rgb(211, 101, 85);
-        color: $white;
-    }
+  margin: 0;
+  min-height: 100%;
+  font-size: 16px;
+  font-family: $cabin;
+  -webkit-font-smoothing: antialiased;
+  &.no-scroll {
+    overflow-y: hidden;
+  }
 }
 
 /* -- nav -- */
 .top-nav {
-    background-color: transparent;
-    padding:0 2em;
-    width:100%;
-    position:fixed;
-    box-sizing: border-box;
-    display:block;
-    z-index:3;
-    ul {
-        width:100%;
-        li{
-            float:left;
-            display:inline-block;
-            &.nav-right {
-                float:right;
-            }
-            a{
-                padding:1em;
-                background-color: #fff;
-                color: $darkest-gray;
-                &.active {
-                    background-color: $red;
-                    color: $white;
-                }
-                float:left;
-            }
+  background-color: $white;
+  padding:0.3em 2em;
+  width:100%;
+  position:fixed;
+  box-sizing: border-box;
+  display:block;
+  z-index:3;
+  border-bottom: 1px solid $light-gray;
+  @include box-shadow(0 0 12px rgba(0,0,0,0.2));
+  ul {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 960px;
+    li{
+      float:left;
+      display:inline-block;
+      &.nav-right {
+        float:right;
+      }
+      a{
+        padding: 0;
+        background-color: #FFF;
+        color: $darker-gray;
+        float: left;
+        margin: 1em;
+        padding: 0.25em 0;
+        &.active {
+          color: #CC4B1F;
+          border-bottom: 2px solid $red;
         }
+        &.logo {
+          margin-left:0;
+        }
+        float:left;
+      }
     }
+  }
 }
 
 /* -- footer -- */
 #footer {
-    background-color: #333;
-    color: #fff;
-    padding: 2em 2em;
-    z-index: 10;
-    @include respond-to($phone, $phone-wide){
+  background-color: #333;
+  color: #fff;
+  padding: 2em 2em;
+  z-index: 10;
+  position:absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  @include respond-to($phone, $phone-wide){
 
+  }
+  .github-logo {
+    float:right;
+    @include respond-to($phone, $phone-wide){
+      float:none;
+      display: block;
+      margin: 0.5em 0 0 0;
     }
-    .github-logo {
-        float:right;
-        @include respond-to($phone, $phone-wide){
-            float:none;
-            display: block;
-            margin: 0.5em 0 0 0;
-        }
-    }
+  }
 }
 
 /* -- logo -- */
 #logo {
+  color: $brown;
+  font-size: 1.25em;
+  letter-spacing: 1px;
+  @include respond-to($phone, $phone-wide){
+    font-size: 1em;
+  }
+  a {
     color: $brown;
-    font-size: 1.25em;
-    letter-spacing: 1px;
-    @include respond-to($phone, $phone-wide){
-        font-size: 1em;
+  }
+
+  &.page-back {
+    cursor: pointer;
+  }
+
+  &:before{
+    content: "";
+    width: 2.5em;
+    height: 2.5em;
+    background: $tan url("../img/logo.png") no-repeat center center;
+    background-size: 2.5em 2.5em;
+    @include retina-display(){
+      background: $tan url("../img/logo@2x.png") no-repeat center center;
+      background-size: 2.5em 2.5em;
     }
-    a {
-	    color: $brown;
+    position: relative;
+    display: inline-block;
+    margin-top: .75em;
+    margin-right: .5em;
+    vertical-align: -0.85em;
+    @include border-radius(2.5em);
+    @include respond-to($phone, $phone-wide) {
+      margin-top: 0.45em;
+      background-size: 2em 2em;
+      width:2em;
+      height:2em;
+      vertical-align: -0.6em;
     }
-
-    &.page-back {
-	    cursor: pointer;
+    &:hover{
+      border: 10px solid $tan;
     }
-
-    &:before{
-        content: "";
-        width: 2.5em;
-        height: 2.5em;
-        background: $tan url("../img/logo.png") no-repeat center center;
-        background-size: 2.5em 2.5em;
-        @include retina-display(){
-            background: $tan url("../img/logo@2x.png") no-repeat center center;
-            background-size: 2.5em 2.5em;
-        }
-        position: relative;
-        display: inline-block;
-        margin-top: .75em;
-        margin-right: .5em;
-        vertical-align: -0.85em;
-        @include border-radius(2.5em);
-        @include respond-to($phone, $phone-wide) {
-            margin-top: 0.45em;
-            background-size: 2em 2em;
-            width:2em;
-            height:2em;
-            vertical-align: -0.6em;
-        }
-        &:hover{
-            border: 10px solid $tan;
-        }
-    }
-
-}
-
-::-webkit-input-placeholder {
-   color: $light-gray;
-}
-
-:-moz-placeholder { /* Firefox 18- */
-   color: $light-gray;
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-   color: $light-gray;
-}
-
-:-ms-input-placeholder {
-   color: $light-gray;
+  }
 }
 
 #map {
-    position: absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    display:block;
-    z-index: 1;
+  position: absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  display:block;
+  z-index: 1;
 }
 
-#about {
-    position: absolute;
-    top:100%;
-    left:0;
-    right:0;
-    display:block;
-    z-index: 1;
-}
-
-/* -- listings -- */
-.hours {
-    font-size:14px;
-    font-weight:400;
-    color:$darkest-gray;
-    span {
-        float: right;
-        display: inline;
-        text-align: right;
-    }
-}
-
-.address {
-    @extend .hours;
-}
-
-
-/* - - - - Roaster Detail Pages - - - - - */
-#roaster-push-page {
-
-    h3 {
-        margin-bottom: 1.5em;
-    }
-
-    h4 {
-        margin: 0 0 1em 0;
-    }
-
-    .message {
-        padding: 0 40px 40px;
-    }
-
-    .figcaption {
-        font-family: $skolar;
-    }
-
-    .meta {
-        margin-top: 20px;
-    }
-
-    .roaster {
-        &.active {
-            background-color: rgba(0,0,0,.02);
-            border-bottom: 1px solid #ebebeb;
-            border-top: 1px solid #ebebeb;
-
-            @include box-shadow(0 0 30px rgba(0,0,0,.1) inset);
-
-            .handle {
-                border-bottom: 0;
-            }
-
-            .handle span {
-                color: $blue;
-            }
-
-            .content {
-                display: block;
-            }
-        }
-
-        .content {
-            display: none;
-
-            &.active {
-                display: block;
-            }
-        }
-
-        .btn {
-            display: inline-block;
-        }
-
-        .toggle {
-            display: block;
-            height: 40px;
-            margin-top: -20px;
-            position: absolute;
-            right: -40px;
-            top: 50%;
-            width: 40px;
-            @include transition(all 400ms cubic-bezier(0.095, 0.910, 0.245, 1.000));
-        }
-    }
-}
-
-.roaster-banner {
-    width: 100%;
-    min-height: 300px;
-    position: relative;
-    background: url("/static/img/building.jpg") no-repeat center center $gray;
-    background-size: cover;
-    overflow: hidden;
-    &:before {
-        content: "";
-        background: -webkit-radial-gradient(center, circle cover, rgba(255,255,255,0) 0%,rgba(0,0,0,.6) 100%);
-        pointer-events: none;
-        display: block;
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        z-index: 2;
-    }
-    &:after {
-        content: "";
-        background: url("/static/img/mesh.png") repeat top left transparent;
-        pointer-events: none;
-        display: block;
-        position: absolute;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-    }
-
-}
-
-.banner-title{
-    position: relative;
-    top: 22px;
-    width: 50%;
-    padding: 10% 0 10% 8%;
-    display: block;
-    z-index: 3;
-}
-
-.roaster-title {
-    color: $white;
-    font-size: 36px;
-    @include respond-to($phone, $phone-wide){
-        font-size:24px;
-    }
-    h3 {
-        margin-bottom: 0 !important;
-    }
-}
-
-.banner-address {
-    line-height: 1.5em;
-    margin-left:24px;
-}
-
-.banner-link {
-    color: $white;
-    position:relative;
-    &:hover {
-        color: $lighter-gray;
-    }
-    &:after {
-        width: 20px;
-        height: 26px;
-        content: "";
-        display: block;
-        position: absolute;
-        top:0;
-        left: -24px;
-        background: url('/static/img/turn-by-turn.png') no-repeat top center transparent;
-        background-size: 20px;
-        @include retina-display(){
-            background: transparent url("/static/img/turn-by-turn@2x.png") no-repeat center;
-            background-size: 20px;
-        }
-    }
-}
-
-.roaster-description {
-    width: 100%;
-    max-width: 960px;
-    margin: 3em 0 3em 8%;
-    @include respond-to($phone, $phone-wide){
-        width: 90%;
-        margin: 0.5em 5% 0.5em 5%;
-        h5 {
-            margin-bottom:0;
-            margin-top:1em;
-        }
-    }
-}
-
-.phone-number {
-    color: $darker-gray;
-    font-size: 0.75em;
-    line-height:1.5em;
-}
-
-.roaster-fact {
-    text-align: center;
-    margin-bottom:2em;
-    @include respond-to($phone, $phone-wide){
-        width:33%;
-    }
-    > div{
-        display:block;
-        width: 100%;
-        -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
-        padding: 4em;
-        @include respond-to($phone, $phone-wide){
-            padding:2em;
-        }
-    }
-    p {
-        margin: 0.5em 0 2em 0;
-        font-size: 0.85em;
-        &.false {
-            color: $light-gray;
-        }
-    }
-}
-.about-title{
-    @include respond-to($phone, $phone-wide){
-        margin-top:2em;
-    }
-}
-.contact-info {
-    margin-bottom: 2em;
-}
-.roaster-fact-icon {
-    width:100%;
-    background: url('/static/img/onsite-cafe.png') no-repeat center center transparent;
-    background-size: contain;
-    @include retina-display(){
-        background: transparent url("/static/img/onsite-cafe@2x.png") no-repeat center;
-        background-size: 100px;
-    }
-    &.false{
-        opacity: 0.2;
-    }
-}
-.online-orders {
-    background: url('/static/img/online.png') no-repeat center center transparent;
-    background-size: contain;
-    @include retina-display(){
-        background: transparent url("/static/img/online@2x.png") no-repeat center;
-        background-size: 100px;
-    }
-    @include respond-to($phone, $phone-wide){
-        background-size:60px;
-    }
-}
-
-.onsite-cafe {
-    background: url('/static/img/onsite-cafe.png') no-repeat center center transparent;
-    background-size: contain;
-    @include retina-display(){
-        background: transparent url("/static/img/onsite-cafe@2x.png") no-repeat center;
-        background-size: 100px;
-    }
-    @include respond-to($phone, $phone-wide){
-        background-size:60px;
-    }
-}
-
-.open-to-public {
-    background: url('/static/img/public.png') no-repeat center center transparent;
-    background-size: contain;
-    @include retina-display(){
-        background: transparent url("/static/img/public@2x.png") no-repeat center;
-        background-size: 100px;
-    }
-    @include respond-to($phone, $phone-wide){
-        background-size:60px;
-    }
-}
-
-
-.roaster-about {
-    padding:0 6.5em 0 0;
-    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
-    @include respond-to($phone, $phone-wide){
-        padding:0;
-        margin-bottom: 2em;
-    }
-    p {
-        margin-bottom: 2em;
-    }
-    &.second-column{
-        padding-left: 8%;
-        @include respond-to($phone, $phone-wide){
-            padding-left:0;
-        }
-    }
-}
-
-.back-to-list {
-    background: $red url('../img/list.png') 70% 14px no-repeat;
-    background-size: 20px 20px;
-    display: block;
-    height: 50px;
-    left: 0%;
-    margin-left: -20px;
-    position: absolute;
-    text-align: center;
-    top: 50%;
-    margin-top: -25px;
-    width: 50px;
-    z-index: 7;
-    @include transition(margin-left 100ms linear);
-    @include box-shadow(0 0 3px rgba(0,0,0,.8));
-    @include border-bottom-right-radius(25px);
-    @include border-top-right-radius(25px);
-    &:hover {
-        margin-left: -15px;
-        @include respond-to($phone, $phone-wide){
-            margin-left:-8px;
-        }
-    }
-    @include respond-to($phone, $phone-wide){
-        background: #dd6a5a url("../img/list.png") 70% 8px no-repeat;
-        background-size: 20px 20px;
-        height: 36px;
-        margin-left: -10px;
-        position: absolute;
-        text-align: center;
-        top: 50%;
-        margin-top: -18px;
-        width: 36px;
-    }
-}
-
-#roaster-push-page {
-	.roaster {
-		padding: 80px 0px 0px;
-        @include respond-to($phone, $phone-wide){
-            padding-top:48px;
-        }
-		.col1of2 {
-			width: 48%;
-		}
-	}
-}
-
-@media
-only screen and (max-width : 640px),
-only screen and (max-device-width: 1136px) and (min-device-width: 960px) and (device-height: 640px),
-only screen and (max-device-height: 1136px) and (min-device-height: 960px) and (device-width: 640px),
-only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 1.5),
-only screen and (max-device-width : 640px) and (-webkit-min-device-pixel-ratio : 1.5),
-only screen and (max-device-width : 640px) and (min-device-pixel-ratio : 1.5),
-only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-
-    .roaster-banner {
-        min-height: 100px;
-    }
-
-    .banner-title {
-        top: auto;
-    padding: 3em 4% 3em 12%;
-    width: 84%;
-    }
-}
-
-/* -- about page -- */
-.about-wrap {
-    padding: 5em 2em 2em 2em;
-    box-sizing: border-box;
-    margin:0;
-    background-color:$lighter-gray;
-    h2 {
-        margin: 1em 0;
-        font-size:22px;
-        text-transform: none;
-    }
-}
-
-.block {
-    padding: 4em 0;
-}
-
-.about {
-    max-width:1020px;
-    margin:0 auto;
-}
-
-.about-description {
-    width: 70%;
-    box-sizing:border-box;
-    max-width:620px;
-    padding: 0 0 0 4em;
-    display: inline-block;
-}
-.about-icon {
-    width: 30%;
-    box-sizing:border-box;
-    display:inline-block;
-    max-width: 400px;
-    height:auto;
-    margin-top:0;
-    vertical-align: top;
-    img {
-        width: 100%;
-        height: auto;
-        display: inline-block;
-        @include border-radius(50%);
-    }
-}
-
-/* -- add a roaster -- */
-
-.add-a-roaster-copy {
-    @extend .about-icon;
-    margin-top: 5em;
-}
-.add-a-roaster-form {
-    @extend .about-description;
-}
-
-/* -- contact -- */
-.contact-form {
-    @extend .about-description;
-    padding-left: 0;
-}
-.contact-copy {
-    @extend .about-icon;
-    padding-left: 5em;
-    margin-top: 2em;
-}

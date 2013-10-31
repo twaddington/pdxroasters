@@ -1,0 +1,303 @@
+/* - - - - Roaster Detail Pages - - - - - */
+
+/* -- listings -- */
+.hours {
+  font-size:14px;
+  font-weight:400;
+  color:$darkest-gray;
+  span {
+    float: right;
+    display: inline;
+    text-align: right;
+  }
+}
+
+.address {
+  @extend .hours;
+}
+
+#roaster-push-page {
+
+  h3 {
+    margin-bottom: 1.5em;
+  }
+
+  h4 {
+    margin: 0 0 1em 0;
+  }
+
+  .message {
+    padding: 0 40px 40px;
+  }
+
+  .figcaption {
+    font-family: $skolar;
+  }
+
+  .meta {
+    margin-top: 20px;
+  }
+
+  .roaster {
+    background-color: $tan;
+    &.active {
+      background-color: rgba(0,0,0,.02);
+      border-bottom: 1px solid #ebebeb;
+      border-top: 1px solid #ebebeb;
+
+      @include box-shadow(0 0 30px rgba(0,0,0,.1) inset);
+
+      .handle {
+        border-bottom: 0;
+      }
+
+      .handle span {
+        color: $blue;
+      }
+
+      .content {
+        display: block;
+      }
+    }
+
+    .content {
+      display: none;
+
+      &.active {
+        display: block;
+      }
+    }
+
+    .btn {
+      display: inline-block;
+    }
+
+    .toggle {
+      display: block;
+      height: 40px;
+      margin-top: -20px;
+      position: absolute;
+      right: -40px;
+      top: 50%;
+      width: 40px;
+      @include transition(all 400ms cubic-bezier(0.095, 0.910, 0.245, 1.000));
+    }
+  }
+}
+
+.content {
+  background-color: $lighter-gray;
+}
+.roaster-banner {
+  width: 100%;
+  min-height: 300px;
+  position: relative;
+  background: url("/static/img/building.jpg") no-repeat center center $gray;
+  background-size: cover;
+  overflow: hidden;
+  &:before {
+    content: "";
+    background: -webkit-radial-gradient(center, circle cover, rgba(255,255,255,0) 0%,rgba(0,0,0,.6) 100%);
+    pointer-events: none;
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+  }
+  &:after {
+    content: "";
+    background: url("/static/img/mesh.png") repeat top left transparent;
+    pointer-events: none;
+    display: block;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.banner-title {
+  position: relative;
+  width: 100%;
+  padding: 10% 0 10% 0;
+  display: block;
+  z-index: 2;
+  margin-top:3em;
+}
+
+.roaster-title {
+  color: $white;
+  font-size: 72px;
+  text-align:center;
+  line-height:1.25em;
+  margin-bottom:0.5em;
+  @include respond-to($phone, $phone-wide){
+    font-size:24px;
+  }
+  h3 {
+    margin-bottom: 0 !important;
+  }
+}
+
+.banner-address {
+  line-height: 1.5em;
+  text-align:center;
+  font-size:20px;
+}
+
+.banner-link {
+  color: $white;
+  position:relative;
+  &:hover {
+    color: $lighter-gray;
+  }
+  &:after {
+    width: 20px;
+    height: 26px;
+    content: "";
+    display: block;
+    position: absolute;
+    top:0;
+    left: -24px;
+    background: url('/static/img/turn-by-turn.png') no-repeat top center transparent;
+    background-size: 20px;
+    @include retina-display(){
+      background: transparent url("/static/img/turn-by-turn@2x.png") no-repeat center;
+      background-size: 20px;
+    }
+  }
+}
+
+.roaster-description {
+  width: 100%;
+  max-width: 960px;
+  margin: 3em auto 0 auto;
+  padding-bottom: 3em;
+  @include respond-to($phone, $phone-wide){
+    width: 90%;
+    margin: 0.5em 5% 0.5em 5%;
+    h5 {
+      margin-bottom:0;
+      margin-top:1em;
+    }
+  }
+}
+
+.phone-number {
+  color: $darker-gray;
+  font-size: 0.75em;
+  line-height:1.5em;
+}
+
+.roaster-fact {
+  text-align: center;
+  margin-bottom:2em;
+  @include respond-to($phone, $phone-wide){
+    width:33%;
+  }
+  > div{
+    display:block;
+    width: 100%;
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+    padding: 4em;
+    @include respond-to($phone, $phone-wide){
+      padding:2em;
+    }
+  }
+  p {
+    margin: 0.5em 0 2em 0;
+    font-size: 0.85em;
+    &.false {
+      color: $light-gray;
+    }
+  }
+}
+.about-title{
+  @include respond-to($phone, $phone-wide){
+    margin-top:2em;
+  }
+}
+.contact-info {
+  margin-bottom: 2em;
+}
+.roaster-fact-icon {
+  width:100%;
+  background: url('/static/img/onsite-cafe.png') no-repeat center center transparent;
+  background-size: contain;
+  @include retina-display(){
+    background: transparent url("/static/img/onsite-cafe@2x.png") no-repeat center;
+    background-size: 100px;
+  }
+  &.false{
+    opacity: 0.2;
+  }
+}
+.online-orders {
+  background: url('/static/img/online.png') no-repeat center center transparent;
+  background-size: contain;
+  @include retina-display(){
+    background: transparent url("/static/img/online@2x.png") no-repeat center;
+    background-size: 100px;
+  }
+  @include respond-to($phone, $phone-wide){
+    background-size:60px;
+  }
+}
+
+.onsite-cafe {
+  background: url('/static/img/onsite-cafe.png') no-repeat center center transparent;
+  background-size: contain;
+  @include retina-display(){
+    background: transparent url("/static/img/onsite-cafe@2x.png") no-repeat center;
+    background-size: 100px;
+  }
+  @include respond-to($phone, $phone-wide){
+    background-size:60px;
+  }
+}
+
+.open-to-public {
+  background: url('/static/img/public.png') no-repeat center center transparent;
+  background-size: contain;
+  @include retina-display(){
+    background: transparent url("/static/img/public@2x.png") no-repeat center;
+    background-size: 100px;
+  }
+  @include respond-to($phone, $phone-wide){
+    background-size:60px;
+  }
+}
+
+.roaster-about {
+  padding:0 6.5em 0 0;
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+  @include respond-to($phone, $phone-wide){
+    padding:0;
+    margin-bottom: 2em;
+  }
+  p {
+    margin-bottom: 2em;
+  }
+  &.second-column{
+    padding-left: 8%;
+    @include respond-to($phone, $phone-wide){
+      padding-left:0;
+    }
+  }
+}
+
+@media
+only screen and (max-width : 640px),
+only screen and (max-device-width: 1136px) and (min-device-width: 960px) and (device-height: 640px),
+only screen and (max-device-height: 1136px) and (min-device-height: 960px) and (device-width: 640px),
+only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (max-device-width : 640px) and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (max-device-width : 640px) and (min-device-pixel-ratio : 1.5),
+only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .roaster-banner {
+    min-height: 100px;
+  }
+}

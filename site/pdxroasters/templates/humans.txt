@@ -1,13 +1,9 @@
 /* TEAM */
     Project lead: Isaac Viel
     From: Portland, Oregon, United States
-    
+
     Lead developer: Tristan Waddington
     Twitter: @twaddington
-    From: Portland, Oregon, United States
-
-    Frontend developer: Brandon Kitajchuk
-    Twitter: @kitajchuk
     From: Portland, Oregon, United States
 
     Designer: Paul C. Pederson
