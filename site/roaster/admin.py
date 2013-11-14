@@ -1,6 +1,12 @@
 from django.contrib import admin
 from roaster.models import BusinessHours, Cafe, Roaster, Roast
 
+def mark_active(modeladmin, request, queryset):
+    queryset.update(active=True)
+
+def mark_inactive(modeladmin, request, queryset):
+    queryset.update(active=False)
+
 class BusinessHoursInline(admin.TabularInline):
     model = BusinessHours
     max_num = 7
@@ -12,6 +18,7 @@ class CafeAdmin(admin.ModelAdmin):
             'modified_at', 'active',)
     list_filter = ('active',)
     search_fields = ('name',)
+    actions = (mark_active,mark_inactive)
 
     inlines = [
         BusinessHoursInline,
@@ -30,6 +37,7 @@ class RoasterAdmin(admin.ModelAdmin):
             'modified_at', 'active',)
     list_filter = ('active',)
     search_fields = ('name',)
+    actions = (mark_active,mark_inactive)
 
     inlines = [
         BusinessHoursInline,
@@ -44,6 +52,7 @@ class RoasterAdmin(admin.ModelAdmin):
 class RoastAdmin(admin.ModelAdmin):
     list_display = ('name', 'created_at', 'modified_at', 'active',)
     search_fields = ('name',)
+    actions = (mark_active,mark_inactive)
 
 admin.site.register(Cafe, CafeAdmin)
 admin.site.register(Roaster, RoasterAdmin)
