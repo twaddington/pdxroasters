@@ -31,8 +31,6 @@ define(['Leaflet', 'jquery' ], function (L, $) {
     var $distance  = $('#distance');
   }
 
-  console.log(isHome);
-
   var Map = {
     init: function() {
       if (isHome) {
@@ -89,7 +87,7 @@ define(['Leaflet', 'jquery' ], function (L, $) {
       Map.location = e;
       Map.parseList();
       // if the device is in portland, center and show device location
-      if (e.latitude > 45.49 && e.latitude < 45.53 && e.longitude > -122.8 && e.longitude < -122.4){
+      if (e.latitude > 45.2 && e.latitude < 45.9 && e.longitude > -123.1 && e.longitude < -122.4){
         var deviceMarker = L.icon({
           iconUrl: '/static/img/device.png',
           iconRetinaUrl: '/static/img/device@2x.png',
@@ -179,7 +177,7 @@ define(['Leaflet', 'jquery' ], function (L, $) {
       });
     }
   };
-
+  window.map = map;
   return Map;
 
 });

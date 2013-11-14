@@ -2,12 +2,16 @@
 #list {
   background-color: $dark-gray;
   position: absolute;
-  left:0;
-  right:0;
-  top:100%;
-  display:block;
+  left: 0;
+  right: 0;
+  top: 100%;
+  display: block;
   z-index: 1;
   padding: 1em 0 4em 0;
+  @include respond-to($phone, $phone-wide){
+    padding-bottom: 0;
+    top: 120%;
+  }
 }
 
 .sort-list {
@@ -17,9 +21,17 @@
   padding: 3em 0 0 0;
   margin: 0 auto;
   max-width: 960px;
+  @include respond-to(0, $tablet){
+    padding-top: 1em;
+  }
   h3 {
     color: white;
     margin: 1em 0;
+    @include respond-to($phone, $phone-wide){
+      margin-left: 1.25em;
+      margin-top: 0.5em;
+      font-size: 1.25em;
+    }
   }
   li {
     display: inline;
@@ -40,9 +52,11 @@
     }
   }
 }
+
 #distance {
   position: relative;
 }
+
 .no-distance {
   width: 50%;
   margin: 3em 0 3em 25%;
@@ -53,6 +67,7 @@
   text-transform: none;
   line-height: 1.4em;
 }
+
 .list-content {
   background-color: $lighter-gray;
   width:100%;
@@ -62,7 +77,7 @@
   margin: 0 auto;
   max-width: 960px;
   @include respond-to($phone, $phone-wide){
-    padding: 2em 1em 0 1em;
+    padding: 2em 1em 2em 1em;
   }
   &.hidden {
     display: none;
@@ -106,8 +121,15 @@
     &.no-address {
       margin-top: 0.35em;
     }
+    @include respond-to($phone, $phone-wide){
+      font-size: 16px;
+      margin-top: 0.35em;
+    }
   }
   .address {
     color: $darker-gray;
+    @include respond-to(0, $phone-wide){
+      display: none;
+    }
   }
 }

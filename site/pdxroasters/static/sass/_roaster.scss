@@ -88,6 +88,7 @@
 .content {
   background-color: $lighter-gray;
 }
+
 .roaster-banner {
   width: 100%;
   min-height: 300px;
@@ -121,17 +122,18 @@
 
 .banner-title {
   position: relative;
-  width: 100%;
-  padding: 10% 0 10% 0;
+  padding: 15% 0 5% 2.5em;
   display: block;
   z-index: 2;
-  margin-top:3em;
+  width: 100%;
+  margin: 8em auto 0 auto;
+  max-width: 960px;
+  @include box-sizing(border-box);
 }
 
 .roaster-title {
   color: $white;
-  font-size: 72px;
-  text-align:center;
+  font-size: 48px;
   line-height:1.25em;
   margin-bottom:0.5em;
   @include respond-to($phone, $phone-wide){
@@ -144,7 +146,6 @@
 
 .banner-address {
   line-height: 1.5em;
-  text-align:center;
   font-size:20px;
 }
 
@@ -175,7 +176,7 @@
   width: 100%;
   max-width: 960px;
   margin: 3em auto 0 auto;
-  padding-bottom: 3em;
+  padding: 0 2em 6em 2em;
   @include respond-to($phone, $phone-wide){
     width: 90%;
     margin: 0.5em 5% 0.5em 5%;
@@ -212,6 +213,7 @@
     font-size: 0.85em;
     &.false {
       color: $light-gray;
+      opacity: 0;
     }
   }
 }
@@ -232,7 +234,7 @@
     background-size: 100px;
   }
   &.false{
-    opacity: 0.2;
+    opacity: 0;
   }
 }
 .online-orders {

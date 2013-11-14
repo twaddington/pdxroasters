@@ -34,7 +34,6 @@
 
         </div>
         <div class="col col3of4 roaster-about {% if roaster.hours.count or roaster.phone.count %} second-column {% endif %}">
-
             {% if roaster.description %}
             <h4 class="about-title">About {{ roaster.name }}</h4>
               {{ roaster.description|linebreaks }}

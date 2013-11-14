@@ -78,14 +78,13 @@ body {
     width: 100%;
     margin: 0 auto;
     max-width: 960px;
-    li{
+    li {
       float:left;
       display:inline-block;
       &.nav-right {
         float:right;
       }
-      a{
-        padding: 0;
+      a {
         background-color: #FFF;
         color: $darker-gray;
         float: left;
@@ -95,10 +94,24 @@ body {
           color: #CC4B1F;
           border-bottom: 2px solid $red;
         }
-        &.logo {
-          margin-left:0;
-        }
         float:left;
+        &.logo {
+          padding: 0;
+          margin: 1.25em 0 0 0;
+          &:before {
+            content: "";
+            background: transparent url("../img/logo.svg") no-repeat left center;
+            width: 40px;
+            height: 40px;
+            display: inline-block;
+            margin-right: 12px;
+            vertical-align: -12px;
+            margin-top: -12px;
+            @include respond-to(0, $tablet){
+              display: none;
+            }
+          }
+        }
       }
     }
   }
@@ -177,8 +190,11 @@ body {
   top:0;
   left:0;
   right:0;
-  bottom:0;
+  bottom: 0;
   display:block;
   z-index: 1;
+  @include respond-to(0, $phone-wide){
+    bottom: -20%;
+  }
 }
 
