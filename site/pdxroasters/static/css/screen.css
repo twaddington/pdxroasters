@@ -667,6 +667,7 @@ button[type="submit"]:hover {
 
 /* line 84, ../sass/_about.scss */
 .contact-copy {
+  float: right;
   padding-left: 5em;
   margin-top: 2em;
 }

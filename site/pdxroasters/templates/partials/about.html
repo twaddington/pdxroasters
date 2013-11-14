@@ -8,6 +8,10 @@
     </div>
 </div>
 <div class="page block">
+    <div class="contact-copy">
+        <h2>Contact Us</h2>
+        <p>If you&rsquo;d like to learn more about the project or get involved send us a message.</p>
+    </div>
     <div class="contact-form">
         <form class="ajax-form" data-form="contact" method="post" action="{% url contact %}">{% csrf_token %}
             <input name="name" type="text" placeholder="Full Name" />
@@ -16,9 +20,5 @@
             <p class="caption">* All fields are required.</p>
             <button type="submit">Submit</button>
         </form>
-    </div>
-    <div class="contact-copy">
-        <h2>Contact Us</h2>
-        <p>If you&rsquo;d like to learn more about the project or get involved send us a message.</p>
     </div>
 </div>
