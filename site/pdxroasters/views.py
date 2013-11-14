@@ -37,6 +37,17 @@ def home(request):
     return render_to_response('home.html',
             context, context_instance=RequestContext(request))
 
+def about(request):
+    """
+    Display the about page.
+    """
+    context = {
+        'roasters': Roaster.objects.filter(active=True),
+    }
+
+    return render_to_response('about.html',
+            context, context_instance=RequestContext(request))
+
 def add_roaster(request):
     """
     Add a new roaster.

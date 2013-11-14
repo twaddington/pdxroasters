@@ -1,17 +1,47 @@
+
+<!-- List -->
 {% if roasters %}
-<div id="roasters" class="roasters">
-	{% include 'partials/search.html' %}
-    {% for roaster in roasters %}
-    <div class="roaster">
-        <a href="/roaster/{{ roaster.slug }}/" class="push-link" id="{{ roaster.id }}" data-latlng="[{{ roaster.lat }},{{ roaster.lng }}]" data-name="{{ roaster.name }}" data-address="{{ roaster.address }}">
-            <h3 class="handle group"><span>{{ roaster.name }}</span> <div class="toggle"></div></h3>
-        </a>
-    </div>
-    {% empty %}
-    <div class="message">
-        <h3>There are no Roasters yet.</h3>
-        <p>Perhaps you would like to <a href="/add-a-roaster/" class="push-link">suggest one</a> to us.</p>
-    </div>
-    {% endfor %}
-</div>
+<section class="list" id="list">
+  <ul class="sort-list">
+    <h3>Portland Coffee Roasters</h3>
+    <li><a id="by-name" href="#" class="active">By Name</a></li>
+    <li><a id="by-distance" href="#">By Distance</a></li>
+  </ul>
+  <ul class="list-content hidden" id="distance">
+    <h2 class="no-distance"> Update your browser's locations settings to see roasters sorted by distance. </h2>
+{% for roaster in roasters %}
+  <li class="roaster greyed-out" data-name="{{roaster.name}}">
+    <div class="distance"><span>?.?</span></div>
+    <a href="/roaster/{{roaster.slug}}/" id="item-{{roaster.id}}" data-latlng="[{{roaster.lat}},{{roaster.lng}}]" data-name="{{roaster.name}}" class="handle">
+      {% if roaster.address %}
+      <span class="list-name">{{ roaster.name }}</span>
+      <span class="address"> {{roaster.address}}</span>
+      {% else %}
+      <span class="list-name no-address">{{ roaster.name }}</span>
+      {% endif %}
+    </a>
+  </li>
+{% endfor %}
+  </ul>
+  <ul class="list-content" id="roasters">
+{% for roaster in roasters %}
+  <li class="roaster" data-name="{{roaster.name}}">
+    <div class="distance"><span class="letter"></span></div>
+    <a href="/roaster/{{roaster.slug}}/" id="item-{{roaster.id}}" data-latlng="[{{roaster.lat}},{{roaster.lng}}]" data-name="{{roaster.name}}" class="handle">
+      {% if roaster.address %}
+      <span class="list-name">{{ roaster.name }}</span>
+      <span class="address"> {{roaster.address}}</span>
+      {% else %}
+      <span class="list-name no-address">{{ roaster.name }}</span>
+      {% endif %}
+    </a>
+  </li>
+{% empty %}
+  <div class="message">
+    <h3>There are no Roasters yet.</h3>
+    <p>Perhaps you would like to <a href="/about/">suggest one</a> to us.</p>
+  </div>
+</section>
+{% endfor %}
+  </ul>
 {% endif %}

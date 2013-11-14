@@ -2,7 +2,7 @@
 
 ...
 
-## Getting Started
+### Getting Started
 
 Django is a great framework, but requires several steps to get a development
 site running on your computer. If you're running OS X these instructions should
@@ -45,34 +45,15 @@ You should now be able to access the site in your browser by visiting
 
 When anybody modifies the data models, you'll need to delete the `pdxroasters.db` and run `python manage.py syncdb`. 
 
-### UI Requirements and versions:
-	
-	Compass v0.12.2
-	Grunt v0.3.17
-	Ender v1.0.2
-	Node v0.10.6
-	npm v1.2.18
-	
+### Updating CSS
 
-### UI Getting Started:
-	
-	$ cd site/pdxroasters/static/js
-	$ npm install grunt@0.3.17 (only if using grunt -v 4 and grunt-cli)
-	$ npm install grunt-compass
-	
-	$ cd site/static/js/ender
-	$ ender build clah bonzo ender-tween bean domready reqwest qwery jqwendery
-	
-	$ cd site/static/js
-	$ grunt build
-	$ grunt watch_all
+After making changes to the site styles you'll need to regenerate the CSS from
+the SASS files. The preferred way to do this is using grunt:
 
-### Pushing UI Files
+    $ cd site/pdxroasters/static
+    $ grunt
 
-When pushing to the dev site and ultimately to prod we'll need to manually push files compiled by grunt and compass:
-
-    /static/css/*
-    /static/js/dist/*
+Check-in the updated files when this process has completed.
 
 ### Deploying to Heroku
 
@@ -81,16 +62,6 @@ resources. Start by switching to the release branch:
 
     $ git checkout release
     $ git merge master
-
-Then compile the necessary resources:
-
-    $ cd site/pdxroasters/static/js
-    $ grunt deploy
-
-Finally check-in the updated files and push to heroku:
-
-    $ git add -u .
-    $ git commit -m "Updated resources."
     $ git push heroku release:master
 
 > Note: heroku pg:reset DATABASE

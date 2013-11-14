@@ -1,0 +1,113 @@
+/* - - - - - List Styles - - - - - - - */
+#list {
+  background-color: $dark-gray;
+  position: absolute;
+  left:0;
+  right:0;
+  top:100%;
+  display:block;
+  z-index: 1;
+  padding: 1em 0 4em 0;
+}
+
+.sort-list {
+  background-color: $dark-gray;
+  width:100%;
+  box-sizing: border-box;
+  padding: 3em 0 0 0;
+  margin: 0 auto;
+  max-width: 960px;
+  h3 {
+    color: white;
+    margin: 1em 0;
+  }
+  li {
+    display: inline;
+    a {
+      background-color: $light-gray;
+      margin-right: -4px;
+      padding: 1em 2em;
+      display: inline-block;
+      font-size: 18px;
+      color: $darkest-gray;
+      @include transition(150ms all linear);
+      &:hover {
+        background-color: lighten($light-gray, 3%);
+      }
+      &.active {
+        background-color: $lighter-gray;
+      }
+    }
+  }
+}
+#distance {
+  position: relative;
+}
+.no-distance {
+  width: 50%;
+  margin: 3em 0 3em 25%;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  font-size: 2em;
+  text-transform: none;
+  line-height: 1.4em;
+}
+.list-content {
+  background-color: $lighter-gray;
+  width:100%;
+  box-sizing: border-box;
+  padding: 2em;
+  font-size:16px;
+  margin: 0 auto;
+  max-width: 960px;
+  @include respond-to($phone, $phone-wide){
+    padding: 2em 1em 0 1em;
+  }
+  &.hidden {
+    display: none;
+  }
+  .roaster {
+    background-color: white;
+    margin: 0.5em 0;
+    height: 4em;
+    border: 1px solid $lighter-gray;
+    position: relative;
+    clear:both;
+    &.greyed-out {
+      @include opacity(0.1);
+    }
+  }
+  .distance {
+    background-color: $red;
+    width:4em;
+    height:4em;
+    display: table;
+    color: white;
+    text-align: center;
+    float:left;
+    span {
+      display:table-cell;
+      vertical-align:middle;
+    }
+  }
+  .handle {
+    cursor: pointer;
+    display: block;
+    padding: 1em 1em 1em 5em;
+  }
+  .list-name {
+    display: block;
+    font-family: $cabin;
+    font-weight: 500;
+    color: $darkest-gray;
+    font-size: 18px;
+    margin-top: -0.3em;
+    &.no-address {
+      margin-top: 0.35em;
+    }
+  }
+  .address {
+    color: $darker-gray;
+  }
+}

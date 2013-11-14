@@ -1,16 +1,3 @@
-/**
- * PDX Roaster Stylesheet
- *
- * @notes:
- *
- * Navigate to where you watch files:
- * $ cd src/site/pdxroasters/static/js
- *
- * Grunt will now watch compass:
- * $ grunt watch_all
- *
- */
-
 @import 'compass/css3';
 @import 'compass/utilities';
 
@@ -35,7 +22,6 @@ $dark-brown: #44372c;
 $brown: #563f29;
 $light-brown:#6d543d;
 $skolar: 'Skolar', Helvetica, Arial, Sans-serif;
-$din: 'DIN', Helvetica, Arial, Sans-serif;
 $cabin: 'Cabin', Helvetica, Arial, Sans-serif;
 
 /* -- breakpoints -- */
@@ -46,1048 +32,153 @@ $tablet-wide: 1080px;
 $desktop: 1280px;
 $desktop-wide: 1920px;
 
-@import 'helpers';
-@import 'reset';
-@import 'fonts';
-@import 'typography';
-@import 'grid';
-@import 'forms';
-@import 'anim';
-
-/* -- elements -- */
-html{
-/*     background-color:$light-gray; */
-}
+@import 'base/helpers';
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/grid';
+@import 'base/forms';
+@import 'map';
+@import 'about';
+@import 'list';
+@import 'roaster';
 
 body {
-    margin: 0;
-    min-height: 100%;
-    font-size: 16px;
-    font-family: $cabin;
-    -webkit-font-smoothing: antialiased;
-
-    &.no-scroll {
-        overflow-y: hidden;
-    }
-}
-
-/* -- classes -- */
-.btn {
-    background: $light-red;
-    @include border-radius(4px);
-    padding:.5em 2em;
-    cursor: pointer;
-    //margin-right: 1em;
-    text-transform: none;
-    letter-spacing: 1px;
-    text-align: center;
-    text-indent: 0px;
-    text-decoration: none;
-    color: #fff;
-    display: block;
-    @include transition(all 200ms linear);
-    &:hover {
-        background: rgb(211, 101, 85);
-        color: $white;
-    }
-}
-
-.plus-close {
-    background: url(../img/plusthin.png) no-repeat 0 0;
-    display: block;
-    height: 22px;
-    position: absolute;
-    right: 20px;
-    text-indent: -9999px;
-    top: 20px;
-    width: 22px;
-
-    @include transform(rotate(-45deg));
-}
-
-.s-hidden {
-	display: none !important;
-}
-
-
-/* -- structure -- */
-#page,
-#content {
-    overflow: hidden;
-    position: relative;
-}
-#content {
-    left: 0;
-    width: 100%;
-    @include transition(left 300ms ease-in);
-    @include transform(translate3d(0,0,0));
-    &.inactive {
-        left: -100%;
-    }
-}
-#header {
-    background: $white;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 10;
-    position: relative;
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-    height: 5em;
-    padding: 0 2em;
-    @include box-shadow(0 0 12px rgba(0,0,0,.2));
-    @include respond-to($phone, $phone-wide) {
-        height: 3em;
-        padding: 0 0.5em;
-    }
-}
-.home #header {
-    position: fixed;
-}
-#footer {
-    background-color: #333;
-    color: #fff;
-    padding: 2em 2em;
-    z-index: 10;
-    @include respond-to($phone, $phone-wide){
-
-    }
-    .github-logo {
-        float:right;
-        @include respond-to($phone, $phone-wide){
-            float:none;
-            display: block;
-            margin: 0.5em 0 0 0;
-        }
-    }
+  margin: 0;
+  min-height: 100%;
+  font-size: 16px;
+  font-family: $cabin;
+  -webkit-font-smoothing: antialiased;
+  &.no-scroll {
+    overflow-y: hidden;
+  }
 }
 
 /* -- nav -- */
-#logo {
-    color: $brown;
-    font-size: 1.25em;
-    letter-spacing: 1px;
-    @include respond-to($phone, $phone-wide){
-        font-size: 1em;
-    }
-    a {
-	    color: $brown;
-    }
-
-    &.page-back {
-	    cursor: pointer;
-    }
-
-    &:before{
-        content: "";
-        width: 2.5em;
-        height: 2.5em;
-        background: $tan url("../img/logo.png") no-repeat center center;
-        background-size: 2.5em 2.5em;
-        @include retina-display(){
-            background: $tan url("../img/logo@2x.png") no-repeat center center;
-            background-size: 2.5em 2.5em;
-        }
-        position: relative;
-        display: inline-block;
-        margin-top: .75em;
-        margin-right: .5em;
-        vertical-align: -0.85em;
-        @include border-radius(2.5em);
-        @include respond-to($phone, $phone-wide) {
-            margin-top: 0.45em;
-            background-size: 2em 2em;
-            width:2em;
-            height:2em;
-            vertical-align: -0.6em;
-        }
-        &:hover{
-            border: 10px solid $tan;
-        }
-    }
-
-}
-
-#nav {
-    position: absolute;
-    top: 14px;
-    right: -155px;
-    background-color: white;
-    @include transition(all 200ms ease-in-out 200ms);
-    @include respond-to($phone, $phone-wide) {
-        top:0;
-        right: -100%;
-        width:100%;
-        margin-right:88px;
-    }
-
-    &.active {
-        right: 103px;
-        @include respond-to($phone, $phone-wide) {
-            right: 0px;
-            margin-right:0;
-        }
-    }
-
+.top-nav {
+  background-color: $white;
+  padding:0.3em 2em;
+  width:100%;
+  position:fixed;
+  box-sizing: border-box;
+  display:block;
+  z-index:3;
+  border-bottom: 1px solid $light-gray;
+  @include box-shadow(0 0 12px rgba(0,0,0,0.2));
+  @include respond-to(0, 360px){
+    padding: 0.3em 0.6em;
     ul {
-        li {
-            display: inline-block;
-            margin-left: 40px;
-            padding: 8px 0;
-            vertical-align: middle;
-            @include respond-to($phone, $phone-wide) {
-                margin-left: 32px;
-            }
-
-            &:first-child {
-                margin-left: 0;
-                @include respond-to($phone, $phone-wide) {
-                    margin-left: 32px;
-                }
-            }
-
-            a {
-                letter-spacing: 1px;
-                color: #303030;
-                text-transform: none;
-                font-size: 1.25em;
-                &:hover,
-                &.on {
-                    color: $blue;
-                }
-                @include respond-to($phone, $phone-wide){
-                    font-size: 1em;
-                }
-            }
+      li {
+        a{
+          margin: 1em 0.5em;
         }
+      }
     }
-
-    .plus {
-        //background: transparent url("../img/plusthin.png") no-repeat 0 0;
-
-        display:inline-block;
-        width: 40px;
-        height: 40px;
-        background: transparent;
-        vertical-align: middle;
-        @include transition(all 400ms cubic-bezier(0.095, 0.910, 0.245, 1.000));
-        &.active {
-            @include transform(rotate(-225deg));
-        }
-        span{
-            font-size:50px;
-            line-height:33px;
-            padding-left: 8px;
-            @include respond-to($phone, $phone-wide){
-                font-size: 40px;
-                line-height: 25px;
-            }
-        }
-        @include respond-to($phone, $phone-wide) {
-            top:0;
-            width:32px;
-            height:32px;
-        }
-    }
-}
-
-/* -- push pages -- */
-.push-pages {
-	> .page {
-        > .page-inner {
-            margin: 0;
-            padding: 160px 40px 40px;
-            @include respond-to($phone, $tablet){
-                padding: 80px 20px 20px;
-            }
-
-            .ci {
-                padding: 0;
-            }
-
-            .col:first-child .ci {
-                padding-right: 20px;
-            }
-
-            .col:last-child .ci {
-                padding-left: 20px;
-                @include respond-to(320px, 720px){
-                    padding-left:0;
-                }
-            }
-        }
-    }
-}
-
-/* -- nav-push-pages --*/
-#nav-push-page {
-    left: 0;
-    top: -100%;
-	@include transition(top 300ms ease-in-out);
-	z-index: 8;
-	-webkit-backface-visibility: hidden;
-
-    &.active {
-	    top: 0;
-
-	    .page {
-		    display: block;
-	    }
-    }
-
-    .push-pages {
-	    overflow: hidden;
-	    width: 100%;
-    }
-
-    .page {
-    	display: none;
-    	float: left;
-        margin-left: -100%;
-        position: relative;
-        width: 100%;
-        @include opacity(0);
-        @include transition(opacity 200ms linear, margin-left 300ms ease-in-out);
-        -webkit-backface-visibility: hidden;
-
-        &.active {
-        	margin-left: 0;
-        	z-index: 1;
-            @include opacity(1);
-        }
-    }
-}
-
-/* -- filter field -- */
-#filter {
-	input {
-        background-color: $red;
-        border: 0;
-        color: $white;
-        font-family: $cabin;
-        font-size: 26px;
-        font-weight: bold;
-        letter-spacing: 1px;
-        margin: 0;
-        padding: 1em 40px;
-        &:focus{
-            outline: none;
-        }
-       @include respond-to($phone, $phone-wide) {
-            padding: 0 32px;
-            font-size: 18px;
-       }
-    }
-}
-::-webkit-input-placeholder {
-   color: $light-gray;
-}
-
-:-moz-placeholder { /* Firefox 18- */
-   color: $light-gray;
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-   color: $light-gray;
-}
-
-:-ms-input-placeholder {
-   color: $light-gray;
-}
-
-/* -- maps -- */
-#map-wrap {
-    position: relative;
-    //height: 100%;
+  }
+  ul {
     width: 100%;
-    z-index: 7;
-}
-#map {
-    position: relative;
-    height: 100%;
-    width: 100%;
-
-    img {
-        max-width: none;
-    }
-
-    .marker-location {
-    	background-color: $dark-blue;
-	    height: 8px;
-	    width: 8px;
-	    @include border-radius(5px);
-
-	    &:before {
-		    background-color: $blue;
-		    border: 1px solid $dark-blue;
-		    content: '';
-		    height: 32px;
-		    left: -13px;
-		    position: absolute;
-		    top: -13px;
-		    width: 32px;
-		    @include border-radius(16px);
-		    @include opacity(.25);
-
-		    -moz-animation: pulse 3000ms infinite ease-in-out;
-		    -o-animation: pulse 3000ms infinite ease-in-out;
-		    -webkit-animation: pulse 3000ms infinite ease-in-out;
-		    animation: pulse 3000ms infinite ease-in-out;
-
-	    }
-    }
-
-    .marker-custom {
-        z-index: 888;
-        -webkit-backface-visibility: hidden;
-
-        &.active {
-            z-index: 999;
-
-            > .tooltip {
-                visibility: visible;
-                @include opacity(1);
-                &.loading {
-                    @include opacity(0);
-                }
-            }
-        }
-        // Map Markers
-        > div {
-            cursor: pointer;
-            height: 40px;
-            position: relative;
-            width: 20px;
-            background: transparent url("../img/roaster-marker-sans.png") no-repeat top left;
-            @include transition(margin-top 100ms ease-in-out);
-            @include retina-display(){
-                background: transparent url("../img/roaster-marker-sans@2x.png") no-repeat top left;
-                background-size: 20px 32px;
-            }
-            // Map Marker Hover State
-            &:before{
-                content:"";
-                display:inline-block;
-                width:16px;
-                height:8px;
-                background-color:rgba(0,0,0,.2);
-                position:absolute;
-                top:100%;
-                left:50%;
-                margin-top:-14px;
-                margin-left:-8px;
-                z-index:-1;
-                @include transition(width 100ms ease-in-out);
-                @include radius-multiple(8px, 4px);
-            }
-            &:hover {
-                margin-top:-5px;
-                &:before{
-                    width:20px;
-                    height:10px;
-                    margin-top:-11px;
-                    margin-left:-10px;
-                    @include radius-multiple(10px, 5px);
-                }
-            }
-        }
-        // Cafe Markers
-        &.marker-cafe > div {
-            background: url("../img/cafe-marker.png") no-repeat top left transparent;
-            background-size:  20px 32px;
-            @include retina-display(){
-                background: url("../img/cafe-marker@2x.png") no-repeat top left transparent;
-                background-size: 20px 32px;
-            }
-        }
-
-        // Mouse over Title of Roaster
-        > span {
-            background-color:$white;
-            padding: .5em;
-            position: absolute;
-            text-align: center;
-            top: -50px;
-            visibility: hidden;
-            white-space: nowrap;
-            z-index: -1;
-            font-size:18px;
-            color:$darkest-gray;
-            @include opacity(0);
-            @include transition(opacity 100ms linear);
-            @include box-shadow(0 0 12px rgba(0,0,0,.1));
-        }
-        // Full Info Modal
-        > .infowindow {
-            line-height: 22px;
-            border: 1px solid #dfdfdf;
-            border-radius: 4px;
-            text-align: left;
-            z-index: 11;
-            position: absolute;
-            padding: 0.5em 2.5em 0.5em 0.5em;
-            white-space: normal;
-            visibility: visible;
-            width: 200px;
-            background: $white;
-            @include opacity(1);
-            margin-bottom: 20px;
-            display: inline;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            text-align:center;
-            &:before{
-                content:" ";
-                background:$white;
-                width:16px;
-                height:16px;
-                border-bottom:1px solid #dfdfdf;
-                border-right:1px solid #dfdfdf;
-                left:50%;
-                margin-left:-8px;
-                position:absolute;
-                display:block;
-                bottom:-10px;
-                z-index:1;
-                @include rotate(45deg);
-                zoom: 1;
-            }
-            &.inactive {
-                visibility: hidden;
-                @include opacity(0);
-            }
-
-            h3 {
-                font-size: 15px;
-                margin-bottom: 0;
-                color: $darker-gray;
-                letter-spacing: 1px;
-                display: inline;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                vertical-align: 0;
-                line-height: 1.5em;
-                margin-left: 1.2em;
-                margin-right:1.5em;
-
-            }
-            .find {
-                display: inline-block;
-                width: 30px;
-                height: 30px;
-                background: url('../img/find-cafe.png') center center no-repeat transparent;
-                background-size: 30px;
-                position: absolute;
-                left: 6px;
-                top: 5px;
-                @include retina-display(){
-                    background: transparent url("../img/find-cafe@2x.png") no-repeat center center;
-                    background-size: 30px;
-                }
-            }
-            .more {
-                display: inline-block;
-                width: 30px;
-                height: 30px;
-                background: url('../img/information.png') center center no-repeat transparent;
-                background-size: 30px;
-                position: absolute;
-                right: 6px;
-                top: 5px;
-                @include retina-display(){
-                    background: transparent url("../img/information@2x.png") no-repeat center center;
-                    background-size: 30px;
-                }
-
-            }
-            .hours {
-                line-height:22px;
-            }
-
-            p {
-                margin:0;
-                line-height: 13px;
-                font-size: 12px;
-                text-align: left;
-                text-indent: 30px;
-                color: #aaa;
-            }
-
-            .btn {
-                margin: 0;
-                padding: 6px 12px;
-            }
-
-            .btns {
-                margin-top: 20px;
-            }
-
-            .col {
-                font-size: 14px;
-            }
-
-            .ci {
-                padding-right: 0;
-            }
-
-            .col:first-child .ci {
-                padding-right: 20px;
-                padding-left: 0;
-            }
-        }
-    }
-}
-#close-cafes {
-	background-color: $red;
-	color: $white;
-	display: inline-block;
-	left: 50%;
-	padding: 20px 60px 20px 20px;
-	position: absolute;
-	top: -100%;
-	z-index: 1;
-	@include transition(top 300ms ease-in-out);
-
-	&.active {
-		top: 0;
-	}
-
-	> a {
-		color: $white;
-		font-weight: bold;
-
-		&:hover {
-			color: $dark-brown;
-		}
-	}
-
-	> span {
-		background: url("../img/plus-close-cafes.png") no-repeat 0 0;
-		cursor: pointer;
-		display: block;
-		height: 22px;
-		margin-top: -11px;
-		position: absolute;
-		right: 20px;
-		top: 50%;
-		width: 22px;
-		@include transform(rotate(45deg));
-	}
-}
-
-
-/* -- pushstate container -- */
-.push-container {
-    background-color: $white;
-    height: 100%;
-    left: 100%;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 7;
-    @include transform(translate3d(0,0,0));
-    @include transition(left 300ms ease-in-out);
-
-    &.active {
-        left: 0;
-    }
-
-    &.active-page {
-	    position: relative;
-    }
-}
-
-
-/* -- listings -- */
-.hours {
-    font-size:14px;
-    font-weight:400;
-    color:$darkest-gray;
-    span {
-        float: right;
-        display: inline;
-        text-align: right;
-    }
-}
-
-.address {
-    @extend .hours;
-}
-
-#roasters {
-    background-color: #fff;
-    padding: 0;
-    position: relative;
-    z-index: 9;
-    @include box-shadow(0 -1px 3px rgba(0,0,0,.5));
-
-    .roaster {
-        background: $white;
-        position: relative;
-        z-index: 8;
-    }
-}
-
-#roasters,
-#roaster-push-page {
-
-    h3 {
-        margin-bottom: 1.5em;
-    }
-
-    h4 {
-        margin: 0 0 1em 0;
-    }
-
-    .message {
-        padding: 0 40px 40px;
-    }
-
-    .figcaption {
-        font-family: $skolar;
-    }
-
-    .meta {
-        margin-top: 20px;
-    }
-
-    .roaster {
-        &.active {
-            background-color: rgba(0,0,0,.02);
-            border-bottom: 1px solid #ebebeb;
-            border-top: 1px solid #ebebeb;
-
-            @include box-shadow(0 0 30px rgba(0,0,0,.1) inset);
-
-            .handle {
-                border-bottom: 0;
-            }
-
-            .handle span {
-                color: $blue;
-            }
-
-            .content {
-                display: block;
-            }
-        }
-
-        .content {
-            display: none;
-
-            &.active {
-                display: block;
-            }
-        }
-
-        .handle {
-            cursor: pointer;
-            position: relative;
-            padding: 1em 40px;
-            border-bottom: 1px solid #efefef;
-            border-top: 1px solid #efefef;
-            margin: -1px 0 0;
-            @include transition(all 200ms linear);
-            @include respond-to($phone, $phone-wide) {
-                padding: 1em 2em;
-            }
-            span {
-                @include transition(all 200ms linear);
-            }
-            &:hover,
-            &.s-focused {
-                background-color: rgba(0,0,0,.02);
-                .toggle{
-                    right:40px;
-                }
-                span {
-                    color: $blue;
-                }
-            }
-        }
-
-        .btn {
-            display: inline-block;
-        }
-
-        .toggle {
-            display: block;
-            height: 40px;
-            margin-top: -20px;
-            position: absolute;
-            right: -40px;
-            top: 50%;
-            width: 40px;
-            @include transition(all 400ms cubic-bezier(0.095, 0.910, 0.245, 1.000));
-        }
-    }
-}
-
-.roaster-banner {
-    width: 100%;
-    min-height: 300px;
-    position: relative;
-    background: url("/static/img/building.jpg") no-repeat center center $gray;
-    background-size: cover;
-    overflow: hidden;
-    &:before {
-        content: "";
-        background: -webkit-radial-gradient(center, circle cover, rgba(255,255,255,0) 0%,rgba(0,0,0,.6) 100%);
-        pointer-events: none;
-        display: block;
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        z-index: 2;
-    }
-    &:after {
-        content: "";
-        background: url("/static/img/mesh.png") repeat top left transparent;
-        pointer-events: none;
-        display: block;
-        position: absolute;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-    }
-
-}
-
-.banner-title{
-    position: relative;
-    top: 22px;
-    width: 50%;
-    padding: 10% 0 10% 8%;
-    display: block;
-    z-index: 3;
-}
-
-.roaster-title {
-    color: $white;
-    font-size: 36px;
-    @include respond-to($phone, $phone-wide){
-        font-size:24px;
-    }
-    h3 {
-        margin-bottom: 0 !important;
-    }
-}
-
-.banner-address {
-    line-height: 1.5em;
-    margin-left:24px;
-}
-
-.banner-link {
-    color: $white;
-    position:relative;
-    &:hover {
-        color: $lighter-gray;
-    }
-    &:after {
-        width: 20px;
-        height: 26px;
-        content: "";
-        display: block;
-        position: absolute;
-        top:0;
-        left: -24px;
-        background: url('/static/img/turn-by-turn.png') no-repeat top center transparent;
-        background-size: 20px;
-        @include retina-display(){
-            background: transparent url("/static/img/turn-by-turn@2x.png") no-repeat center;
-            background-size: 20px;
-        }
-    }
-}
-
-.roaster-description {
-    width: 100%;
+    margin: 0 auto;
     max-width: 960px;
-    margin: 3em 0 3em 8%;
-    @include respond-to($phone, $phone-wide){
-        width: 90%;
-        margin: 0.5em 5% 0.5em 5%;
-        h5 {
-            margin-bottom:0;
-            margin-top:1em;
+    li{
+      float:left;
+      display:inline-block;
+      &.nav-right {
+        float:right;
+      }
+      a{
+        padding: 0;
+        background-color: #FFF;
+        color: $darker-gray;
+        float: left;
+        margin: 1em;
+        padding: 0.25em 0;
+        &.active {
+          color: #CC4B1F;
+          border-bottom: 2px solid $red;
         }
+        &.logo {
+          margin-left:0;
+        }
+        float:left;
+      }
     }
+  }
 }
 
-.phone-number {
-    color: $darker-gray;
-    font-size: 0.75em;
-    line-height:1.5em;
+/* -- footer -- */
+#footer {
+  background-color: #333;
+  color: #fff;
+  padding: 2em 2em;
+  z-index: 10;
+  position:absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  @include respond-to($phone, $phone-wide){
+
+  }
+  .github-logo {
+    float:right;
+    @include respond-to($phone, $phone-wide){
+      float:none;
+      display: block;
+      margin: 0.5em 0 0 0;
+    }
+  }
 }
 
-.roaster-fact {
-    text-align: center;
-    margin-bottom:2em;
-    @include respond-to($phone, $phone-wide){
-        width:33%;
-    }
-    > div{
-        display:block;
-        width: 100%;
-        -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
-        padding: 4em;
-        @include respond-to($phone, $phone-wide){
-            padding:2em;
-        }
-    }
-    p {
-        margin: 0.5em 0 2em 0;
-        font-size: 0.85em;
-        &.false {
-            color: $light-gray;
-        }
-    }
-}
-.about-title{
-    @include respond-to($phone, $phone-wide){
-        margin-top:2em;
-    }
-}
-.contact-info {
-    margin-bottom: 2em;
-}
-.roaster-fact-icon {
-    width:100%;
-    background: url('/static/img/onsite-cafe.png') no-repeat center center transparent;
-    background-size: contain;
+/* -- logo -- */
+#logo {
+  color: $brown;
+  font-size: 1.25em;
+  letter-spacing: 1px;
+  @include respond-to($phone, $phone-wide){
+    font-size: 1em;
+  }
+  a {
+    color: $brown;
+  }
+
+  &.page-back {
+    cursor: pointer;
+  }
+
+  &:before{
+    content: "";
+    width: 2.5em;
+    height: 2.5em;
+    background: $tan url("../img/logo.png") no-repeat center center;
+    background-size: 2.5em 2.5em;
     @include retina-display(){
-        background: transparent url("/static/img/onsite-cafe@2x.png") no-repeat center;
-        background-size: 100px;
+      background: $tan url("../img/logo@2x.png") no-repeat center center;
+      background-size: 2.5em 2.5em;
     }
-    &.false{
-        opacity: 0.2;
+    position: relative;
+    display: inline-block;
+    margin-top: .75em;
+    margin-right: .5em;
+    vertical-align: -0.85em;
+    @include border-radius(2.5em);
+    @include respond-to($phone, $phone-wide) {
+      margin-top: 0.45em;
+      background-size: 2em 2em;
+      width:2em;
+      height:2em;
+      vertical-align: -0.6em;
     }
-}
-.online-orders {
-    background: url('/static/img/online.png') no-repeat center center transparent;
-    background-size: contain;
-    @include retina-display(){
-        background: transparent url("/static/img/online@2x.png") no-repeat center;
-        background-size: 100px;
+    &:hover{
+      border: 10px solid $tan;
     }
-    @include respond-to($phone, $phone-wide){
-        background-size:60px;
-    }
-}
-
-.onsite-cafe {
-    background: url('/static/img/onsite-cafe.png') no-repeat center center transparent;
-    background-size: contain;
-    @include retina-display(){
-        background: transparent url("/static/img/onsite-cafe@2x.png") no-repeat center;
-        background-size: 100px;
-    }
-    @include respond-to($phone, $phone-wide){
-        background-size:60px;
-    }
+  }
 }
 
-.open-to-public {
-    background: url('/static/img/public.png') no-repeat center center transparent;
-    background-size: contain;
-    @include retina-display(){
-        background: transparent url("/static/img/public@2x.png") no-repeat center;
-        background-size: 100px;
-    }
-    @include respond-to($phone, $phone-wide){
-        background-size:60px;
-    }
+#map {
+  position: absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  display:block;
+  z-index: 1;
 }
 
-
-.roaster-about {
-    padding:0 6.5em 0 0;
-    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
-    @include respond-to($phone, $phone-wide){
-        padding:0;
-        margin-bottom: 2em;
-    }
-    p {
-        margin-bottom: 2em;
-    }
-    &.second-column{
-        padding-left: 8%;
-        @include respond-to($phone, $phone-wide){
-            padding-left:0;
-        }
-    }
-}
-
-.back-to-list {
-    background: $red url('../img/list.png') 70% 14px no-repeat;
-    background-size: 20px 20px;
-    display: block;
-    height: 50px;
-    left: 0%;
-    margin-left: -20px;
-    position: absolute;
-    text-align: center;
-    top: 50%;
-    margin-top: -25px;
-    width: 50px;
-    z-index: 7;
-    @include transition(margin-left 100ms linear);
-    @include box-shadow(0 0 3px rgba(0,0,0,.8));
-    @include border-bottom-right-radius(25px);
-    @include border-top-right-radius(25px);
-    &:hover {
-        margin-left: -15px;
-        @include respond-to($phone, $phone-wide){
-            margin-left:-8px;
-        }
-    }
-    @include respond-to($phone, $phone-wide){
-        background: #dd6a5a url("../img/list.png") 70% 8px no-repeat;
-        background-size: 20px 20px;
-        height: 36px;
-        margin-left: -10px;
-        position: absolute;
-        text-align: center;
-        top: 50%;
-        margin-top: -18px;
-        width: 36px;
-    }
-}
-
-#roaster-push-page {
-	.roaster {
-		padding: 80px 0px 0px;
-        @include respond-to($phone, $phone-wide){
-            padding-top:48px;
-        }
-		.col1of2 {
-			width: 48%;
-		}
-	}
-}
-
-/* -- error pages -- */
-#page-error {
-    padding: 100px;
-}
-
-body[data-controller=error] {
-    background-color: #f0f0f0;
-
-    #footer {
-        bottom: 0;
-        left: 0;
-        position: fixed;
-        right: 0;
-    }
-}
-
-/* -- @media -- */
-@import 'media';

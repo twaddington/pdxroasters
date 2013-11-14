@@ -22,20 +22,5 @@ staticfiles
 # Ignore Compass files
 .sass-cache
 
-# Ignore Ender files
-site/pdxroasters/static/js/ender/ender.js
-site/pdxroasters/static/js/ender/ender.min.js
-site/pdxroasters/static/js/ender/node_modules
-site/pdxroasters/static/js/ender/node_modules/*
-
-# Ignore Grunt build files
-site/pdxroasters/static/js/dist
-site/pdxroasters/static/js/dist/*
-
-# Ignore Compass build files
-site/pdxroasters/static/css/
-site/pdxroasters/static/css/*
-
-# Ignore grunt node_modules
-site/pdxroasters/static/js/node_modules
-site/pdxroasters/static/js/node_modules/*
+# Ignore node_modules
+site/pdxroasters/static/node_modules/

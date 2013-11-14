@@ -1,23 +1,24 @@
-<div class="page" id="about">
-	<div class="page-inner group">
-		<div class="col col1of2">
-            <div class="ci">
-                <h2>About PDX Roasters</h2>
-                <p>Within the modest boundaries of Portland, Oregon there exist more than 40 craft coffee roasters, each of whom help make the city a coffee lover&rsquo;s dream. PDX Roasters is a joint project between Portland coffee aficionados, home roasters, developers, and designers who are driven to create a comprehensive and interactive guide for finding local, fresh-roasted coffee. Our goal is to connect the craft of coffee roasting to the daily ritual of coffee lovers. pdxroasters.com is completely not for profit and is built upon open-source frameworks.</p>
-            </div>
-        </div>
-        <div class="col col1of2">
-            <div class="ci">
-                <h2>Contact Us</h2>
-                <p>If you&rsquo;d like to learn more about the project or get involved send us a message.</p>
-                <form class="ajax-form" data-form="contact" method="post" action="{% url contact %}">
-	                <input name="name" type="text" placeholder="Full Name" />             
-	                <input name="email" type="email" placeholder="E-mail" />
-	                <textarea name="message" placeholder="Message"></textarea>
-	                <p class="caption">* All fields are required.</p>
-	                <button type="submit">Submit</button>
-	            </form>
-            </div>
-        </div>
-	</div>
+<div class="page block">
+    <div class="about-icon">
+        <img src="/static/img/pdx-roasters-icon.jpg" alt="PDX Roasters Icon">
+    </div>
+	<div class="about-description">
+        <h2>About PDX Roasters</h2>
+        <p>Within the modest boundaries of Portland, Oregon there exist more than 40 craft coffee roasters, each of whom help make the city a coffee lover&rsquo;s dream. PDX Roasters is a joint project between Portland coffee aficionados, home roasters, developers, and designers who are driven to create a comprehensive and interactive guide for finding local, fresh-roasted coffee. Our goal is to connect the craft of coffee roasting to the daily ritual of coffee lovers. pdxroasters.com is completely not for profit and is built upon open-source frameworks.</p>
+    </div>
+</div>
+<div class="page block">
+    <div class="contact-form">
+        <form class="ajax-form" data-form="contact" method="post" action="{% url contact %}">{% csrf_token %}
+            <input name="name" type="text" placeholder="Full Name" />
+            <input name="email" type="email" placeholder="E-mail" />
+            <textarea name="message" type="text" placeholder="Message"></textarea>
+            <p class="caption">* All fields are required.</p>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="contact-copy">
+        <h2>Contact Us</h2>
+        <p>If you&rsquo;d like to learn more about the project or get involved send us a message.</p>
+    </div>
 </div>
