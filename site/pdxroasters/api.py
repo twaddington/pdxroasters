@@ -10,7 +10,6 @@ class HoursResource(ModelResource):
         filtering = {
             'slug': ('exact', 'startswith',),
             'name': ALL,
-            'active': ('exact',)
         }
         resource_name = 'hours'
         list_allowed_methods = None
@@ -20,7 +19,7 @@ class CafeResource(ModelResource):
     hours = fields.ToManyField(HoursResource, 'hours', full=True)
 
     class Meta:
-        queryset = Cafe.objects.all()
+        queryset = Cafe.objects.filter(active=True)
         resource_name = 'cafe'
         list_allowed_methods = ['get',]
         detail_allowed_methods = ['get',]
@@ -32,11 +31,10 @@ class RoasterResource(ModelResource):
     cafes = fields.ToManyField(CafeResource, 'cafes', full=False)
 
     class Meta:
-        queryset = Roaster.objects.all()
+        queryset = Roaster.objects.filter(active=True)
         filtering = {
             'slug': ('exact', 'startswith',),
             'name': ALL,
-            'active': ('exact',)
         }
         resource_name = 'roaster'
         list_allowed_methods = ['get',]
@@ -46,10 +44,9 @@ class RoastResource(ModelResource):
     roaster = fields.ToOneField(RoasterResource, 'roaster', full=False)
 
     class Meta:
-        queryset = Roast.objects.all()
+        queryset = Roast.objects.filter(active=True)
         filtering = {
             'name': ALL,
-            'active': ('exact',)
         }
         resource_name = 'roast'
         list_allowed_methods = ['get',]

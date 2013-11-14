@@ -102,7 +102,8 @@ class Roaster(Business):
     order_online = models.BooleanField(db_index=True)
     cafe_on_site = models.BooleanField(db_index=True)
     open_to_public = models.BooleanField(db_index=True)
-    cafes = models.ManyToManyField('Cafe', blank=True,)
+    cafes = models.ManyToManyField('Cafe', blank=True,
+            related_name='roasters')
 
     def get_absolute_url(self):
         return reverse('roaster.views.roaster_details', args=[self.slug])
