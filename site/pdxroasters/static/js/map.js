@@ -51,7 +51,7 @@ define(['Leaflet', 'jquery' ], function (L, $) {
     },
     roasters: null,
     getRoasters: function() {
-      $.getJSON("http://www.pdxroasters.com/api/roaster/?format=jsonp&callback=?", {limit: 200}, function(data){
+      $.getJSON("/api/roaster/?format=jsonp&callback=?", {limit: 200}, function(data){
         //console.log(data.objects);
 
         Map.roasters = data.objects;
