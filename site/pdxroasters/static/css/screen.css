@@ -1252,7 +1252,6 @@ body.no-scroll {
 }
 /* line 87, ../sass/screen.scss */
 .top-nav ul li a {
-  padding: 0;
   background-color: #FFF;
   color: #7b7676;
   float: left;
@@ -1260,18 +1259,36 @@ body.no-scroll {
   padding: 0.25em 0;
   float: left;
 }
-/* line 94, ../sass/screen.scss */
+/* line 93, ../sass/screen.scss */
 .top-nav ul li a.active {
   color: #CC4B1F;
   border-bottom: 2px solid #dd6a5a;
 }
 /* line 98, ../sass/screen.scss */
 .top-nav ul li a.logo {
-  margin-left: 0;
+  padding: 0;
+  margin: 1.25em 0 0 0;
+}
+/* line 101, ../sass/screen.scss */
+.top-nav ul li a.logo:before {
+  content: "";
+  background: transparent url("../img/logo.svg") no-repeat left center;
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  margin-right: 12px;
+  vertical-align: -12px;
+  margin-top: -12px;
+}
+@media only screen and (min-width: 0) and (max-width: 720px) {
+  /* line 101, ../sass/screen.scss */
+  .top-nav ul li a.logo:before {
+    display: none;
+  }
 }
 
 /* -- footer -- */
-/* line 108, ../sass/screen.scss */
+/* line 121, ../sass/screen.scss */
 #footer {
   background-color: #333;
   color: #fff;
@@ -1282,12 +1299,12 @@ body.no-scroll {
   right: 0;
   left: 0;
 }
-/* line 120, ../sass/screen.scss */
+/* line 133, ../sass/screen.scss */
 #footer .github-logo {
   float: right;
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 120, ../sass/screen.scss */
+  /* line 133, ../sass/screen.scss */
   #footer .github-logo {
     float: none;
     display: block;
@@ -1296,27 +1313,27 @@ body.no-scroll {
 }
 
 /* -- logo -- */
-/* line 131, ../sass/screen.scss */
+/* line 144, ../sass/screen.scss */
 #logo {
   color: #563f29;
   font-size: 1.25em;
   letter-spacing: 1px;
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 131, ../sass/screen.scss */
+  /* line 144, ../sass/screen.scss */
   #logo {
     font-size: 1em;
   }
 }
-/* line 138, ../sass/screen.scss */
+/* line 151, ../sass/screen.scss */
 #logo a {
   color: #563f29;
 }
-/* line 142, ../sass/screen.scss */
+/* line 155, ../sass/screen.scss */
 #logo.page-back {
   cursor: pointer;
 }
-/* line 146, ../sass/screen.scss */
+/* line 159, ../sass/screen.scss */
 #logo:before {
   content: "";
   width: 2.5em;
@@ -1335,14 +1352,14 @@ body.no-scroll {
   border-radius: 2.5em;
 }
 @media screen and (-webkit-min-device-pixel-ratio: 1.5), screen and (min-device-pixel-ratio: 1.5) {
-  /* line 146, ../sass/screen.scss */
+  /* line 159, ../sass/screen.scss */
   #logo:before {
     background: #e9e1bd url("../img/logo@2x.png") no-repeat center center;
     background-size: 2.5em 2.5em;
   }
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 146, ../sass/screen.scss */
+  /* line 159, ../sass/screen.scss */
   #logo:before {
     margin-top: 0.45em;
     background-size: 2em 2em;
@@ -1351,12 +1368,12 @@ body.no-scroll {
     vertical-align: -0.6em;
   }
 }
-/* line 169, ../sass/screen.scss */
+/* line 182, ../sass/screen.scss */
 #logo:before:hover {
   border: 10px solid #e9e1bd;
 }
 
-/* line 175, ../sass/screen.scss */
+/* line 188, ../sass/screen.scss */
 #map {
   position: absolute;
   top: 0;
