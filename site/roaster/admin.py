@@ -1,4 +1,7 @@
+from django import forms
 from django.contrib import admin
+from django.contrib.admin.widgets import FilteredSelectMultiple
+from django.utils.translation import ugettext_lazy as _
 from roaster.models import BusinessHours, Cafe, Roaster, Roast
 
 def mark_active(modeladmin, request, queryset):
@@ -12,6 +15,37 @@ class BusinessHoursInline(admin.TabularInline):
     max_num = 7
     extra = 0
 
+class CafeAdminForm(forms.ModelForm):
+    roasters = forms.ModelMultipleChoiceField(
+        queryset=Roaster.objects.filter(active=True),
+        required=False,
+        widget=FilteredSelectMultiple(
+            verbose_name=_('Roasters'),
+            is_stacked=False
+        )
+    )
+
+    class Meta:
+        model = Cafe
+
+    def __init__(self, *args, **kwargs):
+        super(CafeAdminForm, self).__init__(*args, **kwargs)
+
+        if self.instance and self.instance.pk:
+            self.fields['roasters'].initial = self.instance.roasters.all()
+
+    def save(self, commit=True):
+        cafe = super(CafeAdminForm, self).save(commit=False)
+
+        if commit:
+            cafe.save()
+
+        if cafe.pk:
+            cafe.roasters = self.cleaned_data['roasters']
+            self.save_m2m()
+
+        return cafe
+
 class CafeAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     list_display = ('name', 'address', 'phone', 'show_url', 'created_at',
@@ -23,6 +57,8 @@ class CafeAdmin(admin.ModelAdmin):
     inlines = [
         BusinessHoursInline,
     ]
+
+    form = CafeAdminForm
 
     def show_url(self, obj):
         return '<a href="%s">%s</a>' % (obj.url, obj.url)
