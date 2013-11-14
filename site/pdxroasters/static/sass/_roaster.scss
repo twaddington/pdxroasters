@@ -213,6 +213,7 @@
     font-size: 0.85em;
     &.false {
       color: $light-gray;
+      opacity: 0;
     }
   }
 }
@@ -233,7 +234,7 @@
     background-size: 100px;
   }
   &.false{
-    opacity: 0.2;
+    opacity: 0;
   }
 }
 .online-orders {

@@ -1110,96 +1110,97 @@ button[type="submit"]:hover {
 /* line 214, ../sass/_roaster.scss */
 .roaster-fact p.false {
   color: #e6e6e6;
+  opacity: 0;
 }
 
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 219, ../sass/_roaster.scss */
+  /* line 220, ../sass/_roaster.scss */
   .about-title {
     margin-top: 2em;
   }
 }
 
-/* line 224, ../sass/_roaster.scss */
+/* line 225, ../sass/_roaster.scss */
 .contact-info {
   margin-bottom: 2em;
 }
 
-/* line 227, ../sass/_roaster.scss */
+/* line 228, ../sass/_roaster.scss */
 .roaster-fact-icon {
   width: 100%;
   background: url("/static/img/onsite-cafe.png") no-repeat center center transparent;
   background-size: contain;
 }
 @media screen and (-webkit-min-device-pixel-ratio: 1.5), screen and (min-device-pixel-ratio: 1.5) {
-  /* line 227, ../sass/_roaster.scss */
+  /* line 228, ../sass/_roaster.scss */
   .roaster-fact-icon {
     background: transparent url("/static/img/onsite-cafe@2x.png") no-repeat center;
     background-size: 100px;
   }
 }
-/* line 235, ../sass/_roaster.scss */
+/* line 236, ../sass/_roaster.scss */
 .roaster-fact-icon.false {
-  opacity: 0.2;
+  opacity: 0;
 }
 
-/* line 239, ../sass/_roaster.scss */
+/* line 240, ../sass/_roaster.scss */
 .online-orders {
   background: url("/static/img/online.png") no-repeat center center transparent;
   background-size: contain;
 }
 @media screen and (-webkit-min-device-pixel-ratio: 1.5), screen and (min-device-pixel-ratio: 1.5) {
-  /* line 239, ../sass/_roaster.scss */
+  /* line 240, ../sass/_roaster.scss */
   .online-orders {
     background: transparent url("/static/img/online@2x.png") no-repeat center;
     background-size: 100px;
   }
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 239, ../sass/_roaster.scss */
+  /* line 240, ../sass/_roaster.scss */
   .online-orders {
     background-size: 60px;
   }
 }
 
-/* line 251, ../sass/_roaster.scss */
+/* line 252, ../sass/_roaster.scss */
 .onsite-cafe {
   background: url("/static/img/onsite-cafe.png") no-repeat center center transparent;
   background-size: contain;
 }
 @media screen and (-webkit-min-device-pixel-ratio: 1.5), screen and (min-device-pixel-ratio: 1.5) {
-  /* line 251, ../sass/_roaster.scss */
+  /* line 252, ../sass/_roaster.scss */
   .onsite-cafe {
     background: transparent url("/static/img/onsite-cafe@2x.png") no-repeat center;
     background-size: 100px;
   }
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 251, ../sass/_roaster.scss */
+  /* line 252, ../sass/_roaster.scss */
   .onsite-cafe {
     background-size: 60px;
   }
 }
 
-/* line 263, ../sass/_roaster.scss */
+/* line 264, ../sass/_roaster.scss */
 .open-to-public {
   background: url("/static/img/public.png") no-repeat center center transparent;
   background-size: contain;
 }
 @media screen and (-webkit-min-device-pixel-ratio: 1.5), screen and (min-device-pixel-ratio: 1.5) {
-  /* line 263, ../sass/_roaster.scss */
+  /* line 264, ../sass/_roaster.scss */
   .open-to-public {
     background: transparent url("/static/img/public@2x.png") no-repeat center;
     background-size: 100px;
   }
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 263, ../sass/_roaster.scss */
+  /* line 264, ../sass/_roaster.scss */
   .open-to-public {
     background-size: 60px;
   }
 }
 
-/* line 275, ../sass/_roaster.scss */
+/* line 276, ../sass/_roaster.scss */
 .roaster-about {
   padding: 0 6.5em 0 0;
   -moz-box-sizing: border-box;
@@ -1207,29 +1208,29 @@ button[type="submit"]:hover {
   box-sizing: border-box;
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 275, ../sass/_roaster.scss */
+  /* line 276, ../sass/_roaster.scss */
   .roaster-about {
     padding: 0;
     margin-bottom: 2em;
   }
 }
-/* line 282, ../sass/_roaster.scss */
+/* line 283, ../sass/_roaster.scss */
 .roaster-about p {
   margin-bottom: 2em;
 }
-/* line 285, ../sass/_roaster.scss */
+/* line 286, ../sass/_roaster.scss */
 .roaster-about.second-column {
   padding-left: 8%;
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 285, ../sass/_roaster.scss */
+  /* line 286, ../sass/_roaster.scss */
   .roaster-about.second-column {
     padding-left: 0;
   }
 }
 
 @media only screen and (max-width: 640px), only screen and (max-device-width: 1136px) and (min-device-width: 960px) and (device-height: 640px), only screen and (max-device-height: 1136px) and (min-device-height: 960px) and (device-width: 640px), only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (max-device-width: 640px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (max-device-width: 640px) and (min-device-pixel-ratio: 1.5), only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  /* line 301, ../sass/_roaster.scss */
+  /* line 302, ../sass/_roaster.scss */
   .roaster-banner {
     min-height: 100px;
   }
