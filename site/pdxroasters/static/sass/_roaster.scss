@@ -128,6 +128,7 @@
   width: 100%;
   margin: 8em auto 0 auto;
   max-width: 960px;
+  @include box-sizing(border-box);
 }
 
 .roaster-title {

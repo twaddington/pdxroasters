@@ -190,8 +190,11 @@ body {
   top:0;
   left:0;
   right:0;
-  bottom:0;
+  bottom: 0;
   display:block;
   z-index: 1;
+  @include respond-to(0, $phone-wide){
+    bottom: -20%;
+  }
 }
 

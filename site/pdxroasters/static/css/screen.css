@@ -695,10 +695,11 @@ button[type="submit"]:hover {
   /* line 2, ../sass/_list.scss */
   #list {
     padding-bottom: 0;
+    top: 120%;
   }
 }
 
-/* line 16, ../sass/_list.scss */
+/* line 17, ../sass/_list.scss */
 .sort-list {
   background-color: #d2d0cb;
   width: 100%;
@@ -707,22 +708,30 @@ button[type="submit"]:hover {
   margin: 0 auto;
   max-width: 960px;
 }
-/* line 23, ../sass/_list.scss */
+@media only screen and (min-width: 0) and (max-width: 720px) {
+  /* line 17, ../sass/_list.scss */
+  .sort-list {
+    padding-top: 1em;
+  }
+}
+/* line 27, ../sass/_list.scss */
 .sort-list h3 {
   color: white;
   margin: 1em 0;
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 23, ../sass/_list.scss */
+  /* line 27, ../sass/_list.scss */
   .sort-list h3 {
     margin-left: 1.25em;
+    margin-top: 0.5em;
+    font-size: 1.25em;
   }
 }
-/* line 30, ../sass/_list.scss */
+/* line 36, ../sass/_list.scss */
 .sort-list li {
   display: inline;
 }
-/* line 32, ../sass/_list.scss */
+/* line 38, ../sass/_list.scss */
 .sort-list li a {
   background-color: #e6e6e6;
   margin-right: -4px;
@@ -735,21 +744,21 @@ button[type="submit"]:hover {
   -o-transition: 150ms all linear;
   transition: 150ms all linear;
 }
-/* line 40, ../sass/_list.scss */
+/* line 46, ../sass/_list.scss */
 .sort-list li a:hover {
   background-color: #eeeeee;
 }
-/* line 43, ../sass/_list.scss */
+/* line 49, ../sass/_list.scss */
 .sort-list li a.active {
   background-color: #f8f6f4;
 }
 
-/* line 49, ../sass/_list.scss */
+/* line 56, ../sass/_list.scss */
 #distance {
   position: relative;
 }
 
-/* line 52, ../sass/_list.scss */
+/* line 60, ../sass/_list.scss */
 .no-distance {
   width: 50%;
   margin: 3em 0 3em 25%;
@@ -761,7 +770,7 @@ button[type="submit"]:hover {
   line-height: 1.4em;
 }
 
-/* line 62, ../sass/_list.scss */
+/* line 71, ../sass/_list.scss */
 .list-content {
   background-color: #f8f6f4;
   width: 100%;
@@ -772,16 +781,16 @@ button[type="submit"]:hover {
   max-width: 960px;
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 62, ../sass/_list.scss */
+  /* line 71, ../sass/_list.scss */
   .list-content {
     padding: 2em 1em 2em 1em;
   }
 }
-/* line 73, ../sass/_list.scss */
+/* line 82, ../sass/_list.scss */
 .list-content.hidden {
   display: none;
 }
-/* line 76, ../sass/_list.scss */
+/* line 85, ../sass/_list.scss */
 .list-content .roaster {
   background-color: white;
   margin: 0.5em 0;
@@ -790,12 +799,12 @@ button[type="submit"]:hover {
   position: relative;
   clear: both;
 }
-/* line 83, ../sass/_list.scss */
+/* line 92, ../sass/_list.scss */
 .list-content .roaster.greyed-out {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=10);
   opacity: 0.1;
 }
-/* line 87, ../sass/_list.scss */
+/* line 96, ../sass/_list.scss */
 .list-content .distance {
   background-color: #dd6a5a;
   width: 4em;
@@ -805,18 +814,18 @@ button[type="submit"]:hover {
   text-align: center;
   float: left;
 }
-/* line 95, ../sass/_list.scss */
+/* line 104, ../sass/_list.scss */
 .list-content .distance span {
   display: table-cell;
   vertical-align: middle;
 }
-/* line 100, ../sass/_list.scss */
+/* line 109, ../sass/_list.scss */
 .list-content .handle {
   cursor: pointer;
   display: block;
   padding: 1em 1em 1em 5em;
 }
-/* line 105, ../sass/_list.scss */
+/* line 114, ../sass/_list.scss */
 .list-content .list-name {
   display: block;
   font-family: "Cabin", Helvetica, Arial, Sans-serif;
@@ -825,13 +834,26 @@ button[type="submit"]:hover {
   font-size: 18px;
   margin-top: -0.3em;
 }
-/* line 112, ../sass/_list.scss */
+/* line 121, ../sass/_list.scss */
 .list-content .list-name.no-address {
   margin-top: 0.35em;
 }
-/* line 116, ../sass/_list.scss */
+@media only screen and (min-width: 300px) and (max-width: 480px) {
+  /* line 114, ../sass/_list.scss */
+  .list-content .list-name {
+    font-size: 16px;
+    margin-top: 0.35em;
+  }
+}
+/* line 129, ../sass/_list.scss */
 .list-content .address {
   color: #7b7676;
+}
+@media only screen and (min-width: 0) and (max-width: 480px) {
+  /* line 129, ../sass/_list.scss */
+  .list-content .address {
+    display: none;
+  }
 }
 
 /* - - - - Roaster Detail Pages - - - - - */
@@ -969,9 +991,12 @@ button[type="submit"]:hover {
   width: 100%;
   margin: 8em auto 0 auto;
   max-width: 960px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-/* line 133, ../sass/_roaster.scss */
+/* line 134, ../sass/_roaster.scss */
 .roaster-title {
   color: white;
   font-size: 48px;
@@ -979,32 +1004,32 @@ button[type="submit"]:hover {
   margin-bottom: 0.5em;
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 133, ../sass/_roaster.scss */
+  /* line 134, ../sass/_roaster.scss */
   .roaster-title {
     font-size: 24px;
   }
 }
-/* line 141, ../sass/_roaster.scss */
+/* line 142, ../sass/_roaster.scss */
 .roaster-title h3 {
   margin-bottom: 0 !important;
 }
 
-/* line 146, ../sass/_roaster.scss */
+/* line 147, ../sass/_roaster.scss */
 .banner-address {
   line-height: 1.5em;
   font-size: 20px;
 }
 
-/* line 151, ../sass/_roaster.scss */
+/* line 152, ../sass/_roaster.scss */
 .banner-link {
   color: white;
   position: relative;
 }
-/* line 154, ../sass/_roaster.scss */
+/* line 155, ../sass/_roaster.scss */
 .banner-link:hover {
   color: #f8f6f4;
 }
-/* line 157, ../sass/_roaster.scss */
+/* line 158, ../sass/_roaster.scss */
 .banner-link:after {
   width: 20px;
   height: 26px;
@@ -1017,14 +1042,14 @@ button[type="submit"]:hover {
   background-size: 20px;
 }
 @media screen and (-webkit-min-device-pixel-ratio: 1.5), screen and (min-device-pixel-ratio: 1.5) {
-  /* line 157, ../sass/_roaster.scss */
+  /* line 158, ../sass/_roaster.scss */
   .banner-link:after {
     background: transparent url("/static/img/turn-by-turn@2x.png") no-repeat center;
     background-size: 20px;
   }
 }
 
-/* line 174, ../sass/_roaster.scss */
+/* line 175, ../sass/_roaster.scss */
 .roaster-description {
   width: 100%;
   max-width: 960px;
@@ -1032,37 +1057,37 @@ button[type="submit"]:hover {
   padding: 0 2em 6em 2em;
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 174, ../sass/_roaster.scss */
+  /* line 175, ../sass/_roaster.scss */
   .roaster-description {
     width: 90%;
     margin: 0.5em 5% 0.5em 5%;
   }
-  /* line 182, ../sass/_roaster.scss */
+  /* line 183, ../sass/_roaster.scss */
   .roaster-description h5 {
     margin-bottom: 0;
     margin-top: 1em;
   }
 }
 
-/* line 189, ../sass/_roaster.scss */
+/* line 190, ../sass/_roaster.scss */
 .phone-number {
   color: #7b7676;
   font-size: 0.75em;
   line-height: 1.5em;
 }
 
-/* line 195, ../sass/_roaster.scss */
+/* line 196, ../sass/_roaster.scss */
 .roaster-fact {
   text-align: center;
   margin-bottom: 2em;
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 195, ../sass/_roaster.scss */
+  /* line 196, ../sass/_roaster.scss */
   .roaster-fact {
     width: 33%;
   }
 }
-/* line 201, ../sass/_roaster.scss */
+/* line 202, ../sass/_roaster.scss */
 .roaster-fact > div {
   display: block;
   width: 100%;
@@ -1072,109 +1097,109 @@ button[type="submit"]:hover {
   padding: 4em;
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 201, ../sass/_roaster.scss */
+  /* line 202, ../sass/_roaster.scss */
   .roaster-fact > div {
     padding: 2em;
   }
 }
-/* line 210, ../sass/_roaster.scss */
+/* line 211, ../sass/_roaster.scss */
 .roaster-fact p {
   margin: 0.5em 0 2em 0;
   font-size: 0.85em;
 }
-/* line 213, ../sass/_roaster.scss */
+/* line 214, ../sass/_roaster.scss */
 .roaster-fact p.false {
   color: #e6e6e6;
 }
 
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 218, ../sass/_roaster.scss */
+  /* line 219, ../sass/_roaster.scss */
   .about-title {
     margin-top: 2em;
   }
 }
 
-/* line 223, ../sass/_roaster.scss */
+/* line 224, ../sass/_roaster.scss */
 .contact-info {
   margin-bottom: 2em;
 }
 
-/* line 226, ../sass/_roaster.scss */
+/* line 227, ../sass/_roaster.scss */
 .roaster-fact-icon {
   width: 100%;
   background: url("/static/img/onsite-cafe.png") no-repeat center center transparent;
   background-size: contain;
 }
 @media screen and (-webkit-min-device-pixel-ratio: 1.5), screen and (min-device-pixel-ratio: 1.5) {
-  /* line 226, ../sass/_roaster.scss */
+  /* line 227, ../sass/_roaster.scss */
   .roaster-fact-icon {
     background: transparent url("/static/img/onsite-cafe@2x.png") no-repeat center;
     background-size: 100px;
   }
 }
-/* line 234, ../sass/_roaster.scss */
+/* line 235, ../sass/_roaster.scss */
 .roaster-fact-icon.false {
   opacity: 0.2;
 }
 
-/* line 238, ../sass/_roaster.scss */
+/* line 239, ../sass/_roaster.scss */
 .online-orders {
   background: url("/static/img/online.png") no-repeat center center transparent;
   background-size: contain;
 }
 @media screen and (-webkit-min-device-pixel-ratio: 1.5), screen and (min-device-pixel-ratio: 1.5) {
-  /* line 238, ../sass/_roaster.scss */
+  /* line 239, ../sass/_roaster.scss */
   .online-orders {
     background: transparent url("/static/img/online@2x.png") no-repeat center;
     background-size: 100px;
   }
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 238, ../sass/_roaster.scss */
+  /* line 239, ../sass/_roaster.scss */
   .online-orders {
     background-size: 60px;
   }
 }
 
-/* line 250, ../sass/_roaster.scss */
+/* line 251, ../sass/_roaster.scss */
 .onsite-cafe {
   background: url("/static/img/onsite-cafe.png") no-repeat center center transparent;
   background-size: contain;
 }
 @media screen and (-webkit-min-device-pixel-ratio: 1.5), screen and (min-device-pixel-ratio: 1.5) {
-  /* line 250, ../sass/_roaster.scss */
+  /* line 251, ../sass/_roaster.scss */
   .onsite-cafe {
     background: transparent url("/static/img/onsite-cafe@2x.png") no-repeat center;
     background-size: 100px;
   }
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 250, ../sass/_roaster.scss */
+  /* line 251, ../sass/_roaster.scss */
   .onsite-cafe {
     background-size: 60px;
   }
 }
 
-/* line 262, ../sass/_roaster.scss */
+/* line 263, ../sass/_roaster.scss */
 .open-to-public {
   background: url("/static/img/public.png") no-repeat center center transparent;
   background-size: contain;
 }
 @media screen and (-webkit-min-device-pixel-ratio: 1.5), screen and (min-device-pixel-ratio: 1.5) {
-  /* line 262, ../sass/_roaster.scss */
+  /* line 263, ../sass/_roaster.scss */
   .open-to-public {
     background: transparent url("/static/img/public@2x.png") no-repeat center;
     background-size: 100px;
   }
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 262, ../sass/_roaster.scss */
+  /* line 263, ../sass/_roaster.scss */
   .open-to-public {
     background-size: 60px;
   }
 }
 
-/* line 274, ../sass/_roaster.scss */
+/* line 275, ../sass/_roaster.scss */
 .roaster-about {
   padding: 0 6.5em 0 0;
   -moz-box-sizing: border-box;
@@ -1182,29 +1207,29 @@ button[type="submit"]:hover {
   box-sizing: border-box;
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 274, ../sass/_roaster.scss */
+  /* line 275, ../sass/_roaster.scss */
   .roaster-about {
     padding: 0;
     margin-bottom: 2em;
   }
 }
-/* line 281, ../sass/_roaster.scss */
+/* line 282, ../sass/_roaster.scss */
 .roaster-about p {
   margin-bottom: 2em;
 }
-/* line 284, ../sass/_roaster.scss */
+/* line 285, ../sass/_roaster.scss */
 .roaster-about.second-column {
   padding-left: 8%;
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 284, ../sass/_roaster.scss */
+  /* line 285, ../sass/_roaster.scss */
   .roaster-about.second-column {
     padding-left: 0;
   }
 }
 
 @media only screen and (max-width: 640px), only screen and (max-device-width: 1136px) and (min-device-width: 960px) and (device-height: 640px), only screen and (max-device-height: 1136px) and (min-device-height: 960px) and (device-width: 640px), only screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (max-device-width: 640px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (max-device-width: 640px) and (min-device-pixel-ratio: 1.5), only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  /* line 300, ../sass/_roaster.scss */
+  /* line 301, ../sass/_roaster.scss */
   .roaster-banner {
     min-height: 100px;
   }
@@ -1394,4 +1419,10 @@ body.no-scroll {
   bottom: 0;
   display: block;
   z-index: 1;
+}
+@media only screen and (min-width: 0) and (max-width: 480px) {
+  /* line 188, ../sass/screen.scss */
+  #map {
+    bottom: -20%;
+  }
 }
