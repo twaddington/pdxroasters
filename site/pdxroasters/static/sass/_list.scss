@@ -8,6 +8,9 @@
   display:block;
   z-index: 1;
   padding: 1em 0 4em 0;
+  @include respond-to($phone, $phone-wide){
+    padding-bottom: 0;
+  }
 }
 
 .sort-list {
@@ -20,6 +23,9 @@
   h3 {
     color: white;
     margin: 1em 0;
+    @include respond-to($phone, $phone-wide){
+      margin-left: 1.25em;
+    }
   }
   li {
     display: inline;
@@ -62,7 +68,7 @@
   margin: 0 auto;
   max-width: 960px;
   @include respond-to($phone, $phone-wide){
-    padding: 2em 1em 0 1em;
+    padding: 2em 1em 2em 1em;
   }
   &.hidden {
     display: none;

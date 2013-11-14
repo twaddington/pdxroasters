@@ -691,8 +691,14 @@ button[type="submit"]:hover {
   z-index: 1;
   padding: 1em 0 4em 0;
 }
+@media only screen and (min-width: 300px) and (max-width: 480px) {
+  /* line 2, ../sass/_list.scss */
+  #list {
+    padding-bottom: 0;
+  }
+}
 
-/* line 13, ../sass/_list.scss */
+/* line 16, ../sass/_list.scss */
 .sort-list {
   background-color: #d2d0cb;
   width: 100%;
@@ -701,16 +707,22 @@ button[type="submit"]:hover {
   margin: 0 auto;
   max-width: 960px;
 }
-/* line 20, ../sass/_list.scss */
+/* line 23, ../sass/_list.scss */
 .sort-list h3 {
   color: white;
   margin: 1em 0;
 }
-/* line 24, ../sass/_list.scss */
+@media only screen and (min-width: 300px) and (max-width: 480px) {
+  /* line 23, ../sass/_list.scss */
+  .sort-list h3 {
+    margin-left: 1.25em;
+  }
+}
+/* line 30, ../sass/_list.scss */
 .sort-list li {
   display: inline;
 }
-/* line 26, ../sass/_list.scss */
+/* line 32, ../sass/_list.scss */
 .sort-list li a {
   background-color: #e6e6e6;
   margin-right: -4px;
@@ -723,21 +735,21 @@ button[type="submit"]:hover {
   -o-transition: 150ms all linear;
   transition: 150ms all linear;
 }
-/* line 34, ../sass/_list.scss */
+/* line 40, ../sass/_list.scss */
 .sort-list li a:hover {
   background-color: #eeeeee;
 }
-/* line 37, ../sass/_list.scss */
+/* line 43, ../sass/_list.scss */
 .sort-list li a.active {
   background-color: #f8f6f4;
 }
 
-/* line 43, ../sass/_list.scss */
+/* line 49, ../sass/_list.scss */
 #distance {
   position: relative;
 }
 
-/* line 46, ../sass/_list.scss */
+/* line 52, ../sass/_list.scss */
 .no-distance {
   width: 50%;
   margin: 3em 0 3em 25%;
@@ -749,7 +761,7 @@ button[type="submit"]:hover {
   line-height: 1.4em;
 }
 
-/* line 56, ../sass/_list.scss */
+/* line 62, ../sass/_list.scss */
 .list-content {
   background-color: #f8f6f4;
   width: 100%;
@@ -760,16 +772,16 @@ button[type="submit"]:hover {
   max-width: 960px;
 }
 @media only screen and (min-width: 300px) and (max-width: 480px) {
-  /* line 56, ../sass/_list.scss */
+  /* line 62, ../sass/_list.scss */
   .list-content {
-    padding: 2em 1em 0 1em;
+    padding: 2em 1em 2em 1em;
   }
 }
-/* line 67, ../sass/_list.scss */
+/* line 73, ../sass/_list.scss */
 .list-content.hidden {
   display: none;
 }
-/* line 70, ../sass/_list.scss */
+/* line 76, ../sass/_list.scss */
 .list-content .roaster {
   background-color: white;
   margin: 0.5em 0;
@@ -778,12 +790,12 @@ button[type="submit"]:hover {
   position: relative;
   clear: both;
 }
-/* line 77, ../sass/_list.scss */
+/* line 83, ../sass/_list.scss */
 .list-content .roaster.greyed-out {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=10);
   opacity: 0.1;
 }
-/* line 81, ../sass/_list.scss */
+/* line 87, ../sass/_list.scss */
 .list-content .distance {
   background-color: #dd6a5a;
   width: 4em;
@@ -793,18 +805,18 @@ button[type="submit"]:hover {
   text-align: center;
   float: left;
 }
-/* line 89, ../sass/_list.scss */
+/* line 95, ../sass/_list.scss */
 .list-content .distance span {
   display: table-cell;
   vertical-align: middle;
 }
-/* line 94, ../sass/_list.scss */
+/* line 100, ../sass/_list.scss */
 .list-content .handle {
   cursor: pointer;
   display: block;
   padding: 1em 1em 1em 5em;
 }
-/* line 99, ../sass/_list.scss */
+/* line 105, ../sass/_list.scss */
 .list-content .list-name {
   display: block;
   font-family: "Cabin", Helvetica, Arial, Sans-serif;
@@ -813,11 +825,11 @@ button[type="submit"]:hover {
   font-size: 18px;
   margin-top: -0.3em;
 }
-/* line 106, ../sass/_list.scss */
+/* line 112, ../sass/_list.scss */
 .list-content .list-name.no-address {
   margin-top: 0.35em;
 }
-/* line 110, ../sass/_list.scss */
+/* line 116, ../sass/_list.scss */
 .list-content .address {
   color: #7b7676;
 }
