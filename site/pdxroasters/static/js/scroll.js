@@ -3,10 +3,10 @@ define(["jquery"], function ($) {
   if ($('body').hasClass('home')){
     var list       = document.getElementById('list'),
         listLink   = document.getElementById('list_link'),
-        mapLink     = document.getElementById('map_link'),
+        mapLink    = document.getElementById('map_link'),
         listOffset = list.offsetTop,
-        win         = document.body.scrollTop,
-        height      = window.innerHeight,
+        win        = document.body.scrollTop,
+        height     = window.innerHeight,
         listActive = false;
   }
 
@@ -23,14 +23,14 @@ define(["jquery"], function ($) {
     },
     smoothScroll: function(){
       $(listLink).click(function(e){
-        $('body').stop().animate({
+        $('body,html').stop(true,true).animate({
             scrollTop: listOffset
         }, 400);
         e.preventDefault();
 
       });
       $(mapLink).click(function(e){
-        $('body').stop().animate({
+        $('body,html').stop(true,true).animate({
             scrollTop: 0
         }, 400);
         e.preventDefault();
@@ -38,7 +38,7 @@ define(["jquery"], function ($) {
     },
     updateActive: function(){
       window.onscroll = function () {
-        win = document.body.scrollTop;
+        win = document.documentElement.scrollTop || document.body.scrollTop;
         if (win > listOffset - height / 2 && listActive === false){
           Scroll.activate(listLink, mapLink, true);
           Scroll.updateUrl({page: "list"}, "About", "/#list");
@@ -50,7 +50,7 @@ define(["jquery"], function ($) {
       };
       window.onresize = function(e) {
         listOffset = list.offsetTop;
-        win = document.body.scrollTop;
+        win = document.documentElement.scrollTop || document.body.scrollTop;
         height = window.innerHeight;
       };
     },
