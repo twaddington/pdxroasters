@@ -5,7 +5,13 @@
 
 {% block content %}
 <div class="content">
-    <div class="roaster-banner" style="background-image: url('http://maps.googleapis.com/maps/api/streetview?size=1920x1080&location={{ roaster.lat }},{{ roaster.lng }}&fov=180&sensor=false');">
+    {% if roaster.lat and roaster.lng %}
+        <div class="roaster-banner" style="background-image: url('http://maps.googleapis.com/maps/api/streetview?size=1920x1080&location={{ roaster.lat }},{{ roaster.lng }}&fov=180&sensor=false');">
+    {% elif roaster.photo_url %}
+        <div class="roaster-banner" style="background-image: url('{{roaster.photo_url}}');">
+    {% else %}
+        <div class="roaster-banner" style="background-image: url('/static/img/coffee.jpg');">
+    {% endif %}
         <div class="banner-title">
             <h1 class="roaster-title"> {{ roaster.name }} </h1>
             {% if roaster.address %}
