@@ -43,17 +43,21 @@ serve you well:
 You should now be able to access the site in your browser by visiting
 `http://localhost:8000/` and the admin page by visiting `http://localhost:8000/admin/`.
 
-When anybody modifies the data models, you'll need to delete the `pdxroasters.db` and run `python manage.py syncdb`. 
+When anybody modifies the data models, you'll need to delete the `pdxroasters.db` and run `python manage.py syncdb`.
 
-### Updating CSS
+### Front End Assets
 
-After making changes to the site styles you'll need to regenerate the CSS from
-the SASS files. The preferred way to do this is using grunt:
+After making changes to Sass or JavaScript, you'll need to compile the changes. To do this, use npm:
 
     $ cd site/pdxroasters/static
-    $ grunt
+    $ npm install
+    $ npm run build
 
 Check-in the updated files when this process has completed.
+
+If you'll be doing several changes, you can also watch the files and recompile whenever they change:
+
+    $ npm run build:watch
 
 ### Deploying to Heroku
 

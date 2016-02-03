@@ -1,7 +1,7 @@
 
 <!-- List -->
 {% if roasters %}
-<section class="list" id="list">
+<section class="list js-list" id="list">
   <ul class="sort-list">
     <h3>Portland Coffee Roasters</h3>
     <li><a id="by-name" href="#" class="active">By Name</a></li>
@@ -25,7 +25,7 @@
   </ul>
   <ul class="list-content" id="roasters">
 {% for roaster in roasters %}
-  <li class="roaster" data-name="{{roaster.name}}">
+  <li class="roaster js-roaster-list-item" data-name="{{roaster.name}}">
     <div class="distance"><span class="letter"></span></div>
     <a href="/roaster/{{roaster.slug}}/" id="item-{{roaster.id}}" data-latlng="[{{roaster.lat}},{{roaster.lng}}]" data-name="{{roaster.name}}" class="handle">
       {% if roaster.address %}
