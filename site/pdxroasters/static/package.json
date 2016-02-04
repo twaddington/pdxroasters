@@ -32,6 +32,8 @@
     "simplifyify": "^2.0.1"
   },
   "dependencies": {
-    "leaflet": "^0.7.7"
+    "do-something-on-scroll": "^1.0.1",
+    "leaflet": "^0.7.7",
+    "smoothscroll": "^0.2.2"
   }
 }
