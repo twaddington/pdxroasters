@@ -10,7 +10,7 @@
   <ul class="list-content js-list-content js-distance-list hidden">
     <h2 class="no-distance"> Update your browser's locations settings to see roasters sorted by distance. </h2>
 {% for roaster in roasters %}
-  <li class="roaster js-by-distance-item greyed-out" data-lat="{{roaster.lat}}" data-lng="{{roaster.lng}}">
+  <li class="roaster js-by-distance-item greyed-out" data-lat="{{roaster.lat|default_if_none:""}}" data-lng="{{roaster.lng|default_if_none:""}}" data-name="{{roaster.name}}">
     <div class="distance"><span>?.?</span></div>
     <a href="/roaster/{{roaster.slug}}/" class="handle">
       {% if roaster.address %}
@@ -27,8 +27,8 @@
 {% for roaster in roasters %}
   <li class="roaster js-by-name-item"
       data-name="{{roaster.name}}"
-      data-lat="{{roaster.lat}}"
-      data-lng="{{roaster.lng}}"
+      data-lat="{{roaster.lat|default_if_none:""}}"
+      data-lng="{{roaster.lng|default_if_none:""}}"
       data-slug="{{roaster.slug}}"
       data-id="{{roaster.id}}"
       data-address="{{roaster.address}}">

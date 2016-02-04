@@ -44,7 +44,6 @@ L.tileLayer('http://{s}.tiles.mapbox.com/v3/financialtimes.map-w7l4lfi8/{z}/{x}/
 
 function addRoaster (r) {
   if (r.lat && r.lng) {
-    console.log(r.lat.length, r.lng.length)
     var popup = `<h5><a href="roaster/${r.slug}">${r.name}<span class="right-arrow"></span></a></h5>`
     L.marker([r.lat, r.lng], {icon: roasterMarker}).addTo(map).bindPopup(popup)
   } else {
@@ -60,7 +59,6 @@ map.locate({
 
 map.on('locationfound', e => {
   // if the device is in portland, center and show device location
-  console.log('hells yeah')
   if (e.latitude > 45.2 && e.latitude < 45.9 && e.longitude > -123.1 && e.longitude < -122.4){
     L.circle(e.latlng, 120, deviceCircle).addTo(map);
     L.marker(e.latlng, {icon: deviceMarker}).addTo(map);
@@ -68,7 +66,5 @@ map.on('locationfound', e => {
   }
 })
 
-export default {
-  addRoasters: arr => arr.forEach(addRoaster),
-  locationFound: cb => map.on('locationfound', cb)
-}
+export let addRoasters = arr => arr.forEach(addRoaster)
+export let locationFound = cb => map.on('locationfound', cb)

@@ -1,31 +1,32 @@
 /**
  * Make the correct link active in top nav and scroll to correct section
  */
-import scroll from '../lib/scroll'
+import scrollTo from 'smoothscroll'
+import onScroll from 'do-something-on-scroll'
 import $ from '../lib/$'
 
-$('js-nav-anchor').on('click', e => {
+let anchor = $('.js-nav-anchor')
+let listAnchor = $('.js-list-anchor')
+let mapAnchor = $('.js-map-anchor')
+
+anchor.on('click', e => {
   e.preventDefault()
-  history.pushState({}, '', this.href)
-  scroll.to(document.getElementById(e.target.dataset.scrollTo))
+  scrollTo(document.getElementById(e.target.dataset.scrollTo))
 })
 
-scroll.on(e => {
+function update () {
   let win = document.documentElement.scrollTop || document.body.scrollTop
   let listOffset = document.querySelector('.js-list').offsetTop
+  anchor.removeClass('active')
   if (win > listOffset - window.innerHeight / 2) {
     history.replaceState({page: "list"}, "List", "/#list")
+    listAnchor.addClass('active')
   }
   if (win < listOffset - window.innerHeight / 2) {
-    history.replaceState({page: "list"}, "List", "/#list")
+    history.replaceState({page: "map"}, "Map", "/")
+    mapAnchor.addClass('active')
   }
-})
+}
 
-window.addEventListener('hashchange', e => {
-  $('.js-nav-anchor').removeClass('active')
-  if (location.hash === '#list') {
-    $('.js-list-anchor').addClass('active')
-  } else {
-    $('js-map-anchor').addClass('active')
-  }
-})
+onScroll(update)
+update()

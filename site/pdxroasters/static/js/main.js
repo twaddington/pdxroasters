@@ -1,5 +1,5 @@
-import map from './sections/map'
-import list from './sections/list'
+import * as map from './sections/map'
+import * as list from './sections/list'
 import router from './sections/router'
 
 map.addRoasters(list.roasters)

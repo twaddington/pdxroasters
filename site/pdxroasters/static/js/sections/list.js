@@ -10,22 +10,24 @@ $('.js-list-toggle').on('click', e => {
 })
 
 function distance (roaster, location) {
-  var latlng = new L.LatLng(parseFloat(a.dataset.lng), parseFloat(a.dataset.lng))
+  var latlng = new L.LatLng(parseFloat(roaster.dataset.lat), parseFloat(roaster.dataset.lng))
   var distance = latlng.distanceTo(location.latlng) * 0.000621371
-  roaster.distance = parseFloat(distance.toFixed(2))
+  return parseFloat(distance.toFixed(2))
 }
 
-function sortDistanceList (location) {
+export function sortDistanceList (location) {
   let list = $('.js-by-distance-item')
-    .sort((a,b) => distance(a, location) - distance(b, location))
+    .filter(roaster => roaster.dataset.lat && roaster.dataset.lng)
+    .map(roaster => {
+      roaster.dataset.distance = distance(roaster, location)
+      roaster.querySelector('.distance').innerHTML = `<span class="letter">${roaster.dataset.distance}</span>`
+      $(roaster).removeClass('greyed-out')
+      return roaster
+    })
+    .sort((a,b) => a.dataset.distance - b.dataset.distance)
     .map(el => el.outerHTML)
     .join('')
   document.querySelector('.js-distance-list').innerHTML = list
 }
 
-let roasters = $('.js-by-name-item').map(el => el.dataset)
-
-export default {
-  roasters,
-  sortDistanceList
-}
+export let roasters = $('.js-by-name-item').map(el => el.dataset)
