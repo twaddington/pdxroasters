@@ -13,10 +13,10 @@ $('js-nav-anchor').on('click', e => {
 scroll.on(e => {
   let win = document.documentElement.scrollTop || document.body.scrollTop
   let listOffset = document.querySelector('.js-list').offsetTop
-  if (win > listOffset - height / 2) {
+  if (win > listOffset - window.innerHeight / 2) {
     history.replaceState({page: "list"}, "List", "/#list")
   }
-  if (win < listOffset - height / 2 && listActive === true){
+  if (win < listOffset - window.innerHeight / 2) {
     history.replaceState({page: "list"}, "List", "/#list")
   }
 })
