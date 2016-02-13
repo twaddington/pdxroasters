@@ -48,7 +48,11 @@
   </section>
 
   <!-- Load JS -->
-  <script src="/static/js/main.bundle.js"></script>
+  {% if debug %}
+    <script src="/static/js/main.bundle.js"></script>
+  {% else %}
+    <script src="/static/js/main.bundle.min.js"></script>
+  {% endif %}
 
   {% if not debug %}
     <script>
