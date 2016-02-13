@@ -57,7 +57,7 @@ Check-in the updated files when this process has completed.
 
 If you'll be doing several changes, you can also watch the files and recompile whenever they change:
 
-    $ npm run build:watch
+    $ npm start
 
 ### Deploying to Heroku
 
