@@ -20,7 +20,7 @@
     ]
   },
   "scripts": {
-    "js": "simplifyify js/main.js -b -d -m -o js/main.bundle.js",
+    "js": "simplifyify js/src/*.js -b -d -m -o js/dist/",
     "sass": "node-sass sass/ --output-style compressed -q --include-path node_modules/ -o css/",
     "build": "parallelshell 'npm run js' 'npm run sass'",
     "prestart": "npm run build",

@@ -59,6 +59,8 @@ If you'll be doing several changes, you can also watch the files and recompile w
 
     $ npm start
 
+**Note**: JavaScript files are in `/static/js/src/` and Sass files live in `/static/sass/`. **Do not** edit the files in `/static/js/dist/` or `/static/css/` as both folder are compiled by the build, and your changes will be overwritten the next time somebody builds.
+
 ### Deploying to Heroku
 
 To deploy the production site you need to first generate the compressed static
