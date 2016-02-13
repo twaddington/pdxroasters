@@ -1,5 +1,5 @@
-@import 'compass/css3';
-@import 'compass/utilities';
+@import 'scss-utils/scss-utils';
+@import 'leaflet/dist/leaflet';
 
 /* -- variables -- */
 $dark-red:#CA4C29;
@@ -64,7 +64,7 @@ body {
   z-index:3;
   border-bottom: 1px solid $light-gray;
   @include box-shadow(0 0 12px rgba(0,0,0,0.2));
-  @include respond-to(0, 360px){
+  @include respond-to(0, 360px) {
     padding: 0.3em 0.6em;
     ul {
       li {
@@ -107,7 +107,7 @@ body {
             margin-right: 12px;
             vertical-align: -12px;
             margin-top: -12px;
-            @include respond-to(0, $tablet){
+            @include respond-to(0, $tablet) {
               display: none;
             }
           }
@@ -127,12 +127,9 @@ body {
   bottom: 0;
   right: 0;
   left: 0;
-  @include respond-to($phone, $phone-wide){
-
-  }
   .github-logo {
     float:right;
-    @include respond-to($phone, $phone-wide){
+    @include respond-to($phone, $phone-wide) {
       float:none;
       display: block;
       margin: 0.5em 0 0 0;
@@ -145,7 +142,7 @@ body {
   color: $brown;
   font-size: 1.25em;
   letter-spacing: 1px;
-  @include respond-to($phone, $phone-wide){
+  @include respond-to($phone, $phone-wide) {
     font-size: 1em;
   }
   a {
@@ -162,7 +159,7 @@ body {
     height: 2.5em;
     background: $tan url("../img/logo.png") no-repeat center center;
     background-size: 2.5em 2.5em;
-    @include retina-display(){
+    @include retina-display() {
       background: $tan url("../img/logo@2x.png") no-repeat center center;
       background-size: 2.5em 2.5em;
     }
@@ -171,7 +168,7 @@ body {
     margin-top: .75em;
     margin-right: .5em;
     vertical-align: -0.85em;
-    @include border-radius(2.5em);
+    border-radius: 2.5em;
     @include respond-to($phone, $phone-wide) {
       margin-top: 0.45em;
       background-size: 2em 2em;

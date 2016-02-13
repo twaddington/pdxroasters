@@ -4,7 +4,7 @@
 }
 
 .leaflet-popup-content-wrapper {
-  @include border-radius(0);
+  border-radius: 0;
 }
 
 .leaflet-popup-tip {
