@@ -98,82 +98,6 @@ exports.default = $;
 },{}],2:[function(require,module,exports){
 'use strict';
 
-var _map = require('./sections/map');
-
-var map = _interopRequireWildcard(_map);
-
-var _list = require('./sections/list');
-
-var list = _interopRequireWildcard(_list);
-
-var _scroll = require('./sections/scroll');
-
-var _scroll2 = _interopRequireDefault(_scroll);
-
-var _forms = require('./sections/forms');
-
-var _forms2 = _interopRequireDefault(_forms);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-function _interopRequireWildcard(obj) {
-  if (obj && obj.__esModule) {
-    return obj;
-  } else {
-    var newObj = {};if (obj != null) {
-      for (var key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
-      }
-    }newObj.default = obj;return newObj;
-  }
-}
-
-map.addRoasters(list.roasters);
-map.locationFound(list.sortDistanceList);
-
-},{"./sections/forms":3,"./sections/list":4,"./sections/map":5,"./sections/scroll":6}],3:[function(require,module,exports){
-'use strict';
-
-var _$ = require('../lib/$');
-
-var _$2 = _interopRequireDefault(_$);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-(0, _$2.default)('.ajax-form').on('submit', function (e) {
-  e.preventDefault();
-  var csrf = document.querySelector('body').getAttribute('data-csrftoken');
-  console.log(csrf);
-  // TODO find some cool way to post without jquery (on npm)
-  // $.ajax({
-  //   data: $this.serialize(),
-  //   headers: {
-  //     "X-CSRFToken": csrf
-  //   },
-  //   method: post,
-  //   type: "json",
-  //   url: this.action
-  // })
-  // .then(function ( response ) {
-  //   if ( response.status === 204 ) {
-  //     console.log("success");
-
-  //   } else {
-  //     console.log("fail");
-  //   }
-  // })
-  // .fail(function (  error, message  ) {
-  //   console.log("seriously, you failed.");
-  // });
-});
-
-},{"../lib/$":1}],4:[function(require,module,exports){
-'use strict';
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -226,7 +150,7 @@ var roasters = exports.roasters = (0, _$2.default)('.js-by-name-item').map(funct
   return el.dataset;
 });
 
-},{"../lib/$":1,"leaflet":8}],5:[function(require,module,exports){
+},{"../lib/$":1,"leaflet":7}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -312,7 +236,7 @@ var locationFound = exports.locationFound = function locationFound(cb) {
   return map.on('locationfound', cb);
 };
 
-},{"leaflet":8}],6:[function(require,module,exports){
+},{"leaflet":7}],4:[function(require,module,exports){
 'use strict';
 
 var _smoothscroll = require('smoothscroll');
@@ -360,7 +284,41 @@ function update() {
 (0, _doSomethingOnScroll2.default)(update);
 update();
 
-},{"../lib/$":1,"do-something-on-scroll":7,"smoothscroll":10}],7:[function(require,module,exports){
+},{"../lib/$":1,"do-something-on-scroll":6,"smoothscroll":9}],5:[function(require,module,exports){
+'use strict';
+
+var _map = require('./lib/map');
+
+var map = _interopRequireWildcard(_map);
+
+var _list = require('./lib/list');
+
+var list = _interopRequireWildcard(_list);
+
+var _scroll = require('./lib/scroll');
+
+var _scroll2 = _interopRequireDefault(_scroll);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  } else {
+    var newObj = {};if (obj != null) {
+      for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+      }
+    }newObj.default = obj;return newObj;
+  }
+}
+
+map.addRoasters(list.roasters);
+map.locationFound(list.sortDistanceList);
+
+},{"./lib/list":2,"./lib/map":3,"./lib/scroll":4}],6:[function(require,module,exports){
 var raf = require('raf-component');
 
 var currentlyScrolling = false;
@@ -409,7 +367,7 @@ module.exports.cancel = function(handler) {
     }
 };
 
-},{"raf-component":9}],8:[function(require,module,exports){
+},{"raf-component":8}],7:[function(require,module,exports){
 /*
  Leaflet, a JavaScript library for mobile-friendly interactive maps. http://leafletjs.com
  (c) 2010-2013, Vladimir Agafonkin
@@ -9578,7 +9536,7 @@ L.Map.include({
 
 
 }(window, document));
-},{}],9:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 /**
  * Expose `requestAnimationFrame()`.
  */
@@ -9618,7 +9576,7 @@ exports.cancel = function(id){
   cancel.call(window, id);
 };
 
-},{}],10:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 (function (root, smoothScroll) {
   'use strict';
 
@@ -9735,5 +9693,5 @@ return smoothScroll;
 
 });
 
-},{}]},{},[2])
+},{}]},{},[5])
 //# sourceMappingURL=main.js.map
