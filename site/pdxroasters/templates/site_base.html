@@ -48,11 +48,7 @@
   </section>
 
   <!-- Load JS -->
-  {% if debug %}
-    <script src="/static/js/dist/main.js"></script>
-  {% else %}
-    <script src="/static/js/dist/main.min.js"></script>
-  {% endif %}
+  <script src="/static/js/dist/{% block script %}main{% endblock %}{% if not debug %}.min{% endif %}.js"></script>
 
   {% if not debug %}
     <script>
