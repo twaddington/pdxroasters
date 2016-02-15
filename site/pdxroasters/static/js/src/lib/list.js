@@ -30,4 +30,13 @@ export function sortDistanceList (location) {
   document.querySelector('.js-distance-list').innerHTML = list
 }
 
-export let roasters = $('.js-by-name-item').map(el => el.dataset)
+export let roasters = $('.js-by-name-item').map(el => {
+  return {
+    name: el.getAttribute('data-name'),
+    lat: el.getAttribute('data-lat'),
+    lng: el.getAttribute('data-lng'),
+    slug: el.getAttribute('data-slug'),
+    id: el.getAttribute('data-id'),
+    address: el.getAttribute('data-address')
+  }
+})

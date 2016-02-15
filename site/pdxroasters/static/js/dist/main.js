@@ -147,7 +147,14 @@ function sortDistanceList(location) {
 }
 
 var roasters = exports.roasters = (0, _$2.default)('.js-by-name-item').map(function (el) {
-  return el.dataset;
+  return {
+    name: el.getAttribute('data-name'),
+    lat: el.getAttribute('data-lat'),
+    lng: el.getAttribute('data-lng'),
+    slug: el.getAttribute('data-slug'),
+    id: el.getAttribute('data-id'),
+    address: el.getAttribute('data-address')
+  };
 });
 
 },{"../lib/$":1,"leaflet":7}],3:[function(require,module,exports){
