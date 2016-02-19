@@ -1,6 +1,6 @@
 ## PDX Roasters
 
-...
+Find a local coffee roaster in Portland, OR.
 
 ### Getting Started
 
@@ -45,7 +45,7 @@ You should now be able to access the site in your browser by visiting
 
 When anybody modifies the data models, you'll need to delete the `pdxroasters.db` and run `python manage.py syncdb`.
 
-### Front End Assets
+### Static Assets
 
 After making changes to Sass or JavaScript, you'll need to compile the changes. To do this, use npm:
 
@@ -59,7 +59,7 @@ If you'll be doing several changes, you can also watch the files and recompile w
 
     $ npm start
 
-**Note**: JavaScript files are in `/static/js/src/` and Sass files live in `/static/sass/`. **Do not** edit the files in `/static/js/dist/` or `/static/css/` as both folder are compiled by the build, and your changes will be overwritten the next time somebody builds.
+**Note**: JavaScript source files are in `/static/js/src/` and Sass files live in `/static/sass/`. **Do not** edit the files in `/static/js/dist/` or `/static/css/` as both folders are compiled by the build, and your changes will be overwritten the next time somebody builds.
 
 ### Deploying to Heroku
 
