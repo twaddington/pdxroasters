@@ -33,6 +33,12 @@
 
   <!-- Stylesheets -->
   <link href="/static/css/screen.css" rel="stylesheet" media="screen" />
+
+  <!-- Polyfill common features in really old browsers (<ie9) -->
+  <!--[if IE]>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+  <![endif]-->
+
 </head>
 <body data-csrftoken="{{csrf_token}}" class="{% block page %}{% endblock %}">
   <nav class="top-nav" id="top">
@@ -48,7 +54,7 @@
   </section>
 
   <!-- Load JS -->
-  <script src="/static/js/dist/{% block script %}main{% endblock %}{% if not debug %}.min{% endif %}.js"></script>
+  <script src="/static/js/dist/{% block script %}main{% endblock %}.min.js"></script>
 
   {% if not debug %}
     <script>
