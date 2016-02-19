@@ -13,26 +13,57 @@ function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
 }
 
-(0, _$2.default)('.ajax-form').on('submit', function (e) {
+(0, _$2.default)('.ajax-form').on('submit', formHandler);
+
+function formHandler(e) {
   e.preventDefault();
+
+  // clear any previous form errors
+  (0, _$2.default)('.js-form-input').removeClass('input-error');
+  (0, _$2.default)('.js-alert').addClass('hide').removeClass('alert-error');
+
   var form = e.target;
   var data = (0, _formSerialize2.default)(form, { empty: true, hash: false });
 
+  // open a new POST request to the form endpoint
   var r = new XMLHttpRequest();
   r.open('POST', form.action, true);
   r.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   r.setRequestHeader('X-CSRFToken', document.querySelector('body').getAttribute('data-csrftoken'));
   r.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-
-  r.onreadystatechange = function () {
-    if (r.readyState !== 4 && r.status === 200) {
-      console.log(r);
+  r.onload = function () {
+    // server returns 204 No Content for success, so a reponse body means error
+    if (r.response) {
+      var response = JSON.parse(r.response);
+      var errorObject = response[0] || response;
+      showError(errorObject, form);
     } else {
-      console.log(r);
+      showSuccess(form);
     }
   };
+  r.onerror = function () {
+    return showError({ error: 'XMLHttpRequest Error: ' + r.statusText });
+  };
   r.send(data);
-});
+}
+
+function showError(response, form) {
+  var input = form.querySelector('[name="' + response.field + '"]');
+  var alert = form.querySelector('.js-alert');
+  if (input) {
+    input.classList.add('input-error');
+  }
+  alert.innerHTML = response.error;
+  alert.classList.add('alert-error');
+  alert.classList.remove('hide');
+}
+
+function showSuccess(form) {
+  var alert = form.querySelector('.js-alert');
+  alert.innerHTML = 'Success! Thanks for your input!';
+  alert.classList.remove('hide');
+  form.reset();
+}
 
 },{"./lib/$":2,"form-serialize":3}],2:[function(require,module,exports){
 "use strict";
