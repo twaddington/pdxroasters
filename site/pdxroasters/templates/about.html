@@ -42,9 +42,10 @@
           </div>
           <div class="contact-form">
             <form class="ajax-form" data-form="contact" method="post" action="{% url contact %}">{% csrf_token %}
-              <input name="name" type="text" placeholder="Full Name" />
-              <input name="email" type="email" placeholder="E-mail" />
-              <textarea name="message" type="text" placeholder="Message"></textarea>
+              <div class="alert hide js-alert">Error submitting form.</div>
+              <input name="name" type="text" placeholder="Full Name" class="js-form-input"/>
+              <input name="email" type="email" placeholder="E-mail" class="js-form-input"/>
+              <textarea name="message" type="text" placeholder="Message"class="js-form-input"></textarea>
               <p class="caption">* All fields are required.</p>
               <button type="submit">Submit</button>
             </form>
@@ -59,11 +60,12 @@
           </div>
           <div class="about-description">
             <form class="ajax-form" data-form="roaster" method="post" action="{% url add-roaster %}">{% csrf_token %}
-              <input name="name" type="text" placeholder="Roaster Name" />
-              <input name="address" type="text" placeholder="Roaster Address" />
-              <input name="phone" type="tel" placeholder="Roaster Phone" />
-              <input name="url" type="url" placeholder="Roaster Website" />
-              <textarea name="description" placeholder="Roaster Description"></textarea>
+              <div class="alert hide js-alert">Error submitting form.</div>
+              <input name="name" type="text" placeholder="Roaster Name" class="js-form-input"/>
+              <input name="address" type="text" placeholder="Roaster Address" class="js-form-input"/>
+              <input name="phone" type="tel" placeholder="Roaster Phone" class="js-form-input"/>
+              <input name="url" type="url" placeholder="Roaster Website" class="js-form-input"/>
+              <textarea name="description" placeholder="Roaster Description"class="js-form-input"></textarea>
               <label class="inline-label"><input name="online_only" type="checkbox" /> Online Only</label>
               <label class="inline-label"><input name="order_online" type="checkbox" /> Order Online</label>
               <label class="inline-label"><input name="cafe_on_site" type="checkbox" /> Cafe on Site</label>

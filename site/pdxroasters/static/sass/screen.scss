@@ -1,26 +1,26 @@
-@import 'scss-utils/scss-utils';
-@import 'leaflet/dist/leaflet';
+@import 'node_modules/scss-utils/scss-utils';
+@import 'node_modules/leaflet/dist/leaflet';
 
 /* -- variables -- */
-$dark-red:#CA4C29;
-$red:#DD6A5A;
-$light-red:#DD6A5A;
-$yellow:#FFC434;
-$light-green:#C0DC93;
-$dark-blue:#00555F;
-$blue:#13A1AF;
-$light-blue:#0AAEBE;
-$darkest-gray:#323232;
-$darker-gray:#7b7676;
-$dark-gray:#d2d0cb;
-$gray:#DDDBD4;
+$dark-red: #CA4C29;
+$red: #DD6A5A;
+$light-red: #DD6A5A;
+$yellow: #FFC434;
+$light-green: #C0DC93;
+$dark-blue: #00555F;
+$blue: #13A1AF;
+$light-blue: #0AAEBE;
+$darkest-gray: #444444;
+$darker-gray: #7b7676;
+$dark-gray: #d2d0cb;
+$gray: #DDDBD4;
 $light-gray: #e6e6e6;
-$lighter-gray:#F8f6f4;
-$white:#FFFFFF;
+$lighter-gray: #F8f6f4;
+$white: #FFFFFF;
 $tan: #e9e1bd;
 $dark-brown: #44372c;
 $brown: #563f29;
-$light-brown:#6d543d;
+$light-brown: #6d543d;
 $skolar: 'Skolar', Helvetica, Arial, Sans-serif;
 $cabin: 'Cabin', Helvetica, Arial, Sans-serif;
 
@@ -44,9 +44,10 @@ $desktop-wide: 1920px;
 
 body {
   margin: 0;
-  min-height: 100%;
+  min-height: 100vh;
   font-size: 16px;
   font-family: $cabin;
+  background-color: $lighter-gray;
   -webkit-font-smoothing: antialiased;
   &.no-scroll {
     overflow-y: hidden;

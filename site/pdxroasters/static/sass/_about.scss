@@ -64,6 +64,22 @@
   }
 }
 
+.alert {
+  color: $blue;
+}
+
+.alert-error {
+  color: $red;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.input-error {
+  border-color: $red !important;
+}
+
 /* -- add a roaster -- */
 .add-a-roaster-copy {
   margin-top: 5em;

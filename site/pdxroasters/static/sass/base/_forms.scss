@@ -78,10 +78,10 @@ button[type="submit"] {
     margin-top: 1em;
 }
 
-::-webkit-input-placeholder {color: $light-gray;}
-         ::-moz-placeholder {color: $light-gray;}
-          :-moz-placeholder {color: $light-gray;}
-     :-ms-input-placeholder {color: $light-gray;}
+::-webkit-input-placeholder {color: $dark-gray;}
+         ::-moz-placeholder {color: $dark-gray;}
+          :-moz-placeholder {color: $dark-gray;}
+     :-ms-input-placeholder {color: $dark-gray;}
 
 /* -- buttons -- */
 .btn {
