@@ -26,4 +26,5 @@ staticfiles
 site/pdxroasters/static/node_modules/
 
 # Ignore source maps
-site/pdxroasters/static/js/*.js.map
+*.js.map
+*.css.map
