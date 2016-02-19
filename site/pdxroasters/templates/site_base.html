@@ -1,59 +1,74 @@
-{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  <meta name="apple-mobile-web-app-title" content="Affinity" />
-  <link rel="apple-touch-icon-precomposed" href="/static/img/touch/icon-54.png" />
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/img/touch/icon-72.png" />
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/img/touch/icon-114.png" />
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/img/touch/icon-144.png" />
-  <link rel="apple-touch-startup-image" href="/static/img/touch/startup-ipad-landscape-retina.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) and (min-device-pixel-ratio: 2)" />
-  <link rel="apple-touch-startup-image" href="/static/img/touch/startup-ipad-portrait-retina.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) and (min-device-pixel-ratio: 2)" />
-  <link rel="apple-touch-startup-image" href="/static/img/touch/startup-ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)" />
-  <link rel="apple-touch-startup-image" href="/static/img/touch/startup-ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)" />
-  <link rel="apple-touch-startup-image" href="/static/img/touch/startup-568h-retina.png" media="screen and (device-height: 568px)" />
-  <link rel="apple-touch-startup-image" href="/static/img/touch/startup-retina.png" media="screen and (device-height: 480px) and (min-device-pixel-ratio: 2)" />
-  <link rel="apple-touch-startup-image" href="/static/img/touch/startup.png" media="screen and (device-height: 480px)" />
-  <meta name="keywords" content="{% block meta_keywords %}Portland&rsquo;s coffee scene is pioneering, unique, and fiercely dedicated to craft and quality. Use PDX Roasters to find a local coffee roaster in Portland, Ore.{% endblock %}" />
+
+  <!-- Meta Data -->
+  <title>PDX Roasters | {% block title %}{% endblock %}</title>
   <meta name="description" content="{% block meta_description %}{% endblock %}" />
+  <meta name="keywords" content="{% block meta_keywords %}Portland&rsquo;s coffee scene is pioneering, unique, and fiercely dedicated to craft and quality. Use PDX Roasters to find a local coffee roaster in Portland, Ore.{% endblock %}" />
   <meta name="author" content="Isaac Viel" />
   <meta name="author" content="Tristan Waddington" />
   <meta name="author" content="Paul C. Pederson" />
   <meta name="author" content="Brandon Lee Kitajchuk" />
   <link rel="author" href="humans.txt" />
-  <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
-  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
-  <link href="{% static 'css/screen.css' %}" rel="stylesheet" media="screen" />
-  <title>PDX Roasters | {% block title %}{% endblock %}</title>
-  {% if not debug %}
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  <link rel="shortcut icon" href="/static/favicon.ico">
 
-    ga('create', 'UA-39536201-1', 'pdxroasters.com');
-    ga('send', 'pageview');
+  <!-- App Info -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="Affinity" />
 
-  </script>
-  {% endif %}
+  <!-- App Icons -->
+  <link rel="apple-touch-icon-precomposed"                 href="/static/img/touch/54.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72"   href="/static/img/touch/72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/img/touch/114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/img/touch/144.png" />
+
+  <!-- Splash Screens -->
+  <link rel="apple-touch-startup-image" href="/static/img/startup/320x480.png"   media="(device-width: 320px)">
+  <link rel="apple-touch-startup-image" href="/static/img/startup/640x960.png"   media="(device-width: 320px) and (device-height: 460px) and (-webkit-device-pixel-ratio: 2)" />
+  <link rel="apple-touch-startup-image" href="/static/img/startup/640x1136.png"  media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" />
+  <link rel="apple-touch-startup-image" href="/static/img/startup/768x1024.png"  media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)" />
+  <link rel="apple-touch-startup-image" href="/static/img/startup/1024x768.png"  media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)" />
+  <link rel="apple-touch-startup-image" href="/static/img/startup/1536x2048.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) and (-webkit-min-device-pixel-ratio: 2)" />
+  <link rel="apple-touch-startup-image" href="/static/img/startup/2048x1536.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) and (-webkit-min-device-pixel-ratio: 2)" />
+
+  <!-- Stylesheets -->
+  <link href="/static/css/screen.css" rel="stylesheet" media="screen" />
+
+  <!-- Polyfill common features in really old browsers (<ie9) -->
+  <!--[if IE]>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+  <![endif]-->
+
 </head>
-<body data-environment="{% if debug %}development{% else %}production{% endif %}" data-csrftoken="{{ csrf_token }}" class="{% block page %}{% endblock %}">
-  <nav class="top-nav">
+<body data-csrftoken="{{csrf_token}}" class="{% block page %}{% endblock %}">
+  <nav class="top-nav" id="top">
     <ul>
-      <li><a href="/" class="logo">PDX Roasters</a></li>
+      <li><a href="/" class="logo js-nav-anchor" data-scroll-to="top">PDX Roasters</a></li>
       <li class="nav-right"><a href="/about" class="info {% block aboutActive %}{% endblock %}">About</a></li>
-      <li class="nav-right"><a href="/#list" id="list_link" class="info">List</a></li>
-      <li class="nav-right"><a href="/#map" id="map_link" class="map">Map</a></li>
+      <li class="nav-right"><a href="/#list" class="info js-nav-anchor js-list-anchor" data-scroll-to="list">List</a></li>
+      <li class="nav-right"><a href="/" class="map js-nav-anchor js-map-anchor" data-scroll-to="map">Map</a></li>
     </ul>
   </nav>
   <section class="content relative">
     {% block content %}{% endblock %}
   </section>
-  <script data-main="/static/js/{% block scripts %}{% endblock %}.js" src="{% static 'js/lib/require.min.js' %}"></script>
+
+  <!-- Load JS -->
+  <script src="/static/js/dist/{% block script %}main{% endblock %}.min.js"></script>
+
+  {% if not debug %}
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-39536201-1', 'pdxroasters.com');
+      ga('send', 'pageview');
+    </script>
+  {% endif %}
 </body>
 </html>

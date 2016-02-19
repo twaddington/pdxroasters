@@ -1,19 +1,64 @@
 {% extends 'site_base.html' %}
 {% load i18n %}
+
 {% block title %}Portland Coffee Roasters Map{% endblock %}
 {% block page %}home{% endblock %}
 {% block homeActive %}active{% endblock %}
-{% block meta_description %}
-  Portland’s coffee scene is pioneering, unique and fiercely dedicated to craft and quality. Use PDX Roasters to find a local Portland coffee roaster.
-{% endblock %}
 
 {% block content %}
 <!-- Map -->
-<section id="map">
-</section>
+<section id="map"></section>
 
-{% include 'partials/roasters.html' %}
+<!-- List -->
+{% if roasters %}
+  <section class="list js-list" id="list">
+    <ul class="sort-list">
+      <h3>Portland Coffee Roasters</h3>
+      <li><a href="#" class="js-list-toggle active" data-sort="name">By Name</a></li>
+      <li><a href="#" class="js-list-toggle" data-sort="distance">By Distance</a></li>
+    </ul>
+    <ul class="list-content js-list-content js-distance-list hidden">
+      <h2 class="no-distance"> Update your browser's locations settings to see roasters sorted by distance. </h2>
+      {% for roaster in roasters %}
+        <li class="roaster js-by-distance-item greyed-out" data-lat="{{roaster.lat|default_if_none:""}}" data-lng="{{roaster.lng|default_if_none:""}}" data-name="{{roaster.name}}">
+          <div class="distance"><span>?.?</span></div>
+          <a href="/roaster/{{roaster.slug}}/" class="handle">
+            {% if roaster.address %}
+            <span class="list-name">{{ roaster.name }}</span>
+            <span class="address"> {{roaster.address}}</span>
+            {% else %}
+            <span class="list-name no-address">{{ roaster.name }}</span>
+            {% endif %}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+    <ul class="list-content js-list-content js-name-list">
+      {% for roaster in roasters %}
+        <li class="roaster js-by-name-item"
+            data-name="{{roaster.name}}"
+            data-lat="{{roaster.lat|default_if_none:""}}"
+            data-lng="{{roaster.lng|default_if_none:""}}"
+            data-slug="{{roaster.slug}}"
+            data-id="{{roaster.id}}"
+            data-address="{{roaster.address}}">
+          <div class="distance"><span class="letter">{{roaster.name|slice:"1"}}</span></div>
+          <a href="/roaster/{{roaster.slug}}/" class="handle">
+            {% if roaster.address %}
+            <span class="list-name">{{ roaster.name }}</span>
+            <span class="address"> {{roaster.address}}</span>
+            {% else %}
+            <span class="list-name no-address">{{ roaster.name }}</span>
+            {% endif %}
+          </a>
+        </li>
+      {% empty %}
+        <div class="message">
+          <h3>There are no Roasters yet.</h3>
+          <p>Perhaps you would like to <a href="/about/">suggest one</a> to us.</p>
+        </div>
+      {% endfor %}
+    </ul>
+  </section>
+{% endif %}
 {% endblock %}
-
-{% block scripts %}main{% endblock %}
-

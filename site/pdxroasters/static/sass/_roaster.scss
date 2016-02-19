@@ -87,6 +87,7 @@
 
 .content {
   background-color: $lighter-gray;
+  min-height: 100%;
 }
 
 .roaster-banner {
@@ -128,7 +129,7 @@
   width: 100%;
   margin: 8em auto 0 auto;
   max-width: 960px;
-  @include box-sizing(border-box);
+  box-sizing: border-box;
 }
 
 .roaster-title {

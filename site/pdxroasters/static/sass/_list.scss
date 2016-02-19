@@ -69,6 +69,7 @@
 }
 
 .list-content {
+  position: relative;
   background-color: $lighter-gray;
   width:100%;
   box-sizing: border-box;
@@ -90,7 +91,7 @@
     position: relative;
     clear:both;
     &.greyed-out {
-      @include opacity(0.1);
+      opacity: 0.1;
     }
   }
   .distance {

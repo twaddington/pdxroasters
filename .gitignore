@@ -24,3 +24,11 @@ staticfiles
 
 # Ignore node_modules
 site/pdxroasters/static/node_modules/
+
+# Ignore source maps
+*.js.map
+*.css.map
+
+# Ignore developement JS bundle
+site/pdxroasters/static/js/dist/
+!site/pdxroasters/static/js/dist/*.min.js

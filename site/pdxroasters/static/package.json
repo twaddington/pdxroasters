@@ -2,16 +2,44 @@
   "name": "PDX-Roasters",
   "version": "0.1.0",
   "description": "Mapping all the coffee roasters in Portland",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/twaddington/pdxroasters.git"
   },
-  "author": "",
-  "license": "BSD",
+  "license": "LicenseRef-LICENSE",
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "es2015"
+          ]
+        }
+      ]
+    ]
+  },
+  "scripts": {
+    "js": "simplifyify js/src/*.js -b -m -d -o js/dist/",
+    "sass": "node-sass sass/ --source-map css/ --output-style compressed -o css/",
+    "postsass": "postcss -u autoprefixer -r css/*.css",
+    "build": "parallelshell 'npm run js' 'npm run sass'",
+    "prestart": "npm run sass",
+    "start": "parallelshell 'npm run js -w' 'npm run sass -- -w'"
+  },
   "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.6.0",
-    "grunt-contrib-watch": "~0.5.1",
-    "grunt-contrib-compass": "~0.4.1"
+    "autoprefixer": "^6.3.3",
+    "babel-preset-es2015": "^6.3.13",
+    "babelify": "^7.2.0",
+    "node-sass": "^3.4.2",
+    "parallelshell": "^2.0.0",
+    "postcss-cli": "^2.5.1",
+    "simplifyify": "^2.0.1"
+  },
+  "dependencies": {
+    "do-something-on-scroll": "^1.0.1",
+    "form-serialize": "^0.7.0",
+    "leaflet": "^0.7.7",
+    "smoothscroll": "^0.2.2"
   }
 }

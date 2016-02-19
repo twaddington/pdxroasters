@@ -1,23 +1,81 @@
 {% extends 'site_base.html' %}
-
 {% load i18n %}
 
 {% block title %}About{% endblock %}
+{% block meta_description %}Learn more about the PDX Roasters project and get in touch.{% endblock %}
 {% block page %}aboutPage{% endblock %}
 {% block aboutActive %}active{% endblock %}
 
-{% block meta_description %}Learn more about the PDX Roasters project and get in touch.{% endblock %}
+{% block script %}about{% endblock %}
 
 {% block content %}
   <!-- About -->
   <section id="about">
     <div class="about-wrap">
       <section class="about">
-        {% include 'partials/about.html' %}
-        {% include 'partials/add_a_roaster.html' %}
+        <div class="page block">
+          <div class="about-icon">
+            <img src="/static/img/pdx-roasters-icon.jpg" alt="PDX Roasters Icon">
+          </div>
+          <div class="about-description">
+            <h2>About PDX Roasters</h2>
+            <p>
+              Within the modest boundaries of Portland, Oregon there exist more
+              than 40 craft coffee roasters, each of whom help make the city
+              a coffee lover&rsquo;s dream. PDX Roasters is a joint project
+              between Portland coffee aficionados, home roasters, developers,
+              and designers who are driven to create a comprehensive and
+              interactive guide for finding local, fresh-roasted coffee.
+              Our goal is to connect the craft of coffee roasting to the daily
+              ritual of coffee lovers. PDX Roasters is completely not for
+              profit and is built on open-source software.
+              <br/><br/>
+              Search the list of roasters via our API at
+              <a href="/api/roaster/?format=json">pdxroasters.com/api/roaster</a>.
+            </p>
+          </div>
+        </div>
+        <div class="page block">
+          <div class="contact-copy">
+            <h2>Contact Us</h2>
+            <p>If you&rsquo;d like to learn more about the project or get involved send us a message.</p>
+          </div>
+          <div class="contact-form">
+            <form class="ajax-form" data-form="contact" method="post" action="{% url contact %}">{% csrf_token %}
+              <div class="alert hide js-alert">Error submitting form.</div>
+              <input name="name" type="text" placeholder="Full Name" class="js-form-input"/>
+              <input name="email" type="email" placeholder="E-mail" class="js-form-input"/>
+              <textarea name="message" type="text" placeholder="Message"class="js-form-input"></textarea>
+              <p class="caption">* All fields are required.</p>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+        <div class="page block" id="add-a-roaster">
+          <div class="add-a-roaster-copy about-icon">
+            <div class="ci">
+              <h2>Add a Portland Roaster</h2>
+              <p>Did we miss a roaster or have you heard of someone just getting started recently in the Portland area? Give us a few details and we'll make sure to add them to the map.</p>
+            </div>
+          </div>
+          <div class="about-description">
+            <form class="ajax-form" data-form="roaster" method="post" action="{% url add-roaster %}">{% csrf_token %}
+              <div class="alert hide js-alert">Error submitting form.</div>
+              <input name="name" type="text" placeholder="Roaster Name" class="js-form-input"/>
+              <input name="address" type="text" placeholder="Roaster Address" class="js-form-input"/>
+              <input name="phone" type="tel" placeholder="Roaster Phone" class="js-form-input"/>
+              <input name="url" type="url" placeholder="Roaster Website" class="js-form-input"/>
+              <textarea name="description" placeholder="Roaster Description"class="js-form-input"></textarea>
+              <label class="inline-label"><input name="online_only" type="checkbox" /> Online Only</label>
+              <label class="inline-label"><input name="order_online" type="checkbox" /> Order Online</label>
+              <label class="inline-label"><input name="cafe_on_site" type="checkbox" /> Cafe on Site</label>
+              <label class="inline-label"><input name="open_to_public" type="checkbox" /> Open to Public</label>
+              <p class="caption">* All fields are required.</p>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
       </section>
     </div>
   </section>
 {% endblock %}
-
-{% block scripts %}about{% endblock %}
