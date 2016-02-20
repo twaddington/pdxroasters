@@ -6,8 +6,6 @@
 {% block page %}aboutPage{% endblock %}
 {% block aboutActive %}active{% endblock %}
 
-{% block script %}about{% endblock %}
-
 {% block content %}
   <!-- About -->
   <section id="about">
@@ -78,4 +76,8 @@
       </section>
     </div>
   </section>
+{% endblock %}
+
+{% block scripts %}
+  <script src="/static/js/dist/about.min.js"></script>
 {% endblock %}

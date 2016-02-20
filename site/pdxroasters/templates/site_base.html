@@ -58,7 +58,7 @@
   </section>
 
   <!-- Load JS -->
-  <script src="/static/js/dist/{% block script %}main{% endblock %}.min.js"></script>
+  {% block scripts %}{% endblock %}
 
   {% if not debug %}
     <script>
